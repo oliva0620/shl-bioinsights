@@ -170,7 +170,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-21 08:26 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-21 09:27 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -208,6 +208,9 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
   <div class="sidebar-section-label">도움말</div>
   <button class="nav-item" onclick="switchPanel('guide', this)">
     <span class="nav-icon">📖</span> 사용 가이드
+  </button>
+  <button class="nav-item" onclick="switchPanel('sources', this)">
+    <span class="nav-icon">🔗</span> 데이터 출처
   </button>
 
   <div class="sidebar-bottom">
@@ -377,7 +380,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-21 08:26 UTC
+  최종 업데이트: 2026-05-21 09:27 UTC
 </p>
 </div>
 
@@ -95833,7 +95836,7 @@ function showStock(slug, btn) {
   <div style="font-size:13px;color:var(--muted);line-height:2">
     전 세계 매출 상위 30개 제약회사가 <strong style="color:var(--text)">지금 어떤 신약을 개발 중인지</strong>,
     그 신약이 <strong style="color:var(--text)">FDA 승인을 받을 가능성이 얼마나 되는지</strong>를 매일 자동으로 추적합니다.<br>
-    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-21 08:26 UTC</strong>
+    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-21 09:27 UTC</strong>
   </div>
 </div>
 
@@ -96154,7 +96157,7 @@ function showStock(slug, btn) {
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-21 08:26 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-21 09:27 UTC
 </footer>
 
 <script>
@@ -96198,5 +96201,200 @@ function sortTable(tableId, col) {
   table.dataset.sortDir = asc ? 'desc' : 'asc';
 }
 </script>
+
+<!-- PANEL: 데이터 출처 -->
+<div id="panel-sources" class="tab-panel">
+<div style="max-width:860px;padding-bottom:40px">
+
+<div class="panel-title">🔗 데이터 출처 및 신뢰성</div>
+<div class="panel-desc">이 대시보드에 표시되는 모든 데이터의 원천과 수집 방식, 한계를 투명하게 공개합니다.</div>
+
+<style>
+.src-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px 24px; margin-bottom: 16px;
+}
+.src-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.src-icon { font-size: 24px; }
+.src-title { font-size: 14px; font-weight: 700; }
+.src-origin { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.src-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px;
+  margin-left: auto; white-space: nowrap;
+}
+.badge-gov  { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid #22c55e44; }
+.badge-pub  { background: rgba(99,102,241,.15); color: #818cf8; border: 1px solid #818cf844; }
+.badge-calc { background: rgba(245,158,11,.15); color: #f59e0b; border: 1px solid #f59e0b44; }
+.badge-rss  { background: rgba(59,130,246,.15); color: #60a5fa; border: 1px solid #60a5fa44; }
+.src-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; }
+.src-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 4px; }
+.src-val { color: var(--text); line-height: 1.6; }
+.src-limit { font-size: 11px; color: #f87171; background: rgba(239,68,68,.07); border-left: 2px solid #ef444455; padding: 6px 10px; border-radius: 4px; margin-top: 10px; line-height: 1.6; }
+.src-note  { font-size: 11px; color: #fbbf24; background: rgba(245,158,11,.07); border-left: 2px solid #f59e0b55; padding: 6px 10px; border-radius: 4px; margin-top: 6px; line-height: 1.6; }
+.src-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0 20px; }
+.src-section-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
+</style>
+
+<!-- 임상시험 데이터 -->
+<div class="src-card">
+  <div class="src-header">
+    <span class="src-icon">🏥</span>
+    <div>
+      <div class="src-title">임상시험 데이터</div>
+      <div class="src-origin">ClinicalTrials.gov — 미국 국립보건원(NIH) 운영</div>
+    </div>
+    <span class="src-badge badge-gov">미국 정부 공개 DB</span>
+  </div>
+  <div class="src-grid">
+    <div>
+      <div class="src-label">수집 대상</div>
+      <div class="src-val">글로벌 Top 30 제약사가 스폰서인 미국 임상시험<br>상태: 모집 중·완료·진행 중</div>
+    </div>
+    <div>
+      <div class="src-label">API</div>
+      <div class="src-val">ClinicalTrials.gov v2 REST API<br><a href="https://clinicaltrials.gov/data-api/api" target="_blank">clinicaltrials.gov/data-api</a></div>
+    </div>
+    <div>
+      <div class="src-label">수집 주기</div>
+      <div class="src-val">매일 06:00 KST 자동 실행<br>캐시 TTL: 23시간</div>
+    </div>
+    <div>
+      <div class="src-label">추출 필드</div>
+      <div class="src-val">NCT ID, Phase, 상태, 완료예정일,<br>약물명, 적응증, 1차 엔드포인트, 결과 등록 여부</div>
+    </div>
+  </div>
+  <div class="src-limit">⚠ 한계: ClinicalTrials.gov 등록은 스폰서 자율 보고. 결과가 부정적이면 등록이 지연되거나 생략될 수 있음 (Publication Bias). 비미국 임상은 포함되지 않음.</div>
+</div>
+
+<!-- FDA 승인/CRL 데이터 -->
+<div class="src-card">
+  <div class="src-header">
+    <span class="src-icon">📋</span>
+    <div>
+      <div class="src-title">FDA 승인 현황 · CRL(거절 서한)</div>
+      <div class="src-origin">openFDA API + FDA 프레스릴리즈 RSS</div>
+    </div>
+    <span class="src-badge badge-gov">미국 FDA 공개 데이터</span>
+  </div>
+  <div class="src-grid">
+    <div>
+      <div class="src-label">FDA 승인 (openFDA)</div>
+      <div class="src-val">당해 연도 회사별 신약 승인 건수<br><a href="https://open.fda.gov/apis/drug/drugsfda/" target="_blank">open.fda.gov</a> — 무료, 키 없이 40 req/min</div>
+    </div>
+    <div>
+      <div class="src-label">CRL 데이터</div>
+      <div class="src-val">FDA 프레스릴리즈 RSS 파싱 +<br>공개 기록 시드 데이터 (수동 검증 16건)</div>
+    </div>
+    <div>
+      <div class="src-label">CRL 출처 링크</div>
+      <div class="src-val">각 CRL 카드의 "FDA↗" 버튼 →<br>FDA Drugs@FDA 원문 페이지로 직접 연결</div>
+    </div>
+    <div>
+      <div class="src-label">CRL 카테고리 분류</div>
+      <div class="src-val">거절 사유 키워드 자동 분류<br>(독성·CMC·임상데이터·효능·라벨링)</div>
+    </div>
+  </div>
+  <div class="src-limit">⚠ 한계: CRL 전수 수집은 불가능. 시드 데이터(16건) + RSS 매칭 기반이므로 누락 가능. 거절 사유 분류는 키워드 기반 자동화로 오분류 가능성 있음.</div>
+</div>
+
+<!-- 뉴스 데이터 -->
+<div class="src-card">
+  <div class="src-header">
+    <span class="src-icon">📰</span>
+    <div>
+      <div class="src-title">업계 보도 뉴스</div>
+      <div class="src-origin">FiercePharma · STAT News · Reuters Health — RSS 피드</div>
+    </div>
+    <span class="src-badge badge-rss">전문 미디어 RSS</span>
+  </div>
+  <div class="src-grid">
+    <div>
+      <div class="src-label">수집 소스</div>
+      <div class="src-val">
+        <a href="https://www.fiercepharma.com" target="_blank">FiercePharma</a> — 제약 산업 전문<br>
+        <a href="https://www.statnews.com" target="_blank">STAT News</a> — 바이오/임상 심층 분석<br>
+        <a href="https://www.reuters.com/business/healthcare-pharmaceuticals/" target="_blank">Reuters Health</a> — 시장·규제 보도
+      </div>
+    </div>
+    <div>
+      <div class="src-label">회사-뉴스 매칭 방식</div>
+      <div class="src-val">기사 제목+본문에서 회사명·약물명 키워드 검색<br>매칭 없으면 "관련 뉴스 없음" 표시</div>
+    </div>
+  </div>
+  <div class="src-note">📌 뉴스 링크가 없는 임상: 해당 약물명이 최근 RSS 기사에 언급되지 않은 것. 뉴스 부재가 곧 부정적 신호는 아님.</div>
+  <div class="src-limit">⚠ 한계: RSS에 올라오지 않은 학술 발표(ASCO, ESMO 포스터 등)는 미수집. 영문 기사만 수집.</div>
+</div>
+
+<!-- 주가 데이터 -->
+<div class="src-card">
+  <div class="src-header">
+    <span class="src-icon">📈</span>
+    <div>
+      <div class="src-title">주가 데이터</div>
+      <div class="src-origin">Yahoo Finance — yfinance 라이브러리</div>
+    </div>
+    <span class="src-badge badge-pub">무료 공개 시세</span>
+  </div>
+  <div class="src-grid">
+    <div>
+      <div class="src-label">수집 내용</div>
+      <div class="src-val">현재가, 전일 대비 등락률, 52주 고저,<br>시가총액, 6개월 일별 종가 스파크라인</div>
+    </div>
+    <div>
+      <div class="src-label">캐시 주기</div>
+      <div class="src-val">1시간 캐시 (장 마감 후 고정)<br>상장폐지·티커 오류 시 "데이터 없음" 표시</div>
+    </div>
+  </div>
+  <div class="src-limit">⚠ 한계: Yahoo Finance는 비공식 API로 지연·누락 가능. 실시간 투자 판단에 사용 부적합. 일부 비미국 상장사(ADR) 데이터 불완전.</div>
+</div>
+
+<!-- 임상 성공 확률 -->
+<div class="src-card">
+  <div class="src-header">
+    <span class="src-icon">📊</span>
+    <div>
+      <div class="src-title">임상 성공 확률 (PoS) 벤치마크</div>
+      <div class="src-origin">BIO/IQVIA "Clinical Development Success Rates" 2023 보고서</div>
+    </div>
+    <span class="src-badge badge-calc">업계 공개 보고서</span>
+  </div>
+  <div class="src-grid">
+    <div>
+      <div class="src-label">출처</div>
+      <div class="src-val">Biotechnology Innovation Organization(BIO) &<br>IQVIA 공동 발간 — 2023년판 (2011~2020 데이터 기반)</div>
+    </div>
+    <div>
+      <div class="src-label">적용 방식</div>
+      <div class="src-val">Phase × 적응증별 역사적 전환율 하드코딩<br>뉴스 신호(±15%) · CRL 패널티(-5%/건) 가산</div>
+    </div>
+    <div>
+      <div class="src-label">Phase 3 기준</div>
+      <div class="src-val">전체 평균 57% / 종양학 54% / 희귀질환 72%<br>감염질환 68% / 신경과학 50%</div>
+    </div>
+    <div>
+      <div class="src-label">누적 P1→승인</div>
+      <div class="src-val">전체 ~7.9% / 희귀질환 17.4%<br>감염질환 16.6% / 종양학 5.9%</div>
+    </div>
+  </div>
+  <div class="src-note">📌 이 수치는 수천 건의 과거 임상을 집계한 통계적 기준입니다. 특정 약물의 실제 성공 여부를 예측하는 것이 아니며, 투자 조언이 아닙니다.</div>
+</div>
+
+<hr class="src-divider">
+
+<!-- 면책 고지 -->
+<div style="background:rgba(239,68,68,.07);border:1px solid #ef444433;border-radius:10px;padding:18px 22px">
+  <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:10px">⚠ 면책 고지 (Disclaimer)</div>
+  <div style="font-size:12px;color:var(--muted);line-height:2">
+    이 대시보드는 <strong style="color:var(--text)">정보 제공 목적의 자동화 리서치 도구</strong>이며, 투자 조언이 아닙니다.<br>
+    표시된 임상 성공 확률은 역사적 통계 기반이며 특정 약물의 미래 결과를 보장하지 않습니다.<br>
+    FDA CRL·승인 정보는 공개 데이터를 자동 수집한 것으로 누락·오류가 있을 수 있습니다.<br>
+    주가 데이터는 Yahoo Finance 비공식 API 기반으로 실시간 정확성을 보장하지 않습니다.<br>
+    <strong style="color:var(--text)">투자 의사결정 전 반드시 원본 데이터(FDA.gov, ClinicalTrials.gov) 및 전문가 의견을 확인하세요.</strong>
+  </div>
+</div>
+
+</div><!-- /max-width wrapper -->
+</div><!-- /panel-sources -->
+
 </body>
 </html>

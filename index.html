@@ -170,7 +170,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-21 09:38 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-21 09:59 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -380,7 +380,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-21 09:38 UTC
+  최종 업데이트: 2026-05-21 09:59 UTC
 </p>
 </div>
 
@@ -74057,14 +74057,68 @@ A total of 10 patients will be e<br>
 <div class="panel-title">📉 주가 트래커</div>
 <div class="panel-desc">180일 주가 추이 · FDA CRL 발표/시정 시점 가격 영향 분석 · 파이프라인 뉴스 · 투자 시그널</div>
 
+<style>
+.stock-search {
+  width: calc(100% - 20px); margin: 10px; padding: 7px 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 7px; color: var(--text); font-size: 12px; outline: none;
+}
+.stock-search::placeholder { color: var(--muted); }
+.stock-search:focus { border-color: var(--accent); }
+.stock-sort-row {
+  display: flex; gap: 4px; padding: 0 10px 8px; flex-wrap: wrap;
+}
+.stock-sort-btn {
+  font-size: 10px; padding: 3px 8px; border-radius: 5px; border: 1px solid var(--border);
+  background: none; color: var(--muted); cursor: pointer; transition: all .1s;
+}
+.stock-sort-btn.active, .stock-sort-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--accent); }
+.stock-sidebar-header { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; padding: 6px 14px 4px; }
+
+/* 전체 요약 그리드 */
+.stock-overview { display: none; padding: 20px 24px 24px; }
+.stock-overview.active { display: block; }
+.stock-grid-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+.stock-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.stock-grid-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; cursor: pointer; transition: border-color .12s;
+}
+.stock-grid-card:hover { border-color: var(--accent); }
+.stock-grid-card.no-data { opacity: .45; }
+.sgc-name { font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+.sgc-ticker { font-size: 9px; color: var(--muted); margin-bottom: 8px; }
+.sgc-price { font-size: 16px; font-weight: 800; line-height: 1; }
+.sgc-chg { font-size: 12px; font-weight: 700; margin-top: 3px; }
+.sgc-sig { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 99px; margin-top: 6px; display: inline-block; }
+.stock-grid-section { margin-bottom: 20px; }
+.stock-grid-section-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; font-weight: 700; }
+</style>
+
 <div class="stock-layout">
 
-  <!-- 회사 목록 -->
+  <!-- 회사 목록 사이드바 -->
   <div class="stock-sidebar">
-    
+    <div style="padding:10px 10px 6px">
+      <input class="stock-search" type="text" placeholder="🔍 회사 검색..." oninput="filterStockSidebar(this.value)" id="stock-search-input">
+    </div>
+    <div class="stock-sort-row">
+      <button class="stock-sort-btn active" onclick="sortStockSidebar('default',this)">기본</button>
+      <button class="stock-sort-btn" onclick="sortStockSidebar('chg_desc',this)">↑등락</button>
+      <button class="stock-sort-btn" onclick="sortStockSidebar('chg_asc',this)">↓등락</button>
+      <button class="stock-sort-btn" onclick="sortStockSidebar('name',this)">이름</button>
+    </div>
+    <button class="stock-co-btn" id="stock-overview-btn" onclick="showStockOverview(this)" style="color:var(--accent);font-weight:600;border-left-color:transparent">
+      <span>📊 전체 요약</span>
+    </button>
+    <div class="stock-sidebar-header" id="stock-sidebar-count">30개사</div>
+    <div id="stock-sidebar-list">
     
     
     <button class="stock-co-btn active"
+            data-name="johnson &amp; johnson"
+            data-chg="-0.3"
+            data-slug="Johnson--Johnson"
             onclick="showStock('Johnson--Johnson', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Johnson &amp; Johnson</span>
       <span class="stock-co-chg chg-neg">-0.3%</span>
@@ -74072,8 +74126,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="pfizer"
+            data-chg="0.51"
+            data-slug="Pfizer"
             onclick="showStock('Pfizer', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Pfizer</span>
       <span class="stock-co-chg chg-pos">+0.5%</span>
@@ -74081,8 +74137,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="roche"
+            data-chg="0.15"
+            data-slug="Roche"
             onclick="showStock('Roche', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Roche</span>
       <span class="stock-co-chg chg-pos">+0.1%</span>
@@ -74090,8 +74148,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="novartis"
+            data-chg="0.01"
+            data-slug="Novartis"
             onclick="showStock('Novartis', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Novartis</span>
       <span class="stock-co-chg chg-pos">+0.0%</span>
@@ -74099,8 +74159,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="abbvie"
+            data-chg="-0.68"
+            data-slug="AbbVie"
             onclick="showStock('AbbVie', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">AbbVie</span>
       <span class="stock-co-chg chg-neg">-0.7%</span>
@@ -74108,8 +74170,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="merck (msd)"
+            data-chg="-1.09"
+            data-slug="Merck-(MSD)"
             onclick="showStock('Merck-(MSD)', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Merck</span>
       <span class="stock-co-chg chg-neg">-1.1%</span>
@@ -74117,8 +74181,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="bristol-myers squibb"
+            data-chg="0.39"
+            data-slug="Bristol-Myers-Squibb"
             onclick="showStock('Bristol-Myers-Squibb', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Bristol-Myers Squibb</span>
       <span class="stock-co-chg chg-pos">+0.4%</span>
@@ -74126,8 +74192,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="astrazeneca"
+            data-chg="1.53"
+            data-slug="AstraZeneca"
             onclick="showStock('AstraZeneca', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">AstraZeneca</span>
       <span class="stock-co-chg chg-pos">+1.5%</span>
@@ -74135,8 +74203,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="sanofi"
+            data-chg="2.57"
+            data-slug="Sanofi"
             onclick="showStock('Sanofi', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Sanofi</span>
       <span class="stock-co-chg chg-pos">+2.6%</span>
@@ -74144,8 +74214,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="gsk"
+            data-chg="-0.53"
+            data-slug="GSK"
             onclick="showStock('GSK', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">GSK</span>
       <span class="stock-co-chg chg-neg">-0.5%</span>
@@ -74153,8 +74225,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="eli lilly"
+            data-chg="-0.25"
+            data-slug="Eli-Lilly"
             onclick="showStock('Eli-Lilly', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Eli Lilly</span>
       <span class="stock-co-chg chg-neg">-0.2%</span>
@@ -74162,8 +74236,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="amgen"
+            data-chg="0.25"
+            data-slug="Amgen"
             onclick="showStock('Amgen', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Amgen</span>
       <span class="stock-co-chg chg-pos">+0.2%</span>
@@ -74171,8 +74247,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="gilead sciences"
+            data-chg="0.15"
+            data-slug="Gilead-Sciences"
             onclick="showStock('Gilead-Sciences', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Gilead Sciences</span>
       <span class="stock-co-chg chg-pos">+0.1%</span>
@@ -74180,8 +74258,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="takeda"
+            data-chg="0.6"
+            data-slug="Takeda"
             onclick="showStock('Takeda', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Takeda</span>
       <span class="stock-co-chg chg-pos">+0.6%</span>
@@ -74189,8 +74269,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="novo nordisk"
+            data-chg="1.78"
+            data-slug="Novo-Nordisk"
             onclick="showStock('Novo-Nordisk', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Novo Nordisk</span>
       <span class="stock-co-chg chg-pos">+1.8%</span>
@@ -74198,8 +74280,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="boehringer ingelheim"
+            data-chg="-999"
+            data-slug="Boehringer-Ingelheim"
             onclick="showStock('Boehringer-Ingelheim', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Boehringer Ingelheim</span>
       <span class="stock-co-chg chg-neu">비상장</span>
@@ -74207,8 +74291,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="bayer"
+            data-chg="2.62"
+            data-slug="Bayer"
             onclick="showStock('Bayer', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Bayer</span>
       <span class="stock-co-chg chg-pos">+2.6%</span>
@@ -74216,8 +74302,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="merck kgaa"
+            data-chg="2.91"
+            data-slug="Merck-KGaA"
             onclick="showStock('Merck-KGaA', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Merck KGaA</span>
       <span class="stock-co-chg chg-pos">+2.9%</span>
@@ -74225,8 +74313,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="regeneron"
+            data-chg="3.24"
+            data-slug="Regeneron"
             onclick="showStock('Regeneron', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Regeneron</span>
       <span class="stock-co-chg chg-pos">+3.2%</span>
@@ -74234,8 +74324,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="biogen"
+            data-chg="-1.45"
+            data-slug="Biogen"
             onclick="showStock('Biogen', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Biogen</span>
       <span class="stock-co-chg chg-neg">-1.4%</span>
@@ -74243,8 +74335,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="vertex pharmaceuticals"
+            data-chg="-0.89"
+            data-slug="Vertex-Pharmaceuticals"
             onclick="showStock('Vertex-Pharmaceuticals', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Vertex Pharmaceuticals</span>
       <span class="stock-co-chg chg-neg">-0.9%</span>
@@ -74252,8 +74346,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="moderna"
+            data-chg="5.25"
+            data-slug="Moderna"
             onclick="showStock('Moderna', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Moderna</span>
       <span class="stock-co-chg chg-pos">+5.2%</span>
@@ -74261,8 +74357,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="ucb"
+            data-chg="2.04"
+            data-slug="UCB"
             onclick="showStock('UCB', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">UCB</span>
       <span class="stock-co-chg chg-pos">+2.0%</span>
@@ -74270,8 +74368,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="astellas"
+            data-chg="-0.14"
+            data-slug="Astellas"
             onclick="showStock('Astellas', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Astellas</span>
       <span class="stock-co-chg chg-neg">-0.1%</span>
@@ -74279,8 +74379,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="daiichi sankyo"
+            data-chg="0.18"
+            data-slug="Daiichi-Sankyo"
             onclick="showStock('Daiichi-Sankyo', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Daiichi Sankyo</span>
       <span class="stock-co-chg chg-pos">+0.2%</span>
@@ -74288,16 +74390,20 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="eisai"
+            data-chg="-999"
+            data-slug="Eisai"
             onclick="showStock('Eisai', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Eisai</span>
       <span class="stock-co-chg chg-neu">—</span>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="csl"
+            data-chg="2.47"
+            data-slug="CSL"
             onclick="showStock('CSL', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">CSL</span>
       <span class="stock-co-chg chg-pos">+2.5%</span>
@@ -74305,8 +74411,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="teva"
+            data-chg="0.73"
+            data-slug="Teva"
             onclick="showStock('Teva', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Teva</span>
       <span class="stock-co-chg chg-pos">+0.7%</span>
@@ -74314,8 +74422,10 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="incyte"
+            data-chg="1.55"
+            data-slug="Incyte"
             onclick="showStock('Incyte', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Incyte</span>
       <span class="stock-co-chg chg-pos">+1.6%</span>
@@ -74323,18 +74433,671 @@ A total of 10 patients will be e<br>
     </button>
     
     
-    
     <button class="stock-co-btn "
+            data-name="alexion"
+            data-chg="1.53"
+            data-slug="Alexion"
             onclick="showStock('Alexion', this)">
       <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Alexion</span>
       <span class="stock-co-chg chg-pos">+1.5%</span>
       
     </button>
     
+    </div>
   </div>
 
   <!-- 상세 -->
   <div class="stock-main">
+
+  <!-- 전체 요약 그리드 -->
+  <div id="stock-overview-panel" class="stock-overview">
+    <div class="stock-grid-title">📊 전체 주가 요약 — 30개사</div>
+
+    
+    
+
+    
+    <div class="stock-grid-section">
+      <div class="stock-grid-section-label">상장사 (28)</div>
+      <div class="stock-grid">
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Johnson--Johnson')">
+        <div class="sgc-name" title="Johnson &amp; Johnson">Johnson &amp; Johnson</div>
+        <div class="sgc-ticker">JNJ</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $229.3
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -0.3%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Pfizer')">
+        <div class="sgc-name" title="Pfizer">Pfizer</div>
+        <div class="sgc-ticker">PFE</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $25.8
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.5%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Roche')">
+        <div class="sgc-name" title="Roche">Roche</div>
+        <div class="sgc-ticker">RHHBY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $51.9
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.1%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Novartis')">
+        <div class="sgc-name" title="Novartis">Novartis</div>
+        <div class="sgc-ticker">NVS</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $150.4
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.0%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('AbbVie')">
+        <div class="sgc-name" title="AbbVie">AbbVie</div>
+        <div class="sgc-ticker">ABBV</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $212.3
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -0.7%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Merck-(MSD)')">
+        <div class="sgc-name" title="Merck (MSD)">Merck</div>
+        <div class="sgc-ticker">MRK</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $113.0
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -1.1%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Bristol-Myers-Squibb')">
+        <div class="sgc-name" title="Bristol-Myers Squibb">Bristol-Myers Squibb</div>
+        <div class="sgc-ticker">BMY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $58.5
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.4%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('AstraZeneca')">
+        <div class="sgc-name" title="AstraZeneca">AstraZeneca</div>
+        <div class="sgc-ticker">AZN</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $187.5
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +1.5%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Sanofi')">
+        <div class="sgc-name" title="Sanofi">Sanofi</div>
+        <div class="sgc-ticker">SNY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $44.7
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +2.6%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('GSK')">
+        <div class="sgc-name" title="GSK">GSK</div>
+        <div class="sgc-ticker">GSK</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $50.8
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -0.5%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Eli-Lilly')">
+        <div class="sgc-name" title="Eli Lilly">Eli Lilly</div>
+        <div class="sgc-ticker">LLY</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $1018.9
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -0.2%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Amgen')">
+        <div class="sgc-name" title="Amgen">Amgen</div>
+        <div class="sgc-ticker">AMGN</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $331.6
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.2%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Gilead-Sciences')">
+        <div class="sgc-name" title="Gilead Sciences">Gilead Sciences</div>
+        <div class="sgc-ticker">GILD</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $130.7
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.1%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Takeda')">
+        <div class="sgc-name" title="Takeda">Takeda</div>
+        <div class="sgc-ticker">TAK</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $16.7
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.6%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Novo-Nordisk')">
+        <div class="sgc-name" title="Novo Nordisk">Novo Nordisk</div>
+        <div class="sgc-ticker">NVO</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $45.1
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +1.8%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Bayer')">
+        <div class="sgc-name" title="Bayer">Bayer</div>
+        <div class="sgc-ticker">BAYRY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $11.3
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +2.6%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Merck-KGaA')">
+        <div class="sgc-name" title="Merck KGaA">Merck KGaA</div>
+        <div class="sgc-ticker">MKKGY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $28.7
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +2.9%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Regeneron')">
+        <div class="sgc-name" title="Regeneron">Regeneron</div>
+        <div class="sgc-ticker">REGN</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $649.8
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +3.2%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-red">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Biogen')">
+        <div class="sgc-name" title="Biogen">Biogen</div>
+        <div class="sgc-ticker">BIIB</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $187.8
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -1.4%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Vertex-Pharmaceuticals')">
+        <div class="sgc-name" title="Vertex Pharmaceuticals">Vertex Pharmaceuticals</div>
+        <div class="sgc-ticker">VRTX</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $430.4
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -0.9%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Moderna')">
+        <div class="sgc-name" title="Moderna">Moderna</div>
+        <div class="sgc-ticker">MRNA</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $48.1
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +5.2%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('UCB')">
+        <div class="sgc-name" title="UCB">UCB</div>
+        <div class="sgc-ticker">UCBJY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $138.8
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +2.0%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Astellas')">
+        <div class="sgc-name" title="Astellas">Astellas</div>
+        <div class="sgc-ticker">ALPMY</div>
+        <div class="sgc-price" style="color:var(--red)">
+          $14.5
+        </div>
+        
+        <div class="sgc-chg chg-neg">
+          -0.1%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Daiichi-Sankyo')">
+        <div class="sgc-name" title="Daiichi Sankyo">Daiichi Sankyo</div>
+        <div class="sgc-ticker">DSNKY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $16.5
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.2%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('CSL')">
+        <div class="sgc-name" title="CSL">CSL</div>
+        <div class="sgc-ticker">CSLLY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $17.8
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +2.5%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-red">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Teva')">
+        <div class="sgc-name" title="Teva">Teva</div>
+        <div class="sgc-ticker">TEVA</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $34.3
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +0.7%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-green">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Incyte')">
+        <div class="sgc-name" title="Incyte">Incyte</div>
+        <div class="sgc-ticker">INCY</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $97.1
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +1.6%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      
+      
+      
+      
+      <div class="stock-grid-card" onclick="showStockFromGrid('Alexion')">
+        <div class="sgc-name" title="Alexion">Alexion</div>
+        <div class="sgc-ticker">AZN</div>
+        <div class="sgc-price" style="color:var(--green)">
+          $187.5
+        </div>
+        
+        <div class="sgc-chg chg-pos">
+          +1.5%
+        </div>
+        
+        
+        
+        <span class="sgc-sig sig-blue">{&#39;signal&#39;:</span>
+        
+      </div>
+      
+      
+      </div>
+    </div>
+    
+
+    
+    
+    
+    <div class="stock-grid-section">
+      <div class="stock-grid-section-label">비상장 (1)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+      
+        <span style="font-size:11px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--muted)">🔒 Boehringer Ingelheim</span>
+      
+      </div>
+    </div>
+    
+  </div>
   
   
   
@@ -79007,10 +79770,58 @@ A total of 10 patients will be e<br>
 <script>
 function showStock(slug, btn) {
   document.querySelectorAll('.stock-co-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#stock-overview-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.stock-detail').forEach(d => d.classList.remove('active'));
-  btn.classList.add('active');
+  document.getElementById('stock-overview-panel').classList.remove('active');
+  if (btn) btn.classList.add('active');
   const el = document.getElementById('stock-detail-' + slug);
   if (el) el.classList.add('active');
+}
+
+function showStockFromGrid(slug) {
+  const btn = document.querySelector(`[data-slug="${slug}"]`);
+  showStock(slug, btn);
+  if (btn) btn.scrollIntoView({block:'nearest'});
+}
+
+function showStockOverview(btn) {
+  document.querySelectorAll('.stock-co-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.stock-detail').forEach(d => d.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('stock-overview-panel').classList.add('active');
+}
+
+function filterStockSidebar(q) {
+  const term = q.toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('#stock-sidebar-list .stock-co-btn').forEach(btn => {
+    const name = btn.dataset.name || '';
+    const show = !term || name.includes(term);
+    btn.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('stock-sidebar-count').textContent = visible + '개사';
+  // auto-select if exactly one match
+  if (term) {
+    const visible_btns = Array.from(document.querySelectorAll('#stock-sidebar-list .stock-co-btn')).filter(b => b.style.display !== 'none');
+    if (visible_btns.length === 1) {
+      visible_btns[0].click();
+    }
+  }
+}
+
+function sortStockSidebar(mode, clickedBtn) {
+  document.querySelectorAll('.stock-sort-btn').forEach(b => b.classList.remove('active'));
+  clickedBtn.classList.add('active');
+  const list = document.getElementById('stock-sidebar-list');
+  const btns = Array.from(list.querySelectorAll('.stock-co-btn'));
+  btns.sort((a, b) => {
+    if (mode === 'name') return (a.dataset.name||'').localeCompare(b.dataset.name||'');
+    if (mode === 'chg_desc') return parseFloat(b.dataset.chg||0) - parseFloat(a.dataset.chg||0);
+    if (mode === 'chg_asc')  return parseFloat(a.dataset.chg||0) - parseFloat(b.dataset.chg||0);
+    return 0; // default: original order preserved
+  });
+  btns.forEach(b => list.appendChild(b));
 }
 </script>
 </div>
@@ -95836,7 +96647,7 @@ function showStock(slug, btn) {
   <div style="font-size:13px;color:var(--muted);line-height:2">
     전 세계 매출 상위 30개 제약회사가 <strong style="color:var(--text)">지금 어떤 신약을 개발 중인지</strong>,
     그 신약이 <strong style="color:var(--text)">FDA 승인을 받을 가능성이 얼마나 되는지</strong>를 매일 자동으로 추적합니다.<br>
-    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-21 09:38 UTC</strong>
+    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-21 09:59 UTC</strong>
   </div>
 </div>
 
@@ -96465,7 +97276,7 @@ function showStock(slug, btn) {
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-21 09:38 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-21 09:59 UTC
 </footer>
 
 <script>

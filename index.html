@@ -170,7 +170,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-21 06:59 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-21 07:08 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -377,1675 +377,1065 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-21 06:59 UTC
+  최종 업데이트: 2026-05-21 07:08 UTC
 </p>
 </div>
 
-<!-- PANEL 1: 파이프라인 개요 -->
+<!-- PANEL 1: 파이프라인 개요 — 모달리티별 -->
 <div id="panel-pipeline" class="tab-panel">
-  <div class="panel-title">📊 파이프라인 개요</div>
-  <div class="panel-desc">30개 제약회사의 미국 임상시험 현황. 열 제목 클릭 시 정렬됩니다.</div>
-  <input class="search-bar" type="text" placeholder="회사명 검색..." oninput="filterTable('pipeline-table', this.value)">
-  <div class="table-wrap">
-    <table id="pipeline-table">
-      <thead>
-        <tr>
-          <th onclick="sortTable('pipeline-table',0)">회사 ↕</th>
-          <th onclick="sortTable('pipeline-table',1)">전체</th>
-          <th onclick="sortTable('pipeline-table',2)">Ph1</th>
-          <th onclick="sortTable('pipeline-table',3)">Ph2</th>
-          <th onclick="sortTable('pipeline-table',4)">Ph3</th>
-          <th onclick="sortTable('pipeline-table',5)">Ph4</th>
-          <th onclick="sortTable('pipeline-table',6)">결과보고</th>
-          <th onclick="sortTable('pipeline-table',7)">2025승인</th>
-          <th>주요 적응증</th>
-          <th>엔드포인트 커버리지</th>
-          <th>CRL</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="panel-title">📊 치료 플랫폼별 파이프라인</div>
+  <div class="panel-desc">글로벌 Top 30사의 임상시험을 치료 모달리티(플랫폼)로 분류. 🔥 = 현재 업계 최고 성장세.</div>
+
+  <style>
+  .modality-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+    padding: 4px 0 24px;
+  }
+  .modality-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color .15s;
+  }
+  .modality-card:hover { border-color: var(--accent); }
+  .modality-card.hot { border-left: 3px solid var(--yellow); }
+  .modality-header { display: flex; align-items: flex-start; gap: 12px; }
+  .modality-icon { font-size: 28px; line-height: 1; flex-shrink: 0; }
+  .modality-title-block { flex: 1; }
+  .modality-name { font-size: 14px; font-weight: 700; color: var(--text); }
+  .modality-trend { font-size: 11px; color: var(--yellow); margin-top: 2px; }
+  .modality-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .modality-stats { display: flex; gap: 18px; }
+  .mstat { text-align: center; }
+  .mstat-val { font-size: 22px; font-weight: 700; line-height: 1; }
+  .mstat-val.ph3 { color: var(--yellow); }
+  .mstat-val.ph2 { color: var(--blue); }
+  .mstat-val.total { color: var(--text); }
+  .mstat-label { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .phase-bar { display: flex; height: 6px; border-radius: 4px; overflow: hidden; gap: 2px; }
+  .phase-bar-seg { border-radius: 4px; }
+  .modality-companies { display: flex; flex-direction: column; gap: 4px; }
+  .modality-co-row { display: flex; align-items: center; justify-content: space-between; }
+  .modality-co-name { font-size: 12px; color: var(--text); }
+  .modality-co-ph3 {
+    font-size: 10px; background: rgba(234,179,8,.15);
+    color: var(--yellow); border-radius: 4px; padding: 1px 6px;
+  }
+  .modality-co-bar { flex: 1; height: 4px; background: var(--surface2); border-radius: 2px; margin: 0 8px; }
+  .modality-co-fill { height: 100%; border-radius: 2px; background: var(--accent); }
+  .modality-drugs { display: flex; flex-wrap: wrap; gap: 4px; }
+  .drug-pill {
+    font-size: 10px; background: var(--surface2); color: var(--muted);
+    border-radius: 4px; padding: 2px 7px; border: 1px solid var(--border);
+  }
+  .modality-co-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  </style>
+
+  <div class="modality-grid">
+    
+    
+    <div class="modality-card hot">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">💉</div>
+        <div class="modality-title-block">
+          <div class="modality-name">ADC (항체약물접합체)</div>
+          <div class="modality-trend">🔥 최고 성장세</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">134</div>
+          <div style="font-size:10px;color:var(--muted)">임상 16개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">항체에 세포독성 약물을 결합해 종양만 선택적 타격. Daiichi Sankyo·AZ·Pfizer/Seagen 주도.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">63</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">59</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">9</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
         
-        <tr>
-          <td><strong>AstraZeneca</strong></td>
-          <td>1304</td>
-          <td>311</td>
-          <td>298</td>
-          <td><strong style="color:var(--yellow)">236</strong></td>
-          <td>46</td>
-          <td>197</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(649)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(461)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Cardiovascular(70)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(362)
-              </span>
-              
-              <span class="ep active">
-                PFS(376)
-              </span>
-              
-              <span class="ep active">
-                ORR(279)
-              </span>
-              
-              <span class="ep active">
-                DFS(50)
-              </span>
-              
-              <span class="ep tox">
-                AE(443)
-              </span>
-              
-              <span class="ep tox">
-                SAE(143)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-resolved">해결됨</span>
-            
-          </td>
-        </tr>
         
-        <tr>
-          <td><strong>Merck (MSD)</strong></td>
-          <td>1154</td>
-          <td>387</td>
-          <td>390</td>
-          <td><strong style="color:var(--yellow)">220</strong></td>
-          <td>46</td>
-          <td>341</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(727)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(265)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Infectious Disease(110)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(392)
-              </span>
-              
-              <span class="ep active">
-                PFS(382)
-              </span>
-              
-              <span class="ep active">
-                ORR(381)
-              </span>
-              
-              <span class="ep active">
-                DFS(39)
-              </span>
-              
-              <span class="ep tox">
-                AE(674)
-              </span>
-              
-              <span class="ep tox">
-                SAE(157)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:63;background:var(--yellow)"></div>
+          <div class="phase-bar-seg" style="flex:59;background:var(--blue)"></div>
+          <div class="phase-bar-seg" style="flex:9;background:var(--muted)"></div>
+        </div>
         
-        <tr>
-          <td><strong>Novartis</strong></td>
-          <td>880</td>
-          <td>139</td>
-          <td>204</td>
-          <td><strong style="color:var(--yellow)">166</strong></td>
-          <td>63</td>
-          <td>153</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(333)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(321)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(87)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(114)
-              </span>
-              
-              <span class="ep active">
-                PFS(130)
-              </span>
-              
-              <span class="ep active">
-                ORR(117)
-              </span>
-              
-              <span class="ep active">
-                DFS(15)
-              </span>
-              
-              <span class="ep tox">
-                AE(341)
-              </span>
-              
-              <span class="ep tox">
-                SAE(156)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-resolved">해결됨</span>
-            
-          </td>
-        </tr>
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
         
-        <tr>
-          <td><strong>Roche</strong></td>
-          <td>920</td>
-          <td>221</td>
-          <td>302</td>
-          <td><strong style="color:var(--yellow)">165</strong></td>
-          <td>36</td>
-          <td>159</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(541)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(174)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(85)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(259)
-              </span>
-              
-              <span class="ep active">
-                PFS(281)
-              </span>
-              
-              <span class="ep active">
-                ORR(280)
-              </span>
-              
-              <span class="ep active">
-                DFS(27)
-              </span>
-              
-              <span class="ep tox">
-                AE(380)
-              </span>
-              
-              <span class="ep tox">
-                SAE(99)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
         
-        <tr>
-          <td><strong>Eli Lilly</strong></td>
-          <td>645</td>
-          <td>251</td>
-          <td>156</td>
-          <td><strong style="color:var(--yellow)">153</strong></td>
-          <td>31</td>
-          <td>152</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(206)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(179)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Endocrinology(156)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(78)
-              </span>
-              
-              <span class="ep active">
-                PFS(95)
-              </span>
-              
-              <span class="ep active">
-                ORR(109)
-              </span>
-              
-              <span class="ep active">
-                DFS(5)
-              </span>
-              
-              <span class="ep tox">
-                AE(175)
-              </span>
-              
-              <span class="ep tox">
-                SAE(110)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">Merck (MSD)</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 22</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>Pfizer</strong></td>
-          <td>1018</td>
-          <td>279</td>
-          <td>236</td>
-          <td><strong style="color:var(--yellow)">145</strong></td>
-          <td>44</td>
-          <td>367</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(420)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(338)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Infectious Disease(99)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(184)
-              </span>
-              
-              <span class="ep active">
-                PFS(184)
-              </span>
-              
-              <span class="ep active">
-                ORR(153)
-              </span>
-              
-              <span class="ep active">
-                DFS(9)
-              </span>
-              
-              <span class="ep tox">
-                AE(469)
-              </span>
-              
-              <span class="ep tox">
-                SAE(131)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">Daiichi Sankyo</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:140%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 14</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>Johnson &amp; Johnson</strong></td>
-          <td>829</td>
-          <td>158</td>
-          <td>188</td>
-          <td><strong style="color:var(--yellow)">140</strong></td>
-          <td>41</td>
-          <td>182</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(340)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(325)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(67)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(106)
-              </span>
-              
-              <span class="ep active">
-                PFS(144)
-              </span>
-              
-              <span class="ep active">
-                ORR(133)
-              </span>
-              
-              <span class="ep active">
-                DFS(6)
-              </span>
-              
-              <span class="ep tox">
-                AE(289)
-              </span>
-              
-              <span class="ep tox">
-                SAE(110)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">AstraZeneca</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:40%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 9</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>AbbVie</strong></td>
-          <td>583</td>
-          <td>173</td>
-          <td>118</td>
-          <td><strong style="color:var(--yellow)">126</strong></td>
-          <td>29</td>
-          <td>77</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(205)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(195)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(104)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(99)
-              </span>
-              
-              <span class="ep active">
-                PFS(93)
-              </span>
-              
-              <span class="ep active">
-                ORR(92)
-              </span>
-              
-              <span class="ep active">
-                DFS(3)
-              </span>
-              
-              <span class="ep tox">
-                AE(328)
-              </span>
-              
-              <span class="ep tox">
-                SAE(47)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">Pfizer</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:27%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 5</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>Sanofi</strong></td>
-          <td>555</td>
-          <td>90</td>
-          <td>126</td>
-          <td><strong style="color:var(--yellow)">126</strong></td>
-          <td>55</td>
-          <td>105</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(248)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(80)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Infectious Disease(67)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(29)
-              </span>
-              
-              <span class="ep active">
-                PFS(39)
-              </span>
-              
-              <span class="ep active">
-                ORR(48)
-              </span>
-              
-              <span class="ep active">
-                DFS(2)
-              </span>
-              
-              <span class="ep tox">
-                AE(224)
-              </span>
-              
-              <span class="ep tox">
-                SAE(77)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
         
-        <tr>
-          <td><strong>GSK</strong></td>
-          <td>454</td>
-          <td>139</td>
-          <td>116</td>
-          <td><strong style="color:var(--yellow)">106</strong></td>
-          <td>24</td>
-          <td>164</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(170)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(142)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Infectious Disease(118)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(64)
-              </span>
-              
-              <span class="ep active">
-                PFS(57)
-              </span>
-              
-              <span class="ep active">
-                ORR(57)
-              </span>
-              
-              <span class="ep active">
-                DFS(1)
-              </span>
-              
-              <span class="ep tox">
-                AE(218)
-              </span>
-              
-              <span class="ep tox">
-                SAE(108)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <span class="drug-pill">Pembrolizumab</span>
         
-        <tr>
-          <td><strong>Novo Nordisk</strong></td>
-          <td>428</td>
-          <td>123</td>
-          <td>43</td>
-          <td><strong style="color:var(--yellow)">103</strong></td>
-          <td>19</td>
-          <td>66</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Endocrinology(266)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(77)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Rare Disease(36)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep ">
-                OS(0)
-              </span>
-              
-              <span class="ep ">
-                PFS(0)
-              </span>
-              
-              <span class="ep ">
-                ORR(0)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(99)
-              </span>
-              
-              <span class="ep tox">
-                SAE(19)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-resolved">해결됨</span>
-            
-          </td>
-        </tr>
+        <span class="drug-pill">Sacituzumab Govitecan</span>
         
-        <tr>
-          <td><strong>Bristol-Myers Squibb</strong></td>
-          <td>807</td>
-          <td>253</td>
-          <td>251</td>
-          <td><strong style="color:var(--yellow)">98</strong></td>
-          <td>19</td>
-          <td>166</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(497)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(203)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(54)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(226)
-              </span>
-              
-              <span class="ep active">
-                PFS(239)
-              </span>
-              
-              <span class="ep active">
-                ORR(216)
-              </span>
-              
-              <span class="ep active">
-                DFS(18)
-              </span>
-              
-              <span class="ep tox">
-                AE(411)
-              </span>
-              
-              <span class="ep tox">
-                SAE(163)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+        <span class="drug-pill">Enfortumab Vedotin</span>
         
-        <tr>
-          <td><strong>Takeda</strong></td>
-          <td>434</td>
-          <td>68</td>
-          <td>60</td>
-          <td><strong style="color:var(--yellow)">93</strong></td>
-          <td>25</td>
-          <td>123</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(207)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(105)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(57)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(41)
-              </span>
-              
-              <span class="ep active">
-                PFS(52)
-              </span>
-              
-              <span class="ep active">
-                ORR(44)
-              </span>
-              
-              <span class="ep active">
-                DFS(2)
-              </span>
-              
-              <span class="ep tox">
-                AE(210)
-              </span>
-              
-              <span class="ep tox">
-                SAE(76)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <span class="drug-pill">Trastuzumab Deruxtecan</span>
         
-        <tr>
-          <td><strong>Amgen</strong></td>
-          <td>347</td>
-          <td>93</td>
-          <td>91</td>
-          <td><strong style="color:var(--yellow)">85</strong></td>
-          <td>26</td>
-          <td>97</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(156)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(115)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Endocrinology(31)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(70)
-              </span>
-              
-              <span class="ep active">
-                PFS(71)
-              </span>
-              
-              <span class="ep active">
-                ORR(55)
-              </span>
-              
-              <span class="ep active">
-                DFS(5)
-              </span>
-              
-              <span class="ep tox">
-                AE(149)
-              </span>
-              
-              <span class="ep tox">
-                SAE(48)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <span class="drug-pill">Sacituzumab Tirumotecan</span>
         
-        <tr>
-          <td><strong>Regeneron</strong></td>
-          <td>320</td>
-          <td>73</td>
-          <td>91</td>
-          <td><strong style="color:var(--yellow)">68</strong></td>
-          <td>33</td>
-          <td>48</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(162)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(112)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(18)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(43)
-              </span>
-              
-              <span class="ep active">
-                PFS(45)
-              </span>
-              
-              <span class="ep active">
-                ORR(57)
-              </span>
-              
-              <span class="ep active">
-                DFS(5)
-              </span>
-              
-              <span class="ep tox">
-                AE(156)
-              </span>
-              
-              <span class="ep tox">
-                SAE(41)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card hot">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">⚖️</div>
+        <div class="modality-title-block">
+          <div class="modality-name">GLP-1·대사질환</div>
+          <div class="modality-trend">🔥 시장 폭발적 성장</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">56</div>
+          <div style="font-size:10px;color:var(--muted)">임상 9개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">GLP-1RA·GIP·글루카곤 삼중작용제. 비만·당뇨→NASH·심부전으로 적응증 확장.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">36</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">9</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">5</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
         
-        <tr>
-          <td><strong>Boehringer Ingelheim</strong></td>
-          <td>429</td>
-          <td>182</td>
-          <td>64</td>
-          <td><strong style="color:var(--yellow)">52</strong></td>
-          <td>19</td>
-          <td>142</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(257)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(78)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Endocrinology(36)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(22)
-              </span>
-              
-              <span class="ep active">
-                PFS(33)
-              </span>
-              
-              <span class="ep active">
-                ORR(10)
-              </span>
-              
-              <span class="ep active">
-                DFS(2)
-              </span>
-              
-              <span class="ep tox">
-                AE(118)
-              </span>
-              
-              <span class="ep tox">
-                SAE(27)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
         
-        <tr>
-          <td><strong>Gilead Sciences</strong></td>
-          <td>299</td>
-          <td>63</td>
-          <td>88</td>
-          <td><strong style="color:var(--yellow)">50</strong></td>
-          <td>22</td>
-          <td>62</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(136)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Infectious Disease(126)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(25)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(73)
-              </span>
-              
-              <span class="ep active">
-                PFS(78)
-              </span>
-              
-              <span class="ep active">
-                ORR(78)
-              </span>
-              
-              <span class="ep active">
-                DFS(5)
-              </span>
-              
-              <span class="ep tox">
-                AE(125)
-              </span>
-              
-              <span class="ep tox">
-                SAE(36)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-resolved">해결됨</span>
-            
-          </td>
-        </tr>
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:36;background:var(--yellow)"></div>
+          <div class="phase-bar-seg" style="flex:9;background:var(--blue)"></div>
+          <div class="phase-bar-seg" style="flex:5;background:var(--muted)"></div>
+        </div>
         
-        <tr>
-          <td><strong>Bayer</strong></td>
-          <td>399</td>
-          <td>81</td>
-          <td>74</td>
-          <td><strong style="color:var(--yellow)">50</strong></td>
-          <td>28</td>
-          <td>46</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(172)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(112)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Cardiovascular(56)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(62)
-              </span>
-              
-              <span class="ep active">
-                PFS(68)
-              </span>
-              
-              <span class="ep active">
-                ORR(36)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(159)
-              </span>
-              
-              <span class="ep tox">
-                SAE(51)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
         
-        <tr>
-          <td><strong>UCB</strong></td>
-          <td>104</td>
-          <td>29</td>
-          <td>12</td>
-          <td><strong style="color:var(--yellow)">42</strong></td>
-          <td>2</td>
-          <td>36</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(55)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(24)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(23)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep ">
-                OS(0)
-              </span>
-              
-              <span class="ep ">
-                PFS(0)
-              </span>
-              
-              <span class="ep ">
-                ORR(0)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(73)
-              </span>
-              
-              <span class="ep tox">
-                SAE(33)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
         
-        <tr>
-          <td><strong>Daiichi Sankyo</strong></td>
-          <td>218</td>
-          <td>60</td>
-          <td>54</td>
-          <td><strong style="color:var(--yellow)">41</strong></td>
-          <td>6</td>
-          <td>23</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(170)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(29)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Cardiovascular(14)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(80)
-              </span>
-              
-              <span class="ep active">
-                PFS(95)
-              </span>
-              
-              <span class="ep active">
-                ORR(94)
-              </span>
-              
-              <span class="ep active">
-                DFS(8)
-              </span>
-              
-              <span class="ep tox">
-                AE(90)
-              </span>
-              
-              <span class="ep tox">
-                SAE(42)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">Eli Lilly</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 19</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>Vertex Pharmaceuticals</strong></td>
-          <td>106</td>
-          <td>49</td>
-          <td>14</td>
-          <td><strong style="color:var(--yellow)">34</strong></td>
-          <td>3</td>
-          <td>24</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(58)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Rare Disease(42)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Endocrinology(4)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep ">
-                OS(0)
-              </span>
-              
-              <span class="ep ">
-                PFS(0)
-              </span>
-              
-              <span class="ep ">
-                ORR(0)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(74)
-              </span>
-              
-              <span class="ep tox">
-                SAE(66)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">Novo Nordisk</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:110%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 6</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>Astellas</strong></td>
-          <td>164</td>
-          <td>43</td>
-          <td>41</td>
-          <td><strong style="color:var(--yellow)">33</strong></td>
-          <td>8</td>
-          <td>34</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(100)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(57)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Rare Disease(3)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(43)
-              </span>
-              
-              <span class="ep active">
-                PFS(40)
-              </span>
-              
-              <span class="ep active">
-                ORR(34)
-              </span>
-              
-              <span class="ep active">
-                DFS(4)
-              </span>
-              
-              <span class="ep tox">
-                AE(72)
-              </span>
-              
-              <span class="ep tox">
-                SAE(20)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">Amgen</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:21%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 3</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>Incyte</strong></td>
-          <td>242</td>
-          <td>91</td>
-          <td>102</td>
-          <td><strong style="color:var(--yellow)">32</strong></td>
-          <td>2</td>
-          <td>55</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(129)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(97)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(14)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(61)
-              </span>
-              
-              <span class="ep active">
-                PFS(70)
-              </span>
-              
-              <span class="ep active">
-                ORR(71)
-              </span>
-              
-              <span class="ep active">
-                DFS(2)
-              </span>
-              
-              <span class="ep tox">
-                AE(130)
-              </span>
-              
-              <span class="ep tox">
-                SAE(24)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-pending">1건 미해결</span>
-              
-            
-          </td>
-        </tr>
+        <div class="modality-co-row">
+          <span class="modality-co-name">Boehringer Ingelheim</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:15%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 2</span>
+          
+        </div>
         
-        <tr>
-          <td><strong>Alexion</strong></td>
-          <td>87</td>
-          <td>21</td>
-          <td>10</td>
-          <td><strong style="color:var(--yellow)">32</strong></td>
-          <td>5</td>
-          <td>21</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(84)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Endocrinology(2)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Cardiovascular(1)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(5)
-              </span>
-              
-              <span class="ep active">
-                PFS(1)
-              </span>
-              
-              <span class="ep ">
-                ORR(0)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(34)
-              </span>
-              
-              <span class="ep tox">
-                SAE(15)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
         
-        <tr>
-          <td><strong>Eisai</strong></td>
-          <td>143</td>
-          <td>38</td>
-          <td>39</td>
-          <td><strong style="color:var(--yellow)">26</strong></td>
-          <td>10</td>
-          <td>42</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(81)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(31)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(23)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(36)
-              </span>
-              
-              <span class="ep active">
-                PFS(42)
-              </span>
-              
-              <span class="ep active">
-                ORR(53)
-              </span>
-              
-              <span class="ep active">
-                DFS(1)
-              </span>
-              
-              <span class="ep tox">
-                AE(88)
-              </span>
-              
-              <span class="ep tox">
-                SAE(41)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-resolved">해결됨</span>
-            
-          </td>
-        </tr>
+        <span class="drug-pill">Placebo</span>
         
-        <tr>
-          <td><strong>Biogen</strong></td>
-          <td>125</td>
-          <td>31</td>
-          <td>16</td>
-          <td><strong style="color:var(--yellow)">23</strong></td>
-          <td>3</td>
-          <td>16</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(74)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(43)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(7)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(1)
-              </span>
-              
-              <span class="ep ">
-                PFS(0)
-              </span>
-              
-              <span class="ep ">
-                ORR(0)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(58)
-              </span>
-              
-              <span class="ep tox">
-                SAE(44)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-resolved">해결됨</span>
-            
-          </td>
-        </tr>
+        <span class="drug-pill">Orforglipron</span>
         
-        <tr>
-          <td><strong>Teva</strong></td>
-          <td>54</td>
-          <td>11</td>
-          <td>9</td>
-          <td><strong style="color:var(--yellow)">19</strong></td>
-          <td>6</td>
-          <td>17</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(30)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(10)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Immunology(7)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(2)
-              </span>
-              
-              <span class="ep ">
-                PFS(0)
-              </span>
-              
-              <span class="ep active">
-                ORR(1)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(21)
-              </span>
-              
-              <span class="ep tox">
-                SAE(7)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <span class="drug-pill">Nnc0487-0111</span>
         
-        <tr>
-          <td><strong>CSL</strong></td>
-          <td>53</td>
-          <td>10</td>
-          <td>11</td>
-          <td><strong style="color:var(--yellow)">13</strong></td>
-          <td>4</td>
-          <td>6</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Other(35)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Rare Disease(14)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(2)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep ">
-                OS(0)
-              </span>
-              
-              <span class="ep active">
-                PFS(2)
-              </span>
-              
-              <span class="ep active">
-                ORR(1)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(29)
-              </span>
-              
-              <span class="ep tox">
-                SAE(9)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <span class="drug-pill">Eloralintide</span>
         
-        <tr>
-          <td><strong>Merck KGaA</strong></td>
-          <td>124</td>
-          <td>57</td>
-          <td>29</td>
-          <td><strong style="color:var(--yellow)">9</strong></td>
-          <td>5</td>
-          <td>43</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Oncology(70)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Other(32)</span>, 
-            
-            <span style="font-size:11px;color:var(--muted)">Neurology(14)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep active">
-                OS(31)
-              </span>
-              
-              <span class="ep active">
-                PFS(42)
-              </span>
-              
-              <span class="ep active">
-                ORR(26)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(80)
-              </span>
-              
-              <span class="ep tox">
-                SAE(13)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            <span style="color:var(--muted)">—</span>
-          </td>
-        </tr>
+        <span class="drug-pill">Placebo (Matched To Nnc0487-0111)</span>
         
-        <tr>
-          <td><strong>Moderna</strong></td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td><strong style="color:var(--yellow)">0</strong></td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>
-            
-            
-            <span style="font-size:11px;color:var(--muted)">Rare Disease(1)</span>
-            
-          </td>
-          <td>
-            <div class="ep-pills">
-              
-              <span class="ep ">
-                OS(0)
-              </span>
-              
-              <span class="ep ">
-                PFS(0)
-              </span>
-              
-              <span class="ep ">
-                ORR(0)
-              </span>
-              
-              <span class="ep ">
-                DFS(0)
-              </span>
-              
-              <span class="ep tox">
-                AE(1)
-              </span>
-              
-              <span class="ep tox">
-                SAE(1)
-              </span>
-              
-            </div>
-          </td>
-          <td>
-            
-              
-              <span class="crl-resolved">해결됨</span>
-            
-          </td>
-        </tr>
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card hot">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">🎯</div>
+        <div class="modality-title-block">
+          <div class="modality-name">이중·다중특이항체</div>
+          <div class="modality-trend">🔥 급성장</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">48</div>
+          <div style="font-size:10px;color:var(--muted)">임상 10개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">두 개 이상 표적 동시 공략. CD3 T세포 engager(혈액암), EGFR×MET(폐암) 등 활발.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">22</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">26</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">0</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
         
-      </tbody>
-    </table>
+        
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:22;background:var(--yellow)"></div>
+          <div class="phase-bar-seg" style="flex:26;background:var(--blue)"></div>
+          
+        </div>
+        
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
+        
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Johnson &amp; Johnson</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 7</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Regeneron</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:56%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 6</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Pfizer</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:31%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 4</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Roche</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:25%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 3</span>
+          
+        </div>
+        
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
+        
+        <span class="drug-pill">Teclistamab</span>
+        
+        <span class="drug-pill">Daratumumab</span>
+        
+        <span class="drug-pill">Blinatumomab</span>
+        
+        <span class="drug-pill">Elranatamab</span>
+        
+        <span class="drug-pill">Lenalidomide</span>
+        
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card hot">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">🔬</div>
+        <div class="modality-title-block">
+          <div class="modality-name">mRNA·핵산치료</div>
+          <div class="modality-trend">🌱 적응증 다변화</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">11</div>
+          <div style="font-size:10px;color:var(--muted)">임상 4개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">mRNA 암백신(Moderna·MSD), siRNA(Alnylam 파트너십), ASO 등 핵산 플랫폼.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">9</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">0</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">2</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
+        
+        
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:9;background:var(--yellow)"></div>
+          
+          <div class="phase-bar-seg" style="flex:2;background:var(--muted)"></div>
+        </div>
+        
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
+        
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Novartis</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 8</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Sanofi</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:12%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 1</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Vertex Pharmaceuticals</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:12%"></div>
+          </div>
+          
+          <span style="font-size:10px;color:var(--muted);width:44px;text-align:right">1건</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Moderna</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:12%"></div>
+          </div>
+          
+          <span style="font-size:10px;color:var(--muted);width:44px;text-align:right">1건</span>
+          
+        </div>
+        
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
+        
+        <span class="drug-pill">Inclisiran</span>
+        
+        <span class="drug-pill">Placebo</span>
+        
+        <span class="drug-pill">Lnp023</span>
+        
+        <span class="drug-pill">Vx-522 Mrna Therapy</span>
+        
+        <span class="drug-pill">Iva</span>
+        
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card hot">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">🧬</div>
+        <div class="modality-title-block">
+          <div class="modality-name">유전자·세포치료</div>
+          <div class="modality-trend">🌱 확장 중</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">14</div>
+          <div style="font-size:10px;color:var(--muted)">임상 10개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">CAR-T, 유전자편집(CRISPR/AAV), TIL 등 1회성 근본 치료. 희귀질환·혈액암 집중.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">5</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">6</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">0</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
+        
+        
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:5;background:var(--yellow)"></div>
+          <div class="phase-bar-seg" style="flex:6;background:var(--blue)"></div>
+          
+        </div>
+        
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
+        
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Gilead Sciences</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 1</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">CSL</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:50%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 1</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">AstraZeneca</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:25%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 1</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Novartis</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:25%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 1</span>
+          
+        </div>
+        
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
+        
+        <span class="drug-pill">Axicabtagene Ciloleucel</span>
+        
+        <span class="drug-pill">Azd0120</span>
+        
+        <span class="drug-pill">Daratumumab</span>
+        
+        <span class="drug-pill">Cyclophosphamide</span>
+        
+        <span class="drug-pill">Jnj-81201887</span>
+        
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card hot">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">☢️</div>
+        <div class="modality-title-block">
+          <div class="modality-name">방사성리간드 (RLT)</div>
+          <div class="modality-trend">🔥 Novartis 선도</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">4</div>
+          <div style="font-size:10px;color:var(--muted)">임상 2개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">방사성 동위원소(Lu-177·Ac-225)를 리간드로 종양에 직접 전달. PSMA 전립선암→확장.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">3</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">0</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">1</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
+        
+        
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:3;background:var(--yellow)"></div>
+          
+          <div class="phase-bar-seg" style="flex:1;background:var(--muted)"></div>
+        </div>
+        
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
+        
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Novartis</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 3</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Merck KGaA</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:33%"></div>
+          </div>
+          
+          <span style="font-size:10px;color:var(--muted);width:44px;text-align:right">1건</span>
+          
+        </div>
+        
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
+        
+        <span class="drug-pill">177Lu-Pmsa-617</span>
+        
+        <span class="drug-pill">Standard Of Care</span>
+        
+        <span class="drug-pill">Octreotide Lar</span>
+        
+        <span class="drug-pill">Aaa617</span>
+        
+        <span class="drug-pill">177Lu-Tlx250 And Peposertib</span>
+        
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card ">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">🛡️</div>
+        <div class="modality-title-block">
+          <div class="modality-name">면역관문억제제 (ICI)</div>
+          <div class="modality-trend">📊 성숙 → 병용 확장</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">120</div>
+          <div style="font-size:10px;color:var(--muted)">임상 21개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">PD-1/PD-L1·CTLA-4·LAG-3·TIGIT 차단. 단독→병용·새 표적으로 진화 중.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">52</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">54</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">12</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
+        
+        
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:52;background:var(--yellow)"></div>
+          <div class="phase-bar-seg" style="flex:54;background:var(--blue)"></div>
+          <div class="phase-bar-seg" style="flex:12;background:var(--muted)"></div>
+        </div>
+        
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
+        
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">AstraZeneca</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 11</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Merck (MSD)</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:90%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 10</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Bristol-Myers Squibb</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:118%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 6</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Eisai</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:90%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 4</span>
+          
+        </div>
+        
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
+        
+        <span class="drug-pill">Pembrolizumab</span>
+        
+        <span class="drug-pill">Cemiplimab</span>
+        
+        <span class="drug-pill">Durvalumab</span>
+        
+        <span class="drug-pill">Atezolizumab</span>
+        
+        <span class="drug-pill">Lenvatinib</span>
+        
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card ">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">💊</div>
+        <div class="modality-title-block">
+          <div class="modality-name">경구 표적치료 (TKI·CDK·PARP)</div>
+          <div class="modality-trend">📊 차세대 저항성 극복</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">19</div>
+          <div style="font-size:10px;color:var(--muted)">임상 10개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">KRAS G12C, CDK2/4/6, PARP 등 차세대 소분자. 1세대 내성 극복에 집중.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">8</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">9</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">1</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
+        
+        
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:8;background:var(--yellow)"></div>
+          <div class="phase-bar-seg" style="flex:9;background:var(--blue)"></div>
+          <div class="phase-bar-seg" style="flex:1;background:var(--muted)"></div>
+        </div>
+        
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
+        
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">GSK</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 2</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">AstraZeneca</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:66%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 2</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Roche</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:66%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 2</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Incyte</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:66%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 1</span>
+          
+        </div>
+        
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
+        
+        <span class="drug-pill">Panitumumab</span>
+        
+        <span class="drug-pill">Olaparib</span>
+        
+        <span class="drug-pill">Niraparib</span>
+        
+        <span class="drug-pill">Placebo</span>
+        
+        <span class="drug-pill">Fulvestrant</span>
+        
+      </div>
+      
+
+    </div>
+    
+    
+    <div class="modality-card ">
+
+      <!-- 헤더 -->
+      <div class="modality-header">
+        <div class="modality-icon">🔵</div>
+        <div class="modality-title-block">
+          <div class="modality-name">기타 (항체·소분자 등)</div>
+          
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-size:20px;font-weight:700;color:var(--text)">1045</div>
+          <div style="font-size:10px;color:var(--muted)">임상 29개사</div>
+        </div>
+      </div>
+
+      <!-- 설명 -->
+      <div class="modality-desc">모노클로날항체, 전통 소분자, 단백질 치료제 등 기타 플랫폼.</div>
+
+      <!-- Phase 숫자 + 바 -->
+      <div>
+        <div class="modality-stats" style="margin-bottom:8px">
+          <div class="mstat">
+            <div class="mstat-val ph3">573</div>
+            <div class="mstat-label">Phase 3</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val ph2">264</div>
+            <div class="mstat-label">Phase 2</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-val" style="color:var(--muted)">71</div>
+            <div class="mstat-label">Phase 1</div>
+          </div>
+        </div>
+        
+        
+        <div class="phase-bar">
+          <div class="phase-bar-seg" style="flex:573;background:var(--yellow)"></div>
+          <div class="phase-bar-seg" style="flex:264;background:var(--blue)"></div>
+          <div class="phase-bar-seg" style="flex:71;background:var(--muted)"></div>
+        </div>
+        
+      </div>
+
+      <!-- 주요 기업 -->
+      
+      <div class="modality-companies">
+        <div class="modality-co-label">주요 기업 (Ph3 순)</div>
+        
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Novartis</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:100%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 38</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Takeda</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:123%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 35</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Pfizer</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:92%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 35</span>
+          
+        </div>
+        
+        <div class="modality-co-row">
+          <span class="modality-co-name">Vertex Pharmaceuticals</span>
+          <div class="modality-co-bar">
+            <div class="modality-co-fill" style="width:128%"></div>
+          </div>
+          
+          <span class="modality-co-ph3">Ph3 34</span>
+          
+        </div>
+        
+      </div>
+      
+
+      <!-- 주요 약물명 -->
+      
+      <div class="modality-drugs">
+        
+        <span class="drug-pill">Placebo</span>
+        
+        <span class="drug-pill">Elx/Tez/Iva</span>
+        
+        <span class="drug-pill">Iva</span>
+        
+        <span class="drug-pill">Ruxolitinib</span>
+        
+        <span class="drug-pill">Karxt</span>
+        
+      </div>
+      
+
+    </div>
+    
   </div>
 </div>
 
@@ -88089,7 +87479,7 @@ function showStock(slug, btn) {
   <div style="font-size:13px;color:var(--muted);line-height:2">
     전 세계 매출 상위 30개 제약회사가 <strong style="color:var(--text)">지금 어떤 신약을 개발 중인지</strong>,
     그 신약이 <strong style="color:var(--text)">FDA 승인을 받을 가능성이 얼마나 되는지</strong>를 매일 자동으로 추적합니다.<br>
-    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-21 06:59 UTC</strong>
+    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-21 07:08 UTC</strong>
   </div>
 </div>
 
@@ -88410,7 +87800,7 @@ function showStock(slug, btn) {
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-21 06:59 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-21 07:08 UTC
 </footer>
 
 <script>

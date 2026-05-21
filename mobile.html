@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SHL BioInsights Mobile</title>
+<style>
+:root {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+  --border: #2e3350; --text: #e2e8f0; --muted: #8892a4;
+  --accent: #6366f1; --green: #22c55e; --yellow: #eab308;
+  --red: #ef4444; --blue: #3b82f6; --orange: #f97316;
+  --bottombar-h: 64px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: var(--bg); color: var(--text);
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size: 15px; }
+
+/* ── HEADER ── */
+.topbar {
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: 12px 16px; position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-left { display: flex; align-items: center; gap: 8px; }
+.topbar-logo { font-size: 22px; }
+.topbar-title { font-size: 15px; font-weight: 700; }
+.topbar-sub { font-size: 10px; color: var(--muted); }
+.topbar-right { font-size: 10px; color: var(--muted); text-align: right; line-height: 1.5; }
+.desktop-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--muted); font-size: 10px; padding: 4px 8px; border-radius: 6px;
+  text-decoration: none; margin-top: 4px;
+}
+
+/* ── MAIN SCROLL AREA ── */
+.main-scroll {
+  overflow-y: auto; overflow-x: hidden;
+  padding-bottom: calc(var(--bottombar-h) + 16px);
+  height: calc(100vh - 70px);
+}
+.tab-panel { display: none; padding: 14px 14px 0; }
+.tab-panel.active { display: block; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: var(--bottombar-h); background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex; align-items: stretch; z-index: 100;
+  safe-area-inset-bottom: env(safe-area-inset-bottom);
+}
+.bottom-nav-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 3px; cursor: pointer;
+  border: none; background: none; color: var(--muted);
+  font-size: 10px; padding: 6px 2px; transition: color .15s;
+}
+.bottom-nav-item .nav-icon { font-size: 20px; }
+.bottom-nav-item.active { color: var(--accent); }
+.bottom-nav-item.active .nav-icon { transform: scale(1.1); }
+
+/* ── SECTION TITLE ── */
+.section-title {
+  font-size: 17px; font-weight: 700; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+
+/* ── STAT CARDS (홈 요약) ── */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px; text-align: center;
+}
+.stat-card .val { font-size: 28px; font-weight: 800; }
+.stat-card .lbl { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.stat-card.accent-green { border-color: var(--green); }
+.stat-card.accent-blue { border-color: var(--blue); }
+.stat-card.accent-accent { border-color: var(--accent); }
+.stat-card.accent-yellow { border-color: var(--yellow); }
+
+/* ── COMPANY RANK LIST ── */
+.co-rank-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.co-rank-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.co-rank-num { font-size: 18px; font-weight: 800; color: var(--muted); width: 28px; flex-shrink: 0; }
+.co-rank-info { flex: 1; min-width: 0; }
+.co-rank-name { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.co-rank-stats { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.co-rank-ph3 { font-size: 18px; font-weight: 800; color: var(--green); flex-shrink: 0; }
+
+/* ── MODALITY CARDS (파이프라인) ── */
+.modality-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.modality-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px;
+}
+.modality-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.modality-icon { font-size: 22px; }
+.modality-name { font-weight: 700; font-size: 14px; flex: 1; }
+.hot-badge {
+  font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 99px;
+  background: rgba(239,68,68,.15); color: var(--red);
+}
+.modality-desc { font-size: 12px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+.modality-stats { display: flex; gap: 10px; }
+.modality-stat { text-align: center; }
+.modality-stat .n { font-size: 18px; font-weight: 700; }
+.modality-stat .l { font-size: 10px; color: var(--muted); }
+.modality-drugs { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.drug-pill {
+  font-size: 10px; padding: 2px 7px; border-radius: 99px;
+  background: var(--surface2); color: var(--muted);
+}
+
+/* ── PIPELINE INTEL CARDS ── */
+.intel-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.intel-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px;
+}
+.intel-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.intel-company { font-size: 11px; color: var(--muted); }
+.intel-drug { font-weight: 700; font-size: 13px; margin-top: 2px; line-height: 1.3; }
+.intel-pct { font-size: 24px; font-weight: 800; color: var(--accent); flex-shrink: 0; }
+.intel-pct small { font-size: 12px; font-weight: 400; color: var(--muted); }
+.intel-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.intel-badge {
+  font-size: 10px; padding: 2px 7px; border-radius: 6px;
+  background: var(--surface2); color: var(--muted);
+}
+.intel-badge.phase3 { background: rgba(99,102,241,.15); color: var(--accent); }
+.intel-badge.phase2 { background: rgba(59,130,246,.15); color: var(--blue); }
+.intel-badge.completed { background: rgba(34,197,94,.15); color: var(--green); }
+.intel-badge.imminent { background: rgba(234,179,8,.15); color: var(--yellow); }
+.verdict-chip {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 3px 8px; border-radius: 99px;
+}
+.verdict-high { background: rgba(34,197,94,.15); color: var(--green); }
+.verdict-mid { background: rgba(234,179,8,.15); color: var(--yellow); }
+.verdict-low { background: rgba(239,68,68,.15); color: var(--red); }
+.intel-factors { margin-top: 8px; }
+.intel-factor { font-size: 11px; color: var(--muted); padding: 3px 0; border-top: 1px solid var(--border); line-height: 1.4; }
+.intel-factor:first-child { border-top: none; }
+.intel-factor.pos { color: #86efac; }
+.intel-factor.neg { color: #fca5a5; }
+
+/* ── CRL CARDS ── */
+.crl-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.crl-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px;
+}
+.crl-card.resolved { border-color: rgba(34,197,94,.3); }
+.crl-card.unresolved { border-color: rgba(239,68,68,.25); }
+.crl-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.crl-company { font-weight: 700; font-size: 14px; }
+.crl-status { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; }
+.crl-status.resolved { background: rgba(34,197,94,.15); color: var(--green); }
+.crl-status.unresolved { background: rgba(239,68,68,.15); color: var(--red); }
+.crl-drug { font-size: 13px; margin-bottom: 4px; }
+.crl-app { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.crl-date { font-size: 11px; color: var(--muted); }
+.crl-reason { font-size: 12px; color: var(--muted); margin: 6px 0; line-height: 1.5; }
+.crl-categories { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.crl-cat { font-size: 10px; padding: 2px 7px; border-radius: 99px; }
+.crl-links { display: flex; gap: 8px; }
+.crl-link-btn {
+  font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px;
+  text-decoration: none; display: inline-block;
+}
+.crl-link-fda { background: var(--accent); color: #fff; }
+.crl-link-press { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+
+/* ── NEWS CARDS ── */
+.news-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.news-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px; display: flex; gap: 10px;
+}
+.news-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 4px; }
+.news-body { flex: 1; min-width: 0; }
+.news-title { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+.news-title a { color: var(--text); text-decoration: none; }
+.news-meta { font-size: 10px; color: var(--muted); }
+
+/* ── STOCK MINI ── */
+.stock-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.stock-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.stock-name { font-weight: 700; font-size: 14px; }
+.stock-ticker { font-size: 11px; color: var(--muted); }
+.stock-right { text-align: right; }
+.stock-price { font-size: 16px; font-weight: 700; }
+.stock-chg { font-size: 12px; font-weight: 600; }
+.stock-chg.up { color: var(--green); }
+.stock-chg.down { color: var(--red); }
+.stock-signal { font-size: 10px; color: var(--muted); }
+
+/* ── ALERT BANNER ── */
+.alert-banner {
+  background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3);
+  border-radius: 10px; padding: 10px 14px; margin-bottom: 14px;
+  font-size: 12px; color: #fca5a5; line-height: 1.5;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center; padding: 40px 20px; color: var(--muted);
+}
+.empty-state .icon { font-size: 32px; margin-bottom: 10px; }
+.empty-state .msg { font-size: 13px; }
+
+/* ── COLOR CAT MAP ── */
+.cat-red { background: rgba(239,68,68,.15); color: #fca5a5; }
+.cat-orange { background: rgba(249,115,22,.15); color: #fdba74; }
+.cat-purple { background: rgba(168,85,247,.15); color: #d8b4fe; }
+.cat-blue { background: rgba(59,130,246,.15); color: #93c5fd; }
+.cat-yellow { background: rgba(234,179,8,.15); color: var(--yellow); }
+.cat-teal { background: rgba(20,184,166,.15); color: #5eead4; }
+.cat-gray { background: var(--surface2); color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ── TOP HEADER ── -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-logo">🧬</span>
+    <div>
+      <div class="topbar-title">SHL BioInsights</div>
+      <div class="topbar-sub">Global Pharma Monitor</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    2026-05-21 13:30 UTC<br>
+    <a class="desktop-link" href="latest.html">🖥 데스크탑 버전↗</a>
+  </div>
+</div>
+
+<!-- ── SCROLL AREA ── -->
+<div class="main-scroll" id="mainScroll">
+
+  
+  <div id="m-panel-home" class="tab-panel active">
+    <div class="section-title">📊 대시보드 요약</div>
+
+    
+
+    <div class="stat-grid">
+      <div class="stat-card accent-blue">
+        <div class="val">30</div>
+        <div class="lbl">모니터링 기업</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="val">2486</div>
+        <div class="lbl">Phase 3 임상</div>
+      </div>
+      <div class="stat-card accent-accent">
+        <div class="val">13226</div>
+        <div class="lbl">전체 미국 임상</div>
+      </div>
+      <div class="stat-card accent-yellow">
+        <div class="val">6</div>
+        <div class="lbl">FDA CRL 건수</div>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:14px">🏆 Phase 3 임상 Top 10 기업</div>
+    <div class="co-rank-list">
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">1</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">AstraZeneca</div>
+          <div class="co-rank-stats">전체 1304건 · 결과보고 197건</div>
+        </div>
+        <div class="co-rank-ph3">236</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">2</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">Merck (MSD)</div>
+          <div class="co-rank-stats">전체 1154건 · 결과보고 341건</div>
+        </div>
+        <div class="co-rank-ph3">220</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">3</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">Novartis</div>
+          <div class="co-rank-stats">전체 880건 · 결과보고 153건</div>
+        </div>
+        <div class="co-rank-ph3">166</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">4</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">Roche</div>
+          <div class="co-rank-stats">전체 920건 · 결과보고 159건</div>
+        </div>
+        <div class="co-rank-ph3">165</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">5</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">Eli Lilly</div>
+          <div class="co-rank-stats">전체 645건 · 결과보고 152건</div>
+        </div>
+        <div class="co-rank-ph3">153</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">6</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">Pfizer</div>
+          <div class="co-rank-stats">전체 1018건 · 결과보고 367건</div>
+        </div>
+        <div class="co-rank-ph3">145</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">7</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">Johnson &amp; Johnson</div>
+          <div class="co-rank-stats">전체 829건 · 결과보고 182건</div>
+        </div>
+        <div class="co-rank-ph3">140</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">8</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">AbbVie</div>
+          <div class="co-rank-stats">전체 583건 · 결과보고 77건</div>
+        </div>
+        <div class="co-rank-ph3">126</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">9</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">Sanofi</div>
+          <div class="co-rank-stats">전체 555건 · 결과보고 105건</div>
+        </div>
+        <div class="co-rank-ph3">126</div>
+      </div>
+      
+      
+      <div class="co-rank-item">
+        <div class="co-rank-num">10</div>
+        <div class="co-rank-info">
+          <div class="co-rank-name">GSK</div>
+          <div class="co-rank-stats">전체 454건 · 결과보고 164건</div>
+        </div>
+        <div class="co-rank-ph3">106</div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
+
+  
+  <div id="m-panel-pipeline" class="tab-panel">
+    <div class="section-title">🔬 모달리티별 파이프라인</div>
+    <div class="section-sub">치료 플랫폼 기준으로 분류한 임상 현황</div>
+    <div class="modality-list">
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">💉</span>
+          <span class="modality-name">ADC (항체약물접합체)</span>
+          <span class="hot-badge">HOT</span>
+        </div>
+        
+        <div class="modality-desc">항체에 세포독성 약물을 결합해 종양만 선택적 타격. Daiichi Sankyo·AZ·Pfizer/Seagen 주도.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">63</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">59</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">9</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">16</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Pembrolizumab</span>
+          
+          <span class="drug-pill">Sacituzumab Govitecan</span>
+          
+          <span class="drug-pill">Enfortumab Vedotin</span>
+          
+          <span class="drug-pill">Trastuzumab Deruxtecan</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">⚖️</span>
+          <span class="modality-name">GLP-1·대사질환</span>
+          <span class="hot-badge">HOT</span>
+        </div>
+        
+        <div class="modality-desc">GLP-1RA·GIP·글루카곤 삼중작용제. 비만·당뇨→NASH·심부전으로 적응증 확장.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">36</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">9</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">5</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">9</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Placebo</span>
+          
+          <span class="drug-pill">Orforglipron</span>
+          
+          <span class="drug-pill">Nnc0487-0111</span>
+          
+          <span class="drug-pill">Eloralintide</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">🎯</span>
+          <span class="modality-name">이중·다중특이항체</span>
+          <span class="hot-badge">HOT</span>
+        </div>
+        
+        <div class="modality-desc">두 개 이상 표적 동시 공략. CD3 T세포 engager(혈액암), EGFR×MET(폐암) 등 활발.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">22</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">26</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">0</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">10</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Teclistamab</span>
+          
+          <span class="drug-pill">Daratumumab</span>
+          
+          <span class="drug-pill">Blinatumomab</span>
+          
+          <span class="drug-pill">Elranatamab</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">🔬</span>
+          <span class="modality-name">mRNA·핵산치료</span>
+          <span class="hot-badge">HOT</span>
+        </div>
+        
+        <div class="modality-desc">mRNA 암백신(Moderna·MSD), siRNA(Alnylam 파트너십), ASO 등 핵산 플랫폼.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">9</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">0</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">2</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">4</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Inclisiran</span>
+          
+          <span class="drug-pill">Placebo</span>
+          
+          <span class="drug-pill">Lnp023</span>
+          
+          <span class="drug-pill">Vx-522 Mrna Therapy</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">🧬</span>
+          <span class="modality-name">유전자·세포치료</span>
+          <span class="hot-badge">HOT</span>
+        </div>
+        
+        <div class="modality-desc">CAR-T, 유전자편집(CRISPR/AAV), TIL 등 1회성 근본 치료. 희귀질환·혈액암 집중.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">5</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">6</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">0</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">10</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Axicabtagene Ciloleucel</span>
+          
+          <span class="drug-pill">Azd0120</span>
+          
+          <span class="drug-pill">Daratumumab</span>
+          
+          <span class="drug-pill">Cyclophosphamide</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">☢️</span>
+          <span class="modality-name">방사성리간드 (RLT)</span>
+          <span class="hot-badge">HOT</span>
+        </div>
+        
+        <div class="modality-desc">방사성 동위원소(Lu-177·Ac-225)를 리간드로 종양에 직접 전달. PSMA 전립선암→확장.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">3</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">0</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">1</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">2</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">177Lu-Pmsa-617</span>
+          
+          <span class="drug-pill">Standard Of Care</span>
+          
+          <span class="drug-pill">Octreotide Lar</span>
+          
+          <span class="drug-pill">Aaa617</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">🛡️</span>
+          <span class="modality-name">면역관문억제제 (ICI)</span>
+          
+        </div>
+        
+        <div class="modality-desc">PD-1/PD-L1·CTLA-4·LAG-3·TIGIT 차단. 단독→병용·새 표적으로 진화 중.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">52</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">54</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">12</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">21</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Pembrolizumab</span>
+          
+          <span class="drug-pill">Cemiplimab</span>
+          
+          <span class="drug-pill">Durvalumab</span>
+          
+          <span class="drug-pill">Atezolizumab</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">💊</span>
+          <span class="modality-name">경구 표적치료 (TKI·CDK·PARP)</span>
+          
+        </div>
+        
+        <div class="modality-desc">KRAS G12C, CDK2/4/6, PARP 등 차세대 소분자. 1세대 내성 극복에 집중.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">8</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">9</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">1</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">10</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Panitumumab</span>
+          
+          <span class="drug-pill">Olaparib</span>
+          
+          <span class="drug-pill">Niraparib</span>
+          
+          <span class="drug-pill">Placebo</span>
+          
+        </div>
+        
+      </div>
+      
+      <div class="modality-card">
+        <div class="modality-header">
+          <span class="modality-icon">🔵</span>
+          <span class="modality-name">기타 (항체·소분자 등)</span>
+          
+        </div>
+        
+        <div class="modality-desc">모노클로날항체, 전통 소분자, 단백질 치료제 등 기타 플랫폼.</div>
+        
+        <div class="modality-stats">
+          <div class="modality-stat"><div class="n" style="color:var(--green)">573</div><div class="l">Phase 3</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--blue)">264</div><div class="l">Phase 2</div></div>
+          <div class="modality-stat"><div class="n" style="color:var(--muted)">71</div><div class="l">Phase 1</div></div>
+          <div class="modality-stat"><div class="n">29</div><div class="l">기업</div></div>
+        </div>
+        
+        <div class="modality-drugs">
+          
+          <span class="drug-pill">Placebo</span>
+          
+          <span class="drug-pill">Elx/Tez/Iva</span>
+          
+          <span class="drug-pill">Iva</span>
+          
+          <span class="drug-pill">Ruxolitinib</span>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+  
+  <div id="m-panel-pos" class="tab-panel">
+    <div class="section-title">🎯 임상 통과 예측</div>
+    <div class="section-sub">Phase 2·3 중 2025–2026 완료 예정 · 전환 확률 순</div>
+    <div class="intel-list">
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Gilead Sciences</div>
+            <div class="intel-drug">Truvada</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-01</span>
+          <span class="intel-badge">Infectious Disease</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 높은 Infectious Disease 적응증 전환율 40%</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 모집 진행 중(Recruiting) — 등록 목표 미달 시 타임라인 지연 가능</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Teva</div>
+            <div class="intel-drug">Arsenic trioxide, Idarubicin, Cytarabine</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-01</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 완료 상태이지만 결과 미등록 — 부정적 결과를 공개하지 않는 경우도 있음</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">UCB</div>
+            <div class="intel-drug">Zilucoplan</div>
+          </div>
+          <div class="intel-pct">65.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-01</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-high">통과 가능성 높음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ ClinicalTrials.gov에 결과 데이터 이미 등록 — 효능·안전성 수치 검증 가능, 불확실성 낮음</div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Eisai</div>
+            <div class="intel-drug">pertuzumab, Trastuzumab, Capecitabine</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-01</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">UCB</div>
+            <div class="intel-drug">Bimekizumab</div>
+          </div>
+          <div class="intel-pct">65.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-02</span>
+          <span class="intel-badge">Immunology</span>
+          <span class="verdict-chip verdict-high">통과 가능성 높음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ ClinicalTrials.gov에 결과 데이터 이미 등록 — 효능·안전성 수치 검증 가능, 불확실성 낮음</div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">UCB</div>
+            <div class="intel-drug">Lacosamide</div>
+          </div>
+          <div class="intel-pct">65.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-02</span>
+          <span class="intel-badge">Neurology</span>
+          <span class="verdict-chip verdict-high">통과 가능성 높음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ ClinicalTrials.gov에 결과 데이터 이미 등록 — 효능·안전성 수치 검증 가능, 불확실성 낮음</div><div class="intel-factor pos">✅ 완료 + 결과 등록 — 가장 신뢰도 높은 상태</div>
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 3 평균(57%)보다 낮은 Neurology 적응증 전환율 50% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 신경과학 적응증 — 임상 엔드포인트 설계 복잡, FDA 승인 기준이 가장 엄격한 영역 중 하나</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Pfizer</div>
+            <div class="intel-drug">Etanercept, Methotrexate, Intra-articular corticosteroid injections</div>
+          </div>
+          <div class="intel-pct">60.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-02</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 최근 긍정 보도 1건 — 시장·분석가 반응 우호적 (+3%)</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 모집 진행 중(Recruiting) — 등록 목표 미달 시 타임라인 지연 가능</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Novo Nordisk</div>
+            <div class="intel-drug">Growth Hormone</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-03</span>
+          <span class="intel-badge">Endocrinology</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 낮은 Endocrinology 적응증 전환율 23% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Eisai</div>
+            <div class="intel-drug">Eribulin Mesylate, Pembrolizumab</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-03</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 낮은 Oncology 적응증 전환율 24% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">UCB</div>
+            <div class="intel-drug">Brivaracetam Film-coated tablet, Brivaracetam oral solution</div>
+          </div>
+          <div class="intel-pct">65.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-03</span>
+          <span class="intel-badge">Neurology</span>
+          <span class="verdict-chip verdict-high">통과 가능성 높음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ ClinicalTrials.gov에 결과 데이터 이미 등록 — 효능·안전성 수치 검증 가능, 불확실성 낮음</div><div class="intel-factor pos">✅ 완료 + 결과 등록 — 가장 신뢰도 높은 상태</div>
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 3 평균(57%)보다 낮은 Neurology 적응증 전환율 50% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 신경과학 적응증 — 임상 엔드포인트 설계 복잡, FDA 승인 기준이 가장 엄격한 영역 중 하나</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Merck KGaA</div>
+            <div class="intel-drug">Avelumab</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-04</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 낮은 Oncology 적응증 전환율 24% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">CAEL-101, cyclophosphamide, bortezomib, and dexamethasone (CyBorD) regimen</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-04</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">Eculizumab</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-04</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 완료 상태이지만 결과 미등록 — 부정적 결과를 공개하지 않는 경우도 있음</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Teva</div>
+            <div class="intel-drug">Budesonide/Formoterol fumarate dihydrate</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-04</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 모집 진행 중(Recruiting) — 등록 목표 미달 시 타임라인 지연 가능</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">Eculizumab</div>
+          </div>
+          <div class="intel-pct">62.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-05</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-high">통과 가능성 높음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ ClinicalTrials.gov에 결과 데이터 이미 등록 — 효능·안전성 수치 검증 가능, 불확실성 낮음</div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">UCB</div>
+            <div class="intel-drug">ZX008 (Fenfluramine Hydrochloride)</div>
+          </div>
+          <div class="intel-pct">65.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-05</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-high">통과 가능성 높음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ ClinicalTrials.gov에 결과 데이터 이미 등록 — 효능·안전성 수치 검증 가능, 불확실성 낮음</div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Eisai</div>
+            <div class="intel-drug">Pembrolizumab, Lenvatinib, Cisplatin</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-05</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">CAEL-101, cyclophosphamide, bortezomib, and Dexamethasone (CyBorD) regimen</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-05</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">Ravulizumab</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-05</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 완료 상태이지만 결과 미등록 — 부정적 결과를 공개하지 않는 경우도 있음</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">ALXN1720, Placebo</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-05</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Eisai</div>
+            <div class="intel-drug">LENVATINIB</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-05</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 낮은 Oncology 적응증 전환율 24% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Eli Lilly</div>
+            <div class="intel-drug">Pirtobrutinib, Ibrutinib</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-06</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 모집 진행 중(Recruiting) — 등록 목표 미달 시 타임라인 지연 가능</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Eisai</div>
+            <div class="intel-drug">Lenvatinib Pill</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-06</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 낮은 Oncology 적응증 전환율 24% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Merck KGaA</div>
+            <div class="intel-drug">Avelumab, Sacituzumab Govitecan, M6223</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-06</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 낮은 Oncology 적응증 전환율 24% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">ALXN1850, Placebo</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-07</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">ALXN1850, asfotase alfa</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-07</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div><div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Teva</div>
+            <div class="intel-drug">Fremanezumab</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-08</span>
+          <span class="intel-badge">Neurology</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 3 평균(57%)보다 낮은 Neurology 적응증 전환율 50% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Vertex Pharmaceuticals</div>
+            <div class="intel-drug">ELX/TEZ/IVA, IVA</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-09</span>
+          <span class="intel-badge">Rare Disease</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 전체 Phase 3 평균(57%)보다 높은 Rare Disease 적응증 전환율 72%</div><div class="intel-factor pos">✅ 희귀질환 적응증 — FDA 희귀약물지정(ODD)·가속승인 경로 활용 가능성, 소규모 임상으로도 허가 가능</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 완료 상태이지만 결과 미등록 — 부정적 결과를 공개하지 않는 경우도 있음</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Alexion</div>
+            <div class="intel-drug">Ravulizumab</div>
+          </div>
+          <div class="intel-pct">57.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase3">Phase 3</span>
+          <span class="intel-badge completed">2025-09</span>
+          <span class="intel-badge">Other</span>
+          <span class="verdict-chip verdict-mid">추가 모니터링 필요</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ BIO/IQVIA 기준 Phase 3 역사적 전환율 57% (업계 평균 수준)</div>
+          <div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div><div class="intel-factor neg">⚠ 완료 상태이지만 결과 미등록 — 부정적 결과를 공개하지 않는 경우도 있음</div>
+        </div>
+        
+      </div>
+      
+      <div class="intel-card">
+        <div class="intel-top">
+          <div>
+            <div class="intel-company">Merck KGaA</div>
+            <div class="intel-drug">Tuvusertib (M1774), Niraparib, Lartesertib (M4076)</div>
+          </div>
+          <div class="intel-pct">28.0<small>%</small></div>
+        </div>
+        <div class="intel-meta">
+          <span class="intel-badge phase2">Phase 2</span>
+          <span class="intel-badge completed">2025-09</span>
+          <span class="intel-badge">Oncology</span>
+          <span class="verdict-chip verdict-low">통과 어려울 수 있음</span>
+        </div>
+        
+        <div class="intel-factors">
+          <div class="intel-factor pos">✅ 모집 완료(Active, Not Recruiting) — 목표 등록 달성, 현재 데이터 수집 중</div>
+          <div class="intel-factor neg">⚠ BIO/IQVIA 기준 전체 Phase 2 평균(28%)보다 낮은 Oncology 적응증 전환율 24% — 역사적으로 까다로운 구간</div><div class="intel-factor neg">⚠ 결과 데이터 미공개 — 효능·안전성 아직 확인 불가, 읽기 어려운 블랙박스 구간</div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+  
+  <div id="m-panel-crl" class="tab-panel">
+    <div class="section-title">📋 FDA CRL 트래커</div>
+    <div class="section-sub">openFDA CRL API + openFDA drugsfda 교차검증 완료</div>
+    
+    <div class="crl-list">
+      
+      <div class="crl-card unresolved">
+        <div class="crl-top">
+          <span class="crl-company">Sanofi</span>
+          <span class="crl-status unresolved">
+            ⚠ 미해결
+          </span>
+        </div>
+        <div class="crl-drug">tolebrutinib (nrSPMS)</div>
+        <div class="crl-app">NDA 219624</div>
+        <div class="crl-date">CRL: 2025-12-23</div>
+        
+        <div class="crl-reason">Safety — severe hepatotoxicity risk outweighs clinical benefit for non-relapsing secondary progressive MS</div>
+        
+        
+        <div class="crl-categories">
+          
+          <span class="crl-cat cat-red">독성</span>
+          
+        </div>
+        
+        <div class="crl-links">
+          
+          <a href="https://download.open.fda.gov/crl/CRL_NDA219624_20251223.pdf" target="_blank" class="crl-link-btn crl-link-fda">FDA 문서↗</a>
+          
+          
+          <a href="https://www.sanofi.com/en/media-room/press-releases/2025/2025-12-24-06-00-00-3210238" target="_blank" class="crl-link-btn crl-link-press">보도자료↗</a>
+          
+        </div>
+      </div>
+      
+      <div class="crl-card unresolved">
+        <div class="crl-top">
+          <span class="crl-company">GSK</span>
+          <span class="crl-status unresolved">
+            ⚠ 미해결
+          </span>
+        </div>
+        <div class="crl-drug">depemokimab (Exdensur; CRSwNP 적응증)</div>
+        <div class="crl-app">BLA 761458</div>
+        <div class="crl-date">CRL: 2025-12-16</div>
+        
+        <div class="crl-reason">Efficacy — inadequate evidence of efficacy for CRSwNP; small effect size with lack of robustness on tipping-point analysis; unfavorable benefit-risk given 6-month dosing interval</div>
+        
+        
+        <div class="crl-categories">
+          
+          <span class="crl-cat cat-yellow">효능/엔드포인트</span>
+          
+        </div>
+        
+        <div class="crl-links">
+          
+          <a href="https://download.open.fda.gov/crl/CRL_BLA761458_20251216.pdf" target="_blank" class="crl-link-btn crl-link-fda">FDA 문서↗</a>
+          
+          
+          <a href="https://www.fiercepharma.com/pharma/fda-crl-reveal-critical-errors-astrazeneca-saphnelo-gsk-exdensur-rejection" target="_blank" class="crl-link-btn crl-link-press">보도자료↗</a>
+          
+        </div>
+      </div>
+      
+      <div class="crl-card unresolved">
+        <div class="crl-top">
+          <span class="crl-company">Regeneron</span>
+          <span class="crl-status unresolved">
+            ⚠ 미해결
+          </span>
+        </div>
+        <div class="crl-drug">aflibercept 8mg PFS (Eylea HD; sBLA)</div>
+        <div class="crl-app">BLA 125387</div>
+        <div class="crl-date">CRL: 2025-10-27</div>
+        
+        <div class="crl-reason">CMC/manufacturing — Catalent Indiana fill-finish facility classified &#39;official action indicated&#39; after FDA inspection; GMP noncompliance</div>
+        
+        
+        <div class="crl-categories">
+          
+          <span class="crl-cat cat-purple">CMC/제조공정</span>
+          
+        </div>
+        
+        <div class="crl-links">
+          
+          <a href="https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&amp;ApplNo=125387" target="_blank" class="crl-link-btn crl-link-fda">FDA 문서↗</a>
+          
+          
+          <a href="https://www.pearceip.law/2025/10/27/fda-issues-crl-for-regenerons-eylea-hd-aflibercept-pfs/" target="_blank" class="crl-link-btn crl-link-press">보도자료↗</a>
+          
+        </div>
+      </div>
+      
+      <div class="crl-card resolved">
+        <div class="crl-top">
+          <span class="crl-company">AstraZeneca</span>
+          <span class="crl-status resolved">
+            ✓ 해결됨
+          </span>
+        </div>
+        <div class="crl-drug">anifrolumab SC (Saphnelo SC; SLE 피하주사)</div>
+        <div class="crl-app">BLA 761451</div>
+        <div class="crl-date">CRL: 2025-10-10 · 해결: 2026-04-24</div>
+        
+        <div class="crl-reason">Clinical data quality — critical errors in submitted dataset affecting primary endpoint analysis (TULIP-SC trial)</div>
+        
+        
+        <div class="crl-categories">
+          
+          <span class="crl-cat cat-yellow">효능/엔드포인트</span>
+          
+        </div>
+        
+        <div class="crl-links">
+          
+          <a href="https://download.open.fda.gov/crl/CRL_BLA761451_20251010.pdf" target="_blank" class="crl-link-btn crl-link-fda">FDA 문서↗</a>
+          
+          
+          <a href="https://news.cision.com/astrazeneca/r/update-on-saphnelo-subcutaneous-administration,c4301623" target="_blank" class="crl-link-btn crl-link-press">보도자료↗</a>
+          
+        </div>
+      </div>
+      
+      <div class="crl-card resolved">
+        <div class="crl-top">
+          <span class="crl-company">Astellas</span>
+          <span class="crl-status resolved">
+            ✓ 해결됨
+          </span>
+        </div>
+        <div class="crl-drug">avacincaptad pegol (Izervay; GA 라벨 확장 sNDA)</div>
+        <div class="crl-app">NDA 217225</div>
+        <div class="crl-date">CRL: 2024-11-15 · 해결: 2025-02-12</div>
+        
+        <div class="crl-reason">Labeling — statistical matter pertaining to proposed prescribing information language for 2-year GATHER2 data; no safety or efficacy concerns</div>
+        
+        
+        <div class="crl-categories">
+          
+          <span class="crl-cat cat-yellow">효능/엔드포인트</span>
+          
+          <span class="crl-cat cat-teal">라벨링/REMS</span>
+          
+        </div>
+        
+        <div class="crl-links">
+          
+          <a href="https://download.open.fda.gov/crl/217225-s001_OtherActionLtrs.pdf" target="_blank" class="crl-link-btn crl-link-fda">FDA 문서↗</a>
+          
+          
+          <a href="https://www.astellas.com/en/news/29576" target="_blank" class="crl-link-btn crl-link-press">보도자료↗</a>
+          
+        </div>
+      </div>
+      
+      <div class="crl-card resolved">
+        <div class="crl-top">
+          <span class="crl-company">Eli Lilly</span>
+          <span class="crl-status resolved">
+            ✓ 해결됨
+          </span>
+        </div>
+        <div class="crl-drug">mirikizumab (Omvoh; UC)</div>
+        <div class="crl-app">BLA 761279</div>
+        <div class="crl-date">CRL: 2023-03-30 · 해결: 2023-10-26</div>
+        
+        <div class="crl-reason">Manufacturing — proposed manufacturing process deficiencies; FDA confirmed no concerns with clinical data, safety profile, or label</div>
+        
+        
+        <div class="crl-categories">
+          
+          <span class="crl-cat cat-purple">CMC/제조공정</span>
+          
+          <span class="crl-cat cat-teal">라벨링/REMS</span>
+          
+        </div>
+        
+        <div class="crl-links">
+          
+          <a href="https://download.open.fda.gov/crl/761279_2023_Orig1s000OtherActionLtrs.pdf" target="_blank" class="crl-link-btn crl-link-fda">FDA 문서↗</a>
+          
+          
+          <a href="https://investor.lilly.com/news-releases/news-release-details/us-food-and-drug-administration-issues-complete-response-1" target="_blank" class="crl-link-btn crl-link-press">보도자료↗</a>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div id="m-panel-news" class="tab-panel">
+    <div class="section-title">📰 최신 뉴스</div>
+    <div class="section-sub">FiercePharma · STAT News · Reuters Health</div>
+    
+    <div class="news-list">
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://endpoints.news/pfizers-next-gen-pneumonia-shot-beats-prevnar-20-relay-raises-175m/" target="_blank" rel="noopener">Pfizer&#39;s next-gen pneumonia shot beats Prevnar 20; Relay targets $175M</a>
+            
+          </div>
+          <div class="news-meta">
+            Endpoints News · Wed, 20 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.biopharmadive.com/news/immunovant-arthritis-wave-aatd-pfizer-vaccine-takeda-ira/820676/" target="_blank" rel="noopener">Immunovant’s potential autoimmune ‘blockbuster’; Wave’s RNA editing update</a>
+            
+          </div>
+          <div class="news-meta">
+            BioPharma Dive · Wed, 20 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://endpoints.news/parabilis-reveals-ipo-plans-the-day-after-regeneron-deal-as-listings-heat-up/" target="_blank" rel="noopener">Parabilis reveals IPO plans the day after Regeneron deal as listings heat up</a>
+            
+          </div>
+          <div class="news-meta">
+            Endpoints News · Wed, 20 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.biopharmadive.com/news/lilly-engage-bio-acquisition-LNPs-genetic-medicines/820736/" target="_blank" rel="noopener">Lilly snaps up Engage to advance non-viral genetic medicines</a>
+            
+          </div>
+          <div class="news-meta">
+            BioPharma Dive · Wed, 20 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.pharmaceutical-technology.com/news/regeneron-parabilis-deal-helicon-conjugates/" target="_blank" rel="noopener">Regeneron signs $2.32bn deal with Parabilis for Helicon conjugates</a>
+            
+          </div>
+          <div class="news-meta">
+            Pharma Technology · Tue, 19 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://endpoints.news/amgen-stands-by-rare-disease-drug-tavneos-amid-japan-liver-toxicity-report/" target="_blank" rel="noopener">Amgen stands by rare disease drug Tavneos amid Japan liver toxicity report</a>
+            
+          </div>
+          <div class="news-meta">
+            Endpoints News · Mon, 18 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://endpoints.news/regeneron-reaches-125m-parabilis-deal-for-hard-to-catch-drug-targets/" target="_blank" rel="noopener">Regeneron reaches $125M Parabilis deal for hard-to-catch drug targets</a>
+            
+          </div>
+          <div class="news-meta">
+            Endpoints News · Mon, 18 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.biopharmadive.com/news/astrazeneca-baxfendy-approval-hypertension-blood-pressure/820491/" target="_blank" rel="noopener">FDA approves AstraZeneca’s new kind of hypertension drug</a>
+            
+          </div>
+          <div class="news-meta">
+            BioPharma Dive · Mon, 18 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://endpoints.news/regenerons-phase-3-skin-cancer-miss-adds-to-mounting-failures-in-lag-3/" target="_blank" rel="noopener">Regeneron&#39;s Phase 3 skin cancer miss adds to mounting failures in LAG-3</a>
+            
+          </div>
+          <div class="news-meta">
+            Endpoints News · Mon, 18 Ma
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/pharma/bristol-myers-taps-anthropic-claude-enterprise-wide-ai-adoption-speed-drug-rd-global" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/pharma/bristol-myers-taps-anthropic-claude-enterprise-wide-ai-adoption-speed-drug-rd-global&#34; hreflang=&#34;en&#34;&gt;BMS taps Anthropic’s Claude for enterprise-wide AI adoption to speed R&amp;amp;D, global workflows&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 20, 20
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/manufacturing/gilead-signs-140m-deal-korean-api-manufacturer-yuhan" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/manufacturing/gilead-signs-140m-deal-korean-api-manufacturer-yuhan&#34; hreflang=&#34;en&#34;&gt;Gilead inks another deal with Korean API manufacturer Yuhan, this time worth $140M&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 20, 20
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/pharma/ucb-presents-data-bimzelxs-head-head-win-over-abbvies-skyrizi" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/pharma/ucb-presents-data-bimzelxs-head-head-win-over-abbvies-skyrizi&#34; hreflang=&#34;en&#34;&gt;UCB digs deeper into Bimzelx’s psoriatic arthritis win over Skyrizi&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 19, 20
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/pharma/roche-signs-generic-xofluza-licensing-deal-medicines-patent-pool-129-countries" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/pharma/roche-signs-generic-xofluza-licensing-deal-medicines-patent-pool-129-countries&#34; hreflang=&#34;en&#34;&gt;Roche signs generic Xofluza licensing deal with Medicines Patent Pool for 129 countries&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 19, 20
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/manufacturing/novartis-terminates-plant-contract-chinese-cdmo-porton-threatens-64m-legal-claims" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/manufacturing/novartis-terminates-plant-contract-chinese-cdmo-porton-threatens-64m-legal-claims&#34; hreflang=&#34;en&#34;&gt;Novartis terminates plant contract with Chinese CDMO Porton, threatens $64M in legal claims&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 18, 20
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/pharma/astrazeneca-notches-key-fda-nod-hypertension-approval-sweetener-fasenra-too" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/pharma/astrazeneca-notches-key-fda-nod-hypertension-approval-sweetener-fasenra-too&#34; hreflang=&#34;en&#34;&gt;AstraZeneca notches key FDA nod in hypertension, with an approval sweetener for Fasenra too&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 18, 20
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/pharma/daiichi-astrazeneca-enhertu-breaks-early-breast-cancer-dual-fda-approvals" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/pharma/daiichi-astrazeneca-enhertu-breaks-early-breast-cancer-dual-fda-approvals&#34; hreflang=&#34;en&#34;&gt;Daiichi, AstraZeneca’s Enhertu breaks into early breast cancer with dual FDA approvals&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 18, 20
+          </div>
+        </div>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-dot"></div>
+        <div class="news-body">
+          <div class="news-title">
+            
+            <a href="https://www.fiercepharma.com/marketing/eli-lilly-teams-caitlin-clark-bounce-sports-courts-indianapolis-neighborhoods" target="_blank" rel="noopener">&lt;a href=&#34;https://www.fiercepharma.com/marketing/eli-lilly-teams-caitlin-clark-bounce-sports-courts-indianapolis-neighborhoods&#34; hreflang=&#34;en&#34;&gt;Eli Lilly teams up with Caitlin Clark to bounce sports courts into Indianapolis neighborhoods&lt;/a&gt;</a>
+            
+          </div>
+          <div class="news-meta">
+            FiercePharma · May 18, 20
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div id="m-panel-stock" class="tab-panel">
+    <div class="section-title">📈 주가 현황</div>
+    <div class="section-sub">상장사 실시간 시세 (Yahoo Finance)</div>
+    
+    <div class="stock-list">
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Johnson &amp; Johnson</div>
+          <div class="stock-ticker">JNJ</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$229.32</div>
+          
+          <div class="stock-chg down">
+            -0.30%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Pfizer</div>
+          <div class="stock-ticker">PFE</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$25.79</div>
+          
+          <div class="stock-chg up">
+            +0.51%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Roche</div>
+          <div class="stock-ticker">RHHBY</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$51.94</div>
+          
+          <div class="stock-chg up">
+            +0.15%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Novartis</div>
+          <div class="stock-ticker">NVS</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$150.45</div>
+          
+          <div class="stock-chg up">
+            +0.01%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">AbbVie</div>
+          <div class="stock-ticker">ABBV</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$212.30</div>
+          
+          <div class="stock-chg down">
+            -0.68%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Merck (MSD)</div>
+          <div class="stock-ticker">MRK</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$113.00</div>
+          
+          <div class="stock-chg down">
+            -1.09%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Bristol-Myers Squibb</div>
+          <div class="stock-ticker">BMY</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$58.54</div>
+          
+          <div class="stock-chg up">
+            +0.39%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">AstraZeneca</div>
+          <div class="stock-ticker">AZN</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$187.46</div>
+          
+          <div class="stock-chg up">
+            +1.53%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Sanofi</div>
+          <div class="stock-ticker">SNY</div>
+          
+          <div class="stock-signal">→ 중립</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$44.67</div>
+          
+          <div class="stock-chg up">
+            +2.57%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">GSK</div>
+          <div class="stock-ticker">GSK</div>
+          
+          <div class="stock-signal">→ 중립</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$50.78</div>
+          
+          <div class="stock-chg down">
+            -0.53%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Eli Lilly</div>
+          <div class="stock-ticker">LLY</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$1018.87</div>
+          
+          <div class="stock-chg down">
+            -0.25%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Amgen</div>
+          <div class="stock-ticker">AMGN</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$331.57</div>
+          
+          <div class="stock-chg up">
+            +0.25%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Gilead Sciences</div>
+          <div class="stock-ticker">GILD</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$130.69</div>
+          
+          <div class="stock-chg up">
+            +0.15%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Takeda</div>
+          <div class="stock-ticker">TAK</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$16.68</div>
+          
+          <div class="stock-chg up">
+            +0.60%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Novo Nordisk</div>
+          <div class="stock-ticker">NVO</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$45.07</div>
+          
+          <div class="stock-chg up">
+            +1.78%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Bayer</div>
+          <div class="stock-ticker">BAYRY</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$11.34</div>
+          
+          <div class="stock-chg up">
+            +2.62%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Merck KGaA</div>
+          <div class="stock-ticker">MKKGY</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$28.67</div>
+          
+          <div class="stock-chg up">
+            +2.91%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Regeneron</div>
+          <div class="stock-ticker">REGN</div>
+          
+          <div class="stock-signal">▽ 주의</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$649.76</div>
+          
+          <div class="stock-chg up">
+            +3.24%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Biogen</div>
+          <div class="stock-ticker">BIIB</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$187.80</div>
+          
+          <div class="stock-chg down">
+            -1.45%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Vertex Pharmaceuticals</div>
+          <div class="stock-ticker">VRTX</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$430.44</div>
+          
+          <div class="stock-chg down">
+            -0.89%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Moderna</div>
+          <div class="stock-ticker">MRNA</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$48.12</div>
+          
+          <div class="stock-chg up">
+            +5.25%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">UCB</div>
+          <div class="stock-ticker">UCBJY</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$138.77</div>
+          
+          <div class="stock-chg up">
+            +2.04%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Astellas</div>
+          <div class="stock-ticker">ALPMY</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$14.54</div>
+          
+          <div class="stock-chg down">
+            -0.14%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Daiichi Sankyo</div>
+          <div class="stock-ticker">DSNKY</div>
+          
+          <div class="stock-signal">→ 중립</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$16.53</div>
+          
+          <div class="stock-chg up">
+            +0.18%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">CSL</div>
+          <div class="stock-ticker">CSLLY</div>
+          
+          <div class="stock-signal">▽ 주의</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$17.81</div>
+          
+          <div class="stock-chg up">
+            +2.47%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Teva</div>
+          <div class="stock-ticker">TEVA</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$34.32</div>
+          
+          <div class="stock-chg up">
+            +0.73%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Incyte</div>
+          <div class="stock-ticker">INCY</div>
+          
+          <div class="stock-signal">▲ 매수 관심</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$97.08</div>
+          
+          <div class="stock-chg up">
+            +1.55%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div class="stock-item">
+        <div>
+          <div class="stock-name">Alexion</div>
+          <div class="stock-ticker">AZN</div>
+          
+          <div class="stock-signal">→ 중립+</div>
+          
+        </div>
+        <div class="stock-right">
+          <div class="stock-price">$187.46</div>
+          
+          <div class="stock-chg up">
+            +1.53%
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+</div><!-- /main-scroll -->
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="bottom-nav">
+  <button class="bottom-nav-item active" onclick="showTab('home',this)">
+    <span class="nav-icon">🏠</span>요약
+  </button>
+  <button class="bottom-nav-item" onclick="showTab('pipeline',this)">
+    <span class="nav-icon">🔬</span>파이프라인
+  </button>
+  <button class="bottom-nav-item" onclick="showTab('pos',this)">
+    <span class="nav-icon">🎯</span>통과예측
+  </button>
+  <button class="bottom-nav-item" onclick="showTab('crl',this)">
+    <span class="nav-icon">📋</span>CRL
+  </button>
+  <button class="bottom-nav-item" onclick="showTab('news',this)">
+    <span class="nav-icon">📰</span>뉴스
+  </button>
+  <button class="bottom-nav-item" onclick="showTab('stock',this)">
+    <span class="nav-icon">📈</span>주가
+  </button>
+</nav>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.bottom-nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('m-panel-' + name).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('mainScroll').scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

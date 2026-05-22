@@ -240,7 +240,7 @@ a{color:var(--accent);text-decoration:none}
   <div class="topbar-left">
     <span class="logo">🧬</span>
     <div><div class="t-title">SHL BioInsights</div>
-    <div class="t-sub">2026-05-22 04:56 UTC</div></div>
+    <div class="t-sub">2026-05-22 05:15 UTC</div></div>
   </div>
   <a class="desktop-link" href="latest.html">🖥 데스크탑↗</a>
 </div>
@@ -23563,16 +23563,3104 @@ a{color:var(--accent);text-decoration:none}
 
 </div>
 
+
+<div id="m-tab-calendar" class="tab-panel">
+<style>
+.m-cal-note{font-size:10px;color:var(--muted);background:var(--surface2);
+  border:1px solid var(--border);border-radius:8px;padding:8px 12px;
+  margin-bottom:10px;line-height:1.5}
+.m-cal-filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.m-cal-filter{font-size:10px;padding:3px 10px;border-radius:99px;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer}
+.m-cal-filter.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.m-cal-month{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;
+  padding:6px 0 5px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.m-cal-ev{background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:11px 12px;margin-bottom:8px;
+  border-left-width:3px}
+.m-cal-ev.type-PDUFA{border-left-color:#a855f7}
+.m-cal-ev.type-Phase3완료{border-left-color:var(--green)}
+.m-cal-ev.type-CRL발행{border-left-color:var(--red)}
+.m-cal-ev.urgency-past{opacity:.55}
+.m-ev-top{display:flex;align-items:flex-start;gap:7px;margin-bottom:4px}
+.m-ev-type{font-size:9px;font-weight:700;padding:2px 6px;border-radius:99px;
+  white-space:nowrap;flex-shrink:0;margin-top:2px}
+.m-type-PDUFA{background:rgba(168,85,247,.2);color:#d8b4fe}
+.m-type-Phase3완료{background:rgba(34,197,94,.15);color:#4ade80}
+.m-type-CRL발행{background:rgba(239,68,68,.15);color:#fca5a5}
+.m-ev-drug{font-size:12px;font-weight:700;line-height:1.3;flex:1}
+.m-ev-co{font-size:11px;color:var(--accent);font-weight:700;margin-bottom:2px}
+.m-ev-desc{font-size:11px;color:var(--muted);line-height:1.4;margin-bottom:5px}
+.m-ev-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.m-ev-date{font-size:10px;background:var(--surface2);border:1px solid var(--border);
+  padding:1px 7px;border-radius:5px;color:var(--muted)}
+.m-ev-countdown{font-size:10px;font-weight:700;padding:1px 7px;border-radius:99px}
+.mc-imminent{background:rgba(239,68,68,.15);color:#fca5a5}
+.mc-near{background:rgba(234,179,8,.15);color:var(--yellow)}
+.mc-upcoming{background:rgba(99,102,241,.15);color:var(--accent)}
+.mc-past{background:var(--surface2);color:var(--muted)}
+.m-ev-link{font-size:10px;color:var(--accent)}
+</style>
+<div class="panel-inner">
+<div class="section-title">📅 카탈리스트 캘린더</div>
+<div class="section-sub">PDUFA · Phase3 완료 · CRL 이벤트 타임라인</div>
+
+<div class="m-cal-note">
+  🟣 PDUFA = FDA 결정일 &nbsp;|&nbsp; 🟢 Phase3 = 예정 완료 &nbsp;|&nbsp; 🔴 CRL = FDA 거절서<br>
+  PDUFA는 수동 시드 데이터 (분기별 검증 필요)
+</div>
+
+<div class="m-cal-filters" id="mCalFilters">
+  <button class="m-cal-filter active" onclick="mCalFilter('all',this)">전체</button>
+  <button class="m-cal-filter" onclick="mCalFilter('upcoming',this)">예정</button>
+  <button class="m-cal-filter" onclick="mCalFilter('PDUFA',this)">PDUFA</button>
+  <button class="m-cal-filter" onclick="mCalFilter('Phase3완료',this)">Phase3</button>
+  <button class="m-cal-filter" onclick="mCalFilter('CRL발행',this)">CRL</button>
+  <button class="m-cal-filter" onclick="mCalFilter('past',this)">지난</button>
+</div>
+
+
+<div id="mCalList">
+
+
+  
+  <div class="m-cal-month" data-month="2023년 03월">2023년 03월</div>
+
+<div class="m-cal-ev type-CRL발행 urgency-past"
+     data-type="CRL발행" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-CRL발행">CRL발행</span>
+    <div class="m-ev-drug">mirikizumab (Omvoh; UC)</div>
+  </div>
+  <div class="m-ev-co">Eli Lilly</div>
+  <div class="m-ev-desc">FDA 완전응답서 — Manufacturing — proposed manufacturing process deficiencies; FDA confirmed no co</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2023-03-30</span>
+    
+      <span class="m-ev-countdown mc-past">1149일 전</span>
+    
+    
+    <a href="https://download.open.fda.gov/crl/761279_2023_Orig1s000OtherActionLtrs.pdf" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2024년 11월">2024년 11월</div>
+
+<div class="m-cal-ev type-CRL발행 urgency-past"
+     data-type="CRL발행" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-CRL발행">CRL발행</span>
+    <div class="m-ev-drug">avacincaptad pegol (Izervay; GA 라벨 확장 sNDA)</div>
+  </div>
+  <div class="m-ev-co">Astellas</div>
+  <div class="m-ev-desc">FDA 완전응답서 — Labeling — statistical matter pertaining to proposed prescribing information lan</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2024-11-15</span>
+    
+      <span class="m-ev-countdown mc-past">553일 전</span>
+    
+    
+    <a href="https://download.open.fda.gov/crl/217225-s001_OtherActionLtrs.pdf" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 01월">2025년 01월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Arsenic trioxide + Idarubicin</div>
+  </div>
+  <div class="m-ev-co">Teva</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Acute Promyelocytic Leukemia</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-01-20</span>
+    
+      <span class="m-ev-countdown mc-past">487일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT02688140" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Zilucoplan</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Generalized Myasthenia Gravis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-01-28</span>
+    
+      <span class="m-ev-countdown mc-past">479일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06471361" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">pertuzumab + Trastuzumab</div>
+  </div>
+  <div class="m-ev-co">Eisai</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Metastatic Breast Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-01-31</span>
+    
+      <span class="m-ev-countdown mc-past">476일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT02344472" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 02월">2025년 02월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Bimekizumab</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chronic Plaque Psoriasis, Moderate to Severe Chronic Plaque Psoriasis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-02-05</span>
+    
+      <span class="m-ev-countdown mc-past">471일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06011733" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Lacosamide</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Epilepsy</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-02-12</span>
+    
+      <span class="m-ev-countdown mc-past">464일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04627285" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Etanercept + Methotrexate</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Oligoarthritis, Juvenile, Polyarthritis, Juvenile, Rheumatoid Factor Negative</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-02-28</span>
+    
+      <span class="m-ev-countdown mc-past">448일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT03728478" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 03월">2025년 03월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Brivaracetam Film-coated tablet + Brivaracetam oral solution</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Childhood Absence Epilepsy, Juvenile Absence Epilepsy</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-03-18</span>
+    
+      <span class="m-ev-countdown mc-past">430일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05109234" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 04월">2025년 04월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">CAEL-101 + cyclophosphamide, bortezomib, and dexamethasone (CyBorD) regimen</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — AL Amyloidosis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-04-08</span>
+    
+      <span class="m-ev-countdown mc-past">409일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04512235" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Eculizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Paroxysmal Nocturnal Hemoglobinuria</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-04-14</span>
+    
+      <span class="m-ev-countdown mc-past">403일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05886244" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Budesonide/Formoterol fumarate dihydrate</div>
+  </div>
+  <div class="m-ev-co">Teva</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Asthma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-04-30</span>
+    
+      <span class="m-ev-countdown mc-past">387일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05831566" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 05월">2025년 05월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Eculizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Atypical Hemolytic Uremic</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-05-07</span>
+    
+      <span class="m-ev-countdown mc-past">380일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05876351" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ZX008 (Fenfluramine Hydrochloride)</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Dravet Syndrome, Lennox Gastaut Syndrome</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-05-08</span>
+    
+      <span class="m-ev-countdown mc-past">379일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT03936777" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Pembrolizumab + Lenvatinib</div>
+  </div>
+  <div class="m-ev-co">Eisai</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Metastatic Esophageal Squamous Cell Carcinoma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-05-08</span>
+    
+      <span class="m-ev-countdown mc-past">379일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04949256" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">CAEL-101 + cyclophosphamide, bortezomib, and Dexamethasone (CyBorD) regimen</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — AL Amyloidosis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-05-10</span>
+    
+      <span class="m-ev-countdown mc-past">377일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04504825" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ravulizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Paroxysmal Nocturnal Hemoglobinuria, PNH</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-05-15</span>
+    
+      <span class="m-ev-countdown mc-past">372일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06578949" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ALXN1720 + Placebo</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Generalized Myasthenia Gravis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-05-27</span>
+    
+      <span class="m-ev-countdown mc-past">360일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05556096" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 06월">2025년 06월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Pirtobrutinib + Ibrutinib</div>
+  </div>
+  <div class="m-ev-co">Eli Lilly</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chronic Lymphocytic Leukemia, Leukemia, Lymphocytic</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-06-10</span>
+    
+      <span class="m-ev-countdown mc-past">346일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05254743" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 07월">2025년 07월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ALXN1850 + Placebo</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hypophosphatasia</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-07-09</span>
+    
+      <span class="m-ev-countdown mc-past">317일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06079281" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ALXN1850 + asfotase alfa</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hypophosphatasia</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-07-23</span>
+    
+      <span class="m-ev-countdown mc-past">303일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06079372" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 08월">2025년 08월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Fremanezumab</div>
+  </div>
+  <div class="m-ev-co">Teva</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Migraine</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-08-15</span>
+    
+      <span class="m-ev-countdown mc-past">280일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04530110" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 09월">2025년 09월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ELX/TEZ/IVA + IVA</div>
+  </div>
+  <div class="m-ev-co">Vertex Pharmaceuticals</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Cystic Fibrosis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-09-04</span>
+    
+      <span class="m-ev-countdown mc-past">260일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05882357" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ravulizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Thrombotic Microangiopathy</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-09-19</span>
+    
+      <span class="m-ev-countdown mc-past">245일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04543591" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 10월">2025년 10월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Tapinarof Cream 1% + VTAMA®</div>
+  </div>
+  <div class="m-ev-co">Teva</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Plaque Type Psorisis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-10-07</span>
+    
+      <span class="m-ev-countdown mc-past">227일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06742957" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-CRL발행 urgency-past"
+     data-type="CRL발행" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-CRL발행">CRL발행</span>
+    <div class="m-ev-drug">anifrolumab SC (Saphnelo SC; SLE 피하주사)</div>
+  </div>
+  <div class="m-ev-co">AstraZeneca</div>
+  <div class="m-ev-desc">FDA 완전응답서 — Clinical data quality — critical errors in submitted dataset affecting primary e</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-10-10</span>
+    
+      <span class="m-ev-countdown mc-past">224일 전</span>
+    
+    
+    <a href="https://download.open.fda.gov/crl/CRL_BLA761451_20251010.pdf" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-CRL발행 urgency-past"
+     data-type="CRL발행" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-CRL발행">CRL발행</span>
+    <div class="m-ev-drug">aflibercept 8mg PFS (Eylea HD; sBLA)</div>
+  </div>
+  <div class="m-ev-co">Regeneron</div>
+  <div class="m-ev-desc">FDA 완전응답서 — CMC/manufacturing — Catalent Indiana fill-finish facility classified &#39;official a</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-10-27</span>
+    
+      <span class="m-ev-countdown mc-past">207일 전</span>
+    
+    
+    <a href="https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&amp;ApplNo=125387" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 11월">2025년 11월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">CSL312</div>
+  </div>
+  <div class="m-ev-co">CSL</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hereditary Angioedema (HAE)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-11-19</span>
+    
+      <span class="m-ev-countdown mc-past">184일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05819775" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Satralizumab</div>
+  </div>
+  <div class="m-ev-co">Roche</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Myelin Oligodendrocyte Glycoprotein Antibody-Associated Disease (MOGAD)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-11-20</span>
+    
+      <span class="m-ev-countdown mc-past">183일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05271409" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">CSL312</div>
+  </div>
+  <div class="m-ev-co">CSL</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hereditary Angioedema</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-11-21</span>
+    
+      <span class="m-ev-countdown mc-past">182일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04739059" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2025년 12월">2025년 12월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Encorafenib + Cetuximab</div>
+  </div>
+  <div class="m-ev-co">Merck KGaA</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Neoplasms</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-12-08</span>
+    
+      <span class="m-ev-countdown mc-past">165일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04607421" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-CRL발행 urgency-past"
+     data-type="CRL발행" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-CRL발행">CRL발행</span>
+    <div class="m-ev-drug">depemokimab (Exdensur; CRSwNP 적응증)</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">FDA 완전응답서 — Efficacy — inadequate evidence of efficacy for CRSwNP; small effect size with la</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-12-16</span>
+    
+      <span class="m-ev-countdown mc-past">157일 전</span>
+    
+    
+    <a href="https://download.open.fda.gov/crl/CRL_BLA761458_20251216.pdf" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-CRL발행 urgency-past"
+     data-type="CRL발행" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-CRL발행">CRL발행</span>
+    <div class="m-ev-drug">tolebrutinib (nrSPMS)</div>
+  </div>
+  <div class="m-ev-co">Sanofi</div>
+  <div class="m-ev-desc">FDA 완전응답서 — Safety — severe hepatotoxicity risk outweighs clinical benefit for non-relapsing</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-12-23</span>
+    
+      <span class="m-ev-countdown mc-past">150일 전</span>
+    
+    
+    <a href="https://download.open.fda.gov/crl/CRL_NDA219624_20251223.pdf" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">R-pola-mini-CHP + R-mini-CHOP</div>
+  </div>
+  <div class="m-ev-co">Roche</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — DLBCL, Diffuse Large B Cell Lymphoma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-12-28</span>
+    
+      <span class="m-ev-countdown mc-past">145일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04332822" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Eculizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Generalized Myasthenia Gravis (gMG), Refractory gMG</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2025-12-29</span>
+    
+      <span class="m-ev-countdown mc-past">144일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06764160" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 01월">2026년 01월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ravulizumab + Placebo</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Immunoglobulin A Nephropathy, IgAN</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-01-05</span>
+    
+      <span class="m-ev-countdown mc-past">137일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06291376" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ALXN1850 + Placebo</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hypophosphatasia</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-01-06</span>
+    
+      <span class="m-ev-countdown mc-past">136일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06079359" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ELX/TEZ/IVA + IVA</div>
+  </div>
+  <div class="m-ev-co">Vertex Pharmaceuticals</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Cystic Fibrosis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-01-29</span>
+    
+      <span class="m-ev-countdown mc-past">113일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05153317" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Tadalafil 5 mg tablets with a digital tool.</div>
+  </div>
+  <div class="m-ev-co">Sanofi</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Erectile Dysfunction</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-01-31</span>
+    
+      <span class="m-ev-countdown mc-past">111일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06805513" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 02월">2026년 02월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ketamine</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chronic Daily Headache</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-02-01</span>
+    
+      <span class="m-ev-countdown mc-past">110일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05306899" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Belzutifan + Lenvatinib</div>
+  </div>
+  <div class="m-ev-co">Eisai</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Carcinoma, Renal Cell</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-02-02</span>
+    
+      <span class="m-ev-countdown mc-past">109일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04586231" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Bimekizumab + Risankizumab</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Psoriatic Arthritis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-02-06</span>
+    
+      <span class="m-ev-countdown mc-past">105일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06624228" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">40 mg relugolix, 1 mg estradiol, 0.5 mg norethindrone acetate</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Endometriosis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-02-15</span>
+    
+      <span class="m-ev-countdown mc-past">96일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06439524" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 03월">2026년 03월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Xanomeline and Trospium Chloride Capsules</div>
+  </div>
+  <div class="m-ev-co">Bristol-Myers Squibb</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Schizophrenia</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-03-19</span>
+    
+      <span class="m-ev-countdown mc-past">64일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05304767" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 04월">2026년 04월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">tucatinib + trastuzumab</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Colorectal Neoplasms</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-04-03</span>
+    
+      <span class="m-ev-countdown mc-past">49일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05253651" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Avelumab</div>
+  </div>
+  <div class="m-ev-co">Merck KGaA</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Stage III Merkel Cell Carcinoma AJCC v8, Stage IIIB Merkel Cell Carcinoma AJCC v8</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-04-03</span>
+    
+      <span class="m-ev-countdown mc-past">49일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT03271372" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Certolizumab pegol + Placebo</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Moderate Chronic Plaque Psoriasis, Severe Chronic Plaque Psoriasis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-04-09</span>
+    
+      <span class="m-ev-countdown mc-past">43일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04123795" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Dexmedetomidine + Midazolam</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Delirium, Critical Illness</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-04-17</span>
+    
+      <span class="m-ev-countdown mc-past">35일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04801589" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Talquetamab + Pomalidomide</div>
+  </div>
+  <div class="m-ev-co">Johnson &amp; Johnson</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Multiple Myeloma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-04-23</span>
+    
+      <span class="m-ev-countdown mc-past">29일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06208150" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Elranatamab + Daratumumab</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Multiple Myeloma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-04-27</span>
+    
+      <span class="m-ev-countdown mc-past">25일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05020236" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 05월">2026년 05월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Sacituzumab govitecan</div>
+  </div>
+  <div class="m-ev-co">Gilead Sciences</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Triple Negative Breast Cancer, Metastatic Breast Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05-01</span>
+    
+      <span class="m-ev-countdown mc-past">21일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05552001" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-past"
+     data-type="Phase3완료" data-urgency="past">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Placebo + Ravulizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chronic Kidney Disease, CKD</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05-18</span>
+    
+      <span class="m-ev-countdown mc-past">4일 전</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05746559" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-imminent"
+     data-type="Phase3완료" data-urgency="imminent">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Tafenoquine + Primaquine</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Malaria, Vivax</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05-25</span>
+    
+      <span class="m-ev-countdown mc-imminent">D-3</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06666491" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-imminent"
+     data-type="Phase3완료" data-urgency="imminent">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Bimekizumab</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Psoriatic Arthritis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05-25</span>
+    
+      <span class="m-ev-countdown mc-imminent">D-3</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04009499" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-imminent"
+     data-type="Phase3완료" data-urgency="imminent">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">CTX001</div>
+  </div>
+  <div class="m-ev-co">Vertex Pharmaceuticals</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Beta-Thalassemia, Thalassemia</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05-31</span>
+    
+      <span class="m-ev-countdown mc-imminent">D-9</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05356195" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-imminent"
+     data-type="Phase3완료" data-urgency="imminent">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">CTX001</div>
+  </div>
+  <div class="m-ev-co">Vertex Pharmaceuticals</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Sickle Cell Disease, Hydroxyurea Failure</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05-31</span>
+    
+      <span class="m-ev-countdown mc-imminent">D-9</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05329649" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-imminent"
+     data-type="Phase3완료" data-urgency="imminent">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Fp/ABS + FP</div>
+  </div>
+  <div class="m-ev-co">Teva</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Asthma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05-31</span>
+    
+      <span class="m-ev-countdown mc-imminent">D-9</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06664619" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 06월">2026년 06월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-imminent"
+     data-type="Phase3완료" data-urgency="imminent">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">zilucoplan (RA101495)</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Generalized Myasthenia Gravis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-06-02</span>
+    
+      <span class="m-ev-countdown mc-imminent">D-11</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04225871" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-PDUFA urgency-near"
+     data-type="PDUFA" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-PDUFA">PDUFA</span>
+    <div class="m-ev-drug">tirzepatide — 만성 신장질환</div>
+  </div>
+  <div class="m-ev-co">Eli Lilly</div>
+  <div class="m-ev-desc">보충 NDA — 비만 동반 만성 신장질환 적응증 확대</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-06-30</span>
+    
+      <span class="m-ev-countdown mc-near">D-39</span>
+    
+    
+    <a href="https://investor.lilly.com/news-releases" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Staccato alprazolam</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Stereotypical Prolonged Seizures</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-06-30</span>
+    
+      <span class="m-ev-countdown mc-near">D-39</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05077904" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 07월">2026년 07월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Investigational varicella vaccine + Marketed varicella vaccine</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chickenpox</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-01</span>
+    
+      <span class="m-ev-countdown mc-near">D-40</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06693895" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ruxolitinib + Vehicle Cream</div>
+  </div>
+  <div class="m-ev-co">Incyte</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Atopic Dermatitis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-13</span>
+    
+      <span class="m-ev-countdown mc-near">D-52</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06832618" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ravulizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Generalized Myasthenia Gravis, gMG</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-15</span>
+    
+      <span class="m-ev-countdown mc-near">D-54</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05644561" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">RSVPreF3 OA vaccine + Placebo</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Respiratory Syncytial Virus Infections</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-16</span>
+    
+      <span class="m-ev-countdown mc-near">D-55</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT07220109" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-PDUFA urgency-near"
+     data-type="PDUFA" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-PDUFA">PDUFA</span>
+    <div class="m-ev-drug">marstacimab — 혈우병 A/B</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">항TFPI 항체 — 혈우병 예방 치료</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-28</span>
+    
+      <span class="m-ev-countdown mc-near">D-67</span>
+    
+    
+    <a href="https://www.pfizer.com/science/pipeline" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Bimekizumab</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hidradenitis Suppurativa</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-28</span>
+    
+      <span class="m-ev-countdown mc-near">D-67</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04901195" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">nirmatrelvir + ritonavir</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — COVID-19</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-30</span>
+    
+      <span class="m-ev-countdown mc-near">D-69</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05261139" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Danicopan</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Paroxysmal Nocturnal Hemoglobinuria</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-31</span>
+    
+      <span class="m-ev-countdown mc-near">D-70</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05389449" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Nusinersen</div>
+  </div>
+  <div class="m-ev-co">Biogen</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Muscular Atrophy, Spinal</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07-31</span>
+    
+      <span class="m-ev-countdown mc-near">D-70</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04729907" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 08월">2026년 08월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">T-DXd</div>
+  </div>
+  <div class="m-ev-co">Daiichi Sankyo</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Advanced Cancer, Metastatic Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-03</span>
+    
+      <span class="m-ev-countdown mc-near">D-73</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06174987" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Bimekizumab</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Axial Spondyloarthritis, Ankylosing Spondylitis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-07</span>
+    
+      <span class="m-ev-countdown mc-near">D-77</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04436640" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Yellow fever vaccine (live) + Yellow fever vaccine (live)</div>
+  </div>
+  <div class="m-ev-co">Sanofi</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Yellow Fever Immunization</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-08</span>
+    
+      <span class="m-ev-countdown mc-near">D-78</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT07103148" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-near"
+     data-type="Phase3완료" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ruxolitinib Cream + Vehicle Cream</div>
+  </div>
+  <div class="m-ev-co">Incyte</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — NonSegmental Vitiligo</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-10</span>
+    
+      <span class="m-ev-countdown mc-near">D-80</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06548360" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-PDUFA urgency-near"
+     data-type="PDUFA" data-urgency="near">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-PDUFA">PDUFA</span>
+    <div class="m-ev-drug">rocatinlimab — 아토피 피부염</div>
+  </div>
+  <div class="m-ev-co">Amgen</div>
+  <div class="m-ev-desc">2024년 CRL 후 재제출 — 중등도·중증 아토피 피부염</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-14</span>
+    
+      <span class="m-ev-countdown mc-near">D-84</span>
+    
+    
+    <a href="https://www.amgen.com/pipeline" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Avelumab</div>
+  </div>
+  <div class="m-ev-co">Merck KGaA</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Solid Tumors</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-21</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-91</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT03815643" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Brivaracetam</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Childhood Absence Epilepsy, Juvenile Absence Epilepsy</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-24</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-94</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04666610" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Single high dose of liposomal amphotericin B + L-AmB standard dose</div>
+  </div>
+  <div class="m-ev-co">Gilead Sciences</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Disseminated Histoplasma Capsulatum Infection, AIDS and Infections</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-28</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-98</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05814432" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Elranatamab + Elotuzumab</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Multiple Myeloma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-30</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-100</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06152575" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Abelacimab + Placebo</div>
+  </div>
+  <div class="m-ev-co">Novartis</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Atrial Fibrillation (AF)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-101</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05712200" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Sefaxersen (RO7434656) + Placebo</div>
+  </div>
+  <div class="m-ev-co">Roche</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Primary IgA Nephropathy</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-101</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05797610" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 09월">2026년 09월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Hydroxyurea</div>
+  </div>
+  <div class="m-ev-co">Novartis</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Sickle Cell Anemia in Children, Sickle Cell Disease</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-01</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-102</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05285917" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">fenfluramine</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Dravet Syndrome</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-03</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-104</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06118255" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Candidate varicella vaccine + Marketed varicella vaccine</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chickenpox</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-10</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-111</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06855160" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-PDUFA urgency-upcoming"
+     data-type="PDUFA" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-PDUFA">PDUFA</span>
+    <div class="m-ev-drug">osimertinib — 1차 병용요법</div>
+  </div>
+  <div class="m-ev-co">AstraZeneca</div>
+  <div class="m-ev-desc">보충 NDA — NSCLC 1차 치료 항암화학요법 병용</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-15</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-116</span>
+    
+    
+    <a href="https://www.astrazeneca.com/pipeline.html" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Biological/Vaccine</div>
+  </div>
+  <div class="m-ev-co">Vertex Pharmaceuticals</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Type 1 Diabetes, Kidney Transplant</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-17</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-118</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06832410" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Litifilimab + Placebo</div>
+  </div>
+  <div class="m-ev-co">Biogen</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Lupus Erythematosus, Systemic</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-27</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-128</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04961567" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Dato-DXd + Osimertinib</div>
+  </div>
+  <div class="m-ev-co">Daiichi Sankyo</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Metastatic Non-small Cell Lung Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-30</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-131</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06417814" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Litifilimab + Placebo</div>
+  </div>
+  <div class="m-ev-co">Biogen</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Lupus Erythematosus, Systemic</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09-30</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-131</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04895241" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 10월">2026년 10월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ziltivekimab + Placebo</div>
+  </div>
+  <div class="m-ev-co">Novo Nordisk</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Heart Failure, Systemic Inflammation</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-01</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-132</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06200207" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">TAK-861 + Placebo</div>
+  </div>
+  <div class="m-ev-co">Takeda</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Narcolepsy Type 1 (NT1), Narcolepsy With Cataplexy</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-02</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-133</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT07363720" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">KarXT + Placebo</div>
+  </div>
+  <div class="m-ev-co">Bristol-Myers Squibb</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Psychosis Associated With Alzheimer&#39;s Disease</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-05</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-136</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05511363" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Rimegepant + Placebo</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Migraine</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-08</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-139</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06616194" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ruxolitinib Cream + Vehicle Cream</div>
+  </div>
+  <div class="m-ev-co">Incyte</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hidradenitis Suppurativa</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-09</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-140</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06958211" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ruxolitinib Cream + Vehicle Cream</div>
+  </div>
+  <div class="m-ev-co">Incyte</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hidradenitis Suppurativa</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-09</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-140</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06959225" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Povorcitinib + Placebo</div>
+  </div>
+  <div class="m-ev-co">Incyte</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Prurigo Nodularis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-19</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-150</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06516952" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-PDUFA urgency-upcoming"
+     data-type="PDUFA" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-PDUFA">PDUFA</span>
+    <div class="m-ev-drug">tiragolumab + atezolizumab — NSCLC</div>
+  </div>
+  <div class="m-ev-co">Roche</div>
+  <div class="m-ev-desc">PD-L1 high 비소세포폐암 1차 치료 (추정 PDUFA)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-20</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-151</span>
+    
+    
+    <a href="https://www.roche.com/innovation/pipeline.htm" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Recombinant single-chain factor VIII (rVIII-SingleChain)</div>
+  </div>
+  <div class="m-ev-co">CSL</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Congenital Hemophilia A</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-26</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-157</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06738485" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Pembrolizumab + Belzutifan</div>
+  </div>
+  <div class="m-ev-co">Eisai</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Carcinoma, Renal Cell</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-29</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-160</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04736706" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">VX-121/TEZ/D-IVA</div>
+  </div>
+  <div class="m-ev-co">Vertex Pharmaceuticals</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Cystic Fibrosis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-30</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-161</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05444257" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">TEV-56248 + Albuterol sulfate</div>
+  </div>
+  <div class="m-ev-co">Teva</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Asthma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-162</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06052267" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 11월">2026년 11월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">KarXT</div>
+  </div>
+  <div class="m-ev-co">Bristol-Myers Squibb</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Bipolar-I Disorder With Mania or Mania With Mixed Features</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-01</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-163</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06951698" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">KarXT</div>
+  </div>
+  <div class="m-ev-co">Bristol-Myers Squibb</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Bipolar Disorder Type I With Mania or Mania With Mixed Features</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-02</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-164</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06951711" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">LOU064 (blinded) + placebo</div>
+  </div>
+  <div class="m-ev-co">Novartis</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chronic Spontaneous Urticaria</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-06</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-168</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05677451" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Combination of Rituximab with subcutaneous belimumab + Combination of Rituximab with subcutaneous placebo</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Primary Immune Thrombocytopenia (ITP)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-14</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-176</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05338190" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">BE1116 + FFP</div>
+  </div>
+  <div class="m-ev-co">CSL</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Complex Cardiovascular Surgery With Cardiopulmonary Bypass</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-18</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-180</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT07094087" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Abatacept plus + Placebo</div>
+  </div>
+  <div class="m-ev-co">Bristol-Myers Squibb</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Myocarditis Acute, Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-20</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-182</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05335928" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">KarXT + Placebo</div>
+  </div>
+  <div class="m-ev-co">Bristol-Myers Squibb</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Alzheimer Disease</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-24</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-186</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06585787" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Rimegepant + Placebo Comparator</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Menstrual Migraine</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11-29</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-191</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06641466" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="2026년 12월">2026년 12월</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Felzartamab + Placebo</div>
+  </div>
+  <div class="m-ev-co">Biogen</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Antibody-mediated Rejection</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-01</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-193</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06685757" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Recombinant fusion protein linking coagulation factor IX with albumin (rIX-FP)</div>
+  </div>
+  <div class="m-ev-co">CSL</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hemophilia B</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-01</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-193</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06399289" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">PF-06821497 + Placebo</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Metastatic Castration-Resistant Prostate Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-02</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-194</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06629779" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">VLA15 + Placebo</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Lyme Disease</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-04</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-196</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT07500506" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ibuzatrelvir + remdesivir</div>
+  </div>
+  <div class="m-ev-co">Pfizer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — COVID-19 Infection</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-06</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-198</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT07013474" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">eculizumab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — NMOSD, Neuromyelitis Optica Spectrum Disorders</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-07</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-199</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06724809" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">KarXT + Placebo</div>
+  </div>
+  <div class="m-ev-co">Bristol-Myers Squibb</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Psychosis Associated With Alzheimer&#39;s Disease</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-09</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-201</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06126224" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Investigational varicella vaccine + Marketed varicella vaccine</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chickenpox</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-14</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-206</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06806137" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ziltivekimab + Placebo</div>
+  </div>
+  <div class="m-ev-co">Novo Nordisk</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Cardiovascular Risk, Acute Myocardial Infarction (AMI)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-14</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-206</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06118281" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Gefurulimab</div>
+  </div>
+  <div class="m-ev-co">Alexion</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Generalized Myasthenia Gravis, gMG</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-15</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-207</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06607627" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Satralizumab</div>
+  </div>
+  <div class="m-ev-co">Roche</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — NMDAR Autoimmune Encephalitis, LGI1 Autoimmune Encephalitis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-16</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-208</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05503264" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Bimekizumab</div>
+  </div>
+  <div class="m-ev-co">UCB</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hidradenitis Suppurativa</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-21</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-213</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06921850" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Investigational varicella vaccine_Lot 1 + Investigational varicella vaccine_Lot 2</div>
+  </div>
+  <div class="m-ev-co">GSK</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chickenpox</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-25</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-217</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06740630" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Seltorexant + Placebo</div>
+  </div>
+  <div class="m-ev-co">Johnson &amp; Johnson</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Depressive Disorder, Major</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-30</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-222</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06559306" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-PDUFA urgency-upcoming"
+     data-type="PDUFA" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-PDUFA">PDUFA</span>
+    <div class="m-ev-drug">CagriSema — 비만·2형 당뇨</div>
+  </div>
+  <div class="m-ev-co">Novo Nordisk</div>
+  <div class="m-ev-desc">GLP-1/아밀린 이중 작용제 — NDA 제출 후 PDUFA 추정</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-223</span>
+    
+    
+    <a href="https://www.novonordisk.com/research-and-development/pipeline.html" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Inavolisib + Phesgo</div>
+  </div>
+  <div class="m-ev-co">Roche</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Metastatic Breast Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-223</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05894239" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Macitentan Tablets + Riociguat</div>
+  </div>
+  <div class="m-ev-co">Johnson &amp; Johnson</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — CTEPH</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-223</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05140525" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ibrutinib</div>
+  </div>
+  <div class="m-ev-co">Johnson &amp; Johnson</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Chronic Lymphocytic Leukemia, Small Lymphocytic Lymphoma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-223</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT01804686" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Maribavir</div>
+  </div>
+  <div class="m-ev-co">Takeda</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Cytomegalovirus (CMV)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-223</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06439342" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Empagliflozin 10 MG + Placebo</div>
+  </div>
+  <div class="m-ev-co">Boehringer Ingelheim</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Acute Heart Failure</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12-31</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-223</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05392764" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+  
+  <div class="m-cal-month" data-month="날짜 미정">날짜 미정</div>
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Darolutamide 300 mg + Placebo of Darolutamide</div>
+  </div>
+  <div class="m-ev-co">Bayer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Prostate Cancer</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-02</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05116475" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Ixazomib, thalidomide, &amp; dexamethasone (ITD) re-induction + Conventional autologous stem cell transplant (ASCT-con)</div>
+  </div>
+  <div class="m-ev-co">Takeda</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Multiple Myeloma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-03</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT03562169" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Mirikizumab IV + Mirikizumab SC</div>
+  </div>
+  <div class="m-ev-co">Eli Lilly</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Ulcerative Colitis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-05</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05784246" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Tenecteplase + Placebo</div>
+  </div>
+  <div class="m-ev-co">Boehringer Ingelheim</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Stroke, Ischemic, Stroke, Acute</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05199194" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Intravenous tenecteplase + Placebo</div>
+  </div>
+  <div class="m-ev-co">Boehringer Ingelheim</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Ischemic Stroke, Acute</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05199662" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Finerenone + Empagliflozin</div>
+  </div>
+  <div class="m-ev-co">Bayer</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Heart Failure</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-07</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06024746" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Upadacitinib 15mg Dose + Dupilumab 300mg Dose</div>
+  </div>
+  <div class="m-ev-co">AbbVie</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Atopic Dermatitis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-08</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06389136" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">LY3650150 + Placebo</div>
+  </div>
+  <div class="m-ev-co">Eli Lilly</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Perennial Allergic Rhinitis (PAR)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06339008" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Baricitinib + Tocilizumab</div>
+  </div>
+  <div class="m-ev-co">Eli Lilly</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Systemic Juvenile Idiopathic Arthritis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04088396" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Adalimumab + Risankizumab</div>
+  </div>
+  <div class="m-ev-co">AbbVie</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Juvenile Psoriatic Arthritis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06100744" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Alteplase + Placebo</div>
+  </div>
+  <div class="m-ev-co">Boehringer Ingelheim</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Pulmonary Embolism</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-09</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT04430569" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Guselkumab + Golimumab</div>
+  </div>
+  <div class="m-ev-co">Johnson &amp; Johnson</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Psoriatic Arthritis</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05669833" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Aflibercept (EYLEA®)</div>
+  </div>
+  <div class="m-ev-co">AbbVie</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — AMD, nAMD</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05407636" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">TDF/FTC 300mg/200mg fixed-dose combination tablets + TAF/FTC 25mg/200mg fixed-dose combination tablets</div>
+  </div>
+  <div class="m-ev-co">Gilead Sciences</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — HIV/AIDS</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-10</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05813964" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">ABBV-444 + REFRESH OPTIVE UD</div>
+  </div>
+  <div class="m-ev-co">AbbVie</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Dry Eye Disease</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-11</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT07284381" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Doxorubicin + Ifosfamide or dacarbazine</div>
+  </div>
+  <div class="m-ev-co">Novartis</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Non-metastatic Soft-tissue Sarcoma, Resectable</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT03805022" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Atezolizumab + Bevacizumab</div>
+  </div>
+  <div class="m-ev-co">Roche</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Colon Adenocarcinoma, Rectal Adenocarcinoma</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT05482516" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Enzalutamide Oral Capsule + Abiraterone Oral Tablet</div>
+  </div>
+  <div class="m-ev-co">Johnson &amp; Johnson</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Metastatic Castration-resistant Prostate Cancer (mCRPC), Metastatic Hormone-Sensitive Prostate Cancer (mHSPC)</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT03903835" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+
+<div class="m-cal-ev type-Phase3완료 urgency-upcoming"
+     data-type="Phase3완료" data-urgency="upcoming">
+  <div class="m-ev-top">
+    <span class="m-ev-type m-type-Phase3완료">Phase3완료</span>
+    <div class="m-ev-drug">Lutikizumab + Placebo</div>
+  </div>
+  <div class="m-ev-co">AbbVie</div>
+  <div class="m-ev-desc">Phase 3 예정 완료 — Hidradenitis Suppurativa</div>
+  <div class="m-ev-meta">
+    <span class="m-ev-date">2026-12</span>
+    
+      <span class="m-ev-countdown mc-upcoming">D-9999</span>
+    
+    
+    <a href="https://clinicaltrials.gov/study/NCT06468228" target="_blank" class="m-ev-link">출처↗</a>
+    
+  </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 
 <!-- ── BOTTOM NAV ── -->
 <nav class="bottom-nav">
   <button class="bnav-item active" onclick="showTab('co',this)"><span class="ico">🏢</span>기업</button>
-  <button class="bnav-item" onclick="showTab('pipeline',this)"><span class="ico">🔬</span>파이프라인</button>
-  <button class="bnav-item" onclick="showTab('pos',this)"><span class="ico">🎯</span>통과예측</button>
+  <button class="bnav-item" onclick="showTab('pipeline',this)"><span class="ico">🔬</span>파이프</button>
+  <button class="bnav-item" onclick="showTab('pos',this)"><span class="ico">🎯</span>예측</button>
   <button class="bnav-item" onclick="showTab('crl',this)"><span class="ico">📋</span>CRL</button>
   <button class="bnav-item" onclick="showTab('news',this)"><span class="ico">📰</span>뉴스</button>
   <button class="bnav-item" onclick="showTab('stock',this)"><span class="ico">📈</span>주가</button>
+  <button class="bnav-item" onclick="showTab('calendar',this)"><span class="ico">📅</span>캘린더</button>
 </nav>
 
 <script>
@@ -23604,6 +26692,39 @@ function toggleAllTrials(id) {
     box.style.display = 'none';
     btn.textContent = btn.textContent.replace('접기 ▲', btn.dataset.orig || '보기 ▼');
   }
+}
+
+function mCalFilter(filter, btn) {
+  document.querySelectorAll('#mCalFilters .m-cal-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  let prevMonth = null;
+  document.querySelectorAll('#mCalList > *').forEach(el => {
+    if (el.classList.contains('m-cal-month')) {
+      prevMonth = el;
+      return;
+    }
+    if (!el.classList.contains('m-cal-ev')) return;
+    const type = el.dataset.type;
+    const urg  = el.dataset.urgency;
+    let show = false;
+    if (filter === 'all') show = true;
+    else if (filter === 'upcoming') show = urg !== 'past';
+    else if (filter === 'past') show = urg === 'past';
+    else show = type === filter;
+    el.style.display = show ? '' : 'none';
+  });
+  // toggle month headers based on visible events below them
+  const months = Array.from(document.querySelectorAll('#mCalList .m-cal-month'));
+  months.forEach((mh, i) => {
+    const next = months[i + 1] || null;
+    let sib = mh.nextElementSibling;
+    let anyVisible = false;
+    while (sib && sib !== next) {
+      if (sib.classList.contains('m-cal-ev') && sib.style.display !== 'none') anyVisible = true;
+      sib = sib.nextElementSibling;
+    }
+    mh.style.display = anyVisible ? '' : 'none';
+  });
 }
 </script>
 </body>

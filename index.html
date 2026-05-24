@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 16:11 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 16:13 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -316,7 +316,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 <div class="hm-wrap">
   <div class="hm-eyebrow">
     <span class="hm-eyebrow-dot"></span>
-    매일 자동 업데이트 · 2026-05-24 16:11 UTC
+    매일 자동 업데이트 · 2026-05-24 16:13 UTC
   </div>
 
   <div class="hm-brand">SHL BioInsights</div>
@@ -101796,7 +101796,7 @@ Endpoint: Compare the hea<br>
 <div id="panel-crl" class="tab-panel">
   <div class="panel-title">📋 FDA CRL 트래커</div>
   <div class="panel-desc">
-    <strong>CRL (Complete Response Letter)</strong>: FDA가 NDA/BLA 신청을 거절할 때 발행하는 공문. 거절 사유·해결 요건·기한을 명시합니다.
+    CRL (Complete Response Letter) — FDA가 NDA/BLA 신청을 거절할 때 발행하는 공문으로, 거절 사유와 재제출 요건을 명시합니다.
   </div>
 
   <style>
@@ -101805,25 +101805,52 @@ Endpoint: Compare the hea<br>
     padding: 2px 8px; border-radius: 99px; margin: 2px 2px 2px 0;
     white-space: nowrap; letter-spacing: .3px;
   }
-  .crl-cat-red    { background: #fee2e2; color: #b91c1c; }
-  .crl-cat-orange { background: #ffedd5; color: #c2410c; }
-  .crl-cat-purple { background: #ede9fe; color: #6d28d9; }
-  .crl-cat-blue   { background: #dbeafe; color: #1d4ed8; }
-  .crl-cat-yellow { background: #fef9c3; color: #a16207; }
-  .crl-cat-teal   { background: #d1fae5; color: #065f46; }
-  .crl-cat-gray   { background: #f3f4f6; color: #4b5563; }
-  .crl-filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .crl-cat-red    { background: rgba(239,68,68,.15);   color: #f87171; }
+  .crl-cat-orange { background: rgba(249,115,22,.15);  color: #fb923c; }
+  .crl-cat-purple { background: rgba(139,92,246,.15);  color: #a78bfa; }
+  .crl-cat-blue   { background: rgba(99,102,241,.15);  color: #818cf8; }
+  .crl-cat-yellow { background: rgba(234,179,8,.15);   color: #eab308; }
+  .crl-cat-teal   { background: rgba(16,185,129,.15);  color: #34d399; }
+  .crl-cat-gray   { background: rgba(148,163,184,.1);  color: #94a3b8; }
+
+  /* 회복 가능성 요약 배너 */
+  .crl-rec-banner {
+    display: grid; grid-template-columns: 1fr 1px 1fr;
+    gap: 0; margin-bottom: 14px;
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  }
+  .crl-rec-card {
+    padding: 12px 18px; cursor: pointer; transition: background .15s;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .crl-rec-card:hover { background: rgba(255,255,255,.04); }
+  .crl-rec-card.active { background: rgba(99,102,241,.1); }
+  .crl-rec-card.all-active { background: transparent; }
+  .crl-rec-sep { background: var(--border); }
+  .crl-rec-icon { font-size: 22px; flex-shrink: 0; }
+  .crl-rec-body { flex: 1; min-width: 0; }
+  .crl-rec-title { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+  .crl-rec-title.high { color: #34d399; }
+  .crl-rec-title.low  { color: #f87171; }
+  .crl-rec-cats { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .crl-rec-count { font-size: 20px; font-weight: 800; flex-shrink: 0; color: var(--text); }
+
+  /* 필터 바 */
+  .crl-filter-bar { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; align-items:center; }
   .crl-filter-btn {
-    font-size: 11px; padding: 4px 12px; border-radius: 99px;
+    font-size: 11px; padding: 3px 11px; border-radius: 99px;
     border: 1px solid var(--border); background: transparent;
     color: var(--muted); cursor: pointer; transition: all .15s;
   }
   .crl-filter-btn:hover, .crl-filter-btn.active {
     background: var(--accent); color: #fff; border-color: var(--accent);
   }
+  .crl-filter-sep { width:1px; height:16px; background:var(--border); margin: 0 2px; }
+
   .crl-reason-cell { max-width: 240px; font-size: 12px; }
   .crl-tags        { display: flex; flex-wrap: wrap; margin-bottom: 4px; }
-  /* 회복 가능성 배지 */
+
+  /* 회복 전망 배지 */
   .rec-badge {
     display: inline-flex; align-items: center; gap: 5px;
     font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 99px;
@@ -101838,19 +101865,87 @@ Endpoint: Compare the hea<br>
   .rec-basis  { font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
   </style>
 
-  <!-- Category filter bar -->
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+  
+    
+    
+    
+      
+      
+    
+  
+    
+    
+    
+      
+      
+    
+  
+    
+    
+    
+      
+      
+    
+  
+    
+    
+    
+      
+      
+    
+  
+    
+    
+    
+      
+      
+    
+  
+
+  <!-- 회복 가능성 요약 배너 -->
+  <div class="crl-rec-banner">
+    <div class="crl-rec-card" id="crl-rec-high-card" onclick="filterCRLRec('rec-high')">
+      <div class="crl-rec-icon">🟢</div>
+      <div class="crl-rec-body">
+        <div class="crl-rec-title high">회복 가능성 있는 편</div>
+        <div class="crl-rec-cats">CMC/제조공정 · 라벨링/REMS</div>
+      </div>
+      <div class="crl-rec-count">2</div>
+    </div>
+    <div class="crl-rec-sep"></div>
+    <div class="crl-rec-card" id="crl-rec-low-card" onclick="filterCRLRec('rec-low')">
+      <div class="crl-rec-icon">🔴</div>
+      <div class="crl-rec-body">
+        <div class="crl-rec-title low">회복 가능성 낮은 편</div>
+        <div class="crl-rec-cats">독성 · 효능/엔드포인트 · 라벨링/REMS</div>
+      </div>
+      <div class="crl-rec-count">4</div>
+    </div>
+  </div>
+  
+
+  <!-- 사유별 필터 -->
   <div class="crl-filter-bar">
     <button class="crl-filter-btn active" onclick="filterCRL('all',this)">전체</button>
-    <button class="crl-filter-btn" onclick="filterCRL('독성',this)">🔴 독성</button>
-    <button class="crl-filter-btn" onclick="filterCRL('안전성',this)">🟠 안전성</button>
-    <button class="crl-filter-btn" onclick="filterCRL('CMC/제조공정',this)">🟣 CMC·제조</button>
-    <button class="crl-filter-btn" onclick="filterCRL('임상데이터',this)">🔵 임상데이터</button>
-    <button class="crl-filter-btn" onclick="filterCRL('효능/엔드포인트',this)">🟡 효능</button>
-    <button class="crl-filter-btn" onclick="filterCRL('라벨링/REMS',this)">🟢 라벨링</button>
-    <button class="crl-filter-btn" onclick="filterCRL('미해결',this)">⚠ 미해결만</button>
-    <span style="width:1px;background:var(--border);margin:0 4px;align-self:stretch"></span>
-    <button class="crl-filter-btn" onclick="filterCRL('rec-high',this)">🟢 회복 가능</button>
-    <button class="crl-filter-btn" onclick="filterCRL('rec-low',this)">🔴 회복 어려움</button>
+    <div class="crl-filter-sep"></div>
+    <button class="crl-filter-btn" onclick="filterCRL('독성',this)">독성</button>
+    <button class="crl-filter-btn" onclick="filterCRL('안전성',this)">안전성</button>
+    <button class="crl-filter-btn" onclick="filterCRL('CMC/제조공정',this)">CMC·제조</button>
+    <button class="crl-filter-btn" onclick="filterCRL('임상데이터',this)">임상데이터</button>
+    <button class="crl-filter-btn" onclick="filterCRL('효능/엔드포인트',this)">효능</button>
+    <button class="crl-filter-btn" onclick="filterCRL('라벨링/REMS',this)">라벨링</button>
+    <div class="crl-filter-sep"></div>
+    <button class="crl-filter-btn" onclick="filterCRL('미해결',this)">미해결</button>
   </div>
 
   <div class="table-wrap">
@@ -102279,10 +102374,8 @@ Endpoint: Compare the hea<br>
     });
   })();
 
-  function filterCRL(cat, btn) {
-    document.querySelectorAll('.crl-filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('#crl-table tbody tr').forEach(row => {
+  function _applyCRLRows(cat) {
+    document.querySelectorAll('#crl-table tbody tr').forEach(function(row) {
       if (cat === 'all') { row.style.display = ''; return; }
       if (cat === '미해결') { row.style.display = row.dataset.resolved === 'false' ? '' : 'none'; return; }
       if (cat === 'rec-high') {
@@ -102293,8 +102386,30 @@ Endpoint: Compare the hea<br>
         var rec = row.dataset.recovery || '';
         row.style.display = (rec === 'low' || rec === 'very_low') ? '' : 'none'; return;
       }
-      row.style.display = row.dataset.cats.includes(cat) ? '' : 'none';
+      row.style.display = (row.dataset.cats || '').includes(cat) ? '' : 'none';
     });
+  }
+  function filterCRL(cat, btn) {
+    document.querySelectorAll('.crl-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.crl-rec-card').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    _applyCRLRows(cat);
+  }
+  function filterCRLRec(cat) {
+    // 배너 카드 토글 (같은 거 누르면 전체로)
+    var highCard = document.getElementById('crl-rec-high-card');
+    var lowCard  = document.getElementById('crl-rec-low-card');
+    var isActive = (cat === 'rec-high' ? highCard : lowCard).classList.contains('active');
+    document.querySelectorAll('.crl-rec-card').forEach(function(c) { c.classList.remove('active'); });
+    document.querySelectorAll('.crl-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    if (isActive) {
+      // 이미 선택된 상태면 전체로 돌아가기
+      document.querySelector('.crl-filter-btn').classList.add('active');
+      _applyCRLRows('all');
+    } else {
+      (cat === 'rec-high' ? highCard : lowCard).classList.add('active');
+      _applyCRLRows(cat);
+    }
   }
   </script>
 </div>
@@ -130745,7 +130860,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 16:11 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 16:13 UTC</span>
   </div>
 </div>
 
@@ -135536,8 +135651,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Boehringer Ingelheim", "Eisai", "Teva", "Merck (MSD)", "Daiichi Sankyo", "Takeda", "Vertex Pharmaceuticals", "Regeneron", "CSL", "Astellas", "UCB", "Bayer", "AstraZeneca", "Otsuka", "Novo Nordisk", "Pfizer", "AbbVie", "Incyte", "Bristol-Myers Squibb", "Merck KGaA", "Moderna", "Gilead Sciences", "Novartis", "Sanofi", "Eli Lilly", "GSK", "Johnson \u0026 Johnson", "Biogen", "Roche", "Amgen"];
-const BIOTECH_NAMES   = ["Ionis Pharmaceuticals", "Sarepta Therapeutics", "Rhythm Pharmaceuticals", "Madrigal Pharmaceuticals", "Jazz Pharmaceuticals", "Apellis Pharmaceuticals", "Exelixis", "Protagonist Therapeutics", "Argenx", "Blueprint Medicines", "BioMarin Pharmaceutical", "Alnylam Pharmaceuticals"];
+const BIGPHARMA_NAMES = ["Biogen", "Gilead Sciences", "Vertex Pharmaceuticals", "Bristol-Myers Squibb", "Pfizer", "Incyte", "Johnson \u0026 Johnson", "Bayer", "Novartis", "Otsuka", "Eisai", "UCB", "Roche", "AstraZeneca", "Moderna", "Novo Nordisk", "AbbVie", "Regeneron", "Teva", "Boehringer Ingelheim", "Astellas", "CSL", "Merck (MSD)", "Daiichi Sankyo", "Merck KGaA", "Sanofi", "Amgen", "Takeda", "Eli Lilly", "GSK"];
+const BIOTECH_NAMES   = ["Blueprint Medicines", "Protagonist Therapeutics", "Exelixis", "Alnylam Pharmaceuticals", "Ionis Pharmaceuticals", "Apellis Pharmaceuticals", "Jazz Pharmaceuticals", "Argenx", "Rhythm Pharmaceuticals", "BioMarin Pharmaceutical", "Sarepta Therapeutics", "Madrigal Pharmaceuticals"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -135700,7 +135815,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 16:11 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 16:13 UTC
 </footer>
 
 <script>

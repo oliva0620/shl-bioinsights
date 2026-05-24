@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 14:50 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 14:56 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -257,157 +257,1262 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 <!-- PANEL 0: 홈 랜딩 -->
 <div id="panel-home" class="tab-panel active">
 <style>
-#panel-home {
-  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,.18) 0%, transparent 70%),
-              var(--bg);
+/* ── Home: Pitchbook-style intelligence dashboard ── */
+#panel-home { background: var(--bg); padding: 0; }
+
+.hd-kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid var(--border);
 }
-.home-hero { text-align: center; padding: 72px 24px 52px; }
-.home-logo-mark {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 76px; height: 76px;
-  background: linear-gradient(135deg, #818cf8 0%, #6366f1 60%, #4f46e5 100%);
-  border-radius: 22px; font-size: 38px; margin-bottom: 28px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 12px 40px rgba(99,102,241,.45);
+.hd-kpi {
+  padding: 18px 20px; border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 3px;
 }
-.home-brand {
-  font-size: 42px; font-weight: 900; letter-spacing: -1.5px;
-  background: linear-gradient(135deg, #c7d2fe 0%, #818cf8 50%, #6366f1 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hd-kpi:last-child { border-right: none; }
+.hd-kpi-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+.hd-kpi-val   { font-size: 24px; font-weight: 800; letter-spacing: -.5px; line-height: 1; }
+.hd-kpi-sub   { font-size: 10px; color: var(--muted); }
+
+.hd-body {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  grid-template-rows: auto auto;
+  gap: 0;
 }
-.home-acronym {
-  display: flex; justify-content: center; align-items: center; gap: 0;
-  margin: 10px 0 0;
+.hd-col-main { border-right: 1px solid var(--border); }
+.hd-col-side {}
+
+/* section headers */
+.hd-sec-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 18px; border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,.015);
 }
-.home-acronym-item {
-  font-size: 11px; font-weight: 600; letter-spacing: .5px;
-  color: #94a3b8;
+.hd-sec-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); }
+.hd-sec-link  { font-size: 10px; color: var(--accent); cursor: pointer; }
+.hd-sec-link:hover { text-decoration: underline; }
+
+/* company leaderboard */
+.hd-co-table { width: 100%; border-collapse: collapse; }
+.hd-co-table tr { border-bottom: 1px solid rgba(255,255,255,.04); cursor: pointer; }
+.hd-co-table tr:hover { background: rgba(255,255,255,.025); }
+.hd-co-table td { padding: 9px 18px; font-size: 12px; vertical-align: middle; }
+.hd-co-rank { font-size: 10px; color: var(--muted); width: 26px; text-align: right; font-weight: 600; }
+.hd-co-name { font-weight: 600; color: var(--text); }
+.hd-co-cat  { font-size: 9px; padding: 1px 6px; border-radius: 99px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+.hd-co-cat.bp { background: rgba(59,130,246,.15); color: var(--blue); }
+.hd-co-cat.bt { background: rgba(168,85,247,.15); color: #a855f7; }
+.hd-co-ph3  { font-weight: 800; color: var(--yellow); width: 50px; text-align: right; }
+.hd-co-ph2  { color: var(--blue); width: 50px; text-align: right; }
+.hd-co-tot  { color: var(--muted); width: 50px; text-align: right; font-size: 11px; }
+.hd-co-bar-cell { width: 80px; }
+.hd-co-bar-wrap { background: rgba(255,255,255,.06); border-radius: 2px; height: 4px; }
+.hd-co-bar-fill { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #6366f1, #a855f7); }
+.hd-co-table th { padding: 7px 18px; font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); font-weight: 600; text-align: right; }
+.hd-co-table th:first-child { text-align: left; }
+.hd-co-table th:nth-child(2) { text-align: left; }
+
+/* catalysts */
+.hd-catalyst-list { display: flex; flex-direction: column; }
+.hd-catalyst-item {
+  display: grid; grid-template-columns: 54px 1fr auto;
+  gap: 10px; align-items: start;
+  padding: 10px 18px; border-bottom: 1px solid rgba(255,255,255,.04);
 }
-.home-acronym-sep { color: #475569; margin: 0 10px; font-size: 10px; }
-.home-tagline {
-  font-size: 15px; color: #94a3b8; margin-top: 20px;
-  max-width: 480px; margin-left: auto; margin-right: auto;
-  line-height: 1.8; font-weight: 400; letter-spacing: .1px;
+.hd-catalyst-item:hover { background: rgba(255,255,255,.025); }
+.hd-cat-date { text-align: center; }
+.hd-cat-month { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+.hd-cat-day   { font-size: 18px; font-weight: 800; line-height: 1; color: var(--text); }
+.hd-cat-body  {}
+.hd-cat-co    { font-size: 11px; font-weight: 700; color: var(--text); }
+.hd-cat-drug  { font-size: 10px; color: var(--muted); margin-top: 1px; line-height: 1.4; }
+.hd-cat-badge {
+  font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap;
+  align-self: start; margin-top: 2px;
 }
-.home-tagline em { color: #c7d2fe; font-style: normal; font-weight: 500; }
-.home-stats-row {
-  display: flex; justify-content: center; gap: 20px;
-  margin: 44px 0 0; flex-wrap: wrap;
+.hd-cat-badge.pdufa    { background: rgba(234,179,8,.15);  color: var(--yellow); }
+.hd-cat-badge.p3done   { background: rgba(99,102,241,.15); color: var(--accent); }
+.hd-cat-badge.imminent { background: rgba(239,68,68,.15);  color: var(--red); }
+
+/* modality strip */
+.hd-mod-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
 }
-.home-stat {
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px; padding: 20px 28px; text-align: center; min-width: 120px;
-  backdrop-filter: blur(8px);
+.hd-mod-cell {
+  padding: 13px 16px; border-right: 1px solid var(--border); cursor: pointer;
+  transition: background .12s;
 }
-.home-stat-num { font-size: 26px; font-weight: 800; line-height: 1; }
-.home-stat-label { font-size: 10px; color: #64748b; margin-top: 6px; letter-spacing: .3px; text-transform: uppercase; }
-.home-cards {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 14px; max-width: 880px; margin: 52px auto 0; padding: 0 24px 52px;
+.hd-mod-cell:last-child { border-right: none; }
+.hd-mod-cell:hover { background: rgba(255,255,255,.03); }
+.hd-mod-icon  { font-size: 16px; margin-bottom: 4px; }
+.hd-mod-name  { font-size: 11px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.hd-mod-stats { font-size: 10px; color: var(--muted); margin-top: 3px; }
+.hd-mod-hot   { font-size: 9px; color: #f59e0b; font-weight: 700; }
+.hd-mod-cagr  { display: inline-block; font-size: 9px; font-weight: 800; color: #10b981; background: rgba(16,185,129,.1); border-radius: 3px; padding: 1px 5px; margin-top: 3px; }
+
+/* news strip */
+.hd-news-list { display: flex; flex-direction: column; }
+.hd-news-item {
+  padding: 10px 18px; border-bottom: 1px solid rgba(255,255,255,.04);
+  display: flex; flex-direction: column; gap: 3px;
 }
-.home-card {
-  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
-  border-radius: 16px; padding: 24px 20px; cursor: pointer; transition: all .2s; text-align: left;
-}
-.home-card:hover {
-  border-color: rgba(99,102,241,.5); background: rgba(99,102,241,.08);
-  transform: translateY(-3px); box-shadow: 0 8px 32px rgba(99,102,241,.18);
-}
-.home-card-icon { font-size: 26px; margin-bottom: 14px; }
-.home-card-title { font-size: 13px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; letter-spacing: -.1px; }
-.home-card-desc { font-size: 11.5px; color: #64748b; line-height: 1.65; }
-.home-card-arrow {
-  display: inline-block; margin-top: 14px; font-size: 10px; font-weight: 600;
-  color: #6366f1; letter-spacing: .3px;
-}
-.home-footer-note { font-size: 10.5px; color: #475569; text-align: center; padding: 0 0 40px; }
-.home-divider { border: none; border-top: 1px solid rgba(255,255,255,.06); max-width: 560px; margin: 0 auto 44px; }
+.hd-news-item:hover { background: rgba(255,255,255,.025); }
+.hd-news-src  { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--accent); font-weight: 700; }
+.hd-news-title { font-size: 11.5px; color: var(--text); line-height: 1.4; }
+.hd-news-title a { color: inherit; text-decoration: none; }
+.hd-news-title a:hover { color: #818cf8; }
+.hd-news-meta { font-size: 10px; color: var(--muted); }
+
+.hd-empty { padding: 20px 18px; font-size: 11px; color: var(--muted); }
 </style>
 
-<div class="home-hero">
-  <div class="home-logo-mark">🧬</div>
-  <div class="home-brand">SHL BioInsights</div>
-  <div class="home-acronym">
-    <span class="home-acronym-item">Signals</span>
-    <span class="home-acronym-sep">·</span>
-    <span class="home-acronym-item">Health</span>
-    <span class="home-acronym-sep">·</span>
-    <span class="home-acronym-item">Life</span>
+<!-- ── KPI Bar ── -->
+<div class="hd-kpi-bar">
+  <div class="hd-kpi">
+    <div class="hd-kpi-label">모니터링 기업</div>
+    <div class="hd-kpi-val" style="color:var(--accent)">42</div>
+    <div class="hd-kpi-sub">빅파마 30 · 바이오텍 12</div>
   </div>
-  <p class="home-tagline">
-    Global pharma intelligence, <em>distilled daily.</em><br>
-    30개 글로벌 제약사의 임상 신호를 매일 수집·정제합니다.
-  </p>
-
-  <div class="home-stats-row">
-    <div class="home-stat">
-      <div class="home-stat-num" style="color:var(--accent)">42</div>
-      <div class="home-stat-label">모니터링 기업</div>
-    </div>
-    <div class="home-stat">
-      <div class="home-stat-num" style="color:var(--blue)">13K+</div>
-      <div class="home-stat-label">미국 임상시험</div>
-    </div>
-    <div class="home-stat">
-      <div class="home-stat-num" style="color:var(--yellow)">2577</div>
-      <div class="home-stat-label">Phase 3 진행 중</div>
-    </div>
-    <div class="home-stat">
-      <div class="home-stat-num" style="color:var(--green)">3065</div>
-      <div class="home-stat-label">결과 보고 완료</div>
-    </div>
-    <div class="home-stat">
-      <div class="home-stat-num" style="color:var(--red)">3</div>
-      <div class="home-stat-label">미해결 FDA CRL</div>
-    </div>
+  <div class="hd-kpi">
+    <div class="hd-kpi-label">미국 등록 임상</div>
+    <div class="hd-kpi-val" style="color:var(--blue)">13,705</div>
+    <div class="hd-kpi-sub">ClinicalTrials.gov 기준</div>
+  </div>
+  <div class="hd-kpi">
+    <div class="hd-kpi-label">Phase 3 진행</div>
+    <div class="hd-kpi-val" style="color:var(--yellow)">2,577</div>
+    <div class="hd-kpi-sub">승인 후보군</div>
+  </div>
+  <div class="hd-kpi">
+    <div class="hd-kpi-label">결과 공개</div>
+    <div class="hd-kpi-val" style="color:var(--green)">3,065</div>
+    <div class="hd-kpi-sub">결과 데이터 있는 시험</div>
+  </div>
+  <div class="hd-kpi">
+    <div class="hd-kpi-label">미해결 FDA CRL</div>
+    
+    <div class="hd-kpi-val" style="color:var(--red)">3</div>
+    
+    <div class="hd-kpi-sub">Sanofi, GSK, Regeneron</div>
   </div>
 </div>
 
-<hr class="home-divider">
+<!-- ── Main Body ── -->
+<div class="hd-body">
 
-<div class="home-cards">
-  <div class="home-card" onclick="document.querySelector('[onclick*=pipeline]').click()">
-    <div class="home-card-icon">📊</div>
-    <div class="home-card-title">파이프라인 개요</div>
-    <div class="home-card-desc">30개사 임상시험 수, Phase별 분포, 주요 적응증, 엔드포인트 커버리지를 한눈에 비교합니다.</div>
-    <span class="home-card-arrow">열 정렬 · 검색 → 바로가기</span>
+  <!-- LEFT: Company Leaderboard -->
+  <div class="hd-col-main">
+    <div class="hd-sec-hdr">
+      <span class="hd-sec-title">🏆 Phase 3 파이프라인 순위</span>
+      <span class="hd-sec-link" onclick="document.querySelector('[data-tab=trials]').click()">전체 보기 →</span>
+    </div>
+    
+    
+    <table class="hd-co-table">
+      <thead>
+        <tr>
+          <th style="text-align:left">#</th>
+          <th style="text-align:left">기업</th>
+          <th>Ph3</th>
+          <th>Ph2</th>
+          <th>전체</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">1</td>
+        <td>
+          
+          <a href="https://www.astrazeneca.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">AstraZeneca</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">237</td>
+        <td class="hd-co-ph2">298</td>
+        <td class="hd-co-tot">1305</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:100%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">2</td>
+        <td>
+          
+          <a href="https://www.merck.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Merck (MSD)</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">220</td>
+        <td class="hd-co-ph2">390</td>
+        <td class="hd-co-tot">1154</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:92%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">3</td>
+        <td>
+          
+          <a href="https://www.novartis.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Novartis</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">166</td>
+        <td class="hd-co-ph2">203</td>
+        <td class="hd-co-tot">881</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:70%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">4</td>
+        <td>
+          
+          <a href="https://www.roche.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Roche</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">165</td>
+        <td class="hd-co-ph2">302</td>
+        <td class="hd-co-tot">920</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:69%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">5</td>
+        <td>
+          
+          <span class="hd-co-name">Eli Lilly</span>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">153</td>
+        <td class="hd-co-ph2">156</td>
+        <td class="hd-co-tot">645</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:64%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">6</td>
+        <td>
+          
+          <a href="https://www.pfizer.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Pfizer</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">140</td>
+        <td class="hd-co-ph2">209</td>
+        <td class="hd-co-tot">976</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:59%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">7</td>
+        <td>
+          
+          <a href="https://www.jnj.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Johnson &amp; Johnson</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">140</td>
+        <td class="hd-co-ph2">188</td>
+        <td class="hd-co-tot">830</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:59%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">8</td>
+        <td>
+          
+          <span class="hd-co-name">AbbVie</span>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">126</td>
+        <td class="hd-co-ph2">118</td>
+        <td class="hd-co-tot">584</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:53%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">9</td>
+        <td>
+          
+          <a href="https://www.sanofi.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Sanofi</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">126</td>
+        <td class="hd-co-ph2">126</td>
+        <td class="hd-co-tot">555</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:53%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">10</td>
+        <td>
+          
+          <a href="https://www.gsk.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">GSK</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">106</td>
+        <td class="hd-co-ph2">116</td>
+        <td class="hd-co-tot">456</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:44%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">11</td>
+        <td>
+          
+          <a href="https://www.novonordisk.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Novo Nordisk</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">105</td>
+        <td class="hd-co-ph2">43</td>
+        <td class="hd-co-tot">430</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:44%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">12</td>
+        <td>
+          
+          <a href="https://www.bms.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Bristol-Myers Squibb</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">98</td>
+        <td class="hd-co-ph2">251</td>
+        <td class="hd-co-tot">807</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:41%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">13</td>
+        <td>
+          
+          <a href="https://www.takeda.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Takeda</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">93</td>
+        <td class="hd-co-ph2">60</td>
+        <td class="hd-co-tot">434</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:39%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">14</td>
+        <td>
+          
+          <a href="https://www.amgen.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Amgen</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">85</td>
+        <td class="hd-co-ph2">91</td>
+        <td class="hd-co-tot">347</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:35%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      <tr onclick="document.querySelector('[data-tab=trials]').click()">
+        <td class="hd-co-rank">15</td>
+        <td>
+          
+          <a href="https://www.regeneron.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Regeneron</a>
+          <span class="hd-co-cat bp">빅파마</span>
+        </td>
+        <td class="hd-co-ph3">69</td>
+        <td class="hd-co-ph2">91</td>
+        <td class="hd-co-tot">321</td>
+        <td class="hd-co-bar-cell">
+          <div class="hd-co-bar-wrap">
+            <div class="hd-co-bar-fill" style="width:29%"></div>
+          </div>
+        </td>
+      </tr>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </tbody>
+    </table>
   </div>
-  <div class="home-card" onclick="document.querySelector('[onclick*=trials]').click()">
-    <div class="home-card-icon">🔬</div>
-    <div class="home-card-title">임상 상세</div>
-    <div class="home-card-desc">NCT ID별 약물명·적응증·엔드포인트·PoS를 확인하고 ClinicalTrials.gov 원문으로 바로 이동합니다.</div>
-    <span class="home-card-arrow">NCT 원문 링크 → 바로가기</span>
+
+  <!-- RIGHT: Upcoming Catalysts -->
+  <div class="hd-col-side">
+    <div class="hd-sec-hdr">
+      <span class="hd-sec-title">📅 임박 이벤트</span>
+      <span class="hd-sec-link" onclick="document.querySelector('[data-tab=calendar]').click()">달력 →</span>
+    </div>
+    <div class="hd-catalyst-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">05월</div>
+        <div class="hd-cat-day">25</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">GSK</div>
+        <div class="hd-cat-drug">Tafenoquine + Primaquine</div>
+      </div>
+      <span class="hd-cat-badge imminent">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">05월</div>
+        <div class="hd-cat-day">25</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">UCB</div>
+        <div class="hd-cat-drug">Bimekizumab</div>
+      </div>
+      <span class="hd-cat-badge imminent">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">05월</div>
+        <div class="hd-cat-day">31</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">Vertex Pharmaceuticals</div>
+        <div class="hd-cat-drug">CTX001</div>
+      </div>
+      <span class="hd-cat-badge imminent">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">05월</div>
+        <div class="hd-cat-day">31</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">Vertex Pharmaceuticals</div>
+        <div class="hd-cat-drug">CTX001</div>
+      </div>
+      <span class="hd-cat-badge imminent">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">05월</div>
+        <div class="hd-cat-day">31</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">Teva</div>
+        <div class="hd-cat-drug">Fp/ABS + FP</div>
+      </div>
+      <span class="hd-cat-badge imminent">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">06월</div>
+        <div class="hd-cat-day">02</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">UCB</div>
+        <div class="hd-cat-drug">zilucoplan (RA101495)</div>
+      </div>
+      <span class="hd-cat-badge imminent">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">06월</div>
+        <div class="hd-cat-day">30</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">Eli Lilly</div>
+        <div class="hd-cat-drug">tirzepatide — 만성 신장질환</div>
+      </div>
+      <span class="hd-cat-badge pdufa">
+        PDUFA
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">06월</div>
+        <div class="hd-cat-day">30</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">UCB</div>
+        <div class="hd-cat-drug">Staccato alprazolam</div>
+      </div>
+      <span class="hd-cat-badge p3done">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">07월</div>
+        <div class="hd-cat-day">01</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">GSK</div>
+        <div class="hd-cat-drug">Investigational varicella vaccine + Marketed varic</div>
+      </div>
+      <span class="hd-cat-badge p3done">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="hd-catalyst-item">
+      <div class="hd-cat-date">
+        <div class="hd-cat-month">07월</div>
+        <div class="hd-cat-day">13</div>
+      </div>
+      <div class="hd-cat-body">
+        <div class="hd-cat-co">Incyte</div>
+        <div class="hd-cat-drug">Ruxolitinib + Vehicle Cream</div>
+      </div>
+      <span class="hd-cat-badge p3done">
+        Phase3완료
+      </span>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
   </div>
-  <div class="home-card" onclick="document.querySelector('[onclick*=crl]').click()">
-    <div class="home-card-icon">📋</div>
-    <div class="home-card-title">FDA CRL 트래커</div>
-    <div class="home-card-desc">FDA 승인 거절(Complete Response Letter) 현황과 해결 여부를 추적합니다.</div>
-    <span class="home-card-arrow">리스크 조기 감지 → 바로가기</span>
-  </div>
-  <div class="home-card" onclick="document.querySelector('[onclick*=news]').click()">
-    <div class="home-card-icon">📰</div>
-    <div class="home-card-title">뉴스 피드</div>
-    <div class="home-card-desc">FiercePharma · STAT News · Reuters 임상 관련 최신 뉴스를 회사별로 매일 수집합니다.</div>
-    <span class="home-card-arrow">매일 자동 수집 → 바로가기</span>
-  </div>
-  <div class="home-card" onclick="document.querySelector('[onclick*=pos]').click()">
-    <div class="home-card-icon">📈</div>
-    <div class="home-card-title">성공 확률 기준</div>
-    <div class="home-card-desc">BIO/IQVIA 2023 기반 Phase × 적응증별 임상 성공 확률 히트맵으로 벤치마크를 제공합니다.</div>
-    <span class="home-card-arrow">BIO/IQVIA 기준 → 바로가기</span>
-  </div>
-  <div class="home-card" onclick="document.querySelector('[onclick*=calendar]').click()">
-    <div class="home-card-icon">📅</div>
-    <div class="home-card-title">주요 이벤트 달력</div>
-    <div class="home-card-desc">PDUFA 결정일 · Phase 3 완료 예정 · FDA CRL 이벤트를 타임라인으로 한눈에 파악합니다.</div>
-    <span class="home-card-arrow">바이너리 이벤트 추적 → 바로가기</span>
-  </div>
+
+</div><!-- /hd-body -->
+
+<!-- ── Modality Strip ── -->
+<div class="hd-sec-hdr" style="border-top:1px solid var(--border)">
+  <span class="hd-sec-title">🔬 치료 플랫폼 (모달리티)</span>
+  <span class="hd-sec-link" onclick="document.querySelector('[data-tab=pipeline]').click()">상세 분석 →</span>
+</div>
+<div class="hd-mod-grid">
+
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">💉</div>
+  <div class="hd-mod-name">ADC (항체약물접합체)</div>
+  <div class="hd-mod-stats">Ph3 62건 · 18개사</div>
+  <div class="hd-mod-hot">🔥 🔥 최고 성장세</div>
+  <span class="hd-mod-cagr">CAGR +30%</span>
 </div>
 
-<p class="home-footer-note">
-  데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 14:50 UTC
-</p>
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">⚖️</div>
+  <div class="hd-mod-name">GLP-1·대사질환</div>
+  <div class="hd-mod-stats">Ph3 44건 · 13개사</div>
+  <div class="hd-mod-hot">🔥 🔥 시장 폭발적 성장</div>
+  <span class="hd-mod-cagr">CAGR +20%</span>
+</div>
+
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">🎯</div>
+  <div class="hd-mod-name">이중·다중특이항체</div>
+  <div class="hd-mod-stats">Ph3 22건 · 10개사</div>
+  <div class="hd-mod-hot">🔥 🔥 급성장</div>
+  <span class="hd-mod-cagr">CAGR +28%</span>
+</div>
+
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">🔬</div>
+  <div class="hd-mod-name">mRNA·핵산치료</div>
+  <div class="hd-mod-stats">Ph3 16건 · 6개사</div>
+  <div class="hd-mod-hot">🔥 🌱 적응증 다변화</div>
+  <span class="hd-mod-cagr">CAGR +22%</span>
+</div>
+
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">🧬</div>
+  <div class="hd-mod-name">유전자·세포치료</div>
+  <div class="hd-mod-stats">Ph3 6건 · 11개사</div>
+  <div class="hd-mod-hot">🔥 🌱 확장 중</div>
+  <span class="hd-mod-cagr">CAGR +26%</span>
+</div>
+
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">☢️</div>
+  <div class="hd-mod-name">방사성리간드 (RLT)</div>
+  <div class="hd-mod-stats">Ph3 3건 · 3개사</div>
+  <div class="hd-mod-hot">🔥 🔥 Novartis 선도</div>
+  <span class="hd-mod-cagr">CAGR +35%</span>
+</div>
+
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">🛡️</div>
+  <div class="hd-mod-name">면역관문억제제 (ICI)</div>
+  <div class="hd-mod-stats">Ph3 58건 · 25개사</div>
+  
+  <span class="hd-mod-cagr">CAGR +8%</span>
+</div>
+
+<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
+  <div class="hd-mod-icon">💊</div>
+  <div class="hd-mod-name">경구 표적치료 (TKI·CDK·PARP)</div>
+  <div class="hd-mod-stats">Ph3 8건 · 11개사</div>
+  
+  <span class="hd-mod-cagr">CAGR +8%</span>
+</div>
+
+</div>
+
+<!-- ── Latest News ── -->
+<div class="hd-sec-hdr" style="border-top:1px solid var(--border)">
+  <span class="hd-sec-title">📰 최신 뉴스</span>
+  <span class="hd-sec-link" onclick="document.querySelector('[data-tab=news]').click()">전체 →</span>
+</div>
+<div class="hd-news-list">
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">STAT News · </div>
+  <div class="hd-news-title">
+    STAT+: EU and US advisers split over AstraZeneca breast cancer drug
+  </div>
+  <div class="hd-news-meta">Fri, 22 Ma</div>
+</div>
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">STAT News · </div>
+  <div class="hd-news-title">
+    STAT+: Pharmalittle: We’re reading about a Parkinson’s drug setback, a Merck lung cancer therapy, an
+  </div>
+  <div class="hd-news-meta">Fri, 22 Ma</div>
+</div>
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">BioPharma Dive · </div>
+  <div class="hd-news-title">
+    ASCO26: 5 data snapshots ahead of the year’s biggest cancer drug meeting
+  </div>
+  <div class="hd-news-meta">Fri, 22 Ma</div>
+</div>
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">Pharma Technology · </div>
+  <div class="hd-news-title">
+    Gilead Sciences completes Tubulis acquisition for $5bn
+  </div>
+  <div class="hd-news-meta">Fri, 22 Ma</div>
+</div>
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">STAT News · </div>
+  <div class="hd-news-title">
+    STAT+: Closely watched experimental Parkinson’s drug fails key clinical trial
+  </div>
+  <div class="hd-news-meta">Thu, 21 Ma</div>
+</div>
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">STAT News · </div>
+  <div class="hd-news-title">
+    STAT+: Immunovant shares surge on arthritis trial data
+  </div>
+  <div class="hd-news-meta">Thu, 21 Ma</div>
+</div>
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">BioPharma Dive · </div>
+  <div class="hd-news-title">
+    BioMarin notches win in study that could expand use of top-selling medicine
+  </div>
+  <div class="hd-news-meta">Thu, 21 Ma</div>
+</div>
+
+
+
+
+<div class="hd-news-item">
+  <div class="hd-news-src">Pharma Technology · </div>
+  <div class="hd-news-title">
+    Eli Lilly maintains M&amp;A streak with $202m Engage Bio buyout
+  </div>
+  <div class="hd-news-meta">Thu, 21 Ma</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div style="padding:12px 18px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);display:flex;justify-content:space-between">
+  <span>데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
+  <span>업데이트: 2026-05-24 14:56 UTC</span>
+</div>
 </div>
 
 <!-- PANEL 1: 파이프라인 개요 — 모달리티별 -->
@@ -123240,7 +124345,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 14:50 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 14:56 UTC</span>
   </div>
 </div>
 
@@ -128031,8 +129136,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Gilead Sciences", "AstraZeneca", "Eisai", "Bayer", "Moderna", "Roche", "Incyte", "Johnson \u0026 Johnson", "Daiichi Sankyo", "Bristol-Myers Squibb", "Novartis", "Novo Nordisk", "Pfizer", "Amgen", "Merck KGaA", "CSL", "Biogen", "Otsuka", "UCB", "Teva", "Sanofi", "Boehringer Ingelheim", "Merck (MSD)", "Eli Lilly", "Takeda", "AbbVie", "Vertex Pharmaceuticals", "Astellas", "GSK", "Regeneron"];
-const BIOTECH_NAMES   = ["Apellis Pharmaceuticals", "Ionis Pharmaceuticals", "Alnylam Pharmaceuticals", "Madrigal Pharmaceuticals", "Rhythm Pharmaceuticals", "Blueprint Medicines", "Jazz Pharmaceuticals", "Protagonist Therapeutics", "Sarepta Therapeutics", "Argenx", "BioMarin Pharmaceutical", "Exelixis"];
+const BIGPHARMA_NAMES = ["Astellas", "Eisai", "Amgen", "Novartis", "AstraZeneca", "AbbVie", "Gilead Sciences", "Otsuka", "Roche", "Incyte", "GSK", "CSL", "Vertex Pharmaceuticals", "Pfizer", "Bristol-Myers Squibb", "Teva", "Eli Lilly", "Takeda", "Novo Nordisk", "Bayer", "UCB", "Merck KGaA", "Boehringer Ingelheim", "Moderna", "Merck (MSD)", "Johnson \u0026 Johnson", "Biogen", "Sanofi", "Regeneron", "Daiichi Sankyo"];
+const BIOTECH_NAMES   = ["Apellis Pharmaceuticals", "Argenx", "Protagonist Therapeutics", "Alnylam Pharmaceuticals", "BioMarin Pharmaceutical", "Exelixis", "Ionis Pharmaceuticals", "Jazz Pharmaceuticals", "Rhythm Pharmaceuticals", "Sarepta Therapeutics", "Blueprint Medicines", "Madrigal Pharmaceuticals"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -128195,7 +129300,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 14:50 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 14:56 UTC
 </footer>
 
 <script>

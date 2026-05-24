@@ -170,7 +170,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 11:49 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 11:57 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -391,7 +391,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 11:49 UTC
+  최종 업데이트: 2026-05-24 11:57 UTC
 </p>
 </div>
 
@@ -96422,328 +96422,570 @@ function sortStockSidebar(mode, clickedBtn) {
 
 <!-- PANEL 6: 사용 가이드 -->
 <div id="panel-guide" class="tab-panel">
-<div style="max-width:860px;padding-bottom:40px">
+<div style="max-width:900px;padding-bottom:60px">
 
-<div class="panel-title">📖 사용 가이드</div>
-<div class="panel-desc">생명과학을 몰라도 이 대시보드를 바로 활용할 수 있도록 설명합니다.</div>
-
-<!-- ━━━ 0. 대시보드가 하는 일 ━━━ -->
-<div style="background:linear-gradient(135deg,#1a2744,#2a1a44);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:28px">
-  <div style="font-size:15px;font-weight:700;margin-bottom:10px">🧬 이 대시보드는 무엇을 보여주나요?</div>
-  <div style="font-size:13px;color:var(--muted);line-height:2">
-    전 세계 매출 상위 30개 제약회사가 <strong style="color:var(--text)">지금 어떤 신약을 개발 중인지</strong>,
-    그 신약이 <strong style="color:var(--text)">FDA 승인을 받을 가능성이 얼마나 되는지</strong>를 매일 자동으로 추적합니다.<br>
-    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-24 11:49 UTC</strong>
+<!-- ━━━ 헤더 ━━━ -->
+<div style="background:linear-gradient(135deg,#1a2744 0%,#2a1a44 100%);border:1px solid #3b4880;border-radius:14px;padding:28px 32px;margin-bottom:32px;position:relative;overflow:hidden">
+  <div style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:72px;opacity:.08;line-height:1">🧬</div>
+  <div style="font-size:22px;font-weight:900;margin-bottom:8px;letter-spacing:-.3px">SHL BioInsights 사용 가이드</div>
+  <div style="font-size:13px;color:#94a3b8;line-height:1.8;max-width:600px">
+    글로벌 Top 30 제약사의 신약 파이프라인을 <strong style="color:#c7d2fe">매일 자동 수집·분석</strong>하는 바이오 투자 리서치 플랫폼입니다.<br>
+    생명과학을 몰라도 이 가이드를 따라가면 <strong style="color:#c7d2fe">전문가 수준의 임상 파이프라인 분석</strong>이 가능합니다.
+  </div>
+  <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
+    <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 11:57 UTC</span>
   </div>
 </div>
 
-<!-- ━━━ 1. 신약 개발 과정 한눈에 ━━━ -->
-<div style="margin-bottom:28px">
-  <div style="font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)">
-    📌 1단계 — 신약 개발 흐름 이해하기 (핵심 배경지식)
+<!-- ━━━ 이 플랫폼으로 무엇을 할 수 있나? ━━━ -->
+<div style="margin-bottom:32px">
+  <div style="font-size:16px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+    <span style="background:var(--accent);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">?</span>
+    이 플랫폼으로 무엇을 할 수 있나요?
   </div>
-
-  <div style="font-size:12px;color:var(--muted);margin-bottom:12px">
-    신약은 아래 단계를 순서대로 통과해야 FDA에서 판매 허가를 받습니다. 각 단계를 통과할수록 성공 확률이 올라가지만, 탈락률도 매우 높습니다.
-  </div>
-
-  <!-- 파이프라인 흐름도 -->
-  <div style="display:flex;align-items:stretch;gap:0;margin-bottom:16px;overflow-x:auto">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
     
-    
-    <div style="flex:1;min-width:100px;background:#1e3a5f;border:1px solid #60a5fa33;padding:12px 10px;text-align:center;position:relative;border-right:none;border-radius:8px 0 0 8px">
-      <div style="font-size:18px;margin-bottom:4px">🔬</div>
-      <div style="font-size:11px;font-weight:700;color:#60a5fa">Pre-clinical</div>
-      <div style="font-size:10px;color:#60a5fa88;margin-bottom:6px">실험실·동물 실험</div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.5">신약 후보 발굴. 아직 사람에게 쓰지 않음</div>
-      
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+      <div style="font-size:22px;margin-bottom:8px">🔍</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">투자 전 파이프라인 검증</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">관심 제약주 매수 전, 그 회사가 지금 어떤 신약을 개발 중인지·FDA 통과 가능성은 얼마인지 빠르게 점검합니다.</div>
     </div>
     
-    <div style="display:flex;align-items:center;color:var(--muted);font-size:14px;background:var(--surface2);padding:0 2px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">▶</div>
-    
-    
-    <div style="flex:1;min-width:100px;background:#1e3a5f;border:1px solid #60a5fa33;padding:12px 10px;text-align:center;position:relative;border-right:none">
-      <div style="font-size:18px;margin-bottom:4px">👥</div>
-      <div style="font-size:11px;font-weight:700;color:#60a5fa">Phase 1</div>
-      <div style="font-size:10px;color:#60a5fa88;margin-bottom:6px">소수 건강인 투여</div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.5">안전한가? 용량은 얼마나?</div>
-      
-      <div style="margin-top:6px;font-size:10px;background:#1e3a5f;border:1px solid #60a5fa55;border-radius:3px;padding:2px 4px;color:#60a5fa">다음 단계 진입률 ~52%</div>
-      
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+      <div style="font-size:22px;margin-bottom:8px">⚡</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">주가 급변 이벤트 사전 포착</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">PDUFA 결정일·Phase 3 완료일이 언제인지 달력으로 확인해 주가 변동성이 높아질 날짜를 미리 파악합니다.</div>
     </div>
     
-    <div style="display:flex;align-items:center;color:var(--muted);font-size:14px;background:var(--surface2);padding:0 2px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">▶</div>
-    
-    
-    <div style="flex:1;min-width:100px;background:#3b2f6b;border:1px solid #c084fc33;padding:12px 10px;text-align:center;position:relative;border-right:none">
-      <div style="font-size:18px;margin-bottom:4px">🏥</div>
-      <div style="font-size:11px;font-weight:700;color:#c084fc">Phase 2</div>
-      <div style="font-size:10px;color:#c084fc88;margin-bottom:6px">환자 수백 명 투여</div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.5">효과가 있는가?</div>
-      
-      <div style="margin-top:6px;font-size:10px;background:#3b2f6b;border:1px solid #c084fc55;border-radius:3px;padding:2px 4px;color:#c084fc">다음 단계 진입률 ~28%</div>
-      
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+      <div style="font-size:22px;margin-bottom:8px">🚨</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">리스크 조기 경보</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">FDA가 승인을 거절한 기업(CRL 보유)을 실시간 추적해 예상치 못한 주가 하락 리스크를 사전에 인지합니다.</div>
     </div>
     
-    <div style="display:flex;align-items:center;color:var(--muted);font-size:14px;background:var(--surface2);padding:0 2px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">▶</div>
-    
-    
-    <div style="flex:1;min-width:100px;background:#1e4d3e;border:1px solid #4ade8033;padding:12px 10px;text-align:center;position:relative;border-right:none">
-      <div style="font-size:18px;margin-bottom:4px">📊</div>
-      <div style="font-size:11px;font-weight:700;color:#4ade80">Phase 3</div>
-      <div style="font-size:10px;color:#4ade8088;margin-bottom:6px">환자 수천 명 대규모</div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.5">얼마나 효과적이고 안전한가?</div>
-      
-      <div style="margin-top:6px;font-size:10px;background:#1e4d3e;border:1px solid #4ade8055;border-radius:3px;padding:2px 4px;color:#4ade80">다음 단계 진입률 ~57%</div>
-      
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+      <div style="font-size:22px;margin-bottom:8px">📊</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">경쟁사 파이프라인 비교</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">특정 적응증(예: 비만·알츠하이머)에서 어떤 회사가 앞서고 있는지 30개사를 동시에 비교합니다.</div>
     </div>
     
-    <div style="display:flex;align-items:center;color:var(--muted);font-size:14px;background:var(--surface2);padding:0 2px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">▶</div>
-    
-    
-    <div style="flex:1;min-width:100px;background:#4d3d1e;border:1px solid #fb923c33;padding:12px 10px;text-align:center;position:relative;border-right:none">
-      <div style="font-size:18px;margin-bottom:4px">📋</div>
-      <div style="font-size:11px;font-weight:700;color:#fb923c">NDA/BLA 제출</div>
-      <div style="font-size:10px;color:#fb923c88;margin-bottom:6px">FDA 심사</div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.5">FDA가 모든 데이터를 검토</div>
-      
-      <div style="margin-top:6px;font-size:10px;background:#4d3d1e;border:1px solid #fb923c55;border-radius:3px;padding:2px 4px;color:#fb923c">다음 단계 진입률 ~85%</div>
-      
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+      <div style="font-size:22px;margin-bottom:8px">📰</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">임상 결과 뉴스 모니터링</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">FiercePharma·STAT News·Reuters 임상 관련 기사를 매일 자동 수집해 중요 발표를 놓치지 않습니다.</div>
     </div>
     
-    <div style="display:flex;align-items:center;color:var(--muted);font-size:14px;background:var(--surface2);padding:0 2px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">▶</div>
-    
-    
-    <div style="flex:1;min-width:100px;background:#2d1e4d;border:1px solid #a78bfa33;padding:12px 10px;text-align:center;position:relative;border-radius:0 8px 8px 0">
-      <div style="font-size:18px;margin-bottom:4px">✅</div>
-      <div style="font-size:11px;font-weight:700;color:#a78bfa">승인</div>
-      <div style="font-size:10px;color:#a78bfa88;margin-bottom:6px">판매 허가</div>
-      <div style="font-size:10px;color:var(--muted);line-height:1.5">드디어 환자에게 처방 가능</div>
-      
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+      <div style="font-size:22px;margin-bottom:8px">📈</div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">주가 시그널 확인</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7">임상 이벤트와 주가 흐름을 함께 보며 투자 진입·청산 시점을 고려하는 데 참고합니다.</div>
     </div>
     
-    
-  </div>
-
-  <div style="background:var(--surface);border-left:3px solid var(--yellow);padding:10px 14px;border-radius:0 6px 6px 0;font-size:12px;color:var(--muted)">
-    💡 <strong style="color:var(--text)">핵심 숫자:</strong> Phase 1에서 시작한 약물이 최종 FDA 승인까지 도달할 확률은 평균 <strong style="color:var(--yellow)">약 7.9%</strong>입니다.
-    즉, 100개를 시작하면 약 8개만 출시됩니다. 이 대시보드는 각 약물의 현재 위치와 통과 가능성을 보여줍니다.
   </div>
 </div>
 
-<!-- ━━━ 2. 파이프라인 개요 탭 읽는 법 ━━━ -->
-<div style="margin-bottom:28px">
-  <div style="font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)">
-    📊 2단계 — 파이프라인 개요 탭 읽는 법
+<!-- ━━━ 핵심 배경지식: 신약 개발 흐름 ━━━ -->
+<div style="margin-bottom:32px">
+  <div style="font-size:16px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+    <span style="background:var(--surface2);color:var(--muted);width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;border:1px solid var(--border)">0</span>
+    먼저 알아야 할 것 — 신약은 어떻게 만들어지나요?
+  </div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:14px">신약이 세상에 나오려면 아래 5단계를 모두 통과해야 합니다. 각 단계마다 탈락률이 높습니다.</div>
+
+  <div style="display:flex;align-items:stretch;gap:0;margin-bottom:14px;overflow-x:auto;border-radius:10px;overflow:hidden;border:1px solid var(--border)">
+    
+    
+    <div style="flex:1;min-width:90px;background:#1e3a5f;padding:14px 8px;text-align:center;border-right:1px solid #60a5fa33">
+      <div style="font-size:20px;margin-bottom:4px">🔬</div>
+      <div style="font-size:11px;font-weight:800;color:#60a5fa;margin-bottom:2px">Pre-clinical</div>
+      <div style="font-size:10px;color:#60a5fa99;margin-bottom:6px">실험실·동물 실험</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:6px">신약 후보 발굴. 아직 사람에게 쓰지 않음</div>
+      
+    </div>
+    
+    <div style="display:flex;align-items:center;color:var(--muted);font-size:12px;background:var(--surface2);padding:0 3px;flex-shrink:0">▶</div>
+    
+    
+    <div style="flex:1;min-width:90px;background:#1e3a5f;padding:14px 8px;text-align:center;border-right:1px solid #60a5fa33">
+      <div style="font-size:20px;margin-bottom:4px">👥</div>
+      <div style="font-size:11px;font-weight:800;color:#60a5fa;margin-bottom:2px">Phase 1</div>
+      <div style="font-size:10px;color:#60a5fa99;margin-bottom:6px">소수 건강인 투여</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:6px">안전한가? 용량은?</div>
+      
+      <div style="font-size:9px;background:#1e3a5f;border:1px solid #60a5fa55;border-radius:3px;padding:2px 5px;color:#60a5fa;display:inline-block">다음 단계 52%</div>
+      
+    </div>
+    
+    <div style="display:flex;align-items:center;color:var(--muted);font-size:12px;background:var(--surface2);padding:0 3px;flex-shrink:0">▶</div>
+    
+    
+    <div style="flex:1;min-width:90px;background:#3b2f6b;padding:14px 8px;text-align:center;border-right:1px solid #c084fc33">
+      <div style="font-size:20px;margin-bottom:4px">🏥</div>
+      <div style="font-size:11px;font-weight:800;color:#c084fc;margin-bottom:2px">Phase 2</div>
+      <div style="font-size:10px;color:#c084fc99;margin-bottom:6px">환자 수백 명</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:6px">효과가 있는가?</div>
+      
+      <div style="font-size:9px;background:#3b2f6b;border:1px solid #c084fc55;border-radius:3px;padding:2px 5px;color:#c084fc;display:inline-block">다음 단계 28%</div>
+      
+    </div>
+    
+    <div style="display:flex;align-items:center;color:var(--muted);font-size:12px;background:var(--surface2);padding:0 3px;flex-shrink:0">▶</div>
+    
+    
+    <div style="flex:1;min-width:90px;background:#1e4d3e;padding:14px 8px;text-align:center;border-right:1px solid #4ade8033">
+      <div style="font-size:20px;margin-bottom:4px">📊</div>
+      <div style="font-size:11px;font-weight:800;color:#4ade80;margin-bottom:2px">Phase 3</div>
+      <div style="font-size:10px;color:#4ade8099;margin-bottom:6px">환자 수천 명</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:6px">얼마나 효과적·안전한가?</div>
+      
+      <div style="font-size:9px;background:#1e4d3e;border:1px solid #4ade8055;border-radius:3px;padding:2px 5px;color:#4ade80;display:inline-block">다음 단계 57%</div>
+      
+    </div>
+    
+    <div style="display:flex;align-items:center;color:var(--muted);font-size:12px;background:var(--surface2);padding:0 3px;flex-shrink:0">▶</div>
+    
+    
+    <div style="flex:1;min-width:90px;background:#4d3d1e;padding:14px 8px;text-align:center;border-right:1px solid #fb923c33">
+      <div style="font-size:20px;margin-bottom:4px">📋</div>
+      <div style="font-size:11px;font-weight:800;color:#fb923c;margin-bottom:2px">NDA/BLA</div>
+      <div style="font-size:10px;color:#fb923c99;margin-bottom:6px">FDA 심사</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:6px">FDA가 모든 데이터 검토</div>
+      
+      <div style="font-size:9px;background:#4d3d1e;border:1px solid #fb923c55;border-radius:3px;padding:2px 5px;color:#fb923c;display:inline-block">다음 단계 85%</div>
+      
+    </div>
+    
+    <div style="display:flex;align-items:center;color:var(--muted);font-size:12px;background:var(--surface2);padding:0 3px;flex-shrink:0">▶</div>
+    
+    
+    <div style="flex:1;min-width:90px;background:#2d1e4d;padding:14px 8px;text-align:center">
+      <div style="font-size:20px;margin-bottom:4px">✅</div>
+      <div style="font-size:11px;font-weight:800;color:#a78bfa;margin-bottom:2px">승인</div>
+      <div style="font-size:10px;color:#a78bfa99;margin-bottom:6px">판매 허가</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:6px">드디어 처방 가능</div>
+      
+    </div>
+    
+    
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px">
-      <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:10px">📋 각 열이 의미하는 것</div>
-      <div style="font-size:12px;line-height:2.2;color:var(--muted)">
-        <div><span class="badge badge-phase1" style="margin-right:6px">Ph1</span> Phase 1 진행 중인 시험 수</div>
-        <div><span class="badge badge-phase2" style="margin-right:6px">Ph2</span> Phase 2 진행 중인 시험 수</div>
-        <div><span class="badge badge-phase3" style="margin-right:6px">Ph3</span> Phase 3 진행 중인 시험 수 <strong style="color:var(--yellow)">← 가장 중요</strong></div>
-        <div style="margin-top:4px">📄 <strong>결과보고</strong> — 이미 결과가 공개된 시험 수</div>
-        <div>🏆 <strong>2025승인</strong> — 올해 FDA 승인 받은 신약 수</div>
-      </div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px">
-      <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:10px">🎯 무엇을 봐야 하나요?</div>
-      <ul style="font-size:12px;color:var(--muted);line-height:2.2;padding-left:16px">
-        <li><strong style="color:var(--yellow)">Ph3 숫자가 클수록</strong> — 곧 출시될 신약 후보가 많다는 신호</li>
-        <li><strong style="color:var(--green)">결과보고가 많을수록</strong> — 투명하게 데이터를 공개하는 회사</li>
-        <li><span class="crl-pending" style="font-size:10px">미해결</span> CRL이 있으면 — FDA와 갈등 중인 상황</li>
-        <li>열 제목 클릭 → 해당 기준으로 순위 정렬 가능</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 실제 예시 -->
-  <div style="background:#1a1f35;border:1px solid #3b4880;border-radius:8px;padding:14px 18px;font-size:12px">
-    <div style="font-weight:700;color:#93c5fd;margin-bottom:8px">📌 실제 예시로 읽어보기</div>
-    <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 16px;color:var(--muted);align-items:start">
-      <div style="color:var(--text);font-weight:600">Pfizer</div>
-      <div>전체 4,991건 중 Phase 3가 <strong style="color:var(--yellow)">925건</strong> → "Pfizer는 지금 925개 신약 후보가 FDA 승인 직전 마지막 대형 임상을 진행 중이다"</div>
-      <div style="color:var(--text);font-weight:600">결과보고 2,102</div>
-      <div>→ "지금까지 2,102개 시험의 결과를 공개했다" — 숫자가 클수록 과거 데이터 축적이 풍부</div>
-      <div style="color:var(--text);font-weight:600"><span class="crl-pending" style="font-size:10px">1건 미해결</span></div>
-      <div>→ "FDA가 승인을 거절한 약이 아직 문제 해결 중" — 해당 약물 현황은 CRL 트래커에서 확인</div>
-    </div>
-  </div>
-</div>
-
-<!-- ━━━ 3. 임상 상세 탭 읽는 법 ━━━ -->
-<div style="margin-bottom:28px">
-  <div style="font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)">
-    🔬 3단계 — 임상 상세 탭 읽는 법
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px">
-      <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:10px">🔵 상태(Status) 의미</div>
-      <div style="font-size:12px;line-height:2.2;color:var(--muted)">
-        <div><span class="status-recruiting">● Recruiting</span> — 지금 참가자 모집 중 (진행 중)</div>
-        <div><span class="status-active">● Active</span> — 모집 완료, 시험 진행 중</div>
-        <div><span class="status-completed">● Completed</span> — 시험 완료 (결과 분석 중)</div>
-        <div><span class="status-stopped">● Terminated</span> — 중단됨 (안전 문제 or 효과 없음)</div>
-      </div>
-    </div>
-
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px">
-      <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:10px">📊 엔드포인트란?</div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.8">
-        임상시험에서 "이 약이 효과 있다"고 판단하는 <strong style="color:var(--text)">기준 지표</strong>입니다.<br><br>
-        <span class="ep active">OS</span> 전체 생존 기간이 늘었는가?<br>
-        <span class="ep active">PFS</span> 암이 악화 없이 버틴 기간이 늘었는가?<br>
-        <span class="ep active">ORR</span> 종양이 줄어든 환자 비율이 높은가?<br>
-        <span class="ep tox">AE</span> <span class="ep tox">SAE</span> 부작용 / 심각한 부작용 발생 여부
-      </div>
-    </div>
-
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;grid-column:span 2">
-      <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:10px">🎯 승인 PoS(성공 확률) 읽는 법</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
-        <div style="text-align:center;padding:12px;background:#1e3a2e;border-radius:6px;border:1px solid #22c55e44">
-          <div style="font-size:20px;font-weight:700;color:var(--green)">54%</div>
-          <div class="pos-high" style="font-size:11px">✅ 높음</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">Phase 3 종양학 약물<br>"절반 이상이 승인 도달"</div>
-        </div>
-        <div style="text-align:center;padding:12px;background:#4d3d1e;border-radius:6px;border:1px solid #eab30844">
-          <div style="font-size:20px;font-weight:700;color:var(--yellow)">28%</div>
-          <div class="pos-medium" style="font-size:11px">⚠️ 중간</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">Phase 2 일반 약물<br>"4개 중 1개 승인 도달"</div>
-        </div>
-        <div style="text-align:center;padding:12px;background:#3d1e1e;border-radius:6px;border:1px solid #ef444444">
-          <div style="font-size:20px;font-weight:700;color:var(--red)">5.9%</div>
-          <div class="pos-low" style="font-size:11px">🔴 낮음</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">Phase 1 종양학 약물<br>"100개 중 6개만 승인"</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="background:#1a1f35;border:1px solid #3b4880;border-radius:8px;padding:14px 18px;font-size:12px">
-    <div style="font-weight:700;color:#93c5fd;margin-bottom:8px">📌 실제 예시로 읽어보기</div>
-    <div style="color:var(--muted);line-height:2">
-      어떤 행에 이런 정보가 있다고 가정하면:<br>
-      <strong style="color:var(--text)">NCT04177550</strong> &nbsp;|&nbsp; <span class="badge badge-phase3">Phase 3</span> &nbsp;|&nbsp; <span class="status-recruiting">Recruiting</span> &nbsp;|&nbsp; 약물명: abemaciclib &nbsp;|&nbsp; 적응증: 유방암 &nbsp;|&nbsp; <span class="ep active">OS</span> <span class="ep active">PFS</span> &nbsp;|&nbsp; <span class="pos-high">54% ✅</span><br><br>
-      → <em>"지금 유방암 환자를 모집해서 abemaciclib이 생존 기간(OS)과 암 진행 억제(PFS)에 효과 있는지 대규모 검증 중이고, 이 단계에서 FDA 승인까지 갈 확률은 통계적으로 54%다."</em>
-    </div>
+  <div style="background:var(--surface);border-left:3px solid var(--yellow);padding:10px 16px;border-radius:0 8px 8px 0;font-size:12px;color:var(--muted)">
+    💡 <strong style="color:var(--text)">핵심 숫자:</strong> Phase 1에서 시작한 약물이 FDA 최종 승인까지 도달할 확률은 평균 <strong style="color:var(--yellow)">약 7.9%</strong>입니다.
+    100개를 시작하면 8개만 출시됩니다. <strong style="color:var(--text)">Phase 3에 도달한 약물은 이미 상위 20%</strong> — 이것만으로도 의미 있는 신호입니다.
   </div>
 </div>
 
-<!-- ━━━ 4. CRL 트래커 읽는 법 ━━━ -->
-<div style="margin-bottom:28px">
-  <div style="font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)">
-    📋 4단계 — FDA CRL 트래커 읽는 법
-  </div>
+<!-- ━━━ 탭별 가이드 공통 스타일 ━━━ -->
+<style>
+.guide-tab-section { margin-bottom:36px; }
+.guide-tab-header {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 18px; border-radius:10px 10px 0 0;
+  border:1px solid var(--border); border-bottom:none;
+  background:var(--surface2);
+}
+.guide-tab-num { font-size:11px;font-weight:800;color:#fff;background:var(--accent);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0 }
+.guide-tab-name { font-size:15px;font-weight:800 }
+.guide-tab-tagline { font-size:11px;color:var(--muted);margin-left:auto }
+.guide-tab-body { border:1px solid var(--border); border-radius:0 0 10px 10px; padding:20px; background:var(--bg); }
+.guide-tip { background:#1a1f35;border:1px solid #3b4880;border-radius:8px;padding:13px 16px;font-size:12px;margin-top:14px }
+.guide-tip-title { font-weight:700;color:#93c5fd;margin-bottom:7px }
+.guide-kv { display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:12px;color:var(--muted);align-items:start }
+.guide-kv strong { color:var(--text) }
+.guide-2col { display:grid;grid-template-columns:1fr 1fr;gap:12px }
+.guide-card { background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px }
+.guide-card-title { font-size:12px;font-weight:700;color:var(--accent);margin-bottom:10px }
+.guide-ul { font-size:12px;color:var(--muted);line-height:2.1;padding-left:14px }
+</style>
 
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;font-size:12px">
-    <div style="font-weight:700;color:var(--red);margin-bottom:10px">🚨 CRL이란 무엇인가요?</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;color:var(--muted)">
-      <div>
-        <div style="font-weight:600;color:var(--text);margin-bottom:6px">비유로 이해하기</div>
-        신약 승인 신청(NDA/BLA)을 <strong>대학 입학 지원서</strong>라고 생각하면,<br>
-        CRL은 <strong style="color:var(--red)">"이 서류 문제가 있으니 수정해서 다시 제출하세요"</strong>라는 반려 통지서입니다.<br><br>
-        회사는 CRL 수령 후 보통 <strong>1~3년 안에</strong> 문제를 해결하고 재신청합니다.
+<!-- ① 파이프라인 개요 -->
+<div class="guide-tab-section">
+  <div class="guide-tab-header">
+    <span class="guide-tab-num">①</span>
+    <span class="guide-tab-name">📊 파이프라인 개요</span>
+    <span class="guide-tab-tagline">전체 landscape 파악 · 업계 트렌드 확인</span>
+  </div>
+  <div class="guide-tab-body">
+    <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:14px">
+      30개 제약사를 <strong style="color:var(--text)">ADC·GLP-1·mRNA·면역관문억제제</strong> 등 치료 플랫폼(모달리티)별로 분류해 어떤 분야가 뜨고 있는지 한눈에 보여줍니다.
+      투자하기 전 "이 회사가 어떤 기술에 베팅하고 있나"를 파악하는 첫 단계입니다.
+    </div>
+    <div class="guide-2col">
+      <div class="guide-card">
+        <div class="guide-card-title">📋 각 카드에서 볼 수 있는 것</div>
+        <ul class="guide-ul">
+          <li><span class="badge badge-phase3">Ph3</span> — Phase 3 진행 중인 시험 수 <strong style="color:var(--yellow)">(핵심)</strong></li>
+          <li><span class="badge badge-phase2">Ph2</span> — Phase 2 시험 수 (파이프라인 깊이)</li>
+          <li>🔥 HOT 태그 — 업계 고성장 플랫폼</li>
+          <li>주요 약물명 · 상위 기업 리스트</li>
+        </ul>
       </div>
-      <div>
-        <div style="font-weight:600;color:var(--text);margin-bottom:6px">CRL의 주요 거절 사유</div>
-        <ul style="padding-left:14px;line-height:2">
-          <li>임상 데이터 부족 (효과 증명 미흡)</li>
-          <li>제조 공정 문제 (생산 품질 기준 미달)</li>
-          <li>라벨링/복용법 표기 문제</li>
-          <li>추가 안전성 데이터 요구</li>
+      <div class="guide-card">
+        <div class="guide-card-title">🎯 이렇게 활용하세요</div>
+        <ul class="guide-ul">
+          <li>🔥 HOT 태그 = 지금 업계가 가장 주목하는 분야</li>
+          <li>Ph3 수가 많은 플랫폼 = 단기 촉매 이벤트가 많음</li>
+          <li>관심 기업이 어떤 플랫폼에 집중하는지 확인</li>
+          <li>경쟁사 대비 파이프라인 두께 비교</li>
         </ul>
       </div>
     </div>
-  </div>
-
-  <div style="background:#1a1f35;border:1px solid #3b4880;border-radius:8px;padding:14px 18px;font-size:12px">
-    <div style="font-weight:700;color:#93c5fd;margin-bottom:8px">📌 실제 예시로 읽어보기</div>
-    <div style="color:var(--muted);line-height:2">
-      <strong style="color:var(--text)">Pfizer &nbsp;|&nbsp; danuglipron &nbsp;|&nbsp; 2024-10-01</strong> &nbsp;<span class="crl-pending">⚠ 미해결</span><br>
-      거절 사유: "Liver safety signals observed in Phase 3 trials"<br><br>
-      → <em>"Pfizer가 비만 치료제 danuglipron의 승인을 신청했는데, FDA가 Phase 3에서 간 독성 징후가 발견됐다며 거절했다. 아직 해결되지 않았기 때문에 Pfizer는 현재 추가 데이터를 준비 중이다."</em>
+    <div class="guide-tip">
+      <div class="guide-tip-title">📌 실전 활용 예시</div>
+      <div style="color:var(--muted);line-height:2">
+        <em>"ADC(항체약물접합체) 카드에 Phase 3가 134건, 🔥HOT 표시 → ADC 분야가 현재 업계 최고 성장세."</em><br>
+        → Daiichi Sankyo·AstraZeneca·Pfizer(Seagen 인수)가 상위 기업에 표시된다면, 이 세 회사의 ADC 파이프라인을 임상 상세 탭에서 드릴다운합니다.
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ━━━ 5. 뉴스 피드 읽는 법 ━━━ -->
-<div style="margin-bottom:28px">
-  <div style="font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)">
-    📰 5단계 — 뉴스 피드 활용법
+<!-- ② 임상 상세 -->
+<div class="guide-tab-section">
+  <div class="guide-tab-header">
+    <span class="guide-tab-num">②</span>
+    <span class="guide-tab-name">🔬 임상 상세</span>
+    <span class="guide-tab-tagline">개별 임상시험 드릴다운 · NCT 원문 링크</span>
   </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;font-size:12px">
-      <div style="font-weight:700;color:var(--accent);margin-bottom:10px">📡 어디서 가져오나요?</div>
-      <div style="line-height:2.2;color:var(--muted)">
-        <div><span class="news-source source-FiercePharma">FiercePharma</span> 제약업계 전문 뉴스</div>
-        <div><span class="news-source source-STAT\ News">STAT News</span> 의학·바이오 심층 분석</div>
-        <div><span class="news-source source-Reuters\ Health">Reuters Health</span> 글로벌 금융·헬스 뉴스</div>
+  <div class="guide-tab-body">
+    <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:14px">
+      전체 임상시험을 테이블로 보여줍니다. 회사명·약물명·적응증으로 검색하고, 열 클릭으로 정렬해 원하는 임상만 빠르게 찾을 수 있습니다.
+    </div>
+    <div class="guide-2col">
+      <div class="guide-card">
+        <div class="guide-card-title">🔵 임상 상태(Status) 읽는 법</div>
+        <div style="font-size:12px;line-height:2.3;color:var(--muted)">
+          <div><span class="status-recruiting">● Recruiting</span> — 환자 모집 중 (진행 중)</div>
+          <div><span class="status-active">● Active</span> — 모집 완료, 시험 진행 중</div>
+          <div><span class="status-completed">● Completed</span> — 완료 (결과 분석 중)</div>
+          <div><span class="status-stopped">● Terminated</span> — 중단 <strong style="color:var(--red)">(위험 신호)</strong></div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">📊 엔드포인트(목표 지표) 읽는 법</div>
+        <div style="font-size:12px;color:var(--muted);line-height:2">
+          <span class="ep active">OS</span> 전체 생존 기간 연장 여부<br>
+          <span class="ep active">PFS</span> 암 진행 없이 버틴 기간<br>
+          <span class="ep active">ORR</span> 종양 축소 환자 비율<br>
+          <span class="ep tox">AE</span><span class="ep tox" style="margin-left:4px">SAE</span> 부작용 / 심각한 부작용
+        </div>
       </div>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;font-size:12px">
-      <div style="font-weight:700;color:var(--accent);margin-bottom:10px">🔍 주목할 키워드</div>
-      <ul style="color:var(--muted);line-height:2.2;padding-left:14px">
-        <li><strong style="color:var(--green)">"FDA approved"</strong> → 승인 완료</li>
-        <li><strong style="color:var(--yellow)">"Phase 3 results"</strong> → 핵심 결과 발표</li>
-        <li><strong style="color:var(--red)">"complete response letter"</strong> → CRL 발행 (거절)</li>
-        <li><strong style="color:var(--blue)">"primary endpoint met"</strong> → 임상 목표 달성</li>
-        <li><strong style="color:var(--red)">"trial discontinued"</strong> → 임상 중단</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- ━━━ 6. 성공 확률 히트맵 읽는 법 ━━━ -->
-<div style="margin-bottom:28px">
-  <div style="font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)">
-    📈 6단계 — 성공 확률 기준(PoS 히트맵) 읽는 법
-  </div>
-
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;font-size:12px;margin-bottom:12px">
-    <div style="font-weight:700;color:var(--accent);margin-bottom:10px">히트맵 구조 이해하기</div>
-    <div style="color:var(--muted);line-height:1.9;margin-bottom:12px">
-      표의 <strong>가로축 = 현재 임상 단계</strong>, <strong>세로축 = 질환 종류(적응증)</strong>입니다.<br>
-      각 칸의 숫자는 "지금 이 단계에 있으면 최종 승인까지 갈 확률"입니다.
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
-      <div style="text-align:center;padding:10px;background:#1e4d3e;border-radius:6px">
-        <div style="font-size:16px;font-weight:700;color:var(--green)">50%+</div>
-        <div style="font-size:11px;color:var(--green)">✅ 녹색 = 높음</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">2개 중 1개 이상 승인</div>
-      </div>
-      <div style="text-align:center;padding:10px;background:#4d3d1e;border-radius:6px">
-        <div style="font-size:16px;font-weight:700;color:var(--yellow)">20~49%</div>
-        <div style="font-size:11px;color:var(--yellow)">⚠️ 노랑 = 중간</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">4~5개 중 1개 승인</div>
-      </div>
-      <div style="text-align:center;padding:10px;background:#3d1e1e;border-radius:6px">
-        <div style="font-size:16px;font-weight:700;color:var(--red)">20% 미만</div>
-        <div style="font-size:11px;color:var(--red)">🔴 빨강 = 낮음</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">5개 중 1개 미만 승인</div>
+    <div class="guide-card" style="margin-top:12px">
+      <div class="guide-card-title">🎯 PoS(임상 성공 확률) 읽는 법</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div style="text-align:center;padding:10px;background:#1e3a2e;border-radius:6px">
+          <div style="font-size:18px;font-weight:700;color:var(--green)">54%</div>
+          <div style="font-size:11px;color:var(--green);font-weight:600">✅ 높음</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:3px">Phase 3 종양학<br>"2개 중 1개 승인"</div>
+        </div>
+        <div style="text-align:center;padding:10px;background:#4d3d1e;border-radius:6px">
+          <div style="font-size:18px;font-weight:700;color:var(--yellow)">28%</div>
+          <div style="font-size:11px;color:var(--yellow);font-weight:600">⚠️ 중간</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:3px">Phase 2 평균<br>"4개 중 1개 승인"</div>
+        </div>
+        <div style="text-align:center;padding:10px;background:#3d1e1e;border-radius:6px">
+          <div style="font-size:18px;font-weight:700;color:var(--red)">5.9%</div>
+          <div style="font-size:11px;color:var(--red);font-weight:600">🔴 낮음</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:3px">Phase 1 종양학<br>"100개 중 6개 승인"</div>
+        </div>
       </div>
     </div>
-    <div style="background:#1a1f35;border:1px solid #3b4880;border-radius:6px;padding:10px 14px;color:var(--muted)">
-      💡 <strong style="color:#93c5fd">예시:</strong> 희귀 질환(Rare Disease) Phase 3 칸이 <strong style="color:var(--green)">72%</strong>라면 →
-      <em>"희귀 질환 치료제가 Phase 3까지 도달했다면 10개 중 7개 이상이 최종 승인을 받는다"</em><br>
-      (희귀 질환은 경쟁 약물이 적고, FDA가 적극적으로 승인 지원하는 경향이 있어 성공률이 높습니다)
+    <div class="guide-tip">
+      <div class="guide-tip-title">📌 실전 활용 예시</div>
+      <div style="color:var(--muted);line-height:2">
+        검색창에 "Eli Lilly" 입력 → Phase 3 + Recruiting 상태 + PoS 50%+ 필터<br>
+        → <em>"Eli Lilly가 지금 대규모 모집 중이고 성공 확률이 높은 임상이 뭔지 한눈에 파악"</em><br>
+        NCT 번호 클릭 → ClinicalTrials.gov 원문에서 상세 프로토콜 직접 확인 가능
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ━━━ 7. 주의사항 ━━━ -->
-<div style="background:#2a1f10;border:1px solid #78350f;border-radius:8px;padding:16px 18px">
-  <div style="font-size:13px;font-weight:700;color:#fbbf24;margin-bottom:10px">⚠️ 반드시 알아야 할 한계</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
-    <div style="display:flex;gap:8px;align-items:flex-start;color:var(--muted)"><span>🇺🇸</span><span><strong>미국 임상만 수집</strong><br>EU·한국·일본 임상 미포함</span></div>
-    <div style="display:flex;gap:8px;align-items:flex-start;color:var(--muted)"><span>🔤</span><span><strong>텍스트 키워드 기반 분류</strong><br>엔드포인트 일부 오분류 가능</span></div>
-    <div style="display:flex;gap:8px;align-items:flex-start;color:var(--muted)"><span>📊</span><span><strong>PoS = 통계적 평균</strong><br>개별 약물의 실제 결과 예측 불가</span></div>
-    <div style="display:flex;gap:8px;align-items:flex-start;color:var(--muted)"><span>🚫</span><span><strong>투자·의료 결정 근거 불가</strong><br>참고용 데이터로만 활용하세요</span></div>
+<!-- ③ 통과 예측 -->
+<div class="guide-tab-section">
+  <div class="guide-tab-header">
+    <span class="guide-tab-num">③</span>
+    <span class="guide-tab-name">🎯 통과 예측</span>
+    <span class="guide-tab-tagline">완료 임박 파이프라인 스크리닝 · 투자 시그널 발굴</span>
+  </div>
+  <div class="guide-tab-body">
+    <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:14px">
+      <strong style="color:var(--text)">2025~2026년 완료 예정</strong>인 Phase 2·3 임상을 우선순위 순으로 보여줍니다.
+      BIO/IQVIA 2023 성공률 데이터를 기반으로 각 임상의 다음 단계 전환 확률을 계산하고,
+      뉴스 시그널(긍정/부정)까지 반영해 <strong style="color:var(--text)">"지금 당장 주목할 파이프라인"</strong>을 선별합니다.
+    </div>
+    <div class="guide-2col">
+      <div class="guide-card">
+        <div class="guide-card-title">⏰ 긴급도(Urgency) 구분</div>
+        <ul class="guide-ul">
+          <li><span style="background:#d1fae5;color:#065f46;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">완료</span> — 이미 임상 완료, 결과 발표 임박</li>
+          <li><span style="background:#fee2e2;color:#991b1b;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">임박</span> — 30일 이내 완료 예정</li>
+          <li><span style="background:#ffedd5;color:#c2410c;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">근접</span> — 90일 이내 완료 예정</li>
+          <li><span style="background:#ede9fe;color:#5b21b6;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">예정</span> — 90일 이후 완료 예정</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">🟢🔴 긍정/부정 시그널</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.9">
+          각 카드 하단에 뉴스·공시 기반 시그널이 표시됩니다.<br><br>
+          <span style="color:#86efac">✅ 긍정 시그널</span> — 중간 결과 긍정, FDA 패스트트랙 등<br>
+          <span style="color:#fca5a5">⚠ 부정 시그널</span> — 안전성 우려, 모집 지연 등<br><br>
+          시그널이 많을수록 PoS가 위·아래로 조정됩니다.
+        </div>
+      </div>
+    </div>
+    <div class="guide-tip">
+      <div class="guide-tip-title">📌 실전 활용 예시</div>
+      <div style="color:var(--muted);line-height:2">
+        <em>"상단에 '완료' 표시된 카드 중 PoS 60%+, 긍정 시그널 2개 이상인 것만 추려보자"</em><br>
+        → 이 조건을 만족하는 임상은 <strong style="color:var(--text)">수개월 내 결과 발표 + 통과 가능성 높음</strong> → 해당 기업 주가 급등 가능성이 있는 후보군
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ④ 주요 이벤트 달력 -->
+<div class="guide-tab-section">
+  <div class="guide-tab-header">
+    <span class="guide-tab-num">④</span>
+    <span class="guide-tab-name">📅 주요 이벤트 달력</span>
+    <span class="guide-tab-tagline">바이너리 이벤트 사전 포착 · PDUFA 추적</span>
+  </div>
+  <div class="guide-tab-body">
+    <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:14px">
+      PDUFA(FDA 결정일)·Phase 3 완료 예정·CRL 발행을 실제 달력 그리드로 보여줍니다.
+      날짜를 클릭하면 해당 이벤트의 <strong style="color:var(--text)">투자 의미와 D-day 카운트다운</strong>이 오른쪽 패널에 상세히 표시됩니다.
+    </div>
+    <div class="guide-2col">
+      <div class="guide-card">
+        <div class="guide-card-title">🎨 색상 코드 읽는 법</div>
+        <div style="font-size:12px;color:var(--muted);line-height:2.3">
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;background:#a855f7;border-radius:2px;flex-shrink:0"></span><strong style="color:var(--text)">PDUFA</strong> — FDA 신약 심사 완료 마감일</div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;background:#22c55e;border-radius:2px;flex-shrink:0"></span><strong style="color:var(--text)">Phase3완료</strong> — 3상 임상 예정 종료일</div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;background:#ef4444;border-radius:2px;flex-shrink:0"></span><strong style="color:var(--text)">CRL발행</strong> — FDA 승인 거절 공문 발행일</div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">⚡ PDUFA Date가 중요한 이유</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          PDUFA일은 <strong style="color:var(--text)">바이너리 이벤트</strong> — 결과가 승인/거절 둘 중 하나입니다.<br><br>
+          · 승인 시: 당일 주가 <strong style="color:var(--green)">+20~50%</strong> 급등 가능<br>
+          · 거절(CRL) 시: 당일 주가 <strong style="color:var(--red)">-30~60%</strong> 급락 가능<br><br>
+          이 날짜 <strong>2~4주 전</strong>부터 변동성이 높아지므로 포지션 관리에 활용하세요.
+        </div>
+      </div>
+    </div>
+    <div class="guide-tip">
+      <div class="guide-tip-title">📌 실전 활용 예시</div>
+      <div style="color:var(--muted);line-height:2">
+        달력에서 <strong style="color:#d8b4fe">보라색(PDUFA)</strong> 날짜가 밀집된 월을 찾는다<br>
+        → 날짜 클릭 → 오른쪽 패널에서 어떤 회사의 어떤 약인지, D-day가 며칠인지 확인<br>
+        → 해당 기업 주가 탭에서 지금 주가 수준과 투자 시그널 크로스 체크
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑤ CRL 트래커 -->
+<div class="guide-tab-section">
+  <div class="guide-tab-header">
+    <span class="guide-tab-num">⑤</span>
+    <span class="guide-tab-name">📋 FDA CRL 트래커</span>
+    <span class="guide-tab-tagline">승인 거절 리스크 추적 · 재신청 현황 모니터링</span>
+  </div>
+  <div class="guide-tab-body">
+    <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:14px">
+      <strong style="color:var(--text)">CRL(Complete Response Letter)</strong>은 FDA가 신약 승인을 거절할 때 발행하는 공식 문서입니다.
+      거절 사유·해결 여부를 추적하며, 모든 데이터는 openFDA API와 교차검증된 실제 PDF 원문 링크를 제공합니다.
+    </div>
+    <div class="guide-2col">
+      <div class="guide-card">
+        <div class="guide-card-title">🚨 CRL을 이렇게 이해하세요</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8">
+          신약 승인 신청을 <strong>대학 입학 지원서</strong>라고 하면,<br>
+          CRL은 <strong style="color:var(--red)">"문제가 있으니 수정해서 다시 제출하라"</strong>는 반려 통지서.<br><br>
+          주요 거절 사유:<br>
+          · 임상 데이터 부족 (효과 불충분)<br>
+          · 제조 공정 품질 기준 미달<br>
+          · 추가 안전성 데이터 요구<br>
+          · 라벨링·복용법 표기 문제
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">📊 투자 시사점</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.9">
+          <span class="crl-pending" style="font-size:10px">⚠ 미해결</span> 상태 기업<br>
+          → CRL 수령 후 재신청까지 평균 <strong style="color:var(--text)">1~3년</strong> 소요<br>
+          → 그 기간 동안 해당 약물의 수익화 지연<br>
+          → 주가 re-rating 위험 있음<br><br>
+          <span class="crl-resolved" style="font-size:10px">✓ 해결</span> 상태 기업<br>
+          → 재신청 성공 → 추가 모멘텀 발생 가능<br>
+          → "리스크 해소 + 승인 기대감" 동반 상승 패턴
+        </div>
+      </div>
+    </div>
+    <div class="guide-tip">
+      <div class="guide-tip-title">📌 실전 활용 예시</div>
+      <div style="color:var(--muted);line-height:2">
+        <em>미해결 CRL 보유 기업 → FDA 문서 버튼 클릭 → 실제 CRL PDF 확인 → 거절 사유가 해결 가능한 수준인지 판단</em><br>
+        해결 가능(예: 제조 공정 보완) vs 해결 어려움(예: 추가 Phase 3 요구) 여부에 따라 투자 리스크가 크게 다릅니다.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑥ 뉴스 피드 -->
+<div class="guide-tab-section">
+  <div class="guide-tab-header">
+    <span class="guide-tab-num">⑥</span>
+    <span class="guide-tab-name">📰 뉴스 피드</span>
+    <span class="guide-tab-tagline">임상 결과 뉴스 자동 수집 · 업계 동향 모니터링</span>
+  </div>
+  <div class="guide-tab-body">
+    <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:14px">
+      FiercePharma·STAT News·Reuters Health의 임상 관련 최신 뉴스를 매일 자동 수집합니다.
+      별도 구독 없이 업계 핵심 3개 매체의 바이오 뉴스를 한 화면에서 확인할 수 있습니다.
+    </div>
+    <div class="guide-2col">
+      <div class="guide-card">
+        <div class="guide-card-title">📡 수집 매체와 특성</div>
+        <div style="font-size:12px;line-height:2.2;color:var(--muted)">
+          <div><span class="news-source source-FiercePharma">FiercePharma</span><br><span style="font-size:11px">제약업계 전문지. FDA 승인·CRL·M&A 속보에 강함</span></div>
+          <div style="margin-top:6px"><span class="news-source source-STAT\ News">STAT News</span><br><span style="font-size:11px">의학·바이오 심층 분석. 임상 결과 해석 전문</span></div>
+          <div style="margin-top:6px"><span class="news-source source-Reuters\ Health">Reuters Health</span><br><span style="font-size:11px">글로벌 금융 관점 헬스케어. 시장 반응 중심 보도</span></div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">🔍 이 키워드를 주목하세요</div>
+        <ul class="guide-ul">
+          <li><strong style="color:var(--green)">"FDA approved"</strong> → 승인 완료 → 주가 상승</li>
+          <li><strong style="color:var(--yellow)">"Phase 3 results"</strong> → 핵심 데이터 발표</li>
+          <li><strong style="color:var(--green)">"primary endpoint met"</strong> → 임상 목표 달성</li>
+          <li><strong style="color:var(--red)">"complete response letter"</strong> → CRL 발행</li>
+          <li><strong style="color:var(--red)">"trial discontinued"</strong> → 임상 중단 → 주가 하락</li>
+          <li><strong style="color:var(--blue)">"breakthrough therapy"</strong> → FDA 우선 심사</li>
+        </ul>
+      </div>
+    </div>
+    <div class="guide-tip">
+      <div class="guide-tip-title">📌 실전 활용 예시</div>
+      <div style="color:var(--muted);line-height:2">
+        보유 종목 기업명으로 브라우저 Ctrl+F 검색 → 관련 뉴스만 빠르게 확인<br>
+        → "Phase 3 results" + 특정 회사명이 같이 나오면 → <strong style="color:var(--text)">통과 예측 탭</strong>에서 해당 임상 PoS 확인<br>
+        → <strong style="color:var(--text)">주가 탭</strong>에서 뉴스 발표 전후 주가 반응 크로스 체크
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑦ 주가 트래커 -->
+<div class="guide-tab-section">
+  <div class="guide-tab-header">
+    <span class="guide-tab-num">⑦</span>
+    <span class="guide-tab-name">📈 주가 트래커</span>
+    <span class="guide-tab-tagline">임상 이벤트와 주가 흐름 연결 · 투자 시그널</span>
+  </div>
+  <div class="guide-tab-body">
+    <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:14px">
+      30개사의 주가 차트·수익률·투자 시그널을 한 화면에서 확인합니다.
+      CRL 이벤트가 주가에 미친 영향까지 보여주어 <strong style="color:var(--text)">임상 파이프라인과 주가의 연결고리</strong>를 파악할 수 있습니다.
+    </div>
+    <div class="guide-2col">
+      <div class="guide-card">
+        <div class="guide-card-title">📊 카드 구성 요소</div>
+        <ul class="guide-ul">
+          <li>90일 <strong>SVG 주가 차트</strong> (추세 시각화)</li>
+          <li>1일·5일·30일·90일 <strong>수익률 KPI</strong></li>
+          <li>모멘텀 기반 <strong>투자 시그널</strong> (매수관심/중립/주의)</li>
+          <li>해당 기업 <strong>CRL 이벤트 주가 충격</strong> 기록</li>
+          <li>Yahoo Finance 링크 → 실시간 데이터 바로 확인</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">🚦 투자 시그널 해석</div>
+        <div style="font-size:12px;color:var(--muted);line-height:2.1">
+          <div><span style="color:var(--green);font-weight:700">● 매수 관심</span> — 상승 모멘텀 + 기술적 강세</div>
+          <div><span style="color:var(--blue);font-weight:700">● 중립+</span> — 안정적 상승세, 추가 확인 필요</div>
+          <div><span style="color:var(--yellow);font-weight:700">● 중립</span> — 방향성 불명확, 관망 권고</div>
+          <div><span style="color:var(--orange);font-weight:700">● 주의</span> — 하락 압력, 포지션 재검토</div>
+          <div><span style="color:var(--red);font-weight:700">● 매도 고려</span> — 강한 하락 모멘텀</div>
+          <div style="margin-top:6px;font-size:10px;color:#475569">⚠ 투자 조언이 아닌 기술적 참고 지표입니다</div>
+        </div>
+      </div>
+    </div>
+    <div class="guide-tip">
+      <div class="guide-tip-title">📌 실전 활용 예시 — 이벤트 + 주가 통합 분석</div>
+      <div style="color:var(--muted);line-height:2">
+        1. <strong style="color:var(--text)">이벤트 달력</strong>에서 2개월 후 PDUFA가 있는 기업 발견<br>
+        2. <strong style="color:var(--text)">통과 예측</strong>에서 해당 임상 PoS 확인 (예: 65% 높음)<br>
+        3. <strong style="color:var(--text)">CRL 트래커</strong>에서 해당 기업 미해결 CRL 없음 확인<br>
+        4. <strong style="color:var(--text)">주가 탭</strong>에서 90일 차트가 우상향 + 시그널 "매수 관심" 확인<br>
+        → <em>4가지 조건이 모두 긍정적이면 → 근거 있는 투자 후보로 검토</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 통합 워크플로우 -->
+<div style="background:linear-gradient(135deg,#1e2035,#2a1e35);border:1px solid #4b3b6b;border-radius:12px;padding:22px 24px;margin-bottom:28px">
+  <div style="font-size:14px;font-weight:800;margin-bottom:14px;color:#c7d2fe">🔄 추천 리서치 워크플로우 — 이 순서로 사용하세요</div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+      <span style="font-weight:700;color:#a5b4fc;min-width:120px">① 파이프라인 개요</span>
+      <span style="color:#475569">→</span>
+      <span style="color:var(--muted)">HOT 분야·관심 기업 후보군 1차 선별</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+      <span style="font-weight:700;color:#a5b4fc;min-width:120px">② 임상 상세</span>
+      <span style="color:#475569">→</span>
+      <span style="color:var(--muted)">후보 기업 주요 임상 드릴다운, Phase 3 + 높은 PoS 필터</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+      <span style="font-weight:700;color:#a5b4fc;min-width:120px">③ 통과 예측</span>
+      <span style="color:#475569">→</span>
+      <span style="color:var(--muted)">&#34;완료 임박&#34; 임상 중 PoS 50%+, 긍정 시그널 있는 것 추리기</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+      <span style="font-weight:700;color:#a5b4fc;min-width:120px">④ 이벤트 달력</span>
+      <span style="color:#475569">→</span>
+      <span style="color:var(--muted)">해당 임상의 PDUFA / 완료 예정일 확인, D-day 카운트</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+      <span style="font-weight:700;color:#a5b4fc;min-width:120px">⑤ CRL 트래커</span>
+      <span style="color:#475569">→</span>
+      <span style="color:var(--muted)">해당 기업 미해결 CRL 여부 체크 (리스크 점검)</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+      <span style="font-weight:700;color:#a5b4fc;min-width:120px">⑥ 뉴스 피드</span>
+      <span style="color:#475569">→</span>
+      <span style="color:var(--muted)">최근 임상 결과 발표·부정 뉴스 없는지 검색</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+      <span style="font-weight:700;color:#a5b4fc;min-width:120px">⑦ 주가 트래커</span>
+      <span style="color:#475569">→</span>
+      <span style="color:var(--muted)">차트 추세 + 투자 시그널 최종 확인 후 의사결정</span>
+    </div>
+    
+  </div>
+</div>
+
+<!-- 주의사항 -->
+<div style="background:#2a1f10;border:1px solid #78350f;border-radius:10px;padding:18px 20px">
+  <div style="font-size:13px;font-weight:800;color:#fbbf24;margin-bottom:12px">⚠️ 반드시 알아야 할 한계와 주의사항</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
+    <div style="display:flex;gap:10px;align-items:flex-start;color:var(--muted);background:rgba(0,0,0,.2);border-radius:6px;padding:10px"><span style="font-size:16px">🇺🇸</span><div><strong style="color:var(--text);display:block;margin-bottom:2px">미국 임상만 수집</strong>EU·한국·일본 등 해외 임상 미포함. 글로벌 기업은 미국 외 데이터가 더 중요할 수 있음</div></div>
+    <div style="display:flex;gap:10px;align-items:flex-start;color:var(--muted);background:rgba(0,0,0,.2);border-radius:6px;padding:10px"><span style="font-size:16px">📊</span><div><strong style="color:var(--text);display:block;margin-bottom:2px">PoS = 통계적 평균</strong>BIO/IQVIA 업계 평균 기반. 개별 약물의 실제 결과를 예측하지 않으며, 예상과 다를 수 있음</div></div>
+    <div style="display:flex;gap:10px;align-items:flex-start;color:var(--muted);background:rgba(0,0,0,.2);border-radius:6px;padding:10px"><span style="font-size:16px">📅</span><div><strong style="color:var(--text);display:block;margin-bottom:2px">PDUFA 날짜 수동 관리</strong>PDUFA 시드 데이터는 분기별 수동 업데이트. FDA.gov PDUFA Tracker에서 반드시 교차 검증 필요</div></div>
+    <div style="display:flex;gap:10px;align-items:flex-start;color:var(--muted);background:rgba(0,0,0,.2);border-radius:6px;padding:10px"><span style="font-size:16px">🚫</span><div><strong style="color:var(--text);display:block;margin-bottom:2px">투자 조언 아님</strong>이 플랫폼은 정보 제공 목적의 리서치 도구입니다. 투자 의사결정 전 전문가 의견과 원문 데이터를 반드시 확인하세요</div></div>
   </div>
 </div>
 
@@ -101100,7 +101342,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:49 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:57 UTC
 </footer>
 
 <script>

@@ -170,7 +170,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 11:31 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 11:40 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -389,7 +389,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 11:31 UTC
+  최종 업데이트: 2026-05-24 11:40 UTC
 </p>
 </div>
 
@@ -96431,7 +96431,7 @@ function sortStockSidebar(mode, clickedBtn) {
   <div style="font-size:13px;color:var(--muted);line-height:2">
     전 세계 매출 상위 30개 제약회사가 <strong style="color:var(--text)">지금 어떤 신약을 개발 중인지</strong>,
     그 신약이 <strong style="color:var(--text)">FDA 승인을 받을 가능성이 얼마나 되는지</strong>를 매일 자동으로 추적합니다.<br>
-    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-24 11:31 UTC</strong>
+    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-24 11:40 UTC</strong>
   </div>
 </div>
 
@@ -97238,6 +97238,41 @@ function sortStockSidebar(mode, clickedBtn) {
     <div class="gcal-legend-item"><div class="gcal-legend-dot" style="background:#22c55e"></div> Phase 3 완료 예정</div>
     <div class="gcal-legend-item"><div class="gcal-legend-dot" style="background:#ef4444"></div> CRL 발행</div>
     <div class="gcal-legend-item" style="margin-left:auto"><div class="gcal-legend-dot" style="background:var(--accent);border-radius:50%"></div> 오늘</div>
+  </div>
+
+  <!-- 이벤트 용어 설명 -->
+  <div style="margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid #a855f7;border-radius:8px;padding:14px 16px">
+      <div style="font-size:12px;font-weight:800;color:#d8b4fe;margin-bottom:6px">🟣 PDUFA Date란?</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        <strong style="color:var(--text)">Prescription Drug User Fee Act</strong>의 약자.<br>
+        FDA가 신약 심사를 <strong style="color:var(--text)">완료해야 하는 법정 마감일</strong>입니다.<br><br>
+        · 제약사가 NDA/BLA(신약 승인 신청서)를 제출하면<br>
+        · FDA가 접수 후 심사 완료 목표일을 지정<br>
+        · 이 날짜에 <strong style="color:#4ade80">승인</strong> / <strong style="color:#fca5a5">거절(CRL)</strong> / <strong style="color:var(--yellow)">보류</strong> 결정<br><br>
+        <span style="color:#d8b4fe;font-weight:700">⚡ 주가 바이너리 이벤트 —</span> 승인 시 +20~50%, CRL 시 -30~60% 급변 가능
+      </div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid #22c55e;border-radius:8px;padding:14px 16px">
+      <div style="font-size:12px;font-weight:800;color:#4ade80;margin-bottom:6px">🟢 Phase 3 완료 예정이란?</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        ClinicalTrials.gov에 등록된 <strong style="color:var(--text)">3상 임상시험 예정 종료일</strong>입니다.<br><br>
+        · Phase 3 = 시판 전 최종 대규모 인체시험 (수백~수천 명)<br>
+        · 완료 후 결과 발표 → FDA 승인 신청 여부 결정<br>
+        · 완료일 ≠ 결과 발표일 (보통 3~6개월 후 발표)<br><br>
+        <span style="color:#4ade80;font-weight:700">📊 모니터링 포인트 —</span> 임박한 Phase 3 완료 = 곧 임상 결과 발표 예정 신호
+      </div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:3px solid #ef4444;border-radius:8px;padding:14px 16px">
+      <div style="font-size:12px;font-weight:800;color:#fca5a5;margin-bottom:6px">🔴 CRL(Complete Response Letter)이란?</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        FDA가 신약 승인을 <strong style="color:var(--text)">거절할 때 발행하는 공식 문서</strong>입니다.<br><br>
+        · 거절 사유(안전성·유효성·제조공정 등) 상세 명시<br>
+        · 해결 요건 포함 → 재신청 가능하나 수년 소요<br>
+        · 주가에 즉각적이고 큰 충격 (당일 -30~60% 흔함)<br><br>
+        <span style="color:#fca5a5;font-weight:700">🚨 리스크 시그널 —</span> 미해결 CRL 보유 기업은 재신청 성공 가능성과 일정을 주시
+      </div>
+    </div>
   </div>
 </div>
 
@@ -100967,6 +101002,34 @@ function gcalSelectCell(el) {
   el.classList.add('selected');
 }
 
+function evSummary(ev) {
+  if (ev.type === 'PDUFA') {
+    return [
+      '📋 이벤트 유형: FDA PDUFA (신약 심사 완료 마감일)',
+      '🏢 신청 기업: ' + ev.company,
+      '💊 대상 약물: ' + ev.drug,
+      '📌 의미: 이 날짜까지 FDA가 승인·거절·보류 중 하나를 결정',
+      '⚡ 주의: 승인 시 주가 급등 / 거절(CRL) 시 급락 가능성',
+    ];
+  } else if (ev.type === 'Phase3완료') {
+    return [
+      '📋 이벤트 유형: Phase 3 임상시험 예정 완료일',
+      '🏢 진행 기업: ' + ev.company,
+      '💊 대상 약물: ' + ev.drug,
+      '📌 의미: 3상 임상 종료 후 수개월 내 결과 발표 예상',
+      '📊 주의: 완료일 ≠ 결과 발표일 (보통 3~6개월 후)',
+    ];
+  } else {
+    return [
+      '📋 이벤트 유형: FDA CRL (Complete Response Letter)',
+      '🏢 대상 기업: ' + ev.company,
+      '💊 대상 약물: ' + ev.drug,
+      '📌 의미: FDA가 이 날짜에 신약 승인을 공식 거절',
+      '🚨 주의: 재신청까지 수년 소요 가능, 주가 직격 리스크',
+    ];
+  }
+}
+
 function gcalShowDetail(events, dateStr) {
   const empty = document.getElementById('gcalDetailEmpty');
   const content = document.getElementById('gcalDetailContent');
@@ -100981,16 +101044,21 @@ function gcalShowDetail(events, dateStr) {
       ? '<a href="' + ev.url + '" target="_blank" class="gcal-det-link">출처↗</a>' : '';
     const nctHtml = ev.nct
       ? '<a href="https://clinicaltrials.gov/study/' + ev.nct + '" target="_blank" class="gcal-det-link">ClinicalTrials↗</a>' : '';
+    const bullets = evSummary(ev).map(b =>
+      '<li style="font-size:11px;color:var(--muted);padding:3px 0;line-height:1.6;border-bottom:1px solid var(--border)">' + b + '</li>'
+    ).join('');
     content.innerHTML += `
       <div class="gcal-det-card ${detCardClass(ev.type, ev.urgency)}">
         <span class="gcal-det-badge" style="${detBadgeStyle(ev.type, ev.urgency)}">${ev.type}</span>
         <div class="gcal-det-co">${ev.company}</div>
         <div class="gcal-det-drug">${ev.drug}</div>
-        <div class="gcal-det-desc">${ev.desc}</div>
-        <div class="gcal-det-meta">
+        <div class="gcal-det-meta" style="margin-bottom:10px">
           ${ev.app ? '<span class="gcal-det-app">' + ev.app + '</span>' : ''}
           ${dday} ${linkHtml} ${nctHtml}
         </div>
+        <ul style="list-style:none;padding:0;margin:0;border-top:1px solid var(--border);padding-top:4px">
+          ${bullets}
+        </ul>
       </div>`;
   });
 }
@@ -101030,7 +101098,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:31 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:40 UTC
 </footer>
 
 <script>

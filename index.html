@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 15:38 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 15:47 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -316,7 +316,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 <div class="hm-wrap">
   <div class="hm-eyebrow">
     <span class="hm-eyebrow-dot"></span>
-    매일 자동 업데이트 · 2026-05-24 15:38 UTC
+    매일 자동 업데이트 · 2026-05-24 15:47 UTC
   </div>
 
   <div class="hm-brand">SHL BioInsights</div>
@@ -102140,6 +102140,25 @@ Endpoint: Compare the hea<br>
   .news-empty {
     text-align: center; padding: 60px 20px; color: var(--muted);
   }
+  .news-co-filter-bar {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+    padding: 8px 10px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 8px;
+  }
+  .news-co-btn {
+    font-size: 11px; padding: 3px 10px; border-radius: 99px;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); cursor: pointer; transition: all .15s; white-space: nowrap;
+  }
+  .news-co-btn:hover, .news-co-btn.active {
+    background: rgba(99,102,241,.15); color: #818cf8; border-color: #818cf8;
+  }
+  .news-co-cnt { font-size: 10px; font-weight: 700; margin-left: 2px; opacity: .75; }
+  .news-co-hot {
+    color: var(--yellow) !important;
+    border-color: rgba(234,179,8,.4) !important;
+    background: rgba(234,179,8,.07) !important;
+  }
   </style>
 
   
@@ -102147,6 +102166,9 @@ Endpoint: Compare the hea<br>
     <span class="news-count-badge">20건</span>
     <span style="font-size:12px;color:var(--muted)">최근 7일 · 날짜순</span>
   </div>
+
+  <!-- 회사별 필터 (JS가 동적 생성) -->
+  <div id="news-co-filter" class="news-co-filter-bar"></div>
 
   <div class="news-filter-bar">
     <button class="news-filter-btn active" onclick="filterNews('all', this)">전체</button>
@@ -102156,7 +102178,7 @@ Endpoint: Compare the hea<br>
 
   <div class="unified-news-list" id="unified-news-list">
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="AstraZeneca">
       <div class="news-item-top">
         <span class="news-source-badge">STAT News</span>
         
@@ -102177,7 +102199,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="Biogen">
       <div class="news-item-top">
         <span class="news-source-badge">STAT News</span>
         
@@ -102198,7 +102220,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="Eli Lilly,Moderna">
       <div class="news-item-top">
         <span class="news-source-badge">BioPharma Dive</span>
         
@@ -102221,7 +102243,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="M&amp;A/시장">
+    <div class="unified-news-item" data-cats="M&amp;A/시장" data-companies="Gilead Sciences">
       <div class="news-item-top">
         <span class="news-source-badge">Pharma Technology</span>
         
@@ -102242,7 +102264,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="Biogen">
       <div class="news-item-top">
         <span class="news-source-badge">STAT News</span>
         
@@ -102263,7 +102285,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상,M&amp;A/시장">
+    <div class="unified-news-item" data-cats="임상,M&amp;A/시장" data-companies="Eli Lilly">
       <div class="news-item-top">
         <span class="news-source-badge">STAT News</span>
         
@@ -102286,7 +102308,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="BioMarin Pharmaceutical">
       <div class="news-item-top">
         <span class="news-source-badge">BioPharma Dive</span>
         
@@ -102307,7 +102329,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="M&amp;A/시장">
+    <div class="unified-news-item" data-cats="M&amp;A/시장" data-companies="Eli Lilly">
       <div class="news-item-top">
         <span class="news-source-badge">Pharma Technology</span>
         
@@ -102328,7 +102350,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="Eli Lilly,Novo Nordisk">
       <div class="news-item-top">
         <span class="news-source-badge">BioPharma Dive</span>
         
@@ -102351,7 +102373,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상,M&amp;A/시장">
+    <div class="unified-news-item" data-cats="임상,M&amp;A/시장" data-companies="Takeda">
       <div class="news-item-top">
         <span class="news-source-badge">BioPharma Dive</span>
         
@@ -102374,7 +102396,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="M&amp;A/시장">
+    <div class="unified-news-item" data-cats="M&amp;A/시장" data-companies="AbbVie">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102395,7 +102417,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="AstraZeneca,Novo Nordisk">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102418,7 +102440,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="AstraZeneca,Gilead Sciences,Daiichi Sankyo">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102443,7 +102465,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="M&amp;A/시장">
+    <div class="unified-news-item" data-cats="M&amp;A/시장" data-companies="AbbVie,Novartis">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102466,7 +102488,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상,M&amp;A/시장">
+    <div class="unified-news-item" data-cats="임상,M&amp;A/시장" data-companies="Eli Lilly,Novo Nordisk">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102491,7 +102513,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상,M&amp;A/시장">
+    <div class="unified-news-item" data-cats="임상,M&amp;A/시장" data-companies="Takeda">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102514,7 +102536,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="BioMarin Pharmaceutical">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102535,7 +102557,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="임상">
+    <div class="unified-news-item" data-cats="임상" data-companies="AstraZeneca,Roche">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102558,7 +102580,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="M&amp;A/시장">
+    <div class="unified-news-item" data-cats="M&amp;A/시장" data-companies="Bristol-Myers Squibb">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102579,7 +102601,7 @@ Endpoint: Compare the hea<br>
       
     </div>
     
-    <div class="unified-news-item" data-cats="M&amp;A/시장">
+    <div class="unified-news-item" data-cats="M&amp;A/시장" data-companies="Gilead Sciences">
       <div class="news-item-top">
         <span class="news-source-badge">FiercePharma</span>
         
@@ -102603,14 +102625,78 @@ Endpoint: Compare the hea<br>
   </div>
 
   <script>
-  function filterNews(cat, btn) {
-    document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.unified-news-item').forEach(el => {
-      const cats = el.dataset.cats || '';
-      el.style.display = (cat === 'all' || cats.includes(cat)) ? '' : 'none';
+  var _newsCatFilter = 'all';
+  var _newsCoFilter  = 'all';
+
+  function applyNewsFilters() {
+    document.querySelectorAll('.unified-news-item').forEach(function(el) {
+      var cats = el.dataset.cats || '';
+      var cos  = el.dataset.companies || '';
+      var catOk = _newsCatFilter === 'all' || cats.includes(_newsCatFilter);
+      var coOk  = _newsCoFilter  === 'all' || cos.split(',').map(function(s){return s.trim();}).includes(_newsCoFilter);
+      el.style.display = (catOk && coOk) ? '' : 'none';
     });
   }
+
+  function filterNews(cat, btn) {
+    document.querySelectorAll('.news-filter-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    _newsCatFilter = cat;
+    applyNewsFilters();
+  }
+
+  function filterNewsCo(co, btn) {
+    document.querySelectorAll('.news-co-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    _newsCoFilter = co;
+    applyNewsFilters();
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var list = document.getElementById('unified-news-list');
+    var filterBar = document.getElementById('news-co-filter');
+    if (!list || !filterBar) return;
+
+    // 회사별 기사 수 집계
+    var coCounts = {};
+    list.querySelectorAll('.unified-news-item').forEach(function(el) {
+      (el.dataset.companies || '').split(',').forEach(function(co) {
+        co = co.trim();
+        if (co) coCounts[co] = (coCounts[co] || 0) + 1;
+      });
+    });
+
+    // 전체 버튼
+    var allBtn = document.createElement('button');
+    allBtn.className = 'news-co-btn active';
+    allBtn.textContent = '전체';
+    allBtn.onclick = function() { filterNewsCo('all', allBtn); };
+    filterBar.appendChild(allBtn);
+
+    // 회사 버튼 (기사 수 내림차순, 상위 12개)
+    Object.entries(coCounts)
+      .sort(function(a,b){return b[1]-a[1];})
+      .slice(0, 12)
+      .forEach(function(pair) {
+        var co = pair[0], cnt = pair[1];
+        var btn = document.createElement('button');
+        btn.className = 'news-co-btn';
+        btn.dataset.co = co;
+        var hot = cnt >= 3 ? '🔥 ' : '';
+        btn.innerHTML = hot + co + ' <span class="news-co-cnt">' + cnt + '</span>';
+        btn.onclick = function() { filterNewsCo(co, btn); };
+        filterBar.appendChild(btn);
+      });
+
+    // 핫 기업 태그에 강조 표시
+    list.querySelectorAll('.news-co-tag').forEach(function(tag) {
+      var co = tag.textContent.trim();
+      if ((coCounts[co] || 0) >= 3) {
+        tag.classList.add('news-co-hot');
+        tag.textContent = '🔥 ' + co;
+      }
+    });
+  });
   </script>
 
   
@@ -130432,7 +130518,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 15:38 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 15:47 UTC</span>
   </div>
 </div>
 
@@ -135223,8 +135309,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Amgen", "Roche", "AstraZeneca", "Novartis", "Regeneron", "Novo Nordisk", "Daiichi Sankyo", "Pfizer", "Astellas", "Vertex Pharmaceuticals", "Boehringer Ingelheim", "Eli Lilly", "Johnson \u0026 Johnson", "GSK", "AbbVie", "Teva", "CSL", "Merck (MSD)", "Eisai", "Bristol-Myers Squibb", "Bayer", "Biogen", "Gilead Sciences", "Merck KGaA", "Sanofi", "Otsuka", "Takeda", "Moderna", "UCB", "Incyte"];
-const BIOTECH_NAMES   = ["Apellis Pharmaceuticals", "Alnylam Pharmaceuticals", "Argenx", "Jazz Pharmaceuticals", "Madrigal Pharmaceuticals", "Sarepta Therapeutics", "Rhythm Pharmaceuticals", "Ionis Pharmaceuticals", "Exelixis", "Protagonist Therapeutics", "Blueprint Medicines", "BioMarin Pharmaceutical"];
+const BIGPHARMA_NAMES = ["Bristol-Myers Squibb", "Sanofi", "Incyte", "Teva", "Pfizer", "AbbVie", "Biogen", "Merck (MSD)", "UCB", "GSK", "Regeneron", "Daiichi Sankyo", "Johnson \u0026 Johnson", "Vertex Pharmaceuticals", "Merck KGaA", "Astellas", "AstraZeneca", "Bayer", "Otsuka", "Novo Nordisk", "Moderna", "Roche", "Eli Lilly", "Novartis", "Boehringer Ingelheim", "CSL", "Eisai", "Amgen", "Gilead Sciences", "Takeda"];
+const BIOTECH_NAMES   = ["Apellis Pharmaceuticals", "Protagonist Therapeutics", "Blueprint Medicines", "Rhythm Pharmaceuticals", "Alnylam Pharmaceuticals", "Argenx", "Sarepta Therapeutics", "Madrigal Pharmaceuticals", "Ionis Pharmaceuticals", "BioMarin Pharmaceutical", "Exelixis", "Jazz Pharmaceuticals"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -135387,7 +135473,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 15:38 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 15:47 UTC
 </footer>
 
 <script>

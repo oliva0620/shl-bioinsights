@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 16:13 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 16:15 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -316,7 +316,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 <div class="hm-wrap">
   <div class="hm-eyebrow">
     <span class="hm-eyebrow-dot"></span>
-    매일 자동 업데이트 · 2026-05-24 16:13 UTC
+    매일 자동 업데이트 · 2026-05-24 16:15 UTC
   </div>
 
   <div class="hm-brand">SHL BioInsights</div>
@@ -101948,12 +101948,70 @@ Endpoint: Compare the hea<br>
     <button class="crl-filter-btn" onclick="filterCRL('미해결',this)">미해결</button>
   </div>
 
+  <style>
+  /* ── CRL 테이블 재설계 ── */
+  #crl-table { width:100%; border-collapse:collapse; font-size:12px; }
+  #crl-table thead th {
+    text-align:left; padding:7px 12px; font-size:10px; font-weight:700;
+    text-transform:uppercase; letter-spacing:.5px; color:var(--muted);
+    border-bottom:1px solid var(--border); white-space:nowrap;
+  }
+  /* 미해결 행 */
+  #crl-table tr.crl-row-pending td { background: transparent; }
+  #crl-table tr.crl-row-pending:hover td { background: rgba(255,255,255,.03); }
+  /* 해결된 행 — 흐릿하게 */
+  #crl-table tr.crl-row-resolved td {
+    opacity: .45; border-bottom:1px solid rgba(255,255,255,.04);
+  }
+  #crl-table tr.crl-row-resolved:hover td { opacity: .7; }
+  #crl-table td { padding:12px 12px; border-bottom:1px solid rgba(255,255,255,.05); vertical-align:top; }
+  #crl-table tr:last-child td { border-bottom:none; }
+
+  /* 미해결 왼쪽 강조 바 */
+  #crl-table tr.crl-row-pending td:first-child {
+    border-left: 3px solid #f87171;
+    padding-left: 10px;
+  }
+  #crl-table tr.crl-row-resolved td:first-child {
+    border-left: 3px solid rgba(100,116,139,.3);
+    padding-left: 10px;
+  }
+
+  /* 상태 배지 */
+  .crl-status-pending {
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:11px; font-weight:700; color:#f87171;
+    background:rgba(248,113,113,.1); border:1px solid rgba(248,113,113,.25);
+    padding:3px 9px; border-radius:99px;
+  }
+  .crl-status-resolved {
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:11px; font-weight:700; color:#34d399;
+    background:rgba(52,211,153,.1); border:1px solid rgba(52,211,153,.2);
+    padding:3px 9px; border-radius:99px;
+  }
+  /* 기한 블록 */
+  .crl-deadline-block {
+    margin-top:8px; padding:7px 10px;
+    background:rgba(248,113,113,.07); border-radius:6px;
+    border:1px solid rgba(248,113,113,.18);
+  }
+  .crl-deadline-label { font-size:9.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; margin-bottom:2px; }
+  .crl-deadline-date  { font-size:13px; font-weight:800; color:#f87171; font-variant-numeric:tabular-nums; }
+  .crl-days-left      { font-size:10.5px; margin-top:1px; }
+  </style>
+
   <div class="table-wrap">
     <table id="crl-table">
       <thead>
         <tr>
-          <th>회사</th><th>약물 · 신청번호</th><th>CRL 발행일</th>
-          <th>거절 사유 · 유형</th><th>회복 전망</th><th>FDA 문서</th>
+          <th style="width:90px">회사</th>
+          <th style="width:160px">약물 · 신청번호</th>
+          <th style="width:90px">CRL 발행일</th>
+          <th>거절 사유</th>
+          <th style="width:120px">회복 가능성</th>
+          <th style="width:150px">처리 현황</th>
+          <th style="width:90px">문서</th>
         </tr>
       </thead>
       <tbody>
@@ -101963,66 +102021,75 @@ Endpoint: Compare the hea<br>
         
         
         
-        <tr data-cats="독성"
+        <tr class="crl-row-pending"
+            data-cats="독성"
             data-resolved="false"
             data-recovery="very_low">
-          <td><strong>Sanofi</strong></td>
-          <!-- 약물명 + 신청번호 통합 -->
-          <td style="max-width:160px">
-            <div style="font-size:12px;font-weight:600;line-height:1.4;word-break:break-word">tolebrutinib (nrSPMS)</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:2px">NDA 219624</div>
+
+          <!-- 회사 -->
+          <td><strong style="font-size:13px">Sanofi</strong></td>
+
+          <!-- 약물 + 신청번호 -->
+          <td>
+            <div style="font-weight:600;line-height:1.4;word-break:break-word">tolebrutinib (nrSPMS)</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px">NDA 219624</div>
           </td>
-          <td style="white-space:nowrap;font-size:12px">2025-12-23</td>
-          <!-- 거절 사유: 유형 뱃지 + 핵심 요약 -->
-          <td class="crl-reason-cell" style="max-width:280px">
-            <div class="crl-tags">
+
+          <!-- CRL 발행일 -->
+          <td style="white-space:nowrap;color:var(--muted)">2025-12-23</td>
+
+          <!-- 거절 사유 -->
+          <td>
+            <div class="crl-tags" style="margin-bottom:5px">
               
               <span class="crl-cat-tag crl-cat-red" title="">독성</span>
               
             </div>
-            <div style="font-size:11.5px;line-height:1.55;color:#cbd5e1;margin-top:4px">
+            <div style="font-size:11.5px;line-height:1.6;color:#94a3b8">
               Safety — severe hepatotoxicity risk outweighs clinical benefit for non-relapsing secondary progressive MS
             </div>
           </td>
-          <!-- 회복 전망 + 해결 여부 + 해결일 통합 -->
-          <td style="min-width:140px;vertical-align:top">
+
+          <!-- 회복 가능성: 배지만, 근거는 tooltip -->
+          <td>
             
-            <span class="rec-badge rec-red" title="중증 독성(심각한 간독성·심독성 등)은 benefit-risk 재평가가 거의 불가능. 해결 사례 대부분은 REMS 추가 또는 적응증 대폭 축소를 통한 제한적 승인. 일부는 개발 완전 포기.">
+            <span class="rec-badge rec-red"
+                  title="중증 독성(심각한 간독성·심독성 등)은 benefit-risk 재평가가 거의 불가능. 해결 사례 대부분은 REMS 추가 또는 적응증 대폭 축소를 통한 제한적 승인. 일부는 개발 완전 포기. &#10;&#10;근거: FDA CDER 2015-2024: 독성 CRL ~25% 재승인 · 중간값 24개월+">
               🔴 매우 낮음
               <span class="rec-pct">25%</span>
             </span>
-            <div class="rec-basis">FDA CDER 2015-2024: 독성 CRL ~25% 재승인 · 중간값 24개월+</div>
-            
-            <!-- 해결 여부 + 기한 -->
-            <div style="margin-top:5px;font-size:11px">
-              
-              <span class="crl-pending">⚠ 미해결</span>
-              
-              
-              <div style="margin-top:4px">
-                <span style="font-size:10px;color:var(--muted)">FDA 응답 기한</span>
-                <span class="crl-deadline" data-deadline="2026-12-23"
-                      style="display:block;font-size:11.5px;font-weight:700;color:#f87171;font-variant-numeric:tabular-nums">
-                  2026-12-23
-                </span>
-                <span class="crl-days-left" data-deadline="2026-12-23"
-                      style="font-size:10px;color:var(--muted)"></span>
-              </div>
-              
-              
+            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4">
+              FDA CDER 2015-2024: 독성 CRL ~25% 재승인 · 중간값 24개월+
             </div>
+            
           </td>
-          <!-- FDA 문서 + 보도자료 -->
-          <td style="font-size:11px;white-space:nowrap;vertical-align:top">
+
+          <!-- 처리 현황 -->
+          <td>
+            
+            <span class="crl-status-pending">⚠ 미해결</span>
+            
+            
+            <div class="crl-deadline-block">
+              <div class="crl-deadline-label">FDA 응답 기한</div>
+              <div class="crl-deadline-date">2026-12-23</div>
+              <div class="crl-days-left" data-deadline="2026-12-23" style="color:var(--muted)"></div>
+            </div>
+            
+            
+          </td>
+
+          <!-- 문서 링크 -->
+          <td style="vertical-align:top">
             
             <a href="https://download.open.fda.gov/crl/CRL_NDA219624_20251223.pdf" target="_blank" rel="noopener"
-               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:4px">
-              FDA 문서↗
+               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700">
+              FDA↗
             </a>
             
             
-            <br><a href="https://www.sanofi.com/en/media-room/press-releases/2025/2025-12-24-06-00-00-3210238" target="_blank" rel="noopener"
-               style="color:#818cf8;text-decoration:none;font-size:10px">
+            <a href="https://www.sanofi.com/en/media-room/press-releases/2025/2025-12-24-06-00-00-3210238" target="_blank" rel="noopener"
+               style="display:inline-block;margin-top:5px;color:#818cf8;text-decoration:none;font-size:10px;border:1px solid rgba(129,140,248,.3);padding:2px 7px;border-radius:4px">
               보도자료↗
             </a>
             
@@ -102034,66 +102101,75 @@ Endpoint: Compare the hea<br>
         
         
         
-        <tr data-cats="효능/엔드포인트"
+        <tr class="crl-row-pending"
+            data-cats="효능/엔드포인트"
             data-resolved="false"
             data-recovery="low">
-          <td><strong>GSK</strong></td>
-          <!-- 약물명 + 신청번호 통합 -->
-          <td style="max-width:160px">
-            <div style="font-size:12px;font-weight:600;line-height:1.4;word-break:break-word">depemokimab (Exdensur; CRSwNP 적응증)</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:2px">BLA 761458</div>
+
+          <!-- 회사 -->
+          <td><strong style="font-size:13px">GSK</strong></td>
+
+          <!-- 약물 + 신청번호 -->
+          <td>
+            <div style="font-weight:600;line-height:1.4;word-break:break-word">depemokimab (Exdensur; CRSwNP 적응증)</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px">BLA 761458</div>
           </td>
-          <td style="white-space:nowrap;font-size:12px">2025-12-16</td>
-          <!-- 거절 사유: 유형 뱃지 + 핵심 요약 -->
-          <td class="crl-reason-cell" style="max-width:280px">
-            <div class="crl-tags">
+
+          <!-- CRL 발행일 -->
+          <td style="white-space:nowrap;color:var(--muted)">2025-12-16</td>
+
+          <!-- 거절 사유 -->
+          <td>
+            <div class="crl-tags" style="margin-bottom:5px">
               
               <span class="crl-cat-tag crl-cat-yellow" title="">효능/엔드포인트</span>
               
             </div>
-            <div style="font-size:11.5px;line-height:1.55;color:#cbd5e1;margin-top:4px">
+            <div style="font-size:11.5px;line-height:1.6;color:#94a3b8">
               Efficacy — inadequate evidence of efficacy for CRSwNP; small effect size with lack of robustness on tipping-point analysis; unfavorable benefit-risk given 6-mon…
             </div>
           </td>
-          <!-- 회복 전망 + 해결 여부 + 해결일 통합 -->
-          <td style="min-width:140px;vertical-align:top">
+
+          <!-- 회복 가능성: 배지만, 근거는 tooltip -->
+          <td>
             
-            <span class="rec-badge rec-orange" title="효능 부족·1차 평가변수 미충족은 새 Phase 3 임상 또는 기존 데이터 재분석 필요. 재제출 성공은 신규 시험 완료 후 평균 3-5년 소요. 일부는 다른 적응증·환자군으로 전환해 재도전.">
+            <span class="rec-badge rec-orange"
+                  title="효능 부족·1차 평가변수 미충족은 새 Phase 3 임상 또는 기존 데이터 재분석 필요. 재제출 성공은 신규 시험 완료 후 평균 3-5년 소요. 일부는 다른 적응증·환자군으로 전환해 재도전. &#10;&#10;근거: DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월">
               🔴 낮음
               <span class="rec-pct">35%</span>
             </span>
-            <div class="rec-basis">DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월</div>
-            
-            <!-- 해결 여부 + 기한 -->
-            <div style="margin-top:5px;font-size:11px">
-              
-              <span class="crl-pending">⚠ 미해결</span>
-              
-              
-              <div style="margin-top:4px">
-                <span style="font-size:10px;color:var(--muted)">FDA 응답 기한</span>
-                <span class="crl-deadline" data-deadline="2026-12-16"
-                      style="display:block;font-size:11.5px;font-weight:700;color:#f87171;font-variant-numeric:tabular-nums">
-                  2026-12-16
-                </span>
-                <span class="crl-days-left" data-deadline="2026-12-16"
-                      style="font-size:10px;color:var(--muted)"></span>
-              </div>
-              
-              
+            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4">
+              DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월
             </div>
+            
           </td>
-          <!-- FDA 문서 + 보도자료 -->
-          <td style="font-size:11px;white-space:nowrap;vertical-align:top">
+
+          <!-- 처리 현황 -->
+          <td>
+            
+            <span class="crl-status-pending">⚠ 미해결</span>
+            
+            
+            <div class="crl-deadline-block">
+              <div class="crl-deadline-label">FDA 응답 기한</div>
+              <div class="crl-deadline-date">2026-12-16</div>
+              <div class="crl-days-left" data-deadline="2026-12-16" style="color:var(--muted)"></div>
+            </div>
+            
+            
+          </td>
+
+          <!-- 문서 링크 -->
+          <td style="vertical-align:top">
             
             <a href="https://download.open.fda.gov/crl/CRL_BLA761458_20251216.pdf" target="_blank" rel="noopener"
-               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:4px">
-              FDA 문서↗
+               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700">
+              FDA↗
             </a>
             
             
-            <br><a href="https://www.gsk.com/en-gb/media/press-releases/gsk-receives-complete-response-letter-from-us-fda-for-depemokimab-in-crswithnasal-polyps/" target="_blank" rel="noopener"
-               style="color:#818cf8;text-decoration:none;font-size:10px">
+            <a href="https://www.gsk.com/en-gb/media/press-releases/gsk-receives-complete-response-letter-from-us-fda-for-depemokimab-in-crswithnasal-polyps/" target="_blank" rel="noopener"
+               style="display:inline-block;margin-top:5px;color:#818cf8;text-decoration:none;font-size:10px;border:1px solid rgba(129,140,248,.3);padding:2px 7px;border-radius:4px">
               보도자료↗
             </a>
             
@@ -102105,66 +102181,75 @@ Endpoint: Compare the hea<br>
         
         
         
-        <tr data-cats="CMC/제조공정"
+        <tr class="crl-row-pending"
+            data-cats="CMC/제조공정"
             data-resolved="false"
             data-recovery="high">
-          <td><strong>Regeneron</strong></td>
-          <!-- 약물명 + 신청번호 통합 -->
-          <td style="max-width:160px">
-            <div style="font-size:12px;font-weight:600;line-height:1.4;word-break:break-word">aflibercept 8mg PFS (Eylea HD; sBLA)</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:2px">BLA 125387</div>
+
+          <!-- 회사 -->
+          <td><strong style="font-size:13px">Regeneron</strong></td>
+
+          <!-- 약물 + 신청번호 -->
+          <td>
+            <div style="font-weight:600;line-height:1.4;word-break:break-word">aflibercept 8mg PFS (Eylea HD; sBLA)</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px">BLA 125387</div>
           </td>
-          <td style="white-space:nowrap;font-size:12px">2025-10-27</td>
-          <!-- 거절 사유: 유형 뱃지 + 핵심 요약 -->
-          <td class="crl-reason-cell" style="max-width:280px">
-            <div class="crl-tags">
+
+          <!-- CRL 발행일 -->
+          <td style="white-space:nowrap;color:var(--muted)">2025-10-27</td>
+
+          <!-- 거절 사유 -->
+          <td>
+            <div class="crl-tags" style="margin-bottom:5px">
               
               <span class="crl-cat-tag crl-cat-purple" title="">CMC/제조공정</span>
               
             </div>
-            <div style="font-size:11.5px;line-height:1.55;color:#cbd5e1;margin-top:4px">
+            <div style="font-size:11.5px;line-height:1.6;color:#94a3b8">
               CMC/manufacturing — Catalent Indiana fill-finish facility classified &#39;official action indicated&#39; after FDA inspection; GMP noncompliance
             </div>
           </td>
-          <!-- 회복 전망 + 해결 여부 + 해결일 통합 -->
-          <td style="min-width:140px;vertical-align:top">
+
+          <!-- 회복 가능성: 배지만, 근거는 tooltip -->
+          <td>
             
-            <span class="rec-badge rec-green" title="제조공정·시설 이슈는 임상 유효성과 완전히 무관한 기술적 문제. 시설 개선 → FDA 재실사(reinspection) 통과 → 재제출 경로. 계약 위탁생산(CMO) 변경으로 해결하는 경우도 많음.">
+            <span class="rec-badge rec-green"
+                  title="제조공정·시설 이슈는 임상 유효성과 완전히 무관한 기술적 문제. 시설 개선 → FDA 재실사(reinspection) 통과 → 재제출 경로. 계약 위탁생산(CMO) 변경으로 해결하는 경우도 많음. &#10;&#10;근거: FDA CDER 2015-2024: CMC 거절 ~85% 재승인 · 중간값 12개월">
               🟢 높음
               <span class="rec-pct">85%</span>
             </span>
-            <div class="rec-basis">FDA CDER 2015-2024: CMC 거절 ~85% 재승인 · 중간값 12개월</div>
-            
-            <!-- 해결 여부 + 기한 -->
-            <div style="margin-top:5px;font-size:11px">
-              
-              <span class="crl-pending">⚠ 미해결</span>
-              
-              
-              <div style="margin-top:4px">
-                <span style="font-size:10px;color:var(--muted)">FDA 응답 기한</span>
-                <span class="crl-deadline" data-deadline="2026-10-27"
-                      style="display:block;font-size:11.5px;font-weight:700;color:#f87171;font-variant-numeric:tabular-nums">
-                  2026-10-27
-                </span>
-                <span class="crl-days-left" data-deadline="2026-10-27"
-                      style="font-size:10px;color:var(--muted)"></span>
-              </div>
-              
-              
+            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4">
+              FDA CDER 2015-2024: CMC 거절 ~85% 재승인 · 중간값 12개월
             </div>
+            
           </td>
-          <!-- FDA 문서 + 보도자료 -->
-          <td style="font-size:11px;white-space:nowrap;vertical-align:top">
+
+          <!-- 처리 현황 -->
+          <td>
+            
+            <span class="crl-status-pending">⚠ 미해결</span>
+            
+            
+            <div class="crl-deadline-block">
+              <div class="crl-deadline-label">FDA 응답 기한</div>
+              <div class="crl-deadline-date">2026-10-27</div>
+              <div class="crl-days-left" data-deadline="2026-10-27" style="color:var(--muted)"></div>
+            </div>
+            
+            
+          </td>
+
+          <!-- 문서 링크 -->
+          <td style="vertical-align:top">
             
             <a href="https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&amp;ApplNo=125387" target="_blank" rel="noopener"
-               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:4px">
-              FDA 문서↗
+               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700">
+              FDA↗
             </a>
             
             
-            <br><a href="https://www.pearceip.law/2025/10/27/fda-issues-crl-for-regenerons-eylea-hd-aflibercept-pfs/" target="_blank" rel="noopener"
-               style="color:#818cf8;text-decoration:none;font-size:10px">
+            <a href="https://www.pearceip.law/2025/10/27/fda-issues-crl-for-regenerons-eylea-hd-aflibercept-pfs/" target="_blank" rel="noopener"
+               style="display:inline-block;margin-top:5px;color:#818cf8;text-decoration:none;font-size:10px;border:1px solid rgba(129,140,248,.3);padding:2px 7px;border-radius:4px">
               보도자료↗
             </a>
             
@@ -102176,54 +102261,67 @@ Endpoint: Compare the hea<br>
         
         
         
-        <tr data-cats="효능/엔드포인트"
+        <tr class="crl-row-resolved"
+            data-cats="효능/엔드포인트"
             data-resolved="true"
             data-recovery="low">
-          <td><strong>AstraZeneca</strong></td>
-          <!-- 약물명 + 신청번호 통합 -->
-          <td style="max-width:160px">
-            <div style="font-size:12px;font-weight:600;line-height:1.4;word-break:break-word">anifrolumab SC (Saphnelo SC; SLE 피하주사)</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:2px">BLA 761451</div>
+
+          <!-- 회사 -->
+          <td><strong style="font-size:13px">AstraZeneca</strong></td>
+
+          <!-- 약물 + 신청번호 -->
+          <td>
+            <div style="font-weight:600;line-height:1.4;word-break:break-word">anifrolumab SC (Saphnelo SC; SLE 피하주사)</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px">BLA 761451</div>
           </td>
-          <td style="white-space:nowrap;font-size:12px">2025-10-10</td>
-          <!-- 거절 사유: 유형 뱃지 + 핵심 요약 -->
-          <td class="crl-reason-cell" style="max-width:280px">
-            <div class="crl-tags">
+
+          <!-- CRL 발행일 -->
+          <td style="white-space:nowrap;color:var(--muted)">2025-10-10</td>
+
+          <!-- 거절 사유 -->
+          <td>
+            <div class="crl-tags" style="margin-bottom:5px">
               
               <span class="crl-cat-tag crl-cat-yellow" title="">효능/엔드포인트</span>
               
             </div>
-            <div style="font-size:11.5px;line-height:1.55;color:#cbd5e1;margin-top:4px">
+            <div style="font-size:11.5px;line-height:1.6;color:#94a3b8">
               Clinical data quality — critical errors in submitted dataset affecting primary endpoint analysis (TULIP-SC trial)
             </div>
           </td>
-          <!-- 회복 전망 + 해결 여부 + 해결일 통합 -->
-          <td style="min-width:140px;vertical-align:top">
+
+          <!-- 회복 가능성: 배지만, 근거는 tooltip -->
+          <td>
             
-            <span class="rec-badge rec-orange" title="효능 부족·1차 평가변수 미충족은 새 Phase 3 임상 또는 기존 데이터 재분석 필요. 재제출 성공은 신규 시험 완료 후 평균 3-5년 소요. 일부는 다른 적응증·환자군으로 전환해 재도전.">
+            <span class="rec-badge rec-orange"
+                  title="효능 부족·1차 평가변수 미충족은 새 Phase 3 임상 또는 기존 데이터 재분석 필요. 재제출 성공은 신규 시험 완료 후 평균 3-5년 소요. 일부는 다른 적응증·환자군으로 전환해 재도전. &#10;&#10;근거: DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월">
               🔴 낮음
               <span class="rec-pct">35%</span>
             </span>
-            <div class="rec-basis">DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월</div>
-            
-            <!-- 해결 여부 + 기한 -->
-            <div style="margin-top:5px;font-size:11px">
-              
-              <span class="crl-resolved">✓ 승인 완료</span>
-              
+            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4">
+              DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월
             </div>
+            
           </td>
-          <!-- FDA 문서 + 보도자료 -->
-          <td style="font-size:11px;white-space:nowrap;vertical-align:top">
+
+          <!-- 처리 현황 -->
+          <td>
+            
+            <span class="crl-status-resolved">✓ 승인 완료</span>
+            
+          </td>
+
+          <!-- 문서 링크 -->
+          <td style="vertical-align:top">
             
             <a href="https://download.open.fda.gov/crl/CRL_BLA761451_20251010.pdf" target="_blank" rel="noopener"
-               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:4px">
-              FDA 문서↗
+               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700">
+              FDA↗
             </a>
             
             
-            <br><a href="https://news.cision.com/astrazeneca/r/update-on-saphnelo-subcutaneous-administration,c4301623" target="_blank" rel="noopener"
-               style="color:#818cf8;text-decoration:none;font-size:10px">
+            <a href="https://news.cision.com/astrazeneca/r/update-on-saphnelo-subcutaneous-administration,c4301623" target="_blank" rel="noopener"
+               style="display:inline-block;margin-top:5px;color:#818cf8;text-decoration:none;font-size:10px;border:1px solid rgba(129,140,248,.3);padding:2px 7px;border-radius:4px">
               보도자료↗
             </a>
             
@@ -102235,56 +102333,69 @@ Endpoint: Compare the hea<br>
         
         
         
-        <tr data-cats="효능/엔드포인트,라벨링/REMS"
+        <tr class="crl-row-resolved"
+            data-cats="효능/엔드포인트,라벨링/REMS"
             data-resolved="true"
             data-recovery="low">
-          <td><strong>Astellas</strong></td>
-          <!-- 약물명 + 신청번호 통합 -->
-          <td style="max-width:160px">
-            <div style="font-size:12px;font-weight:600;line-height:1.4;word-break:break-word">avacincaptad pegol (Izervay; GA 라벨 확장 sNDA)</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:2px">NDA 217225</div>
+
+          <!-- 회사 -->
+          <td><strong style="font-size:13px">Astellas</strong></td>
+
+          <!-- 약물 + 신청번호 -->
+          <td>
+            <div style="font-weight:600;line-height:1.4;word-break:break-word">avacincaptad pegol (Izervay; GA 라벨 확장 sNDA)</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px">NDA 217225</div>
           </td>
-          <td style="white-space:nowrap;font-size:12px">2024-11-15</td>
-          <!-- 거절 사유: 유형 뱃지 + 핵심 요약 -->
-          <td class="crl-reason-cell" style="max-width:280px">
-            <div class="crl-tags">
+
+          <!-- CRL 발행일 -->
+          <td style="white-space:nowrap;color:var(--muted)">2024-11-15</td>
+
+          <!-- 거절 사유 -->
+          <td>
+            <div class="crl-tags" style="margin-bottom:5px">
               
               <span class="crl-cat-tag crl-cat-yellow" title="">효능/엔드포인트</span>
               
               <span class="crl-cat-tag crl-cat-teal" title="">라벨링/REMS</span>
               
             </div>
-            <div style="font-size:11.5px;line-height:1.55;color:#cbd5e1;margin-top:4px">
+            <div style="font-size:11.5px;line-height:1.6;color:#94a3b8">
               Labeling — statistical matter pertaining to proposed prescribing information language for 2-year GATHER2 data; no safety or efficacy concerns
             </div>
           </td>
-          <!-- 회복 전망 + 해결 여부 + 해결일 통합 -->
-          <td style="min-width:140px;vertical-align:top">
+
+          <!-- 회복 가능성: 배지만, 근거는 tooltip -->
+          <td>
             
-            <span class="rec-badge rec-orange" title="효능 부족·1차 평가변수 미충족은 새 Phase 3 임상 또는 기존 데이터 재분석 필요. 재제출 성공은 신규 시험 완료 후 평균 3-5년 소요. 일부는 다른 적응증·환자군으로 전환해 재도전.">
+            <span class="rec-badge rec-orange"
+                  title="효능 부족·1차 평가변수 미충족은 새 Phase 3 임상 또는 기존 데이터 재분석 필요. 재제출 성공은 신규 시험 완료 후 평균 3-5년 소요. 일부는 다른 적응증·환자군으로 전환해 재도전. &#10;&#10;근거: DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월">
               🔴 낮음
               <span class="rec-pct">35%</span>
             </span>
-            <div class="rec-basis">DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월</div>
-            
-            <!-- 해결 여부 + 기한 -->
-            <div style="margin-top:5px;font-size:11px">
-              
-              <span class="crl-resolved">✓ 승인 완료</span>
-              
+            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4">
+              DiMasi et al. 2020: 효능 CRL ~35% 재승인 · 중간값 42개월
             </div>
+            
           </td>
-          <!-- FDA 문서 + 보도자료 -->
-          <td style="font-size:11px;white-space:nowrap;vertical-align:top">
+
+          <!-- 처리 현황 -->
+          <td>
+            
+            <span class="crl-status-resolved">✓ 승인 완료</span>
+            
+          </td>
+
+          <!-- 문서 링크 -->
+          <td style="vertical-align:top">
             
             <a href="https://download.open.fda.gov/crl/217225-s001_OtherActionLtrs.pdf" target="_blank" rel="noopener"
-               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:4px">
-              FDA 문서↗
+               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700">
+              FDA↗
             </a>
             
             
-            <br><a href="https://www.astellas.com/en/news/29576" target="_blank" rel="noopener"
-               style="color:#818cf8;text-decoration:none;font-size:10px">
+            <a href="https://www.astellas.com/en/news/29576" target="_blank" rel="noopener"
+               style="display:inline-block;margin-top:5px;color:#818cf8;text-decoration:none;font-size:10px;border:1px solid rgba(129,140,248,.3);padding:2px 7px;border-radius:4px">
               보도자료↗
             </a>
             
@@ -102296,51 +102407,64 @@ Endpoint: Compare the hea<br>
         
         
         
-        <tr data-cats="CMC/제조공정,라벨링/REMS"
+        <tr class="crl-row-resolved"
+            data-cats="CMC/제조공정,라벨링/REMS"
             data-resolved="true"
             data-recovery="high">
-          <td><strong>Eli Lilly</strong></td>
-          <!-- 약물명 + 신청번호 통합 -->
-          <td style="max-width:160px">
-            <div style="font-size:12px;font-weight:600;line-height:1.4;word-break:break-word">mirikizumab (Omvoh; UC)</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:2px">BLA 761279</div>
+
+          <!-- 회사 -->
+          <td><strong style="font-size:13px">Eli Lilly</strong></td>
+
+          <!-- 약물 + 신청번호 -->
+          <td>
+            <div style="font-weight:600;line-height:1.4;word-break:break-word">mirikizumab (Omvoh; UC)</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px">BLA 761279</div>
           </td>
-          <td style="white-space:nowrap;font-size:12px">2023-03-30</td>
-          <!-- 거절 사유: 유형 뱃지 + 핵심 요약 -->
-          <td class="crl-reason-cell" style="max-width:280px">
-            <div class="crl-tags">
+
+          <!-- CRL 발행일 -->
+          <td style="white-space:nowrap;color:var(--muted)">2023-03-30</td>
+
+          <!-- 거절 사유 -->
+          <td>
+            <div class="crl-tags" style="margin-bottom:5px">
               
               <span class="crl-cat-tag crl-cat-purple" title="">CMC/제조공정</span>
               
               <span class="crl-cat-tag crl-cat-teal" title="">라벨링/REMS</span>
               
             </div>
-            <div style="font-size:11.5px;line-height:1.55;color:#cbd5e1;margin-top:4px">
+            <div style="font-size:11.5px;line-height:1.6;color:#94a3b8">
               Manufacturing — proposed manufacturing process deficiencies; FDA confirmed no concerns with clinical data, safety profile, or label
             </div>
           </td>
-          <!-- 회복 전망 + 해결 여부 + 해결일 통합 -->
-          <td style="min-width:140px;vertical-align:top">
+
+          <!-- 회복 가능성: 배지만, 근거는 tooltip -->
+          <td>
             
-            <span class="rec-badge rec-green" title="제조공정·시설 이슈는 임상 유효성과 완전히 무관한 기술적 문제. 시설 개선 → FDA 재실사(reinspection) 통과 → 재제출 경로. 계약 위탁생산(CMO) 변경으로 해결하는 경우도 많음.">
+            <span class="rec-badge rec-green"
+                  title="제조공정·시설 이슈는 임상 유효성과 완전히 무관한 기술적 문제. 시설 개선 → FDA 재실사(reinspection) 통과 → 재제출 경로. 계약 위탁생산(CMO) 변경으로 해결하는 경우도 많음. &#10;&#10;근거: FDA CDER 2015-2024: CMC 거절 ~85% 재승인 · 중간값 12개월">
               🟢 높음
               <span class="rec-pct">85%</span>
             </span>
-            <div class="rec-basis">FDA CDER 2015-2024: CMC 거절 ~85% 재승인 · 중간값 12개월</div>
-            
-            <!-- 해결 여부 + 기한 -->
-            <div style="margin-top:5px;font-size:11px">
-              
-              <span class="crl-resolved">✓ 승인 완료</span>
-              
+            <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4">
+              FDA CDER 2015-2024: CMC 거절 ~85% 재승인 · 중간값 12개월
             </div>
+            
           </td>
-          <!-- FDA 문서 + 보도자료 -->
-          <td style="font-size:11px;white-space:nowrap;vertical-align:top">
+
+          <!-- 처리 현황 -->
+          <td>
+            
+            <span class="crl-status-resolved">✓ 승인 완료</span>
+            
+          </td>
+
+          <!-- 문서 링크 -->
+          <td style="vertical-align:top">
             
             <a href="https://download.open.fda.gov/crl/761279_2023_Orig1s000OtherActionLtrs.pdf" target="_blank" rel="noopener"
-               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:4px">
-              FDA 문서↗
+               style="display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700">
+              FDA↗
             </a>
             
             
@@ -130860,7 +130984,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 16:13 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 16:15 UTC</span>
   </div>
 </div>
 
@@ -135651,8 +135775,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Biogen", "Gilead Sciences", "Vertex Pharmaceuticals", "Bristol-Myers Squibb", "Pfizer", "Incyte", "Johnson \u0026 Johnson", "Bayer", "Novartis", "Otsuka", "Eisai", "UCB", "Roche", "AstraZeneca", "Moderna", "Novo Nordisk", "AbbVie", "Regeneron", "Teva", "Boehringer Ingelheim", "Astellas", "CSL", "Merck (MSD)", "Daiichi Sankyo", "Merck KGaA", "Sanofi", "Amgen", "Takeda", "Eli Lilly", "GSK"];
-const BIOTECH_NAMES   = ["Blueprint Medicines", "Protagonist Therapeutics", "Exelixis", "Alnylam Pharmaceuticals", "Ionis Pharmaceuticals", "Apellis Pharmaceuticals", "Jazz Pharmaceuticals", "Argenx", "Rhythm Pharmaceuticals", "BioMarin Pharmaceutical", "Sarepta Therapeutics", "Madrigal Pharmaceuticals"];
+const BIGPHARMA_NAMES = ["Amgen", "AbbVie", "GSK", "Otsuka", "Pfizer", "Sanofi", "Biogen", "AstraZeneca", "Bayer", "Astellas", "Takeda", "Eisai", "Roche", "Eli Lilly", "Novartis", "Merck KGaA", "Merck (MSD)", "UCB", "Novo Nordisk", "Teva", "Gilead Sciences", "Johnson \u0026 Johnson", "Vertex Pharmaceuticals", "Daiichi Sankyo", "CSL", "Incyte", "Boehringer Ingelheim", "Regeneron", "Moderna", "Bristol-Myers Squibb"];
+const BIOTECH_NAMES   = ["Protagonist Therapeutics", "Apellis Pharmaceuticals", "BioMarin Pharmaceutical", "Argenx", "Rhythm Pharmaceuticals", "Exelixis", "Madrigal Pharmaceuticals", "Alnylam Pharmaceuticals", "Blueprint Medicines", "Ionis Pharmaceuticals", "Sarepta Therapeutics", "Jazz Pharmaceuticals"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -135815,7 +135939,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 16:13 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 16:15 UTC
 </footer>
 
 <script>

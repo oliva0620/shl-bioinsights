@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 13:50 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 13:56 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -406,7 +406,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 13:50 UTC
+  최종 업데이트: 2026-05-24 13:56 UTC
 </p>
 </div>
 
@@ -452,7 +452,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     color: var(--muted); border-radius: 5px; padding: 2px 8px;
   }
   .ph-stat-row {
-    display: flex; gap: 20px; margin-bottom: 10px;
+    display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap;
   }
   .ph-stat { text-align: center; }
   .ph-stat-val { font-size: 20px; font-weight: 800; color: var(--text); line-height: 1; }
@@ -506,7 +506,17 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
         <div class="ph-stat">
           
           <div class="ph-stat-val">13239</div>
-          <div class="ph-stat-label">미국 임상</div>
+          <div class="ph-stat-label">전체 임상</div>
+        </div>
+        <div class="ph-stat">
+          
+          <div class="ph-stat-val" style="color:var(--muted)">3536</div>
+          <div class="ph-stat-label">Phase 1</div>
+        </div>
+        <div class="ph-stat">
+          
+          <div class="ph-stat-val" style="color:var(--blue)">3221</div>
+          <div class="ph-stat-label">Phase 2</div>
         </div>
         <div class="ph-stat">
           
@@ -600,7 +610,17 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
         <div class="ph-stat">
           
           <div class="ph-stat-val">466</div>
-          <div class="ph-stat-label">미국 임상</div>
+          <div class="ph-stat-label">전체 임상</div>
+        </div>
+        <div class="ph-stat">
+          
+          <div class="ph-stat-val" style="color:var(--muted)">107</div>
+          <div class="ph-stat-label">Phase 1</div>
+        </div>
+        <div class="ph-stat">
+          
+          <div class="ph-stat-val" style="color:var(--blue)">136</div>
+          <div class="ph-stat-label">Phase 2</div>
         </div>
         <div class="ph-stat">
           
@@ -121630,7 +121650,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 13:50 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 13:56 UTC</span>
   </div>
 </div>
 
@@ -126421,8 +126441,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Pfizer", "UCB", "Sanofi", "Eisai", "Bayer", "Otsuka", "Moderna", "Incyte", "Boehringer Ingelheim", "Takeda", "Merck (MSD)", "Vertex Pharmaceuticals", "Roche", "Astellas", "Gilead Sciences", "Merck KGaA", "Novartis", "Eli Lilly", "Johnson \u0026 Johnson", "GSK", "Regeneron", "Amgen", "Biogen", "CSL", "Teva", "AstraZeneca", "Bristol-Myers Squibb", "Daiichi Sankyo", "AbbVie", "Novo Nordisk"];
-const BIOTECH_NAMES   = ["Argenx", "BioMarin Pharmaceutical", "Madrigal Pharmaceuticals", "Protagonist Therapeutics", "Ionis Pharmaceuticals", "Alnylam Pharmaceuticals", "Exelixis", "Apellis Pharmaceuticals", "Rhythm Pharmaceuticals", "Blueprint Medicines", "Sarepta Therapeutics", "Jazz Pharmaceuticals"];
+const BIGPHARMA_NAMES = ["Eli Lilly", "Bayer", "AstraZeneca", "Otsuka", "Astellas", "Eisai", "Teva", "AbbVie", "Amgen", "Roche", "Novartis", "Pfizer", "Sanofi", "Gilead Sciences", "Moderna", "CSL", "Novo Nordisk", "Daiichi Sankyo", "Merck KGaA", "Johnson \u0026 Johnson", "Bristol-Myers Squibb", "Incyte", "UCB", "Boehringer Ingelheim", "Biogen", "Takeda", "Merck (MSD)", "GSK", "Regeneron", "Vertex Pharmaceuticals"];
+const BIOTECH_NAMES   = ["Argenx", "Protagonist Therapeutics", "Sarepta Therapeutics", "Ionis Pharmaceuticals", "Apellis Pharmaceuticals", "Jazz Pharmaceuticals", "Exelixis", "Madrigal Pharmaceuticals", "Alnylam Pharmaceuticals", "Rhythm Pharmaceuticals", "BioMarin Pharmaceutical", "Blueprint Medicines"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -126585,7 +126605,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 13:50 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 13:56 UTC
 </footer>
 
 <script>

@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 14:00 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 14:06 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -406,7 +406,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 14:00 UTC
+  최종 업데이트: 2026-05-24 14:06 UTC
 </p>
 </div>
 
@@ -457,31 +457,46 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
   .ph-stat { text-align: center; }
   .ph-stat-val { font-size: 20px; font-weight: 800; color: var(--text); line-height: 1; }
   .ph-stat-label { font-size: 10px; color: var(--muted); margin-top: 2px; }
-  /* modality insight */
-  .modality-insight {
+  /* modality infographic */
+  .modality-infograph {
     border-top: 1px solid var(--border);
     padding-top: 10px;
     margin-top: 4px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
-  .insight-row { display: flex; flex-direction: column; gap: 2px; }
-  .insight-label {
-    font-size: 10px; font-weight: 700; color: var(--accent);
-    text-transform: uppercase; letter-spacing: .5px;
+  .mig-label {
+    font-size: 9px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: .6px; margin-bottom: 4px;
   }
-  .insight-body { font-size: 11px; color: var(--muted); line-height: 1.65; }
-  .insight-pipeline { font-size: 11px; color: #94a3b8; line-height: 1.6; font-style: italic; }
-  .insight-leaders {
-    display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px;
+  /* market bar chart */
+  .mig-market { display: flex; flex-direction: column; gap: 5px; }
+  .mig-bar-row { display: flex; align-items: center; gap: 7px; }
+  .mig-bar-year { font-size: 10px; color: var(--muted); width: 32px; flex-shrink: 0; text-align: right; }
+  .mig-bar-track { flex: 1; height: 14px; background: var(--surface2); border-radius: 3px; overflow: hidden; position: relative; }
+  .mig-bar-fill { height: 100%; border-radius: 3px; transition: width .4s; display: flex; align-items: center; justify-content: flex-end; padding-right: 5px; }
+  .mig-bar-val { font-size: 9px; font-weight: 700; color: #fff; white-space: nowrap; }
+  .mig-cagr-badge {
+    font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 99px;
+    background: rgba(16,185,129,.15); color: #10b981; white-space: nowrap; flex-shrink: 0;
   }
-  .insight-leader-pill {
-    font-size: 10px; background: rgba(99,102,241,.12); color: #818cf8;
-    border: 1px solid rgba(99,102,241,.25); border-radius: 4px; padding: 1px 7px;
-    font-weight: 600;
+  /* indication tags */
+  .mig-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .mig-tag {
+    font-size: 10px; background: var(--surface2); border: 1px solid var(--border);
+    color: #cbd5e1; border-radius: 4px; padding: 2px 8px;
   }
-  .insight-leaders-label { font-size: 10px; color: var(--muted); margin-bottom: 2px; }
+  /* deal list */
+  .mig-deals { display: flex; flex-direction: column; gap: 5px; }
+  .mig-deal {
+    display: flex; align-items: flex-start; gap: 7px;
+    background: var(--surface2); border-radius: 6px; padding: 6px 9px;
+  }
+  .mig-deal-year { font-size: 10px; color: var(--muted); white-space: nowrap; flex-shrink: 0; padding-top: 1px; }
+  .mig-deal-body { flex: 1; }
+  .mig-deal-desc { font-size: 11px; color: var(--text); line-height: 1.4; }
+  .mig-deal-amount { font-size: 10px; color: #a78bfa; font-weight: 700; margin-top: 1px; }
   </style>
 
   <div class="pipeline-header">
@@ -829,49 +844,101 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">항체의 표적 특이성과 세포독성 약물의 강력한 살상력을 결합한 플랫폼. 2세대 페이로드(deruxtecan 계열)가 1세대 대비 치료 지수를 크게 개선하며 임상 성공률 상승. 유방암→폐암→위암→방광암→난소암으로 적응증 확장 중.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:20%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$13B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$64B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +30%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">글로벌 ADC 시장 2024년 약 $130억 → 2030년 $640억 이상 예상 (CAGR ~30%). 2023년 이후 파트너십·M&amp;A 누적 $700억+ 규모.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">HER2+ 유방암, NSCLC, 위/위식도접합부암, 방광암, 자궁경부암, 난소암, 혈액암(AML·DLBCL)</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">trastuzumab deruxtecan (T-DXd, Daiichi/AZ) · datopotamab deruxtecan · ifinatamab deruxtecan · patritumab deruxtecan · sacituzumab govitecan (Gilead) · tisotumab vedotin (Pfizer)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">Daiichi Sankyo</span>
+            <span class="mig-tag">HER2+ 유방암</span>
             
-            <span class="insight-leader-pill">AstraZeneca</span>
+            <span class="mig-tag">NSCLC</span>
             
-            <span class="insight-leader-pill">Pfizer</span>
+            <span class="mig-tag">방광암</span>
             
-            <span class="insight-leader-pill">Gilead Sciences</span>
+            <span class="mig-tag">위/위식도접합부암</span>
             
-            <span class="insight-leader-pill">Roche</span>
+            <span class="mig-tag">난소암</span>
+            
+            <span class="mig-tag">AML</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Pfizer → Seagen 인수</div>
+                <div class="mig-deal-amount">$430억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">MSD → Daiichi 파트너십 (3종 ADC)</div>
+                <div class="mig-deal-amount">$220억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">AbbVie → ImmunoGen 인수</div>
+                <div class="mig-deal-amount">$101억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">BMS → SystImmune 파트너십</div>
+                <div class="mig-deal-amount">$84억</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -988,49 +1055,101 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">GLP-1 수용체 작용제가 비만·2형 당뇨의 치료 패러다임을 완전히 재편. tirzepatide(GLP-1+GIP)와 semaglutide(GLP-1)가 체중 15~22% 감량 달성. 비만에서 심부전(HFpEF), 만성신장질환(CKD), MASH(비알코올성 지방간염), 수면무호흡증으로 적응증 급속 확장 중. Madrigal Rezdiffra는 MASH 최초 승인약.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:33%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$50B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$150B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +20%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">글로벌 GLP-1 시장 2024년 약 $500억 → 2030년 $1,500억+ 예상 (CAGR ~20%). MASH 치료제 시장만 $50억+ 추정. Ozempic·Wegovy·Mounjaro·Zepbound 4개 제품이 Novo·Lilly 매출 견인.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">2형 당뇨, 비만, HFpEF (심부전), CKD (만성신장질환), MASH/NASH (지방간염), 수면무호흡증, ASCVD 예방</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">tirzepatide (Mounjaro·Zepbound, Lilly) · semaglutide (Ozempic·Wegovy, Novo) · CagriSema (GLP-1+아밀린, Novo) · retatrutide (GLP-1+GIP+글루카곤 삼중, Lilly) · orforglipron (경구 GLP-1, Lilly/Novo) · resmetirom (Rezdiffra, Madrigal — MASH 최초 승인)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">Eli Lilly</span>
+            <span class="mig-tag">2형 당뇨</span>
             
-            <span class="insight-leader-pill">Novo Nordisk</span>
+            <span class="mig-tag">비만 (체중 15~22% 감량)</span>
             
-            <span class="insight-leader-pill">AstraZeneca</span>
+            <span class="mig-tag">HFpEF 심부전</span>
             
-            <span class="insight-leader-pill">Boehringer Ingelheim</span>
+            <span class="mig-tag">CKD 만성신장질환</span>
             
-            <span class="insight-leader-pill">Madrigal Pharmaceuticals</span>
+            <span class="mig-tag">MASH/NASH 지방간염</span>
+            
+            <span class="mig-tag">수면무호흡증</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Novo Nordisk → Catalent 공장 인수 (생산 병목 해소)</div>
+                <div class="mig-deal-amount">$165억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Eli Lilly 생산 인프라 확충 투자 (US 공장 신설)</div>
+                <div class="mig-deal-amount">$230억+</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Roche → Zealand Pharma 파트너십 (amycretin, GLP-1+아밀린)</div>
+                <div class="mig-deal-amount">$14억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">AZ → Eccogene 경구 GLP-1 소분자 라이선스 계약</div>
+                <div class="mig-deal-amount">$18.5억</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -1147,49 +1266,97 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">단일 항체보다 복잡한 구조로 두 개 이상의 표적을 동시에 결합. CD3 T세포 engager는 자체 면역세포를 동원해 종양 직접 타격 — 혈액암에서 CAR-T 대비 접근성 높은 대안으로 자리 잡는 중. EGFR×MET 이중항체(amivantamab)는 NSCLC 표준치료 진입.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:22%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$8B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$35B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +28%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">글로벌 이중항체 시장 2024년 약 $80억 → 2030년 $350억+ 예상 (CAGR ~28%). 다발성골수종·림프종 치료 패러다임 변화 주도.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">다발성골수종 (BCMA·GPRC5D), DLBCL·여포성림프종, NSCLC (EGFR×MET), 급성백혈병, 안과질환 (VEGF×Ang2)</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">teclistamab·talquetamab·elranatamab (다발골수종) · mosunetuzumab·glofitamab·epcoritamab (림프종) · amivantamab (NSCLC) · faricimab (안과)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">Johnson &amp; Johnson</span>
+            <span class="mig-tag">다발성골수종 (BCMA·GPRC5D)</span>
             
-            <span class="insight-leader-pill">Roche</span>
+            <span class="mig-tag">DLBCL·여포성림프종</span>
             
-            <span class="insight-leader-pill">AbbVie</span>
+            <span class="mig-tag">NSCLC (EGFR×MET)</span>
             
-            <span class="insight-leader-pill">Pfizer</span>
-            
-            <span class="insight-leader-pill">Amgen</span>
+            <span class="mig-tag">안과 (VEGF×Ang2)</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">J&amp;J teclistamab·talquetamab 다발골수종 승인</div>
+                <div class="mig-deal-amount">연매출 $10억+</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Roche mosunetuzumab·glofitamab 림프종 승인</div>
+                <div class="mig-deal-amount">연매출 $5억+</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">J&amp;J amivantamab NSCLC 1L 승인</div>
+                <div class="mig-deal-amount">연매출 $8억+</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">AbbVie → Tentarix 파트너십 (다중특이항체)</div>
+                <div class="mig-deal-amount">$14억</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -1306,49 +1473,99 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">COVID-19 mRNA 백신으로 플랫폼 대규모 검증 완료. mRNA-4157/V940(Moderna·Merck)은 개인 맞춤형 신항원 암백신으로 흑색종 Phase 3 진입 — 재발률 44% 감소 Phase 2b 데이터. siRNA(Alnylam)는 간 표적 유전자 억제 플랫폼으로 희귀대사질환에서 수익화 성공. ASO(Ionis)는 신경·심혈관에서 다수 승인.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:25%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$7B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$28B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +22%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">mRNA 치료제 시장 2024년 약 $250억(백신 포함) → 비백신 치료제만 2030년 $200억+ 예상. RNAi·ASO 시장 별도 $50억+ (CAGR ~20%).</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">흑색종·NSCLC (개인맞춤 암백신), 희귀대사질환 (TTR·원발성 고옥살산뇨증), 심혈관 (PCSK9·Lp(a)), 신경계 (ALS·척수성근위축증)</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">mRNA-4157/V940 (개인맞춤 암백신, Moderna+MSD) · vutrisiran (TTR 아밀로이드, Alnylam) · inclisiran (PCSK9 siRNA, Novartis/Alnylam) · eplontersen (TTR, Ionis/AZ) · fitusiran (혈우병, Alnylam/Sanofi)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">Moderna</span>
+            <span class="mig-tag">흑색종·NSCLC (mRNA 개인맞춤 암백신)</span>
             
-            <span class="insight-leader-pill">Merck (MSD)</span>
+            <span class="mig-tag">TTR 아밀로이드증 (siRNA·ASO)</span>
             
-            <span class="insight-leader-pill">Alnylam Pharmaceuticals</span>
+            <span class="mig-tag">심혈관 (PCSK9·Lp(a) siRNA)</span>
             
-            <span class="insight-leader-pill">Ionis Pharmaceuticals</span>
+            <span class="mig-tag">혈우병 (fitusiran)</span>
             
-            <span class="insight-leader-pill">Novartis</span>
+            <span class="mig-tag">ALS·SMA (ASO)</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Moderna+MSD mRNA-4157 개인맞춤 암백신 Phase 3 진입 (흑색종 재발률 -44%)</div>
+                <div class="mig-deal-amount">$2.5억 선급금</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Novartis inclisiran (PCSK9 siRNA) 상업화 — 반기 1회 투여</div>
+                <div class="mig-deal-amount">연매출 $4억+</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">AZ → Ionis ASO 포트폴리오 파트너십 연장</div>
+                <div class="mig-deal-amount">$30억+</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Sanofi → Alnylam fitusiran (혈우병 siRNA) 상업 권리 재취득</div>
+                <div class="mig-deal-amount">$17억</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -1465,49 +1682,99 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">1회 투여로 질병 근본을 교정하는 개념. CAR-T(키메라 항원 수용체 T세포)는 혈액암에서 &#39;완치&#39;에 근접하는 반응률 달성. AAV 기반 유전자치료는 혈우병·척수성근위축증(SMA)·DMD에서 FDA 승인 획득. TIL(종양침윤림프구)은 흑색종 이후 고형암 확장 중.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:25%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$20B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$80B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +26%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">글로벌 유전자·세포치료 시장 2024년 약 $200억 → 2030년 $800억+ (CAGR ~26%). 1회 치료 가격 $1~3M 수준 — 희귀질환 보험급여 협상이 핵심 변수.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">혈액암 (DLBCL·다발골수종·ALL), DMD, 혈우병 A/B, SMA, 망막이영양증, 낫적혈구병, 베타지중해빈혈</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">ciltacabtagene autoleucel (cilta-cel, J&amp;J/Legend) · lisocabtagene maraleucel (liso-cel, BMS) · delandistrogene moxeparvovec (Elevidys, Sarepta) · fidanacogene elaparvovec (혈우병B, Pfizer) · lifileucel (TIL, Iovance)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">Bristol-Myers Squibb</span>
+            <span class="mig-tag">혈액암 (DLBCL·다발골수종·ALL)</span>
             
-            <span class="insight-leader-pill">Johnson &amp; Johnson</span>
+            <span class="mig-tag">DMD (뒤센 근이영양증)</span>
             
-            <span class="insight-leader-pill">Novartis</span>
+            <span class="mig-tag">혈우병 A·B</span>
             
-            <span class="insight-leader-pill">Sarepta Therapeutics</span>
+            <span class="mig-tag">SMA</span>
             
-            <span class="insight-leader-pill">BioMarin Pharmaceutical</span>
+            <span class="mig-tag">낫적혈구병·베타지중해빈혈</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Vertex+CRISPR → Casgevy (낫적혈구병) FDA 최초 CRISPR 치료제 승인</div>
+                <div class="mig-deal-amount">1회 $220만</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Sarepta Elevidys (DMD 유전자치료) 승인</div>
+                <div class="mig-deal-amount">1회 $320만</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">BMS → 2seventy bio CAR-T 자산 인수</div>
+                <div class="mig-deal-amount">$286M</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Novartis Kymriah 글로벌 판권 유지 (ALL·DLBCL)</div>
+                <div class="mig-deal-amount">연매출 $6억+</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -1614,47 +1881,97 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">방사성 동위원소를 종양 특이적 리간드에 결합해 내부 방사선으로 암세포만 타격. Novartis Pluvicto(177Lu-PSMA-617)가 전립선암에서 생존 연장 증명 후 시장 선도. 차세대 Actinium-225(알파 방출체)는 Lu-177 대비 살상력 높고 확산 범위 좁아 차기 플랫폼으로 주목.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:20%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$4B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$20B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +35%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">글로벌 RLT 시장 2024년 약 $35억 → 2030년 $200억+ (CAGR ~35%). 생산 인프라 확충 속도가 시장 성장 제한 요인.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">거세저항성 전립선암 (PSMA), 신경내분비종양 (SSTR2), 소세포폐암·유방암·췌장암 (확장 연구 중)</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">177Lu-PSMA-617 (Pluvicto, Novartis) · 177Lu-DOTATATE (Lutathera, Novartis) · 225Ac-PSMA-617 (차세대, Novartis) · BAY 2315179 (Bayer, PSMA) · 177Lu-PNT2002 (POINT/AZ)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">Novartis</span>
+            <span class="mig-tag">거세저항성 전립선암 (PSMA)</span>
             
-            <span class="insight-leader-pill">Bayer</span>
+            <span class="mig-tag">신경내분비종양 (SSTR2)</span>
             
-            <span class="insight-leader-pill">AstraZeneca</span>
+            <span class="mig-tag">소세포폐암 (확장)</span>
             
-            <span class="insight-leader-pill">Bristol-Myers Squibb</span>
+            <span class="mig-tag">췌장암 (임상)</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">BMS → RayzeBio 인수 (Ac-225 플랫폼)</div>
+                <div class="mig-deal-amount">$41억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">AZ → Fusion Pharmaceuticals 인수</div>
+                <div class="mig-deal-amount">$24억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Eli Lilly → POINT Biopharma 인수</div>
+                <div class="mig-deal-amount">$14억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2022</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Novartis Pluvicto 전립선암 승인·상업화</div>
+                <div class="mig-deal-amount">연매출 $9억+</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -1771,49 +2088,101 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">PD-1/PD-L1 차단제가 20개 이상 암종의 표준치료로 자리 잡은 성숙 플랫폼. 현재 트렌드는 LAG-3(relatlimab), TIGIT, LILRB 등 새 표적 병용과 ADC·이중항체와의 조합. 단독 반응률 20~30% 한계를 병용으로 극복하는 전략이 핵심.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:61%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$65B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$105B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +8%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">글로벌 ICI 시장 2024년 약 $650억(PD-1/L1 위주) → 2030년 $1,000억+ 예상. Keytruda(pembrolizumab) 단독 매출 2023년 $250억 — 제약 역사상 최대 단일 제품.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">NSCLC, 흑색종, 방광암, 두경부암, 식도암, MSI-H 고형암 (전 적응증), 트리플네거티브유방암, RCC, MSI-H 결장암</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">pembrolizumab (Keytruda, MSD) · nivolumab (Opdivo, BMS) · durvalumab (Imfinzi, AZ) · cemiplimab (Libtayo, Regeneron/Sanofi) · dostarlimab (GSK) · nivolumab+relatlimab (Opdualag, BMS)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">Merck (MSD)</span>
+            <span class="mig-tag">NSCLC (1L·2L)</span>
             
-            <span class="insight-leader-pill">Bristol-Myers Squibb</span>
+            <span class="mig-tag">흑색종</span>
             
-            <span class="insight-leader-pill">AstraZeneca</span>
+            <span class="mig-tag">방광암</span>
             
-            <span class="insight-leader-pill">Roche</span>
+            <span class="mig-tag">MSI-H 전 고형암</span>
             
-            <span class="insight-leader-pill">Regeneron</span>
+            <span class="mig-tag">두경부암</span>
+            
+            <span class="mig-tag">트리플네거티브유방암</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Keytruda (pembrolizumab) 제약 역사상 최대 매출 단일품목</div>
+                <div class="mig-deal-amount">연매출 $250억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2022</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">BMS Opdivo+relatlimab (LAG-3) Opdualag 승인 — 새 병용 시대</div>
+                <div class="mig-deal-amount">연매출 $10억+</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2028</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Keytruda 특허 만료 → 바이오시밀러 진입 예정</div>
+                <div class="mig-deal-amount">시장 잠식 리스크</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Roche tiragolumab (TIGIT) Phase 3 실패 — 차세대 표적 리스크 재확인</div>
+                <div class="mig-deal-amount">개발 중단</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -1930,49 +2299,97 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
+      <!-- 플랫폼 인포그래픽 -->
       
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">경구 투여 편의성과 표적 특이성을 동시에 갖춘 소분자 약물. KRAS G12C 돌파(sotorasib·adagrasib) 이후 G12D·G13C 등 차세대 KRAS 억제제 임상 가속. PARP 억제제는 BRCA 변이 유방·난소·전립선암에서 표준치료화. CDK4/6 내성 후 CDK2 억제제 병용 임상 활발.</div>
+      <div class="modality-infograph">
+
+        <!-- 시장 성장 바 차트 -->
+        
+        
+        
+        
+        
+        <div class="mig-market">
+          <div class="mig-label">📊 시장 규모 성장</div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2024</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:62%;background:rgba(99,102,241,.5)">
+                <span class="mig-bar-val">$50B</span>
+              </div>
+            </div>
+          </div>
+          <div class="mig-bar-row">
+            <div class="mig-bar-year">2030E</div>
+            <div class="mig-bar-track">
+              <div class="mig-bar-fill" style="width:100%;background:linear-gradient(90deg,#6366f1,#a855f7)">
+                <span class="mig-bar-val">$80B</span>
+              </div>
+            </div>
+            <div class="mig-cagr-badge">CAGR +8%</div>
+          </div>
         </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">글로벌 경구 항암제 시장 2024년 약 $500억 → 2030년 $800억+ (CAGR ~8%). KRAS 억제제 단독 $50억+ 예상. PARP 억제제 계열 합산 $60억+.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">KRAS G12C NSCLC·결장암, HR+/HER2- 유방암 (CDK4/6), BRCA 변이 난소·유방·전립선암 (PARP), EGFR 변이 NSCLC (3세대 EGFR TKI), EZH2 림프종</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">sotorasib (Lumakras, Amgen) · adagrasib (Krazati, Mirati→J&amp;J) · olaparib (Lynparza, AZ) · niraparib (Zejula, GSK) · palbociclib·ribociclib·abemaciclib (CDK4/6) · osimertinib (Tagrisso, AZ)</div>
-        </div>
-        
+
+        <!-- 주요 적응증 태그 -->
         
         <div>
-          <div class="insight-leaders-label">🏆 선도 기업</div>
-          <div class="insight-leaders">
+          <div class="mig-label">🏥 주요 적응증</div>
+          <div class="mig-tags">
             
-            <span class="insight-leader-pill">AstraZeneca</span>
+            <span class="mig-tag">KRAS G12C NSCLC·결장암</span>
             
-            <span class="insight-leader-pill">Pfizer</span>
+            <span class="mig-tag">HR+/HER2- 유방암 (CDK4/6)</span>
             
-            <span class="insight-leader-pill">Eli Lilly</span>
+            <span class="mig-tag">BRCA 변이 난소·유방·전립선암 (PARP)</span>
             
-            <span class="insight-leader-pill">Amgen</span>
-            
-            <span class="insight-leader-pill">Johnson &amp; Johnson</span>
+            <span class="mig-tag">EGFR 변이 NSCLC (3세대 TKI)</span>
             
           </div>
         </div>
         
+
+        <!-- 주요 딜 & 빅뉴스 -->
+        
+        <div>
+          <div class="mig-label">⚡ 주요 딜 · M&amp;A · 빅뉴스</div>
+          <div class="mig-deals">
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2024</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">J&amp;J → Mirati Therapeutics 인수 (adagrasib, KRAS G12C)</div>
+                <div class="mig-deal-amount">$58억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2023</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">AZ osimertinib (Tagrisso) EGFR TKI — NSCLC 글로벌 표준치료</div>
+                <div class="mig-deal-amount">연매출 $58억</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2027</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Pfizer palbociclib (Ibrance) CDK4/6 특허 절벽 — 제네릭 진입</div>
+                <div class="mig-deal-amount">매출 급감 예상</div>
+              </div>
+            </div>
+            
+            <div class="mig-deal">
+              <div class="mig-deal-year">2021</div>
+              <div class="mig-deal-body">
+                <div class="mig-deal-desc">Amgen sotorasib (Lumakras) KRAS G12C 최초 승인</div>
+                <div class="mig-deal-amount">연매출 $4억+</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
       </div>
       
 
@@ -2089,33 +2506,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
       </div>
       
 
-      <!-- 플랫폼 분석 -->
-      
-      <div class="modality-insight">
-        <div class="insight-row">
-          <div class="insight-label">📌 플랫폼 개요</div>
-          <div class="insight-body">검증된 항체·소분자 플랫폼 기반. 희귀질환·자가면역·심혈관·신경계 등 다양한 분야에 걸쳐 꾸준한 신약 창출. 개별 약물 데이터와 적응증 특성에 따라 성과가 크게 달라지는 영역.</div>
-        </div>
-        
-        <div class="insight-row">
-          <div class="insight-label">📊 시장 규모 · 성장률</div>
-          <div class="insight-body">전통 항체·소분자 시장이 제약 전체의 약 60% 이상 점유. 자가면역(JAK 억제제, IL 차단제) 시장 $500억+, 심혈관 $300억+.</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">🏥 주요 적응증</div>
-          <div class="insight-body">자가면역 (RA·건선·IBD·SLE), 심혈관, 신경계, 호흡기, 안과, 희귀대사질환</div>
-        </div>
-        
-        
-        <div class="insight-row">
-          <div class="insight-label">💊 주요 파이프라인</div>
-          <div class="insight-pipeline">adalimumab (Humira 계열), ustekinumab (Stelara), dupilumab (Dupixent, Sanofi/Regeneron), lebrikizumab, tezepelumab</div>
-        </div>
-        
-        
-      </div>
+      <!-- 플랫폼 인포그래픽 -->
       
 
     </div>
@@ -121810,7 +122201,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 14:00 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 14:06 UTC</span>
   </div>
 </div>
 
@@ -126601,8 +126992,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Bristol-Myers Squibb", "Daiichi Sankyo", "Otsuka", "Eli Lilly", "Bayer", "Pfizer", "Gilead Sciences", "CSL", "Roche", "Boehringer Ingelheim", "Biogen", "Regeneron", "Incyte", "Merck KGaA", "Vertex Pharmaceuticals", "Novo Nordisk", "Sanofi", "Eisai", "Moderna", "UCB", "Novartis", "GSK", "Teva", "AbbVie", "AstraZeneca", "Takeda", "Johnson \u0026 Johnson", "Astellas", "Merck (MSD)", "Amgen"];
-const BIOTECH_NAMES   = ["Jazz Pharmaceuticals", "Exelixis", "Apellis Pharmaceuticals", "Sarepta Therapeutics", "Rhythm Pharmaceuticals", "Madrigal Pharmaceuticals", "Blueprint Medicines", "Argenx", "Ionis Pharmaceuticals", "Alnylam Pharmaceuticals", "BioMarin Pharmaceutical", "Protagonist Therapeutics"];
+const BIGPHARMA_NAMES = ["Bayer", "Roche", "AstraZeneca", "Boehringer Ingelheim", "Biogen", "Amgen", "Gilead Sciences", "Daiichi Sankyo", "Moderna", "Takeda", "Novartis", "Merck (MSD)", "Eli Lilly", "UCB", "Johnson \u0026 Johnson", "Teva", "Otsuka", "Eisai", "Incyte", "Pfizer", "Vertex Pharmaceuticals", "Merck KGaA", "Astellas", "Bristol-Myers Squibb", "Sanofi", "GSK", "Regeneron", "CSL", "Novo Nordisk", "AbbVie"];
+const BIOTECH_NAMES   = ["Argenx", "Madrigal Pharmaceuticals", "Ionis Pharmaceuticals", "Rhythm Pharmaceuticals", "Protagonist Therapeutics", "Apellis Pharmaceuticals", "BioMarin Pharmaceutical", "Sarepta Therapeutics", "Alnylam Pharmaceuticals", "Jazz Pharmaceuticals", "Blueprint Medicines", "Exelixis"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -126765,7 +127156,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 14:00 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 14:06 UTC
 </footer>
 
 <script>

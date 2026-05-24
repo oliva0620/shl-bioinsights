@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 14:56 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 15:06 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -257,470 +257,540 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 <!-- PANEL 0: 홈 랜딩 -->
 <div id="panel-home" class="tab-panel active">
 <style>
-/* ── Home: Pitchbook-style intelligence dashboard ── */
-#panel-home { background: var(--bg); padding: 0; }
+/* ── Home: Brand landing page ── */
+#panel-home {
+  background: radial-gradient(ellipse 100% 55% at 50% 0%, rgba(99,102,241,.13) 0%, transparent 65%), var(--bg);
+}
 
-.hd-kpi-bar {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border-bottom: 1px solid var(--border);
+.hm-wrap { max-width: 740px; margin: 0 auto; padding: 64px 28px 56px; text-align: center; }
+.hm-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  color: #818cf8; border: 1px solid rgba(99,102,241,.3); border-radius: 99px;
+  padding: 4px 14px; margin-bottom: 28px;
 }
-.hd-kpi {
-  padding: 18px 20px; border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; gap: 3px;
+.hm-eyebrow-dot { width: 5px; height: 5px; background: #818cf8; border-radius: 99px; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.3} }
+.hm-brand {
+  font-size: 52px; font-weight: 900; letter-spacing: -2px; line-height: 1;
+  background: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 40%, #818cf8 70%, #6366f1 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 20px;
 }
-.hd-kpi:last-child { border-right: none; }
-.hd-kpi-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
-.hd-kpi-val   { font-size: 24px; font-weight: 800; letter-spacing: -.5px; line-height: 1; }
-.hd-kpi-sub   { font-size: 10px; color: var(--muted); }
-
-.hd-body {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  grid-template-rows: auto auto;
-  gap: 0;
+.hm-desc {
+  font-size: 16px; color: #94a3b8; line-height: 1.8; max-width: 560px;
+  margin: 0 auto 44px; font-weight: 400;
 }
-.hd-col-main { border-right: 1px solid var(--border); }
-.hd-col-side {}
-
-/* section headers */
-.hd-sec-hdr {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 18px; border-bottom: 1px solid var(--border);
-  background: rgba(255,255,255,.015);
+.hm-desc strong { color: #c7d2fe; font-weight: 600; }
+.hm-stats {
+  display: flex; justify-content: center; gap: 0;
+  border: 1px solid rgba(255,255,255,.08); border-radius: 16px;
+  overflow: hidden; margin-bottom: 44px;
 }
-.hd-sec-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); }
-.hd-sec-link  { font-size: 10px; color: var(--accent); cursor: pointer; }
-.hd-sec-link:hover { text-decoration: underline; }
-
-/* company leaderboard */
-.hd-co-table { width: 100%; border-collapse: collapse; }
-.hd-co-table tr { border-bottom: 1px solid rgba(255,255,255,.04); cursor: pointer; }
-.hd-co-table tr:hover { background: rgba(255,255,255,.025); }
-.hd-co-table td { padding: 9px 18px; font-size: 12px; vertical-align: middle; }
-.hd-co-rank { font-size: 10px; color: var(--muted); width: 26px; text-align: right; font-weight: 600; }
-.hd-co-name { font-weight: 600; color: var(--text); }
-.hd-co-cat  { font-size: 9px; padding: 1px 6px; border-radius: 99px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
-.hd-co-cat.bp { background: rgba(59,130,246,.15); color: var(--blue); }
-.hd-co-cat.bt { background: rgba(168,85,247,.15); color: #a855f7; }
-.hd-co-ph3  { font-weight: 800; color: var(--yellow); width: 50px; text-align: right; }
-.hd-co-ph2  { color: var(--blue); width: 50px; text-align: right; }
-.hd-co-tot  { color: var(--muted); width: 50px; text-align: right; font-size: 11px; }
-.hd-co-bar-cell { width: 80px; }
-.hd-co-bar-wrap { background: rgba(255,255,255,.06); border-radius: 2px; height: 4px; }
-.hd-co-bar-fill { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #6366f1, #a855f7); }
-.hd-co-table th { padding: 7px 18px; font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); font-weight: 600; text-align: right; }
-.hd-co-table th:first-child { text-align: left; }
-.hd-co-table th:nth-child(2) { text-align: left; }
-
-/* catalysts */
-.hd-catalyst-list { display: flex; flex-direction: column; }
-.hd-catalyst-item {
-  display: grid; grid-template-columns: 54px 1fr auto;
-  gap: 10px; align-items: start;
-  padding: 10px 18px; border-bottom: 1px solid rgba(255,255,255,.04);
+.hm-stat {
+  flex: 1; padding: 20px 24px; border-right: 1px solid rgba(255,255,255,.08);
 }
-.hd-catalyst-item:hover { background: rgba(255,255,255,.025); }
-.hd-cat-date { text-align: center; }
-.hd-cat-month { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
-.hd-cat-day   { font-size: 18px; font-weight: 800; line-height: 1; color: var(--text); }
-.hd-cat-body  {}
-.hd-cat-co    { font-size: 11px; font-weight: 700; color: var(--text); }
-.hd-cat-drug  { font-size: 10px; color: var(--muted); margin-top: 1px; line-height: 1.4; }
-.hd-cat-badge {
-  font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap;
-  align-self: start; margin-top: 2px;
+.hm-stat:last-child { border-right: none; }
+.hm-stat-val { font-size: 28px; font-weight: 800; letter-spacing: -.5px; line-height: 1; }
+.hm-stat-lbl { font-size: 10px; color: #64748b; margin-top: 5px; text-transform: uppercase; letter-spacing: .4px; }
+.hm-nav {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; text-align: left; margin-bottom: 48px;
 }
-.hd-cat-badge.pdufa    { background: rgba(234,179,8,.15);  color: var(--yellow); }
-.hd-cat-badge.p3done   { background: rgba(99,102,241,.15); color: var(--accent); }
-.hd-cat-badge.imminent { background: rgba(239,68,68,.15);  color: var(--red); }
-
-/* modality strip */
-.hd-mod-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--border);
+.hm-nav-card {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px; padding: 18px 18px 16px; cursor: pointer;
+  transition: all .18s;
 }
-.hd-mod-cell {
-  padding: 13px 16px; border-right: 1px solid var(--border); cursor: pointer;
-  transition: background .12s;
+.hm-nav-card:hover { background: rgba(99,102,241,.08); border-color: rgba(99,102,241,.4); transform: translateY(-2px); }
+.hm-nav-icon { font-size: 22px; margin-bottom: 10px; }
+.hm-nav-title { font-size: 12px; font-weight: 700; color: #e2e8f0; margin-bottom: 5px; }
+.hm-nav-desc { font-size: 11px; color: #475569; line-height: 1.5; }
+.hm-sources {
+  font-size: 10px; color: #334155; border-top: 1px solid rgba(255,255,255,.05);
+  padding-top: 28px; line-height: 1.8;
 }
-.hd-mod-cell:last-child { border-right: none; }
-.hd-mod-cell:hover { background: rgba(255,255,255,.03); }
-.hd-mod-icon  { font-size: 16px; margin-bottom: 4px; }
-.hd-mod-name  { font-size: 11px; font-weight: 700; color: var(--text); line-height: 1.3; }
-.hd-mod-stats { font-size: 10px; color: var(--muted); margin-top: 3px; }
-.hd-mod-hot   { font-size: 9px; color: #f59e0b; font-weight: 700; }
-.hd-mod-cagr  { display: inline-block; font-size: 9px; font-weight: 800; color: #10b981; background: rgba(16,185,129,.1); border-radius: 3px; padding: 1px 5px; margin-top: 3px; }
-
-/* news strip */
-.hd-news-list { display: flex; flex-direction: column; }
-.hd-news-item {
-  padding: 10px 18px; border-bottom: 1px solid rgba(255,255,255,.04);
-  display: flex; flex-direction: column; gap: 3px;
-}
-.hd-news-item:hover { background: rgba(255,255,255,.025); }
-.hd-news-src  { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--accent); font-weight: 700; }
-.hd-news-title { font-size: 11.5px; color: var(--text); line-height: 1.4; }
-.hd-news-title a { color: inherit; text-decoration: none; }
-.hd-news-title a:hover { color: #818cf8; }
-.hd-news-meta { font-size: 10px; color: var(--muted); }
-
-.hd-empty { padding: 20px 18px; font-size: 11px; color: var(--muted); }
+.hm-src-link { color: #475569; }
 </style>
 
-<!-- ── KPI Bar ── -->
-<div class="hd-kpi-bar">
-  <div class="hd-kpi">
-    <div class="hd-kpi-label">모니터링 기업</div>
-    <div class="hd-kpi-val" style="color:var(--accent)">42</div>
-    <div class="hd-kpi-sub">빅파마 30 · 바이오텍 12</div>
+<div class="hm-wrap">
+  <div class="hm-eyebrow">
+    <span class="hm-eyebrow-dot"></span>
+    매일 자동 업데이트 · 2026-05-24 15:06 UTC
   </div>
-  <div class="hd-kpi">
-    <div class="hd-kpi-label">미국 등록 임상</div>
-    <div class="hd-kpi-val" style="color:var(--blue)">13,705</div>
-    <div class="hd-kpi-sub">ClinicalTrials.gov 기준</div>
+
+  <div class="hm-brand">SHL BioInsights</div>
+
+  <p class="hm-desc">
+    글로벌 <strong>빅파마·바이오텍 42개 기업</strong>의 미국 임상 파이프라인을<br>
+    매일 자동 수집·분석하는 <strong>제약 인텔리전스 플랫폼</strong>입니다.<br>
+    ClinicalTrials.gov · FDA · 업계 뉴스를 한 곳에서 추적하세요.
+  </p>
+
+  <div class="hm-stats">
+    <div class="hm-stat">
+      <div class="hm-stat-val" style="color:#818cf8">42</div>
+      <div class="hm-stat-lbl">모니터링 기업</div>
+    </div>
+    <div class="hm-stat">
+      <div class="hm-stat-val" style="color:#eab308">2,577</div>
+      <div class="hm-stat-lbl">Phase 3 진행</div>
+    </div>
+    <div class="hm-stat">
+      <div class="hm-stat-val" style="color:#3b82f6">13,705</div>
+      <div class="hm-stat-lbl">등록 임상시험</div>
+    </div>
+    <div class="hm-stat">
+      
+      <div class="hm-stat-val" style="color:#ef4444">3</div>
+      <div class="hm-stat-lbl">미해결 FDA CRL</div>
+    </div>
   </div>
-  <div class="hd-kpi">
-    <div class="hd-kpi-label">Phase 3 진행</div>
-    <div class="hd-kpi-val" style="color:var(--yellow)">2,577</div>
-    <div class="hd-kpi-sub">승인 후보군</div>
+
+  <div class="hm-nav">
+    <div class="hm-nav-card" onclick="document.querySelector('[data-tab=pipeline]').click()">
+      <div class="hm-nav-icon">📊</div>
+      <div class="hm-nav-title">파이프라인 개요</div>
+      <div class="hm-nav-desc">Phase 분포·모달리티·기업 순위·이벤트를 한눈에</div>
+    </div>
+    <div class="hm-nav-card" onclick="document.querySelector('[data-tab=trials]').click()">
+      <div class="hm-nav-icon">🔬</div>
+      <div class="hm-nav-title">임상 상세</div>
+      <div class="hm-nav-desc">NCT ID·약물·적응증·PoS 검색 및 ClinicalTrials.gov 연결</div>
+    </div>
+    <div class="hm-nav-card" onclick="document.querySelector('[data-tab=calendar]').click()">
+      <div class="hm-nav-icon">📅</div>
+      <div class="hm-nav-title">이벤트 달력</div>
+      <div class="hm-nav-desc">PDUFA · Phase 3 완료 · CRL 일정 타임라인</div>
+    </div>
+    <div class="hm-nav-card" onclick="document.querySelector('[data-tab=crl]').click()">
+      <div class="hm-nav-icon">📋</div>
+      <div class="hm-nav-title">FDA CRL 트래커</div>
+      <div class="hm-nav-desc">FDA 승인 거절 현황·해결 여부 추적</div>
+    </div>
+    <div class="hm-nav-card" onclick="document.querySelector('[data-tab=news]').click()">
+      <div class="hm-nav-icon">📰</div>
+      <div class="hm-nav-title">뉴스 피드</div>
+      <div class="hm-nav-desc">FiercePharma · STAT News · Reuters 매일 수집</div>
+    </div>
+    <div class="hm-nav-card" onclick="document.querySelector('[data-tab=stock]').click()">
+      <div class="hm-nav-icon">📈</div>
+      <div class="hm-nav-title">주가 트래커</div>
+      <div class="hm-nav-desc">주요 이벤트 연계 주가 등락 모니터링</div>
+    </div>
   </div>
-  <div class="hd-kpi">
-    <div class="hd-kpi-label">결과 공개</div>
-    <div class="hd-kpi-val" style="color:var(--green)">3,065</div>
-    <div class="hd-kpi-sub">결과 데이터 있는 시험</div>
+
+  <div class="hm-sources">
+    데이터 출처 &nbsp;·&nbsp;
+    <a href="https://clinicaltrials.gov" target="_blank" class="hm-src-link">ClinicalTrials.gov</a> ·
+    <a href="https://open.fda.gov" target="_blank" class="hm-src-link">openFDA</a> ·
+    <a href="https://www.fiercepharma.com" target="_blank" class="hm-src-link">FiercePharma</a> ·
+    <a href="https://www.statnews.com" target="_blank" class="hm-src-link">STAT News</a> ·
+    <a href="https://www.reuters.com" target="_blank" class="hm-src-link">Reuters</a>
   </div>
-  <div class="hd-kpi">
-    <div class="hd-kpi-label">미해결 FDA CRL</div>
+</div>
+</div>
+
+<!-- PANEL 1: 파이프라인 개요 -->
+<div id="panel-pipeline" class="tab-panel">
+
+<!-- ══════════════════════════════════════════════════════════
+     §1 인텔리전스 대시보드
+══════════════════════════════════════════════════════════ -->
+<style>
+/* ── pipeline dashboard styles ── */
+.pp-kpi-bar {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  border-bottom: 1px solid var(--border);
+}
+.pp-kpi { padding: 14px 18px; border-right: 1px solid var(--border); }
+.pp-kpi:last-child { border-right: none; }
+.pp-kpi-lbl { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); font-weight: 600; margin-bottom: 3px; }
+.pp-kpi-val { font-size: 22px; font-weight: 800; line-height: 1; letter-spacing: -.3px; }
+.pp-kpi-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.pp-dash {
+  display: grid; grid-template-columns: 1fr 280px 280px;
+  border-bottom: 1px solid var(--border); min-height: 340px;
+}
+.pp-dash-cell { border-right: 1px solid var(--border); }
+.pp-dash-cell:last-child { border-right: none; }
+.pp-sec-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,.015);
+}
+.pp-sec-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
+.pp-sec-link  { font-size: 10px; color: var(--accent); cursor: pointer; }
+.pp-sec-link:hover { text-decoration: underline; }
+
+/* Leaderboard */
+.pp-lb-table { width: 100%; border-collapse: collapse; }
+.pp-lb-table tr { border-bottom: 1px solid rgba(255,255,255,.035); cursor: pointer; transition: background .1s; }
+.pp-lb-table tr:hover { background: rgba(255,255,255,.025); }
+.pp-lb-table td { padding: 7px 16px; font-size: 11.5px; vertical-align: middle; }
+.pp-lb-rank { width: 22px; font-size: 10px; color: var(--muted); font-weight: 700; text-align: center; }
+.pp-lb-name { font-weight: 600; color: var(--text); }
+.pp-lb-cat  { font-size: 8px; padding: 1px 5px; border-radius: 99px; font-weight: 700; margin-left: 5px; vertical-align: middle; }
+.pp-lb-cat.bp { background: rgba(59,130,246,.15); color: #60a5fa; }
+.pp-lb-cat.bt { background: rgba(168,85,247,.15); color: #c084fc; }
+.pp-lb-ph3  { font-weight: 800; color: var(--yellow); text-align: right; width: 36px; }
+.pp-lb-ph2  { color: var(--blue); text-align: right; width: 32px; }
+.pp-lb-bar  { width: 56px; padding-right: 14px; }
+.pp-lb-bar-bg { background: rgba(255,255,255,.07); border-radius: 2px; height: 4px; }
+.pp-lb-bar-fill { height: 4px; border-radius: 2px; background: linear-gradient(90deg,#6366f1,#a855f7); }
+
+/* Donut Chart */
+.pp-donut-wrap { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 18px 14px; }
+.pp-donut-legend { display: flex; flex-direction: column; gap: 8px; }
+.pp-leg-row { display: flex; align-items: center; gap: 7px; font-size: 11px; }
+.pp-leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.pp-leg-name { color: var(--text); font-weight: 600; width: 56px; }
+.pp-leg-count { color: var(--muted); font-size: 10px; }
+.pp-leg-pct { color: var(--muted); font-size: 10px; margin-left: auto; }
+
+/* TA bar chart */
+.pp-ta-chart { padding: 10px 14px; display: flex; flex-direction: column; gap: 7px; }
+.pp-ta-row { display: flex; align-items: center; gap: 8px; }
+.pp-ta-name { font-size: 11px; color: var(--text); width: 110px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pp-ta-bar-bg { flex: 1; height: 6px; background: rgba(255,255,255,.07); border-radius: 3px; }
+.pp-ta-bar-fill { height: 6px; border-radius: 3px; }
+.pp-ta-count { font-size: 10px; color: var(--muted); width: 30px; text-align: right; flex-shrink: 0; }
+
+/* Catalyst list */
+.pp-cat-list { display: flex; flex-direction: column; overflow-y: auto; max-height: 300px; }
+.pp-cat-item {
+  display: grid; grid-template-columns: 48px 1fr auto;
+  gap: 8px; align-items: start;
+  padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,.035);
+  transition: background .1s;
+}
+.pp-cat-item:hover { background: rgba(255,255,255,.025); }
+.pp-cat-date { text-align: center; }
+.pp-cat-month { font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .3px; }
+.pp-cat-day   { font-size: 16px; font-weight: 800; line-height: 1.1; }
+.pp-cat-co    { font-size: 11px; font-weight: 700; }
+.pp-cat-drug  { font-size: 10px; color: var(--muted); line-height: 1.3; }
+.pp-cat-badge { font-size: 8px; font-weight: 700; padding: 2px 6px; border-radius: 3px; align-self: start; white-space: nowrap; }
+.pp-cat-badge.pdufa    { background:rgba(234,179,8,.15); color:var(--yellow); }
+.pp-cat-badge.p3done   { background:rgba(99,102,241,.15); color:var(--accent); }
+.pp-cat-badge.imminent { background:rgba(239,68,68,.15); color:var(--red); }
+
+/* Modality mini grid */
+.pp-mod-strip {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border-bottom: 1px solid var(--border);
+}
+.pp-mod-cell {
+  padding: 12px 15px; border-right: 1px solid var(--border); cursor: pointer; transition: background .1s;
+}
+.pp-mod-cell:last-child { border-right: none; }
+.pp-mod-cell:hover { background: rgba(255,255,255,.028); }
+.pp-mod-top { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.pp-mod-icon { font-size: 15px; }
+.pp-mod-name { font-size: 11px; font-weight: 700; line-height: 1.2; }
+.pp-mod-stats { font-size: 10px; color: var(--muted); }
+.pp-mod-cagr { display: inline-block; font-size: 9px; font-weight: 800; color: #10b981; background: rgba(16,185,129,.12); border-radius: 3px; padding: 1px 5px; margin-top: 3px; }
+.pp-mod-hot { font-size: 9px; color: #f59e0b; margin-top: 1px; }
+</style>
+
+<!-- KPI Bar -->
+<div class="pp-kpi-bar">
+  <div class="pp-kpi">
+    <div class="pp-kpi-lbl">추적 기업</div>
+    <div class="pp-kpi-val" style="color:var(--accent)">42</div>
+    <div class="pp-kpi-sub">빅파마 30 · 바이오텍 12</div>
+  </div>
+  <div class="pp-kpi">
+    <div class="pp-kpi-lbl">전체 임상</div>
+    <div class="pp-kpi-val" style="color:#94a3b8">13,705</div>
+    <div class="pp-kpi-sub">미국 ClinicalTrials.gov</div>
+  </div>
+  <div class="pp-kpi">
+    <div class="pp-kpi-lbl">Phase 3</div>
+    <div class="pp-kpi-val" style="color:var(--yellow)">2,577</div>
+    <div class="pp-kpi-sub">승인 후보군</div>
+  </div>
+  <div class="pp-kpi">
     
-    <div class="hd-kpi-val" style="color:var(--red)">3</div>
-    
-    <div class="hd-kpi-sub">Sanofi, GSK, Regeneron</div>
+    <div class="pp-kpi-lbl">Phase 2</div>
+    <div class="pp-kpi-val" style="color:var(--blue)">3,357</div>
+    <div class="pp-kpi-sub">차세대 파이프라인</div>
+  </div>
+  <div class="pp-kpi">
+    <div class="pp-kpi-lbl">결과 공개</div>
+    <div class="pp-kpi-val" style="color:var(--green)">3,065</div>
+    <div class="pp-kpi-sub">결과 데이터 있는 시험</div>
   </div>
 </div>
 
-<!-- ── Main Body ── -->
-<div class="hd-body">
+<!-- 3-column dashboard -->
+<div class="pp-dash">
 
-  <!-- LEFT: Company Leaderboard -->
-  <div class="hd-col-main">
-    <div class="hd-sec-hdr">
-      <span class="hd-sec-title">🏆 Phase 3 파이프라인 순위</span>
-      <span class="hd-sec-link" onclick="document.querySelector('[data-tab=trials]').click()">전체 보기 →</span>
+  <!-- COL 1: Phase 3 Leaderboard -->
+  <div class="pp-dash-cell">
+    <div class="pp-sec-hdr">
+      <span class="pp-sec-title">🏆 Phase 3 파이프라인 순위</span>
+      <span class="pp-sec-link" onclick="document.querySelector('[data-tab=trials]').click()">임상 상세 →</span>
     </div>
     
-    
-    <table class="hd-co-table">
-      <thead>
-        <tr>
-          <th style="text-align:left">#</th>
-          <th style="text-align:left">기업</th>
-          <th>Ph3</th>
-          <th>Ph2</th>
-          <th>전체</th>
-          <th></th>
-        </tr>
-      </thead>
+    <table class="pp-lb-table">
       <tbody>
       
       
       
+      
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">1</td>
-        <td>
+        <td class="pp-lb-rank">1</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.astrazeneca.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">AstraZeneca</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.astrazeneca.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">AstraZeneca</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">237</td>
-        <td class="hd-co-ph2">298</td>
-        <td class="hd-co-tot">1305</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:100%"></div>
-          </div>
+        <td class="pp-lb-ph3">237</td>
+        <td class="pp-lb-ph2">298</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:100%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">2</td>
-        <td>
+        <td class="pp-lb-rank">2</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.merck.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Merck (MSD)</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.merck.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Merck (MSD)</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">220</td>
-        <td class="hd-co-ph2">390</td>
-        <td class="hd-co-tot">1154</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:92%"></div>
-          </div>
+        <td class="pp-lb-ph3">220</td>
+        <td class="pp-lb-ph2">390</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:92%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">3</td>
-        <td>
+        <td class="pp-lb-rank">3</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.novartis.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Novartis</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.novartis.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Novartis</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">166</td>
-        <td class="hd-co-ph2">203</td>
-        <td class="hd-co-tot">881</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:70%"></div>
-          </div>
+        <td class="pp-lb-ph3">166</td>
+        <td class="pp-lb-ph2">203</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:70%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">4</td>
-        <td>
+        <td class="pp-lb-rank">4</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.roche.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Roche</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.roche.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Roche</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">165</td>
-        <td class="hd-co-ph2">302</td>
-        <td class="hd-co-tot">920</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:69%"></div>
-          </div>
+        <td class="pp-lb-ph3">165</td>
+        <td class="pp-lb-ph2">302</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:69%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">5</td>
-        <td>
+        <td class="pp-lb-rank">5</td>
+        <td class="pp-lb-name">
           
-          <span class="hd-co-name">Eli Lilly</span>
-          <span class="hd-co-cat bp">빅파마</span>
+          Eli Lilly
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">153</td>
-        <td class="hd-co-ph2">156</td>
-        <td class="hd-co-tot">645</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:64%"></div>
-          </div>
+        <td class="pp-lb-ph3">153</td>
+        <td class="pp-lb-ph2">156</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:64%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">6</td>
-        <td>
+        <td class="pp-lb-rank">6</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.pfizer.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Pfizer</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.pfizer.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Pfizer</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">140</td>
-        <td class="hd-co-ph2">209</td>
-        <td class="hd-co-tot">976</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:59%"></div>
-          </div>
+        <td class="pp-lb-ph3">140</td>
+        <td class="pp-lb-ph2">209</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:59%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">7</td>
-        <td>
+        <td class="pp-lb-rank">7</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.jnj.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Johnson &amp; Johnson</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.jnj.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Johnson &amp; Johnson</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">140</td>
-        <td class="hd-co-ph2">188</td>
-        <td class="hd-co-tot">830</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:59%"></div>
-          </div>
+        <td class="pp-lb-ph3">140</td>
+        <td class="pp-lb-ph2">188</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:59%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">8</td>
-        <td>
+        <td class="pp-lb-rank">8</td>
+        <td class="pp-lb-name">
           
-          <span class="hd-co-name">AbbVie</span>
-          <span class="hd-co-cat bp">빅파마</span>
+          AbbVie
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">126</td>
-        <td class="hd-co-ph2">118</td>
-        <td class="hd-co-tot">584</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:53%"></div>
-          </div>
+        <td class="pp-lb-ph3">126</td>
+        <td class="pp-lb-ph2">118</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:53%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">9</td>
-        <td>
+        <td class="pp-lb-rank">9</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.sanofi.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Sanofi</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.sanofi.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Sanofi</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">126</td>
-        <td class="hd-co-ph2">126</td>
-        <td class="hd-co-tot">555</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:53%"></div>
-          </div>
+        <td class="pp-lb-ph3">126</td>
+        <td class="pp-lb-ph2">126</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:53%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">10</td>
-        <td>
+        <td class="pp-lb-rank">10</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.gsk.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">GSK</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.gsk.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">GSK</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">106</td>
-        <td class="hd-co-ph2">116</td>
-        <td class="hd-co-tot">456</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:44%"></div>
-          </div>
+        <td class="pp-lb-ph3">106</td>
+        <td class="pp-lb-ph2">116</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:44%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">11</td>
-        <td>
+        <td class="pp-lb-rank">11</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.novonordisk.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Novo Nordisk</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.novonordisk.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Novo Nordisk</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">105</td>
-        <td class="hd-co-ph2">43</td>
-        <td class="hd-co-tot">430</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:44%"></div>
-          </div>
+        <td class="pp-lb-ph3">105</td>
+        <td class="pp-lb-ph2">43</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:44%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">12</td>
-        <td>
+        <td class="pp-lb-rank">12</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.bms.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Bristol-Myers Squibb</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.bms.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Bristol-Myers Squibb</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">98</td>
-        <td class="hd-co-ph2">251</td>
-        <td class="hd-co-tot">807</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:41%"></div>
-          </div>
+        <td class="pp-lb-ph3">98</td>
+        <td class="pp-lb-ph2">251</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:41%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">13</td>
-        <td>
+        <td class="pp-lb-rank">13</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.takeda.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Takeda</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.takeda.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Takeda</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">93</td>
-        <td class="hd-co-ph2">60</td>
-        <td class="hd-co-tot">434</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:39%"></div>
-          </div>
+        <td class="pp-lb-ph3">93</td>
+        <td class="pp-lb-ph2">60</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:39%"></div></div>
         </td>
       </tr>
       
       
       
       
+      
       <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">14</td>
-        <td>
+        <td class="pp-lb-rank">14</td>
+        <td class="pp-lb-name">
           
-          <a href="https://www.amgen.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Amgen</a>
-          <span class="hd-co-cat bp">빅파마</span>
+          <a href="https://www.amgen.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none" onclick="event.stopPropagation()">Amgen</a>
+          <span class="pp-lb-cat bp">빅파마</span>
         </td>
-        <td class="hd-co-ph3">85</td>
-        <td class="hd-co-ph2">91</td>
-        <td class="hd-co-tot">347</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:35%"></div>
-          </div>
+        <td class="pp-lb-ph3">85</td>
+        <td class="pp-lb-ph2">91</td>
+        <td class="pp-lb-bar">
+          <div class="pp-lb-bar-bg"><div class="pp-lb-bar-fill" style="width:35%"></div></div>
         </td>
       </tr>
       
       
       
-      
-      <tr onclick="document.querySelector('[data-tab=trials]').click()">
-        <td class="hd-co-rank">15</td>
-        <td>
-          
-          <a href="https://www.regeneron.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;" onclick="event.stopPropagation()">Regeneron</a>
-          <span class="hd-co-cat bp">빅파마</span>
-        </td>
-        <td class="hd-co-ph3">69</td>
-        <td class="hd-co-ph2">91</td>
-        <td class="hd-co-tot">321</td>
-        <td class="hd-co-bar-cell">
-          <div class="hd-co-bar-wrap">
-            <div class="hd-co-bar-fill" style="width:29%"></div>
-          </div>
-        </td>
-      </tr>
       
       
       
@@ -808,311 +878,1557 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </table>
   </div>
 
-  <!-- RIGHT: Upcoming Catalysts -->
-  <div class="hd-col-side">
-    <div class="hd-sec-hdr">
-      <span class="hd-sec-title">📅 임박 이벤트</span>
-      <span class="hd-sec-link" onclick="document.querySelector('[data-tab=calendar]').click()">달력 →</span>
+  <!-- COL 2: Phase Distribution Donut + TA bars -->
+  <div class="pp-dash-cell">
+    <div class="pp-sec-hdr">
+      <span class="pp-sec-title">📊 임상 단계 분포</span>
     </div>
-    <div class="hd-catalyst-list">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">05월</div>
-        <div class="hd-cat-day">25</div>
+
+    <!-- Donut SVG -->
+    
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+    
+    
+    
+    
+    
+    
+    <div class="pp-donut-wrap">
+      <svg width="110" height="110" viewBox="0 0 110 110">
+        <circle cx="55" cy="55" r="42" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="14"/>
+        
+        
+        
+        <circle cx="55" cy="55" r="42" fill="none"
+          stroke="#eab308" stroke-width="14"
+          stroke-dasharray="52.18 263.89"
+          stroke-dashoffset="-0.0"
+          transform="rotate(-90 55 55)"/>
+        
+        
+        
+        
+        
+        <circle cx="55" cy="55" r="42" fill="none"
+          stroke="#3b82f6" stroke-width="14"
+          stroke-dasharray="67.98 263.89"
+          stroke-dashoffset="-52.18"
+          transform="rotate(-90 55 55)"/>
+        
+        
+        
+        
+        
+        <circle cx="55" cy="55" r="42" fill="none"
+          stroke="#6366f1" stroke-width="14"
+          stroke-dasharray="73.77 263.89"
+          stroke-dashoffset="-120.16"
+          transform="rotate(-90 55 55)"/>
+        
+        
+        
+        
+        
+        <circle cx="55" cy="55" r="42" fill="none"
+          stroke="#22c55e" stroke-width="14"
+          stroke-dasharray="13.69 263.89"
+          stroke-dashoffset="-193.93"
+          transform="rotate(-90 55 55)"/>
+        
+        
+        
+        
+        
+        <circle cx="55" cy="55" r="42" fill="none"
+          stroke="#334155" stroke-width="14"
+          stroke-dasharray="56.27 263.89"
+          stroke-dashoffset="-207.62"
+          transform="rotate(-90 55 55)"/>
+        
+        
+        
+        <text x="55" y="51" text-anchor="middle" font-size="16" font-weight="800" fill="#e2e8f0">13,032</text>
+        <text x="55" y="64" text-anchor="middle" font-size="8" fill="#64748b">전체 임상</text>
+      </svg>
+      <div class="pp-donut-legend">
+        
+        
+        <div class="pp-leg-row">
+          <div class="pp-leg-dot" style="background:#eab308"></div>
+          <div class="pp-leg-name">Phase 3</div>
+          <div class="pp-leg-count">2,577</div>
+          <div class="pp-leg-pct">&nbsp;19.8%</div>
+        </div>
+        
+        
+        
+        <div class="pp-leg-row">
+          <div class="pp-leg-dot" style="background:#3b82f6"></div>
+          <div class="pp-leg-name">Phase 2</div>
+          <div class="pp-leg-count">3,357</div>
+          <div class="pp-leg-pct">&nbsp;25.8%</div>
+        </div>
+        
+        
+        
+        <div class="pp-leg-row">
+          <div class="pp-leg-dot" style="background:#6366f1"></div>
+          <div class="pp-leg-name">Phase 1</div>
+          <div class="pp-leg-count">3,643</div>
+          <div class="pp-leg-pct">&nbsp;28.0%</div>
+        </div>
+        
+        
+        
+        <div class="pp-leg-row">
+          <div class="pp-leg-dot" style="background:#22c55e"></div>
+          <div class="pp-leg-name">Phase 4</div>
+          <div class="pp-leg-count">676</div>
+          <div class="pp-leg-pct">&nbsp;5.2%</div>
+        </div>
+        
+        
+        
+        <div class="pp-leg-row">
+          <div class="pp-leg-dot" style="background:#334155"></div>
+          <div class="pp-leg-name">N/A</div>
+          <div class="pp-leg-count">2,779</div>
+          <div class="pp-leg-pct">&nbsp;21.3%</div>
+        </div>
+        
+        
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">GSK</div>
-        <div class="hd-cat-drug">Tafenoquine + Primaquine</div>
+    </div>
+
+    <!-- TA Breakdown bar chart -->
+    <div class="pp-sec-hdr" style="border-top:1px solid var(--border)">
+      <span class="pp-sec-title">🎯 치료 영역 분포 (전체 임상)</span>
+    </div>
+    
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+    
+      
+        
+        
+      
+    
+      
+        
+        
+      
+        
+        
+      
+    
+    
+    
+    
+    <div class="pp-ta-chart">
+      
+      
+      <div class="pp-ta-row">
+        <div class="pp-ta-name" title="Oncology">Oncology</div>
+        <div class="pp-ta-bar-bg">
+          <div class="pp-ta-bar-fill" style="width:100%;background:#6366f1"></div>
+        </div>
+        <div class="pp-ta-count">5500</div>
       </div>
-      <span class="hd-cat-badge imminent">
-        Phase3완료
-      </span>
+      
+      
+      <div class="pp-ta-row">
+        <div class="pp-ta-name" title="Other">Other</div>
+        <div class="pp-ta-bar-bg">
+          <div class="pp-ta-bar-fill" style="width:85%;background:#3b82f6"></div>
+        </div>
+        <div class="pp-ta-count">4693</div>
+      </div>
+      
+      
+      <div class="pp-ta-row">
+        <div class="pp-ta-name" title="Infectious Disease">Infectious Disease</div>
+        <div class="pp-ta-bar-bg">
+          <div class="pp-ta-bar-fill" style="width:13%;background:#10b981"></div>
+        </div>
+        <div class="pp-ta-count">764</div>
+      </div>
+      
+      
+      <div class="pp-ta-row">
+        <div class="pp-ta-name" title="Immunology">Immunology</div>
+        <div class="pp-ta-bar-bg">
+          <div class="pp-ta-bar-fill" style="width:13%;background:#eab308"></div>
+        </div>
+        <div class="pp-ta-count">716</div>
+      </div>
+      
+      
+      <div class="pp-ta-row">
+        <div class="pp-ta-name" title="Endocrinology">Endocrinology</div>
+        <div class="pp-ta-bar-bg">
+          <div class="pp-ta-bar-fill" style="width:12%;background:#f97316"></div>
+        </div>
+        <div class="pp-ta-count">682</div>
+      </div>
+      
+      
+      <div class="pp-ta-row">
+        <div class="pp-ta-name" title="Neurology">Neurology</div>
+        <div class="pp-ta-bar-bg">
+          <div class="pp-ta-bar-fill" style="width:10%;background:#ec4899"></div>
+        </div>
+        <div class="pp-ta-count">569</div>
+      </div>
+      
+      
+      <div class="pp-ta-row">
+        <div class="pp-ta-name" title="Cardiovascular">Cardiovascular</div>
+        <div class="pp-ta-bar-bg">
+          <div class="pp-ta-bar-fill" style="width:8%;background:#8b5cf6"></div>
+        </div>
+        <div class="pp-ta-count">472</div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- COL 3: Upcoming Catalysts -->
+  <div class="pp-dash-cell">
+    <div class="pp-sec-hdr">
+      <span class="pp-sec-title">📅 임박 이벤트</span>
+      <span class="pp-sec-link" onclick="document.querySelector('[data-tab=calendar]').click()">달력 →</span>
+    </div>
+    <div class="pp-cat-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">05월</div>
+        <div class="pp-cat-day" style="color:#ef4444">25</div>
+      </div>
+      <div>
+        <div class="pp-cat-co">GSK</div>
+        <div class="pp-cat-drug">Tafenoquine + Primaquine</div>
+      </div>
+      <span class="pp-cat-badge imminent">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">05월</div>
-        <div class="hd-cat-day">25</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">05월</div>
+        <div class="pp-cat-day" style="color:#ef4444">25</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">UCB</div>
-        <div class="hd-cat-drug">Bimekizumab</div>
+      <div>
+        <div class="pp-cat-co">UCB</div>
+        <div class="pp-cat-drug">Bimekizumab</div>
       </div>
-      <span class="hd-cat-badge imminent">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge imminent">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">05월</div>
-        <div class="hd-cat-day">31</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">05월</div>
+        <div class="pp-cat-day" style="color:#ef4444">31</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">Vertex Pharmaceuticals</div>
-        <div class="hd-cat-drug">CTX001</div>
+      <div>
+        <div class="pp-cat-co">Vertex Pharmaceuticals</div>
+        <div class="pp-cat-drug">CTX001</div>
       </div>
-      <span class="hd-cat-badge imminent">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge imminent">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">05월</div>
-        <div class="hd-cat-day">31</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">05월</div>
+        <div class="pp-cat-day" style="color:#ef4444">31</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">Vertex Pharmaceuticals</div>
-        <div class="hd-cat-drug">CTX001</div>
+      <div>
+        <div class="pp-cat-co">Vertex Pharmaceuticals</div>
+        <div class="pp-cat-drug">CTX001</div>
       </div>
-      <span class="hd-cat-badge imminent">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge imminent">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">05월</div>
-        <div class="hd-cat-day">31</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">05월</div>
+        <div class="pp-cat-day" style="color:#ef4444">31</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">Teva</div>
-        <div class="hd-cat-drug">Fp/ABS + FP</div>
+      <div>
+        <div class="pp-cat-co">Teva</div>
+        <div class="pp-cat-drug">Fp/ABS + FP</div>
       </div>
-      <span class="hd-cat-badge imminent">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge imminent">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">06월</div>
-        <div class="hd-cat-day">02</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">06월</div>
+        <div class="pp-cat-day" style="color:#ef4444">02</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">UCB</div>
-        <div class="hd-cat-drug">zilucoplan (RA101495)</div>
+      <div>
+        <div class="pp-cat-co">UCB</div>
+        <div class="pp-cat-drug">zilucoplan (RA101495)</div>
       </div>
-      <span class="hd-cat-badge imminent">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge imminent">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">06월</div>
-        <div class="hd-cat-day">30</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">06월</div>
+        <div class="pp-cat-day" style="color:var(--yellow)">30</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">Eli Lilly</div>
-        <div class="hd-cat-drug">tirzepatide — 만성 신장질환</div>
+      <div>
+        <div class="pp-cat-co">Eli Lilly</div>
+        <div class="pp-cat-drug">tirzepatide — 만성 신장질환</div>
       </div>
-      <span class="hd-cat-badge pdufa">
-        PDUFA
-      </span>
+      <span class="pp-cat-badge pdufa">PDUFA</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">06월</div>
-        <div class="hd-cat-day">30</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">06월</div>
+        <div class="pp-cat-day" style="color:var(--yellow)">30</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">UCB</div>
-        <div class="hd-cat-drug">Staccato alprazolam</div>
+      <div>
+        <div class="pp-cat-co">UCB</div>
+        <div class="pp-cat-drug">Staccato alprazolam</div>
       </div>
-      <span class="hd-cat-badge p3done">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge p3done">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">07월</div>
-        <div class="hd-cat-day">01</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">07월</div>
+        <div class="pp-cat-day" style="color:var(--yellow)">01</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">GSK</div>
-        <div class="hd-cat-drug">Investigational varicella vaccine + Marketed varic</div>
+      <div>
+        <div class="pp-cat-co">GSK</div>
+        <div class="pp-cat-drug">Investigational varicella vaccine + Marketed</div>
       </div>
-      <span class="hd-cat-badge p3done">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge p3done">Phase3완료</span>
     </div>
     
     
     
     
     
-    <div class="hd-catalyst-item">
-      <div class="hd-cat-date">
-        <div class="hd-cat-month">07월</div>
-        <div class="hd-cat-day">13</div>
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">07월</div>
+        <div class="pp-cat-day" style="color:var(--yellow)">13</div>
       </div>
-      <div class="hd-cat-body">
-        <div class="hd-cat-co">Incyte</div>
-        <div class="hd-cat-drug">Ruxolitinib + Vehicle Cream</div>
+      <div>
+        <div class="pp-cat-co">Incyte</div>
+        <div class="pp-cat-drug">Ruxolitinib + Vehicle Cream</div>
       </div>
-      <span class="hd-cat-badge p3done">
-        Phase3완료
-      </span>
+      <span class="pp-cat-badge p3done">Phase3완료</span>
     </div>
     
     
     
     
+    
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">07월</div>
+        <div class="pp-cat-day" style="color:var(--yellow)">16</div>
+      </div>
+      <div>
+        <div class="pp-cat-co">GSK</div>
+        <div class="pp-cat-drug">RSVPreF3 OA vaccine + Placebo</div>
+      </div>
+      <span class="pp-cat-badge p3done">Phase3완료</span>
+    </div>
+    
+    
+    
+    
+    
+    <div class="pp-cat-item">
+      <div class="pp-cat-date">
+        <div class="pp-cat-month">07월</div>
+        <div class="pp-cat-day" style="color:var(--yellow)">28</div>
+      </div>
+      <div>
+        <div class="pp-cat-co">Pfizer</div>
+        <div class="pp-cat-drug">marstacimab — 혈우병 A/B</div>
+      </div>
+      <span class="pp-cat-badge pdufa">PDUFA</span>
+    </div>
     
     
     
@@ -1311,214 +2627,105 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
 
-</div><!-- /hd-body -->
+</div><!-- /pp-dash -->
 
-<!-- ── Modality Strip ── -->
-<div class="hd-sec-hdr" style="border-top:1px solid var(--border)">
-  <span class="hd-sec-title">🔬 치료 플랫폼 (모달리티)</span>
-  <span class="hd-sec-link" onclick="document.querySelector('[data-tab=pipeline]').click()">상세 분석 →</span>
+<!-- Modality strip -->
+<div class="pp-sec-hdr" style="border-bottom:1px solid var(--border)">
+  <span class="pp-sec-title">🔬 치료 플랫폼 (모달리티) 개요</span>
+  <span style="font-size:10px;color:var(--muted)">9개 플랫폼 · 상세 ↓</span>
 </div>
-<div class="hd-mod-grid">
+<div class="pp-mod-strip">
 
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">💉</div>
-  <div class="hd-mod-name">ADC (항체약물접합체)</div>
-  <div class="hd-mod-stats">Ph3 62건 · 18개사</div>
-  <div class="hd-mod-hot">🔥 🔥 최고 성장세</div>
-  <span class="hd-mod-cagr">CAGR +30%</span>
-</div>
-
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">⚖️</div>
-  <div class="hd-mod-name">GLP-1·대사질환</div>
-  <div class="hd-mod-stats">Ph3 44건 · 13개사</div>
-  <div class="hd-mod-hot">🔥 🔥 시장 폭발적 성장</div>
-  <span class="hd-mod-cagr">CAGR +20%</span>
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">💉</span>
+    <span class="pp-mod-name">ADC (항체약물접합체)</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">62</strong> · Ph2 <strong style="color:var(--blue)">59</strong> · 18개사</div>
+  <div class="pp-mod-hot">🔥 🔥 최고 성장세</div>
+  <span class="pp-mod-cagr">CAGR +30%</span>
 </div>
 
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">🎯</div>
-  <div class="hd-mod-name">이중·다중특이항체</div>
-  <div class="hd-mod-stats">Ph3 22건 · 10개사</div>
-  <div class="hd-mod-hot">🔥 🔥 급성장</div>
-  <span class="hd-mod-cagr">CAGR +28%</span>
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">⚖️</span>
+    <span class="pp-mod-name">GLP-1·대사질환</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">44</strong> · Ph2 <strong style="color:var(--blue)">17</strong> · 13개사</div>
+  <div class="pp-mod-hot">🔥 🔥 시장 폭발적 성장</div>
+  <span class="pp-mod-cagr">CAGR +20%</span>
 </div>
 
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">🔬</div>
-  <div class="hd-mod-name">mRNA·핵산치료</div>
-  <div class="hd-mod-stats">Ph3 16건 · 6개사</div>
-  <div class="hd-mod-hot">🔥 🌱 적응증 다변화</div>
-  <span class="hd-mod-cagr">CAGR +22%</span>
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">🎯</span>
+    <span class="pp-mod-name">이중·다중특이항체</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">22</strong> · Ph2 <strong style="color:var(--blue)">27</strong> · 10개사</div>
+  <div class="pp-mod-hot">🔥 🔥 급성장</div>
+  <span class="pp-mod-cagr">CAGR +28%</span>
 </div>
 
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">🧬</div>
-  <div class="hd-mod-name">유전자·세포치료</div>
-  <div class="hd-mod-stats">Ph3 6건 · 11개사</div>
-  <div class="hd-mod-hot">🔥 🌱 확장 중</div>
-  <span class="hd-mod-cagr">CAGR +26%</span>
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">🔬</span>
+    <span class="pp-mod-name">mRNA·핵산치료</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">16</strong> · Ph2 <strong style="color:var(--blue)">1</strong> · 6개사</div>
+  <div class="pp-mod-hot">🔥 🌱 적응증 다변화</div>
+  <span class="pp-mod-cagr">CAGR +22%</span>
 </div>
 
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">☢️</div>
-  <div class="hd-mod-name">방사성리간드 (RLT)</div>
-  <div class="hd-mod-stats">Ph3 3건 · 3개사</div>
-  <div class="hd-mod-hot">🔥 🔥 Novartis 선도</div>
-  <span class="hd-mod-cagr">CAGR +35%</span>
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">🧬</span>
+    <span class="pp-mod-name">유전자·세포치료</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">6</strong> · Ph2 <strong style="color:var(--blue)">6</strong> · 11개사</div>
+  <div class="pp-mod-hot">🔥 🌱 확장 중</div>
+  <span class="pp-mod-cagr">CAGR +26%</span>
 </div>
 
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">🛡️</div>
-  <div class="hd-mod-name">면역관문억제제 (ICI)</div>
-  <div class="hd-mod-stats">Ph3 58건 · 25개사</div>
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">☢️</span>
+    <span class="pp-mod-name">방사성리간드 (RLT)</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">3</strong> · Ph2 <strong style="color:var(--blue)">0</strong> · 3개사</div>
+  <div class="pp-mod-hot">🔥 🔥 Novartis 선도</div>
+  <span class="pp-mod-cagr">CAGR +35%</span>
+</div>
+
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">🛡️</span>
+    <span class="pp-mod-name">면역관문억제제 (ICI)</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">58</strong> · Ph2 <strong style="color:var(--blue)">66</strong> · 25개사</div>
   
-  <span class="hd-mod-cagr">CAGR +8%</span>
+  <span class="pp-mod-cagr">CAGR +8%</span>
 </div>
 
-<div class="hd-mod-cell" onclick="document.querySelector('[data-tab=pipeline]').click()">
-  <div class="hd-mod-icon">💊</div>
-  <div class="hd-mod-name">경구 표적치료 (TKI·CDK·PARP)</div>
-  <div class="hd-mod-stats">Ph3 8건 · 11개사</div>
+<div class="pp-mod-cell">
+  <div class="pp-mod-top">
+    <span class="pp-mod-icon">💊</span>
+    <span class="pp-mod-name">경구 표적치료 (TKI·CDK·PARP)</span>
+  </div>
+  <div class="pp-mod-stats">Ph3 <strong style="color:var(--yellow)">8</strong> · Ph2 <strong style="color:var(--blue)">9</strong> · 11개사</div>
   
-  <span class="hd-mod-cagr">CAGR +8%</span>
+  <span class="pp-mod-cagr">CAGR +8%</span>
 </div>
 
 </div>
 
-<!-- ── Latest News ── -->
-<div class="hd-sec-hdr" style="border-top:1px solid var(--border)">
-  <span class="hd-sec-title">📰 최신 뉴스</span>
-  <span class="hd-sec-link" onclick="document.querySelector('[data-tab=news]').click()">전체 →</span>
+<!-- ══════════════════════════════════════════════════════════
+     §2 추적 기업 현황
+══════════════════════════════════════════════════════════ -->
+<div style="display:flex;align-items:center;gap:12px;padding:20px 0 14px">
+  <div style="font-size:13px;font-weight:800;color:var(--text)">🏢 추적 기업 현황</div>
+  <div style="flex:1;height:1px;background:var(--border)"></div>
+  <div style="font-size:11px;color:var(--muted)">빅파마 30개 · 바이오텍 12개</div>
 </div>
-<div class="hd-news-list">
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">STAT News · </div>
-  <div class="hd-news-title">
-    STAT+: EU and US advisers split over AstraZeneca breast cancer drug
-  </div>
-  <div class="hd-news-meta">Fri, 22 Ma</div>
-</div>
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">STAT News · </div>
-  <div class="hd-news-title">
-    STAT+: Pharmalittle: We’re reading about a Parkinson’s drug setback, a Merck lung cancer therapy, an
-  </div>
-  <div class="hd-news-meta">Fri, 22 Ma</div>
-</div>
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">BioPharma Dive · </div>
-  <div class="hd-news-title">
-    ASCO26: 5 data snapshots ahead of the year’s biggest cancer drug meeting
-  </div>
-  <div class="hd-news-meta">Fri, 22 Ma</div>
-</div>
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">Pharma Technology · </div>
-  <div class="hd-news-title">
-    Gilead Sciences completes Tubulis acquisition for $5bn
-  </div>
-  <div class="hd-news-meta">Fri, 22 Ma</div>
-</div>
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">STAT News · </div>
-  <div class="hd-news-title">
-    STAT+: Closely watched experimental Parkinson’s drug fails key clinical trial
-  </div>
-  <div class="hd-news-meta">Thu, 21 Ma</div>
-</div>
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">STAT News · </div>
-  <div class="hd-news-title">
-    STAT+: Immunovant shares surge on arthritis trial data
-  </div>
-  <div class="hd-news-meta">Thu, 21 Ma</div>
-</div>
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">BioPharma Dive · </div>
-  <div class="hd-news-title">
-    BioMarin notches win in study that could expand use of top-selling medicine
-  </div>
-  <div class="hd-news-meta">Thu, 21 Ma</div>
-</div>
-
-
-
-
-<div class="hd-news-item">
-  <div class="hd-news-src">Pharma Technology · </div>
-  <div class="hd-news-title">
-    Eli Lilly maintains M&amp;A streak with $202m Engage Bio buyout
-  </div>
-  <div class="hd-news-meta">Thu, 21 Ma</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<div style="padding:12px 18px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);display:flex;justify-content:space-between">
-  <span>데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-  <span>업데이트: 2026-05-24 14:56 UTC</span>
-</div>
-</div>
-
-<!-- PANEL 1: 파이프라인 개요 — 모달리티별 -->
-<div id="panel-pipeline" class="tab-panel">
-  <div class="panel-title">📊 치료 플랫폼별 파이프라인</div>
-  <div class="panel-desc">추적 중인 42개 기업의 임상시험을 치료 플랫폼(모달리티)별로 분류·분석. 🔥 = 현재 업계 최고 성장세.</div>
 
   <!-- ── 추적 기업 현황 헤더 ─────────────────────────────────────── -->
   <style>
@@ -124345,7 +125552,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 14:56 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 15:06 UTC</span>
   </div>
 </div>
 
@@ -125537,7 +126744,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04225156",
         nct:"NCT04225156",
-        urgency:"past", daysAway:-74},
+        urgency:"past", daysAway:-75},
        
      ]},
     
@@ -125603,7 +126810,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05304767",
         nct:"NCT05304767",
-        urgency:"past", daysAway:-66},
+        urgency:"past", daysAway:-67},
        
      ]},
     
@@ -125731,7 +126938,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06033586",
         nct:"NCT06033586",
-        urgency:"past", daysAway:-53},
+        urgency:"past", daysAway:-54},
        
      ]},
     
@@ -125753,7 +126960,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05253651",
         nct:"NCT05253651",
-        urgency:"past", daysAway:-51},
+        urgency:"past", daysAway:-52},
        
        {type:"Phase3완료", company:"Merck KGaA",
         drug:"Avelumab", date:"2026-04-03",
@@ -125761,7 +126968,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT03271372",
         nct:"NCT03271372",
-        urgency:"past", daysAway:-51},
+        urgency:"past", daysAway:-52},
        
      ]},
     
@@ -125813,7 +127020,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04123795",
         nct:"NCT04123795",
-        urgency:"past", daysAway:-45},
+        urgency:"past", daysAway:-46},
        
      ]},
     
@@ -125879,7 +127086,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04801589",
         nct:"NCT04801589",
-        urgency:"past", daysAway:-37},
+        urgency:"past", daysAway:-38},
        
      ]},
     
@@ -125924,7 +127131,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06973577",
         nct:"NCT06973577",
-        urgency:"past", daysAway:-32},
+        urgency:"past", daysAway:-33},
        
      ]},
     
@@ -125939,7 +127146,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06208150",
         nct:"NCT06208150",
-        urgency:"past", daysAway:-31},
+        urgency:"past", daysAway:-32},
        
      ]},
     
@@ -125954,7 +127161,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05279313",
         nct:"NCT05279313",
-        urgency:"past", daysAway:-30},
+        urgency:"past", daysAway:-31},
        
      ]},
     
@@ -125985,7 +127192,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05020236",
         nct:"NCT05020236",
-        urgency:"past", daysAway:-27},
+        urgency:"past", daysAway:-28},
        
      ]},
     
@@ -126046,7 +127253,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05552001",
         nct:"NCT05552001",
-        urgency:"past", daysAway:-23},
+        urgency:"past", daysAway:-24},
        
      ]},
     
@@ -126098,7 +127305,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05248646",
         nct:"NCT05248646",
-        urgency:"past", daysAway:-17},
+        urgency:"past", daysAway:-18},
        
      ]},
     
@@ -126222,14 +127429,14 @@ const GCAL_MONTHS = [
   ],[
     
     
-    {day:24, date:"2026-05-24", isToday:true,
+    {day:24, date:"2026-05-24", isToday:false,
      events:[
        
      ]},
     
     
     
-    {day:25, date:"2026-05-25", isToday:false,
+    {day:25, date:"2026-05-25", isToday:true,
      events:[
        
        {type:"Phase3완료", company:"GSK",
@@ -126238,7 +127445,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06666491",
         nct:"NCT06666491",
-        urgency:"imminent", daysAway:1},
+        urgency:"imminent", daysAway:0},
        
        {type:"Phase3완료", company:"UCB",
         drug:"Bimekizumab", date:"2026-05-25",
@@ -126246,7 +127453,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04009499",
         nct:"NCT04009499",
-        urgency:"imminent", daysAway:1},
+        urgency:"imminent", daysAway:0},
        
      ]},
     
@@ -126298,7 +127505,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05329649",
         nct:"NCT05329649",
-        urgency:"imminent", daysAway:7},
+        urgency:"imminent", daysAway:6},
        
        {type:"Phase3완료", company:"Vertex Pharmaceuticals",
         drug:"CTX001", date:"2026-05-31",
@@ -126306,7 +127513,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05356195",
         nct:"NCT05356195",
-        urgency:"imminent", daysAway:7},
+        urgency:"imminent", daysAway:6},
        
        {type:"Phase3완료", company:"Teva",
         drug:"Fp/ABS + FP", date:"2026-05-31",
@@ -126314,7 +127521,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06664619",
         nct:"NCT06664619",
-        urgency:"imminent", daysAway:7},
+        urgency:"imminent", daysAway:6},
        
      ]},
     
@@ -126361,7 +127568,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04225871",
         nct:"NCT04225871",
-        urgency:"imminent", daysAway:9},
+        urgency:"imminent", daysAway:8},
        
      ]},
     
@@ -126573,7 +127780,7 @@ const GCAL_MONTHS = [
         app:"sNDA",
         url:"",
         nct:"",
-        urgency:"near", daysAway:37},
+        urgency:"near", daysAway:36},
        
        {type:"Phase3완료", company:"UCB",
         drug:"Staccato alprazolam", date:"2026-06-30",
@@ -126581,7 +127788,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05077904",
         nct:"NCT05077904",
-        urgency:"near", daysAway:37},
+        urgency:"near", daysAway:36},
        
      ]},
     
@@ -126621,7 +127828,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06693895",
         nct:"NCT06693895",
-        urgency:"near", daysAway:38},
+        urgency:"near", daysAway:37},
        
      ]},
     
@@ -126717,7 +127924,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06832618",
         nct:"NCT06832618",
-        urgency:"near", daysAway:50},
+        urgency:"near", daysAway:49},
        
      ]},
     
@@ -126746,7 +127953,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT07220109",
         nct:"NCT07220109",
-        urgency:"near", daysAway:53},
+        urgency:"near", daysAway:52},
        
      ]},
     
@@ -126842,7 +128049,7 @@ const GCAL_MONTHS = [
         app:"BLA",
         url:"https://www.pfizer.com/science/drug-product-pipeline",
         nct:"",
-        urgency:"near", daysAway:65},
+        urgency:"near", daysAway:64},
        
        {type:"Phase3완료", company:"UCB",
         drug:"Bimekizumab", date:"2026-07-28",
@@ -126850,7 +128057,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04901195",
         nct:"NCT04901195",
-        urgency:"near", daysAway:65},
+        urgency:"near", daysAway:64},
        
      ]},
     
@@ -126872,7 +128079,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05261139",
         nct:"NCT05261139",
-        urgency:"near", daysAway:67},
+        urgency:"near", daysAway:66},
        
      ]},
     
@@ -126887,7 +128094,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04729907",
         nct:"NCT04729907",
-        urgency:"near", daysAway:68},
+        urgency:"near", daysAway:67},
        
        {type:"Phase3완료", company:"Jazz Pharmaceuticals",
         drug:"Zanidatamab + Tislelizumab", date:"2026-07-31",
@@ -126895,7 +128102,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05152147",
         nct:"NCT05152147",
-        urgency:"near", daysAway:68},
+        urgency:"near", daysAway:67},
        
      ]},
     
@@ -126935,7 +128142,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06455059",
         nct:"NCT06455059",
-        urgency:"near", daysAway:69},
+        urgency:"near", daysAway:68},
        
      ]},
     
@@ -126959,7 +128166,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06174987",
         nct:"NCT06174987",
-        urgency:"near", daysAway:71},
+        urgency:"near", daysAway:70},
        
      ]},
     
@@ -126995,7 +128202,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04436640",
         nct:"NCT04436640",
-        urgency:"near", daysAway:75},
+        urgency:"near", daysAway:74},
        
      ]},
     
@@ -127010,7 +128217,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT07103148",
         nct:"NCT07103148",
-        urgency:"near", daysAway:76},
+        urgency:"near", daysAway:75},
        
      ]},
     
@@ -127034,7 +128241,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06548360",
         nct:"NCT06548360",
-        urgency:"near", daysAway:78},
+        urgency:"near", daysAway:77},
        
      ]},
     
@@ -127070,7 +128277,7 @@ const GCAL_MONTHS = [
         app:"BLA",
         url:"https://www.amgen.com/science/pipe",
         nct:"",
-        urgency:"near", daysAway:82},
+        urgency:"near", daysAway:81},
        
      ]},
     
@@ -127129,7 +128336,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT03815643",
         nct:"NCT03815643",
-        urgency:"near", daysAway:89},
+        urgency:"near", daysAway:88},
        
      ]},
     
@@ -127160,7 +128367,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04666610",
         nct:"NCT04666610",
-        urgency:"upcoming", daysAway:92},
+        urgency:"upcoming", daysAway:91},
        
      ]},
     
@@ -127196,7 +128403,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05814432",
         nct:"NCT05814432",
-        urgency:"upcoming", daysAway:96},
+        urgency:"upcoming", daysAway:95},
        
      ]},
     
@@ -127220,7 +128427,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06152575",
         nct:"NCT06152575",
-        urgency:"upcoming", daysAway:98},
+        urgency:"upcoming", daysAway:97},
        
      ]},
     
@@ -127235,7 +128442,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05712200",
         nct:"NCT05712200",
-        urgency:"upcoming", daysAway:99},
+        urgency:"upcoming", daysAway:98},
        
        {type:"Phase3완료", company:"Roche",
         drug:"Sefaxersen (RO7434656) + Placebo", date:"2026-08-31",
@@ -127243,7 +128450,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05797610",
         nct:"NCT05797610",
-        urgency:"upcoming", daysAway:99},
+        urgency:"upcoming", daysAway:98},
        
      ]},
     
@@ -127283,7 +128490,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05285917",
         nct:"NCT05285917",
-        urgency:"upcoming", daysAway:100},
+        urgency:"upcoming", daysAway:99},
        
      ]},
     
@@ -127305,7 +128512,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06118255",
         nct:"NCT06118255",
-        urgency:"upcoming", daysAway:102},
+        urgency:"upcoming", daysAway:101},
        
      ]},
     
@@ -127364,7 +128571,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06855160",
         nct:"NCT06855160",
-        urgency:"upcoming", daysAway:109},
+        urgency:"upcoming", daysAway:108},
        
      ]},
     
@@ -127409,7 +128616,7 @@ const GCAL_MONTHS = [
         app:"sNDA",
         url:"https://www.astrazeneca.com/our-therapy-areas/pipeline.html",
         nct:"",
-        urgency:"upcoming", daysAway:114},
+        urgency:"upcoming", daysAway:113},
        
      ]},
     
@@ -127431,7 +128638,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06832410",
         nct:"NCT06832410",
-        urgency:"upcoming", daysAway:116},
+        urgency:"upcoming", daysAway:115},
        
      ]},
     
@@ -127513,7 +128720,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04961567",
         nct:"NCT04961567",
-        urgency:"upcoming", daysAway:126},
+        urgency:"upcoming", daysAway:125},
        
      ]},
     
@@ -127542,7 +128749,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06417814",
         nct:"NCT06417814",
-        urgency:"upcoming", daysAway:129},
+        urgency:"upcoming", daysAway:128},
        
        {type:"Phase3완료", company:"Biogen",
         drug:"Litifilimab + Placebo", date:"2026-09-30",
@@ -127550,7 +128757,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04895241",
         nct:"NCT04895241",
-        urgency:"upcoming", daysAway:129},
+        urgency:"upcoming", daysAway:128},
        
      ]},
     
@@ -127590,7 +128797,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06200207",
         nct:"NCT06200207",
-        urgency:"upcoming", daysAway:130},
+        urgency:"upcoming", daysAway:129},
        
        {type:"Phase3완료", company:"Argenx",
         drug:"efgartigimod PH20 SC", date:"2026-10-01",
@@ -127598,7 +128805,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04812925",
         nct:"NCT04812925",
-        urgency:"upcoming", daysAway:130},
+        urgency:"upcoming", daysAway:129},
        
      ]},
     
@@ -127613,7 +128820,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT07363720",
         nct:"NCT07363720",
-        urgency:"upcoming", daysAway:131},
+        urgency:"upcoming", daysAway:130},
        
      ]},
     
@@ -127644,7 +128851,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05511363",
         nct:"NCT05511363",
-        urgency:"upcoming", daysAway:134},
+        urgency:"upcoming", daysAway:133},
        
      ]},
     
@@ -127673,7 +128880,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06616194",
         nct:"NCT06616194",
-        urgency:"upcoming", daysAway:137},
+        urgency:"upcoming", daysAway:136},
        
      ]},
     
@@ -127688,7 +128895,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06959225",
         nct:"NCT06959225",
-        urgency:"upcoming", daysAway:138},
+        urgency:"upcoming", daysAway:137},
        
        {type:"Phase3완료", company:"Incyte",
         drug:"Ruxolitinib Cream + Vehicle Cream", date:"2026-10-09",
@@ -127696,7 +128903,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06958211",
         nct:"NCT06958211",
-        urgency:"upcoming", daysAway:138},
+        urgency:"upcoming", daysAway:137},
        
      ]},
     
@@ -127778,7 +128985,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06516952",
         nct:"NCT06516952",
-        urgency:"upcoming", daysAway:148},
+        urgency:"upcoming", daysAway:147},
        
      ]},
     
@@ -127793,7 +129000,7 @@ const GCAL_MONTHS = [
         app:"BLA (\ucd94\uc815)",
         url:"https://www.roche.com/solutions/pipeline",
         nct:"",
-        urgency:"upcoming", daysAway:149},
+        urgency:"upcoming", daysAway:148},
        
        {type:"Phase3완료", company:"Otsuka",
         drug:"SEP-363856", date:"2026-10-20",
@@ -127801,7 +129008,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06894212",
         nct:"NCT06894212",
-        urgency:"upcoming", daysAway:149},
+        urgency:"upcoming", daysAway:148},
        
      ]},
     
@@ -127853,7 +129060,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06738485",
         nct:"NCT06738485",
-        urgency:"upcoming", daysAway:155},
+        urgency:"upcoming", daysAway:154},
        
      ]},
     
@@ -127882,7 +129089,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT04736706",
         nct:"NCT04736706",
-        urgency:"upcoming", daysAway:158},
+        urgency:"upcoming", daysAway:157},
        
      ]},
     
@@ -127897,7 +129104,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05444257",
         nct:"NCT05444257",
-        urgency:"upcoming", daysAway:159},
+        urgency:"upcoming", daysAway:158},
        
      ]},
     
@@ -127912,7 +129119,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06052267",
         nct:"NCT06052267",
-        urgency:"upcoming", daysAway:160},
+        urgency:"upcoming", daysAway:159},
        
        {type:"Phase3완료", company:"Sarepta Therapeutics",
         drug:"Eteplirsen", date:"2026-10-31",
@@ -127920,7 +129127,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT03992430",
         nct:"NCT03992430",
-        urgency:"upcoming", daysAway:160},
+        urgency:"upcoming", daysAway:159},
        
      ]},
     
@@ -127946,7 +129153,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06951698",
         nct:"NCT06951698",
-        urgency:"upcoming", daysAway:161},
+        urgency:"upcoming", daysAway:160},
        
      ]},
     
@@ -127961,7 +129168,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06951711",
         nct:"NCT06951711",
-        urgency:"upcoming", daysAway:162},
+        urgency:"upcoming", daysAway:161},
        
      ]},
     
@@ -127997,7 +129204,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05677451",
         nct:"NCT05677451",
-        urgency:"upcoming", daysAway:166},
+        urgency:"upcoming", daysAway:165},
        
      ]},
     
@@ -128063,7 +129270,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05338190",
         nct:"NCT05338190",
-        urgency:"upcoming", daysAway:174},
+        urgency:"upcoming", daysAway:173},
        
      ]},
     
@@ -128101,7 +129308,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT07094087",
         nct:"NCT07094087",
-        urgency:"upcoming", daysAway:178},
+        urgency:"upcoming", daysAway:177},
        
      ]},
     
@@ -128123,7 +129330,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05335928",
         nct:"NCT05335928",
-        urgency:"upcoming", daysAway:180},
+        urgency:"upcoming", daysAway:179},
        
      ]},
     
@@ -128161,7 +129368,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06585787",
         nct:"NCT06585787",
-        urgency:"upcoming", daysAway:184},
+        urgency:"upcoming", daysAway:183},
        
      ]},
     
@@ -128206,7 +129413,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06641466",
         nct:"NCT06641466",
-        urgency:"upcoming", daysAway:189},
+        urgency:"upcoming", daysAway:188},
        
      ]},
     
@@ -128253,7 +129460,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06685757",
         nct:"NCT06685757",
-        urgency:"upcoming", daysAway:191},
+        urgency:"upcoming", daysAway:190},
        
        {type:"Phase3완료", company:"CSL",
         drug:"Recombinant fusion protein linking coagulation factor IX with albumin (rIX-FP)", date:"2026-12-01",
@@ -128261,7 +129468,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06399289",
         nct:"NCT06399289",
-        urgency:"upcoming", daysAway:191},
+        urgency:"upcoming", daysAway:190},
        
      ]},
     
@@ -128276,7 +129483,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06629779",
         nct:"NCT06629779",
-        urgency:"upcoming", daysAway:192},
+        urgency:"upcoming", daysAway:191},
        
      ]},
     
@@ -128298,7 +129505,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT07500506",
         nct:"NCT07500506",
-        urgency:"upcoming", daysAway:194},
+        urgency:"upcoming", daysAway:193},
        
      ]},
     
@@ -128322,7 +129529,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT07013474",
         nct:"NCT07013474",
-        urgency:"upcoming", daysAway:196},
+        urgency:"upcoming", daysAway:195},
        
      ]},
     
@@ -128351,7 +129558,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06126224",
         nct:"NCT06126224",
-        urgency:"upcoming", daysAway:199},
+        urgency:"upcoming", daysAway:198},
        
      ]},
     
@@ -128396,7 +129603,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06806137",
         nct:"NCT06806137",
-        urgency:"upcoming", daysAway:204},
+        urgency:"upcoming", daysAway:203},
        
        {type:"Phase3완료", company:"Novo Nordisk",
         drug:"Ziltivekimab + Placebo", date:"2026-12-14",
@@ -128404,7 +129611,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06118281",
         nct:"NCT06118281",
-        urgency:"upcoming", daysAway:204},
+        urgency:"upcoming", daysAway:203},
        
      ]},
     
@@ -128426,7 +129633,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05503264",
         nct:"NCT05503264",
-        urgency:"upcoming", daysAway:206},
+        urgency:"upcoming", daysAway:205},
        
      ]},
     
@@ -128471,7 +129678,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06921850",
         nct:"NCT06921850",
-        urgency:"upcoming", daysAway:211},
+        urgency:"upcoming", daysAway:210},
        
      ]},
     
@@ -128507,7 +129714,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06740630",
         nct:"NCT06740630",
-        urgency:"upcoming", daysAway:215},
+        urgency:"upcoming", daysAway:214},
        
      ]},
     
@@ -128552,7 +129759,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06559306",
         nct:"NCT06559306",
-        urgency:"upcoming", daysAway:220},
+        urgency:"upcoming", daysAway:219},
        
      ]},
     
@@ -128567,7 +129774,7 @@ const GCAL_MONTHS = [
         app:"NDA (\uc608\uc815)",
         url:"https://www.novonordisk.com/research-and-development/pipeline.html",
         nct:"",
-        urgency:"upcoming", daysAway:221},
+        urgency:"upcoming", daysAway:220},
        
        {type:"Phase3완료", company:"Roche",
         drug:"Inavolisib + Phesgo", date:"2026-12-31",
@@ -128575,7 +129782,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05894239",
         nct:"NCT05894239",
-        urgency:"upcoming", daysAway:221},
+        urgency:"upcoming", daysAway:220},
        
        {type:"Phase3완료", company:"Johnson \u0026 Johnson",
         drug:"Ibrutinib", date:"2026-12-31",
@@ -128583,7 +129790,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT01804686",
         nct:"NCT01804686",
-        urgency:"upcoming", daysAway:221},
+        urgency:"upcoming", daysAway:220},
        
        {type:"Phase3완료", company:"Johnson \u0026 Johnson",
         drug:"Macitentan Tablets + Riociguat", date:"2026-12-31",
@@ -128591,7 +129798,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05140525",
         nct:"NCT05140525",
-        urgency:"upcoming", daysAway:221},
+        urgency:"upcoming", daysAway:220},
        
        {type:"Phase3완료", company:"Takeda",
         drug:"Maribavir", date:"2026-12-31",
@@ -128599,7 +129806,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT06439342",
         nct:"NCT06439342",
-        urgency:"upcoming", daysAway:221},
+        urgency:"upcoming", daysAway:220},
        
        {type:"Phase3완료", company:"Boehringer Ingelheim",
         drug:"Empagliflozin 10 MG + Placebo", date:"2026-12-31",
@@ -128607,7 +129814,7 @@ const GCAL_MONTHS = [
         app:"",
         url:"https://clinicaltrials.gov/study/NCT05392764",
         nct:"NCT05392764",
-        urgency:"upcoming", daysAway:221},
+        urgency:"upcoming", daysAway:220},
        
      ]},
     
@@ -129136,8 +130343,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Astellas", "Eisai", "Amgen", "Novartis", "AstraZeneca", "AbbVie", "Gilead Sciences", "Otsuka", "Roche", "Incyte", "GSK", "CSL", "Vertex Pharmaceuticals", "Pfizer", "Bristol-Myers Squibb", "Teva", "Eli Lilly", "Takeda", "Novo Nordisk", "Bayer", "UCB", "Merck KGaA", "Boehringer Ingelheim", "Moderna", "Merck (MSD)", "Johnson \u0026 Johnson", "Biogen", "Sanofi", "Regeneron", "Daiichi Sankyo"];
-const BIOTECH_NAMES   = ["Apellis Pharmaceuticals", "Argenx", "Protagonist Therapeutics", "Alnylam Pharmaceuticals", "BioMarin Pharmaceutical", "Exelixis", "Ionis Pharmaceuticals", "Jazz Pharmaceuticals", "Rhythm Pharmaceuticals", "Sarepta Therapeutics", "Blueprint Medicines", "Madrigal Pharmaceuticals"];
+const BIGPHARMA_NAMES = ["Incyte", "Vertex Pharmaceuticals", "Regeneron", "Eli Lilly", "Amgen", "Moderna", "Merck KGaA", "Bristol-Myers Squibb", "Takeda", "Boehringer Ingelheim", "GSK", "Teva", "Novartis", "Roche", "Novo Nordisk", "Johnson \u0026 Johnson", "AbbVie", "CSL", "UCB", "AstraZeneca", "Pfizer", "Gilead Sciences", "Eisai", "Sanofi", "Daiichi Sankyo", "Bayer", "Astellas", "Biogen", "Merck (MSD)", "Otsuka"];
+const BIOTECH_NAMES   = ["Argenx", "Apellis Pharmaceuticals", "Sarepta Therapeutics", "Madrigal Pharmaceuticals", "Rhythm Pharmaceuticals", "Exelixis", "Ionis Pharmaceuticals", "BioMarin Pharmaceutical", "Jazz Pharmaceuticals", "Protagonist Therapeutics", "Blueprint Medicines", "Alnylam Pharmaceuticals"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -129300,7 +130507,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 14:56 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 15:06 UTC
 </footer>
 
 <script>

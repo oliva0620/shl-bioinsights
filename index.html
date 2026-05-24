@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 13:47 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 13:50 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -406,7 +406,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 13:47 UTC
+  최종 업데이트: 2026-05-24 13:50 UTC
 </p>
 </div>
 
@@ -94003,7 +94003,7 @@ Endpoint: Compare the hea<br>
       <input class="stock-search" type="text" placeholder="🔍 회사 검색..." oninput="filterStockSidebar(this.value)" id="stock-search-input">
     </div>
     <div class="stock-sort-row">
-      <button class="stock-sort-btn active" onclick="sortStockSidebar('default',this)">기본</button>
+      <button class="stock-sort-btn active" onclick="sortStockSidebar('event',this)">⚡이벤트</button>
       <button class="stock-sort-btn" onclick="sortStockSidebar('chg_desc',this)">↑등락</button>
       <button class="stock-sort-btn" onclick="sortStockSidebar('chg_asc',this)">↓등락</button>
       <button class="stock-sort-btn" onclick="sortStockSidebar('name',this)">이름</button>
@@ -94015,464 +94015,1023 @@ Endpoint: Compare the hea<br>
     <div id="stock-sidebar-list">
     
     
+    
+    
+    
+      
+        
+        
+      
+    
+      
+    
+      
+    
+      
+    
     <button class="stock-co-btn active"
             data-name="merck (msd)"
             data-chg="5.64"
+            data-has-event="1"
+            data-max-event-pct="5.64"
             data-slug="Merck-(MSD)"
             onclick="showStock('Merck-(MSD)', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Merck</span>
-      <span class="stock-co-chg chg-pos">+5.6%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Merck</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        <span title="±5% 급변 + 매칭 이벤트" style="font-size:9px">⚡</span>
+        <span class="stock-co-chg chg-pos">+5.6%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="pfizer"
             data-chg="-0.19"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Pfizer"
             onclick="showStock('Pfizer', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Pfizer</span>
-      <span class="stock-co-chg chg-neg">-0.2%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Pfizer</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.2%</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="johnson &amp; johnson"
             data-chg="1.13"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Johnson--Johnson"
             onclick="showStock('Johnson--Johnson', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Johnson &amp; Johnson</span>
-      <span class="stock-co-chg chg-pos">+1.1%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Johnson &amp; Johnson</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+1.1%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="abbvie"
             data-chg="0.56"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="AbbVie"
             onclick="showStock('AbbVie', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">AbbVie</span>
-      <span class="stock-co-chg chg-pos">+0.6%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">AbbVie</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+0.6%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="astrazeneca"
             data-chg="-1.43"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="AstraZeneca"
             onclick="showStock('AstraZeneca', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">AstraZeneca</span>
-      <span class="stock-co-chg chg-neg">-1.4%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">AstraZeneca</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-1.4%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="roche"
             data-chg="1.2"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Roche"
             onclick="showStock('Roche', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Roche</span>
-      <span class="stock-co-chg chg-pos">+1.2%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Roche</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+1.2%</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="novartis"
             data-chg="0.16"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Novartis"
             onclick="showStock('Novartis', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Novartis</span>
-      <span class="stock-co-chg chg-pos">+0.2%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Novartis</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+0.2%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="bristol-myers squibb"
             data-chg="-0.15"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Bristol-Myers-Squibb"
             onclick="showStock('Bristol-Myers-Squibb', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Bristol-Myers Squibb</span>
-      <span class="stock-co-chg chg-neg">-0.1%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Bristol-Myers Squibb</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.1%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="eli lilly"
             data-chg="2.24"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Eli-Lilly"
             onclick="showStock('Eli-Lilly', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Eli Lilly</span>
-      <span class="stock-co-chg chg-pos">+2.2%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Eli Lilly</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+2.2%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
     
     <button class="stock-co-btn "
             data-name="sanofi"
             data-chg="-1.4"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Sanofi"
             onclick="showStock('Sanofi', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Sanofi</span>
-      <span class="stock-co-chg chg-neg">-1.4%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Sanofi</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-1.4%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="novo nordisk"
             data-chg="1.28"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Novo-Nordisk"
             onclick="showStock('Novo-Nordisk', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Novo Nordisk</span>
-      <span class="stock-co-chg chg-pos">+1.3%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Novo Nordisk</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+1.3%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="gsk"
             data-chg="-0.29"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="GSK"
             onclick="showStock('GSK', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">GSK</span>
-      <span class="stock-co-chg chg-neg">-0.3%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">GSK</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.3%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="amgen"
             data-chg="0.56"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Amgen"
             onclick="showStock('Amgen', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Amgen</span>
-      <span class="stock-co-chg chg-pos">+0.6%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Amgen</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+0.6%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
     
     <button class="stock-co-btn "
             data-name="gilead sciences"
             data-chg="2.96"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Gilead-Sciences"
             onclick="showStock('Gilead-Sciences', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Gilead Sciences</span>
-      <span class="stock-co-chg chg-pos">+3.0%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Gilead Sciences</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+3.0%</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="takeda"
             data-chg="-1.4"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Takeda"
             onclick="showStock('Takeda', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Takeda</span>
-      <span class="stock-co-chg chg-neg">-1.4%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Takeda</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-1.4%</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="boehringer ingelheim"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Boehringer-Ingelheim"
             onclick="showStock('Boehringer-Ingelheim', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Boehringer Ingelheim</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Boehringer Ingelheim</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="bayer"
             data-chg="-1.51"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Bayer"
             onclick="showStock('Bayer', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Bayer</span>
-      <span class="stock-co-chg chg-neg">-1.5%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Bayer</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-1.5%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="teva"
             data-chg="-0.26"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Teva"
             onclick="showStock('Teva', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Teva</span>
-      <span class="stock-co-chg chg-neg">-0.3%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Teva</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.3%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+        
+        
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="regeneron"
             data-chg="-0.58"
+            data-has-event="1"
+            data-max-event-pct="11.82"
             data-slug="Regeneron"
             onclick="showStock('Regeneron', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Regeneron</span>
-      <span class="stock-co-chg chg-neg">-0.6%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Regeneron</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        <span title="±5% 급변 + 매칭 이벤트" style="font-size:9px">⚡</span>
+        <span class="stock-co-chg chg-neg">-0.6%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="csl"
             data-chg="-0.9"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="CSL"
             onclick="showStock('CSL', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">CSL</span>
-      <span class="stock-co-chg chg-neg">-0.9%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">CSL</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.9%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="vertex pharmaceuticals"
             data-chg="0.23"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Vertex-Pharmaceuticals"
             onclick="showStock('Vertex-Pharmaceuticals', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Vertex Pharmaceuticals</span>
-      <span class="stock-co-chg chg-pos">+0.2%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Vertex Pharmaceuticals</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+0.2%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="astellas"
             data-chg="-1.52"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Astellas"
             onclick="showStock('Astellas', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Astellas</span>
-      <span class="stock-co-chg chg-neg">-1.5%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Astellas</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-1.5%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="daiichi sankyo"
             data-chg="-0.12"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Daiichi-Sankyo"
             onclick="showStock('Daiichi-Sankyo', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Daiichi Sankyo</span>
-      <span class="stock-co-chg chg-neg">-0.1%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Daiichi Sankyo</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.1%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="biogen"
             data-chg="2.26"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Biogen"
             onclick="showStock('Biogen', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Biogen</span>
-      <span class="stock-co-chg chg-pos">+2.3%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Biogen</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+2.3%</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="otsuka"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Otsuka"
             onclick="showStock('Otsuka', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Otsuka</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Otsuka</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="merck kgaa"
             data-chg="0.51"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Merck-KGaA"
             onclick="showStock('Merck-KGaA', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Merck KGaA</span>
-      <span class="stock-co-chg chg-pos">+0.5%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Merck KGaA</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-pos">+0.5%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="ucb"
             data-chg="-0.41"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="UCB"
             onclick="showStock('UCB', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">UCB</span>
-      <span class="stock-co-chg chg-neg">-0.4%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">UCB</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.4%</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="eisai"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Eisai"
             onclick="showStock('Eisai', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Eisai</span>
-      <span class="stock-co-chg chg-neu">—</span>
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Eisai</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">—</span>
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="incyte"
             data-chg="-0.26"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Incyte"
             onclick="showStock('Incyte', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Incyte</span>
-      <span class="stock-co-chg chg-neg">-0.3%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Incyte</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neg">-0.3%</span>
+        
+      </span>
     </button>
     
+    
+    
+    
+    
+      
+        
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
     <button class="stock-co-btn "
             data-name="moderna"
             data-chg="-0.8"
+            data-has-event="1"
+            data-max-event-pct="5.25"
             data-slug="Moderna"
             onclick="showStock('Moderna', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Moderna</span>
-      <span class="stock-co-chg chg-neg">-0.8%</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Moderna</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        <span title="±5% 급변 + 매칭 이벤트" style="font-size:9px">⚡</span>
+        <span class="stock-co-chg chg-neg">-0.8%</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="madrigal pharmaceuticals"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Madrigal-Pharmaceuticals"
             onclick="showStock('Madrigal-Pharmaceuticals', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Madrigal Pharmaceuticals</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Madrigal Pharmaceuticals</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="alnylam pharmaceuticals"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Alnylam-Pharmaceuticals"
             onclick="showStock('Alnylam-Pharmaceuticals', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Alnylam Pharmaceuticals</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Alnylam Pharmaceuticals</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="argenx"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Argenx"
             onclick="showStock('Argenx', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Argenx</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Argenx</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="blueprint medicines"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Blueprint-Medicines"
             onclick="showStock('Blueprint-Medicines', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Blueprint Medicines</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Blueprint Medicines</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="apellis pharmaceuticals"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Apellis-Pharmaceuticals"
             onclick="showStock('Apellis-Pharmaceuticals', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Apellis Pharmaceuticals</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Apellis Pharmaceuticals</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="ionis pharmaceuticals"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Ionis-Pharmaceuticals"
             onclick="showStock('Ionis-Pharmaceuticals', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Ionis Pharmaceuticals</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Ionis Pharmaceuticals</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="biomarin pharmaceutical"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="BioMarin-Pharmaceutical"
             onclick="showStock('BioMarin-Pharmaceutical', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">BioMarin Pharmaceutical</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">BioMarin Pharmaceutical</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="sarepta therapeutics"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Sarepta-Therapeutics"
             onclick="showStock('Sarepta-Therapeutics', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Sarepta Therapeutics</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Sarepta Therapeutics</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="exelixis"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Exelixis"
             onclick="showStock('Exelixis', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Exelixis</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Exelixis</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="rhythm pharmaceuticals"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Rhythm-Pharmaceuticals"
             onclick="showStock('Rhythm-Pharmaceuticals', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Rhythm Pharmaceuticals</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Rhythm Pharmaceuticals</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="jazz pharmaceuticals"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Jazz-Pharmaceuticals"
             onclick="showStock('Jazz-Pharmaceuticals', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Jazz Pharmaceuticals</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Jazz Pharmaceuticals</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
+    
+    
+    
     
     
     <button class="stock-co-btn "
             data-name="protagonist therapeutics"
             data-chg="-999"
+            data-has-event="0"
+            data-max-event-pct="0"
             data-slug="Protagonist-Therapeutics"
             onclick="showStock('Protagonist-Therapeutics', this)">
-      <span style="overflow:hidden;white-space:nowrap;max-width:108px;text-overflow:ellipsis">Protagonist Therapeutics</span>
-      <span class="stock-co-chg chg-neu">비상장</span>
-      
+      <span style="overflow:hidden;white-space:nowrap;max-width:94px;text-overflow:ellipsis">Protagonist Therapeutics</span>
+      <span style="display:flex;align-items:center;gap:3px">
+        
+        <span class="stock-co-chg chg-neu">비상장</span>
+        
+      </span>
     </button>
     
     </div>
@@ -99952,17 +100511,25 @@ function filterStockSidebar(q) {
 
 function sortStockSidebar(mode, clickedBtn) {
   document.querySelectorAll('.stock-sort-btn').forEach(b => b.classList.remove('active'));
-  clickedBtn.classList.add('active');
+  if (clickedBtn) clickedBtn.classList.add('active');
   const list = document.getElementById('stock-sidebar-list');
   const btns = Array.from(list.querySelectorAll('.stock-co-btn'));
   btns.sort((a, b) => {
     if (mode === 'name') return (a.dataset.name||'').localeCompare(b.dataset.name||'');
     if (mode === 'chg_desc') return parseFloat(b.dataset.chg||0) - parseFloat(a.dataset.chg||0);
     if (mode === 'chg_asc')  return parseFloat(a.dataset.chg||0) - parseFloat(b.dataset.chg||0);
-    return 0; // default: original order preserved
+    if (mode === 'event') {
+      // ①이벤트 매칭 있는 것 먼저, ②그 안에서 max_event_pct 내림차순
+      const ae = parseInt(a.dataset.hasEvent||0), be = parseInt(b.dataset.hasEvent||0);
+      if (be !== ae) return be - ae;
+      return parseFloat(b.dataset.maxEventPct||0) - parseFloat(a.dataset.maxEventPct||0);
+    }
+    return 0;
   });
   btns.forEach(b => list.appendChild(b));
 }
+// Apply event sort on load
+document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', null));
 </script>
 </div>
 
@@ -121063,7 +121630,7 @@ function sortStockSidebar(mode, clickedBtn) {
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 13:47 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 13:50 UTC</span>
   </div>
 </div>
 
@@ -125854,8 +126421,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["CSL", "Bayer", "Merck (MSD)", "Eli Lilly", "Merck KGaA", "Biogen", "Pfizer", "Moderna", "Teva", "Otsuka", "Johnson \u0026 Johnson", "Regeneron", "Astellas", "UCB", "Incyte", "GSK", "Takeda", "AbbVie", "Boehringer Ingelheim", "Roche", "Novartis", "Vertex Pharmaceuticals", "Daiichi Sankyo", "Amgen", "Sanofi", "Gilead Sciences", "Novo Nordisk", "Bristol-Myers Squibb", "AstraZeneca", "Eisai"];
-const BIOTECH_NAMES   = ["Ionis Pharmaceuticals", "Sarepta Therapeutics", "Alnylam Pharmaceuticals", "Blueprint Medicines", "Madrigal Pharmaceuticals", "Argenx", "BioMarin Pharmaceutical", "Protagonist Therapeutics", "Rhythm Pharmaceuticals", "Apellis Pharmaceuticals", "Jazz Pharmaceuticals", "Exelixis"];
+const BIGPHARMA_NAMES = ["Pfizer", "UCB", "Sanofi", "Eisai", "Bayer", "Otsuka", "Moderna", "Incyte", "Boehringer Ingelheim", "Takeda", "Merck (MSD)", "Vertex Pharmaceuticals", "Roche", "Astellas", "Gilead Sciences", "Merck KGaA", "Novartis", "Eli Lilly", "Johnson \u0026 Johnson", "GSK", "Regeneron", "Amgen", "Biogen", "CSL", "Teva", "AstraZeneca", "Bristol-Myers Squibb", "Daiichi Sankyo", "AbbVie", "Novo Nordisk"];
+const BIOTECH_NAMES   = ["Argenx", "BioMarin Pharmaceutical", "Madrigal Pharmaceuticals", "Protagonist Therapeutics", "Ionis Pharmaceuticals", "Alnylam Pharmaceuticals", "Exelixis", "Apellis Pharmaceuticals", "Rhythm Pharmaceuticals", "Blueprint Medicines", "Sarepta Therapeutics", "Jazz Pharmaceuticals"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -126018,7 +126585,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 13:47 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 13:50 UTC
 </footer>
 
 <script>

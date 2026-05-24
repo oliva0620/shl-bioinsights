@@ -170,7 +170,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 11:41 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 11:45 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -220,6 +220,9 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     <div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);text-align:center">
       <div style="font-size:13px;font-weight:800;color:var(--accent);letter-spacing:-.2px">SHL BioInsights</div>
       <div style="font-size:10px;color:var(--muted);margin-top:2px">by SeungHee Lee</div>
+      <button onclick="tourStart()" style="margin-top:8px;width:100%;padding:6px;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);border-radius:6px;color:var(--accent);font-size:11px;font-weight:600;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(99,102,241,.22)'" onmouseout="this.style.background='rgba(99,102,241,.12)'">
+        👋 사용법 투어 다시 보기
+      </button>
     </div>
     <div style="margin-bottom:10px">
       <div style="font-size:11px;font-weight:600;color:var(--text);margin-bottom:6px">요약 현황</div>
@@ -389,7 +392,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 11:41 UTC
+  최종 업데이트: 2026-05-24 11:45 UTC
 </p>
 </div>
 
@@ -96431,7 +96434,7 @@ function sortStockSidebar(mode, clickedBtn) {
   <div style="font-size:13px;color:var(--muted);line-height:2">
     전 세계 매출 상위 30개 제약회사가 <strong style="color:var(--text)">지금 어떤 신약을 개발 중인지</strong>,
     그 신약이 <strong style="color:var(--text)">FDA 승인을 받을 가능성이 얼마나 되는지</strong>를 매일 자동으로 추적합니다.<br>
-    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-24 11:41 UTC</strong>
+    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-24 11:45 UTC</strong>
   </div>
 </div>
 
@@ -101098,7 +101101,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:41 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:45 UTC
 </footer>
 
 <script>
@@ -101143,7 +101146,296 @@ function sortTable(tableId, col) {
 }
 </script>
 
-<!-- PANEL: 데이터 출처 -->
+<!-- ═══════════════════════════════════════════════════
+     GUIDED TOUR
+     ═══════════════════════════════════════════════════ -->
+<style>
+/* 하이라이트 spotlight */
+.tour-highlight {
+  position: fixed; z-index: 9010; border-radius: 10px; pointer-events: none;
+  box-shadow: 0 0 0 4px #6366f1, 0 0 0 9999px rgba(0,0,0,.62);
+  transition: top .35s cubic-bezier(.4,0,.2,1),
+              left .35s cubic-bezier(.4,0,.2,1),
+              width .35s cubic-bezier(.4,0,.2,1),
+              height .35s cubic-bezier(.4,0,.2,1);
+}
+/* 말풍선 */
+.tour-bubble {
+  position: fixed; z-index: 9020; max-width: 320px;
+  background: #1e2235; border: 1.5px solid #6366f1;
+  border-radius: 14px; padding: 20px 22px 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.55);
+  transition: opacity .25s, transform .25s;
+}
+.tour-bubble::before {            /* 화살표 */
+  content: '';
+  position: absolute;
+  border: 8px solid transparent;
+}
+.tour-bubble.arrow-right::before  { right:-16px; top:22px; border-left-color:#6366f1; }
+.tour-bubble.arrow-left::before   { left:-16px;  top:22px; border-right-color:#6366f1; }
+.tour-bubble.arrow-bottom::before { bottom:-16px;left:24px; border-top-color:#6366f1; }
+.tour-bubble.arrow-top::before    { top:-16px;   left:24px; border-bottom-color:#6366f1; }
+
+.tour-step-badge {
+  font-size:10px; font-weight:700; color:var(--accent);
+  background:rgba(99,102,241,.15); padding:2px 9px; border-radius:99px;
+  margin-bottom:10px; display:inline-block;
+}
+.tour-title { font-size:15px; font-weight:800; color:#e2e8f0; margin-bottom:8px; line-height:1.3; }
+.tour-text  { font-size:12px; color:#94a3b8; line-height:1.75; margin-bottom:14px; }
+.tour-text strong { color:#e2e8f0; }
+.tour-actions { display:flex; align-items:center; gap:8px; justify-content:flex-end; }
+.tour-skip {
+  font-size:11px; color:#64748b; background:none; border:none; cursor:pointer; padding:4px 6px;
+  margin-right:auto; transition:color .15s;
+}
+.tour-skip:hover { color:#94a3b8; }
+.tour-progress { font-size:10px; color:#64748b; margin-right:4px; }
+.tour-prev {
+  font-size:12px; font-weight:600; padding:7px 14px; border-radius:7px;
+  background:transparent; border:1px solid #334155; color:#94a3b8; cursor:pointer; transition:all .15s;
+}
+.tour-prev:hover { border-color:#6366f1; color:#e2e8f0; }
+.tour-next {
+  font-size:12px; font-weight:700; padding:7px 18px; border-radius:7px;
+  background:#6366f1; border:1px solid #6366f1; color:#fff; cursor:pointer; transition:all .15s;
+}
+.tour-next:hover { background:#4f46e5; }
+
+/* 모달형 (중앙) */
+.tour-modal-overlay {
+  position:fixed; inset:0; z-index:9015;
+  background:rgba(0,0,0,.68); display:flex; align-items:center; justify-content:center;
+}
+.tour-modal-box {
+  background:#1a1d27; border:1.5px solid #6366f1; border-radius:18px;
+  padding:36px 40px; max-width:480px; width:90%; text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  animation: tourPop .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes tourPop { from { transform:scale(.85); opacity:0; } to { transform:scale(1); opacity:1; } }
+.tour-modal-icon { font-size:48px; margin-bottom:16px; }
+.tour-modal-title { font-size:22px; font-weight:900; color:#e2e8f0; margin-bottom:10px; letter-spacing:-.3px; }
+.tour-modal-text { font-size:13px; color:#94a3b8; line-height:1.8; margin-bottom:24px; }
+.tour-modal-text strong { color:#e2e8f0; }
+.tour-dots { display:flex; gap:6px; justify-content:center; margin-bottom:20px; }
+.tour-dot { width:6px; height:6px; border-radius:50%; background:#334155; transition:all .2s; }
+.tour-dot.active { background:#6366f1; width:18px; border-radius:3px; }
+</style>
+
+<!-- 투어 DOM (JS로 제어) -->
+<div id="tourHighlight" class="tour-highlight" style="display:none"></div>
+<div id="tourBubble"    class="tour-bubble"    style="display:none"></div>
+<div id="tourModal"     class="tour-modal-overlay" style="display:none"></div>
+
+<script>
+const TOUR_STEPS = [
+  {
+    type: 'modal',
+    icon: '🧬',
+    title: 'SHL BioInsights에 오신 것을 환영합니다!',
+    text: '글로벌 <strong>Top 30 제약사</strong>의 임상 파이프라인을 매일 자동 수집·분석하는 <strong>바이오 투자 리서치 플랫폼</strong>입니다.<br><br>주요 기능을 단계별로 소개해드릴게요. 언제든 건너뛸 수 있습니다.',
+    btnLabel: '투어 시작하기 →',
+  },
+  {
+    selector: '.sidebar',
+    position: 'right',
+    title: '📌 왼쪽 메뉴바',
+    text: '여기서 원하는 분석 화면으로 이동합니다.<br>각 탭은 서로 다른 투자 분석 기능을 제공해요.',
+  },
+  {
+    selector: '[onclick*="pipeline"]',
+    position: 'right',
+    title: '📊 파이프라인 개요',
+    text: '<strong>ADC · GLP-1 · mRNA</strong> 등 치료 플랫폼별로 30개사 임상 분포를 비교합니다.<br><br>어떤 분야에 어떤 회사가 집중하는지, 업계 트렌드를 파악할 수 있어요.',
+  },
+  {
+    selector: '[onclick*="trials"]',
+    position: 'right',
+    title: '🔬 임상 상세',
+    text: '개별 임상(NCT ID)별로 <strong>약물명 · 적응증 · 성공 확률(PoS)</strong>을 확인합니다.<br><br>테이블을 정렬·검색하고 ClinicalTrials.gov 원문으로 바로 이동할 수 있어요.',
+  },
+  {
+    selector: '[onclick*="crl"]',
+    position: 'right',
+    title: '📋 FDA CRL 트래커',
+    text: '<strong>CRL = FDA 승인 거절 공문</strong>. 거절된 신약의 사유와 해결 여부를 추적합니다.<br><br>CRL을 받은 기업은 주가 리스크가 크므로 투자 전 반드시 확인하세요.',
+  },
+  {
+    selector: '[onclick*="calendar"]',
+    position: 'right',
+    title: '📅 주요 이벤트 달력',
+    text: '<strong>PDUFA(FDA 결정일) · Phase 3 완료 · CRL 발행</strong>을 달력으로 한눈에 확인합니다.<br><br>날짜를 클릭하면 해당 이벤트의 투자 의미를 상세히 설명해줘요.',
+  },
+  {
+    selector: '[onclick*="stock"]',
+    position: 'right',
+    title: '📈 주가 트래커',
+    text: '30개사 <strong>주가 차트 · 수익률 · 투자 시그널</strong>을 확인합니다.<br><br>Yahoo Finance 링크로 실시간 정보에도 바로 접근할 수 있어요.',
+  },
+  {
+    selector: '[onclick*="pos"]',
+    position: 'right',
+    title: '🎯 임상 통과 예측',
+    text: '<strong>BIO/IQVIA 2023</strong> 데이터 기반으로 Phase · 적응증별 임상 성공 확률을 계산합니다.<br><br>고확률 파이프라인을 선별하는 스크리닝 도구로 활용하세요.',
+  },
+  {
+    selector: '[onclick*="news"]',
+    position: 'right',
+    title: '📰 뉴스 피드',
+    text: '<strong>FiercePharma · STAT News · Reuters Health</strong> 최신 임상 뉴스를 매일 자동 수집합니다.<br><br>기업 이름으로 검색해 관심 종목 뉴스만 필터링할 수 있어요.',
+  },
+  {
+    type: 'modal',
+    icon: '🚀',
+    title: '이제 시작해보세요!',
+    text: '궁금한 점은 사이드바 하단 <strong>📖 사용 가이드</strong>와 <strong>🔗 데이터 출처</strong>를 참고하세요.<br><br>데이터는 <strong>매일 자동 업데이트</strong>됩니다. 투어는 언제든 사이드바 하단 버튼으로 다시 볼 수 있어요.',
+    btnLabel: '시작하기 ✓',
+    isLast: true,
+  },
+];
+
+let tourStep = 0;
+let tourActive = false;
+
+function tourStart() {
+  tourStep = 0;
+  tourActive = true;
+  tourShow();
+}
+
+function tourEnd() {
+  tourActive = false;
+  document.getElementById('tourHighlight').style.display = 'none';
+  document.getElementById('tourBubble').style.display = 'none';
+  document.getElementById('tourModal').style.display = 'none';
+  localStorage.setItem('shl_tour_done', '1');
+}
+
+function tourShow() {
+  const step = TOUR_STEPS[tourStep];
+  const total = TOUR_STEPS.length;
+
+  if (step.type === 'modal') {
+    tourShowModal(step, tourStep, total);
+  } else {
+    tourShowBubble(step, tourStep, total);
+  }
+}
+
+function tourShowModal(step, idx, total) {
+  document.getElementById('tourHighlight').style.display = 'none';
+  document.getElementById('tourBubble').style.display = 'none';
+
+  const modal = document.getElementById('tourModal');
+  const dots = TOUR_STEPS.map((_, i) =>
+    `<div class="tour-dot${i === idx ? ' active' : ''}"></div>`).join('');
+
+  modal.innerHTML = `
+    <div class="tour-modal-box">
+      <div class="tour-modal-icon">${step.icon}</div>
+      <div class="tour-modal-title">${step.title}</div>
+      <div class="tour-modal-text">${step.text}</div>
+      <div class="tour-dots">${dots}</div>
+      <div style="display:flex;gap:10px;justify-content:center;align-items:center">
+        ${idx > 0 ? '<button class="tour-prev" onclick="tourPrev()">← 이전</button>' : ''}
+        <button class="tour-next" style="padding:10px 28px;font-size:13px" onclick="tourNext()">
+          ${step.btnLabel || (step.isLast ? '완료 ✓' : '다음 →')}
+        </button>
+      </div>
+      <button class="tour-skip" onclick="tourEnd()" style="display:block;margin:12px auto 0;font-size:11px;color:#475569">
+        ${step.isLast ? '' : '투어 건너뛰기'}
+      </button>
+    </div>`;
+  modal.style.display = 'flex';
+}
+
+function tourShowBubble(step, idx, total) {
+  document.getElementById('tourModal').style.display = 'none';
+
+  const el = document.querySelector(step.selector);
+  if (!el) { tourNext(); return; }
+
+  const rect = el.getBoundingClientRect();
+  const hl = document.getElementById('tourHighlight');
+  const pad = 4;
+  hl.style.display = 'block';
+  hl.style.top    = (rect.top - pad) + 'px';
+  hl.style.left   = (rect.left - pad) + 'px';
+  hl.style.width  = (rect.width  + pad * 2) + 'px';
+  hl.style.height = (rect.height + pad * 2) + 'px';
+
+  // 말풍선 위치
+  const bubble = document.getElementById('tourBubble');
+  const bw = 320, bh = 220;
+  const margin = 18;
+  const pos = step.position || 'right';
+  let bTop, bLeft, arrowClass;
+
+  if (pos === 'right') {
+    bLeft = rect.right + margin;
+    bTop  = rect.top + rect.height / 2 - bh / 2;
+    arrowClass = 'arrow-left';
+    if (bLeft + bw > window.innerWidth - 8) {
+      bLeft = rect.left - bw - margin;
+      arrowClass = 'arrow-right';
+    }
+  } else if (pos === 'left') {
+    bLeft = rect.left - bw - margin;
+    bTop  = rect.top + rect.height / 2 - bh / 2;
+    arrowClass = 'arrow-right';
+  } else if (pos === 'bottom') {
+    bTop  = rect.bottom + margin;
+    bLeft = rect.left + rect.width / 2 - bw / 2;
+    arrowClass = 'arrow-top';
+  } else {
+    bTop  = rect.top - bh - margin;
+    bLeft = rect.left + rect.width / 2 - bw / 2;
+    arrowClass = 'arrow-bottom';
+  }
+  bTop  = Math.max(8, Math.min(bTop,  window.innerHeight - bh - 8));
+  bLeft = Math.max(8, Math.min(bLeft, window.innerWidth  - bw - 8));
+
+  const dots = TOUR_STEPS.map((_, i) =>
+    `<div style="width:${i===idx?'14px':'6px'};height:6px;border-radius:3px;background:${i===idx?'#6366f1':'#334155'};transition:all .2s;flex-shrink:0"></div>`
+  ).join('');
+
+  bubble.className = 'tour-bubble ' + arrowClass;
+  bubble.style.cssText = `display:block;top:${bTop}px;left:${bLeft}px;width:${bw}px`;
+  bubble.innerHTML = `
+    <div class="tour-step-badge">${idx + 1} / ${total}</div>
+    <div class="tour-title">${step.title}</div>
+    <div class="tour-text">${step.text}</div>
+    <div style="display:flex;gap:5px;margin-bottom:12px">${dots}</div>
+    <div class="tour-actions">
+      <button class="tour-skip" onclick="tourEnd()">건너뛰기</button>
+      ${idx > 0 ? '<button class="tour-prev" onclick="tourPrev()">← 이전</button>' : ''}
+      <button class="tour-next" onclick="tourNext()">
+        ${idx === total - 1 ? '완료 ✓' : '다음 →'}
+      </button>
+    </div>`;
+}
+
+function tourNext() {
+  if (tourStep < TOUR_STEPS.length - 1) {
+    tourStep++;
+    tourShow();
+  } else {
+    tourEnd();
+  }
+}
+function tourPrev() {
+  if (tourStep > 0) { tourStep--; tourShow(); }
+}
+
+// 첫 방문 시 자동 실행
+window.addEventListener('load', () => {
+  if (!localStorage.getItem('shl_tour_done')) {
+    setTimeout(tourStart, 600);
+  }
+});
+</script>
 
 </body>
 </html>

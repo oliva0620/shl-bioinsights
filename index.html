@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 15:11 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 15:17 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -316,7 +316,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 <div class="hm-wrap">
   <div class="hm-eyebrow">
     <span class="hm-eyebrow-dot"></span>
-    매일 자동 업데이트 · 2026-05-24 15:11 UTC
+    매일 자동 업데이트 · 2026-05-24 15:17 UTC
   </div>
 
   <div class="hm-brand">SHL BioInsights</div>
@@ -4919,6 +4919,27 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px;
   }
   .co-ta-pill.top { color: var(--text); border-color: #4a4f7a; }
+  /* Pipeline timeline visualization */
+  .co-pipe-viz {
+    display: flex; align-items: flex-end; gap: 0; width: 100%; padding: 6px 0 2px;
+  }
+  .co-pipe-seg { flex: 1; display: flex; flex-direction: column; align-items: stretch; min-width: 0; }
+  .co-pipe-block {
+    border-radius: 5px; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; color: rgba(255,255,255,.95);
+    letter-spacing: -.3px; transition: filter .15s; cursor: default;
+  }
+  .co-pipe-block:hover { filter: brightness(1.18); }
+  .co-pipe-lbl {
+    font-size: 9px; color: var(--muted); text-align: center; padding-top: 3px;
+    white-space: nowrap; letter-spacing: .2px;
+  }
+  .co-pipe-arrow {
+    width: 14px; flex-shrink: 0; display: flex; align-items: flex-end;
+    justify-content: center; padding-bottom: 16px; color: #334155;
+    font-size: 13px; font-weight: 900;
+  }
+  .co-pipe-meta { display: flex; gap: 4px; flex-wrap: wrap; padding-top: 4px; align-items: center; }
   /* Collapsible detail body */
   .co-card-body { display: none; border-top: 1px solid var(--border); }
   .co-card.expanded .co-card-body { display: block; }
@@ -5042,45 +5063,53 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">237</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">311</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">298</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:50px;background:rgba(59,130,246,0.98)">298</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">311</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">1305</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">197</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 649</span>
-          
-          <span class="co-ta-pill top">Other 462</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 70</span>
-          
-          <span class="co-ta-pill ">Infectious Disease 51</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:42px;background:rgba(234,179,8,0.88)">237</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">649</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">462</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">70</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">51</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -7537,45 +7566,53 @@ DORIS remission is defined as Clinic<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">220</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">387</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">390</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">390</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">387</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">1154</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">341</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 727</span>
-          
-          <span class="co-ta-pill top">Other 265</span>
-          
-          <span class="co-ta-pill ">Infectious Disease 110</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 25</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:34px;background:rgba(234,179,8,0.78)">220</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">727</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">265</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">110</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">25</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -10019,45 +10056,53 @@ DORIS remission is defined as Clinic<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">166</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:39px;background:rgba(99,102,241,0.84)">140</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">203</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">203</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">140</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">881</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">154</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 333</span>
-          
-          <span class="co-ta-pill top">Oncology 322</span>
-          
-          <span class="co-ta-pill ">Neurology 87</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 52</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:44px;background:rgba(234,179,8,0.91)">166</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">333</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">322</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">87</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">52</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -12503,45 +12548,53 @@ The final reporting times of OS for each comparison b<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">165</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:41px;background:rgba(99,102,241,0.87)">221</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">302</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">302</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">221</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">920</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">159</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 541</span>
-          
-          <span class="co-ta-pill top">Other 174</span>
-          
-          <span class="co-ta-pill ">Neurology 85</span>
-          
-          <span class="co-ta-pill ">Rare Disease 27</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:33px;background:rgba(234,179,8,0.77)">165</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">541</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">174</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">85</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">27</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -14995,45 +15048,53 @@ A vision score of 20/<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">153</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">251</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">156</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:36px;background:rgba(59,130,246,0.81)">156</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">251</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">645</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">153</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 206</span>
-          
-          <span class="co-ta-pill top">Oncology 179</span>
-          
-          <span class="co-ta-pill ">Endocrinology 156</span>
-          
-          <span class="co-ta-pill ">Immunology 49</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:36px;background:rgba(234,179,8,0.8)">153</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">206</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">179</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">156</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">49</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -17477,45 +17538,53 @@ A vision score of 20/<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">140</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">270</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">209</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:43px;background:rgba(59,130,246,0.89)">209</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">270</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">976</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">356</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 380</span>
-          
-          <span class="co-ta-pill top">Other 336</span>
-          
-          <span class="co-ta-pill ">Infectious Disease 99</span>
-          
-          <span class="co-ta-pill ">Immunology 57</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:32px;background:rgba(234,179,8,0.76)">140</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">380</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">336</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">99</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">57</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -19961,45 +20030,53 @@ A vision score of 20/<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">140</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:45px;background:rgba(99,102,241,0.92)">158</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">188</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">188</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">158</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">830</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">183</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 340</span>
-          
-          <span class="co-ta-pill top">Oncology 326</span>
-          
-          <span class="co-ta-pill ">Immunology 67</span>
-          
-          <span class="co-ta-pill ">Infectious Disease 52</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:41px;background:rgba(234,179,8,0.87)">140</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">340</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">326</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">67</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">52</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -22448,45 +22525,53 @@ A vision score of 20/<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">126</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">174</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">118</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:38px;background:rgba(59,130,246,0.84)">118</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">174</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">584</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">77</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 206</span>
-          
-          <span class="co-ta-pill top">Oncology 195</span>
-          
-          <span class="co-ta-pill ">Immunology 104</span>
-          
-          <span class="co-ta-pill ">Neurology 48</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:40px;background:rgba(234,179,8,0.86)">126</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">206</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">195</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">104</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">48</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -24932,45 +25017,53 @@ A vision score of 20/<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">126</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:40px;background:rgba(99,102,241,0.86)">90</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">126</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">126</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">90</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">555</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">105</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 248</span>
-          
-          <span class="co-ta-pill top">Oncology 80</span>
-          
-          <span class="co-ta-pill ">Infectious Disease 67</span>
-          
-          <span class="co-ta-pill ">Rare Disease 50</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">126</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">248</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">80</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">67</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">50</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -27420,45 +27513,53 @@ Overall incidence and severity of adv<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">106</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">140</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">116</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:45px;background:rgba(59,130,246,0.91)">116</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">140</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">456</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">164</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 170</span>
-          
-          <span class="co-ta-pill top">Oncology 144</span>
-          
-          <span class="co-ta-pill ">Infectious Disease 118</span>
-          
-          <span class="co-ta-pill ">Immunology 15</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:42px;background:rgba(234,179,8,0.88)">106</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">170</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">144</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">118</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">15</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -29906,45 +30007,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">105</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">123</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">43</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:25px;background:rgba(59,130,246,0.67)">43</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">123</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">430</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">66</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Endocrinology 268</span>
-          
-          <span class="co-ta-pill top">Other 77</span>
-          
-          <span class="co-ta-pill ">Rare Disease 36</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 22</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:46px;background:rgba(234,179,8,0.93)">105</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Endocrinology <span style="opacity:.7">268</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">77</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">36</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">22</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -32392,45 +32501,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">98</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">253</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">251</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">251</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">253</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">807</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">166</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 497</span>
-          
-          <span class="co-ta-pill top">Other 203</span>
-          
-          <span class="co-ta-pill ">Immunology 54</span>
-          
-          <span class="co-ta-pill ">Neurology 24</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:26px;background:rgba(234,179,8,0.69)">98</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">497</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">203</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">54</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">24</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -34874,45 +34991,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">93</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:41px;background:rgba(99,102,241,0.87)">68</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">60</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:37px;background:rgba(59,130,246,0.82)">60</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">68</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">434</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">123</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 207</span>
-          
-          <span class="co-ta-pill top">Oncology 105</span>
-          
-          <span class="co-ta-pill ">Immunology 57</span>
-          
-          <span class="co-ta-pill ">Rare Disease 35</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">93</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">207</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">105</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">57</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">35</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -37358,45 +37483,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">85</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">93</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">91</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:51px;background:rgba(59,130,246,0.99)">91</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">93</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">347</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">97</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 156</span>
-          
-          <span class="co-ta-pill top">Other 115</span>
-          
-          <span class="co-ta-pill ">Endocrinology 31</span>
-          
-          <span class="co-ta-pill ">Immunology 28</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:48px;background:rgba(234,179,8,0.96)">85</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">156</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">115</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">31</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">28</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -39842,45 +39975,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">69</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:44px;background:rgba(99,102,241,0.9)">73</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">91</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">91</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">73</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">321</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">48</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 163</span>
-          
-          <span class="co-ta-pill top">Oncology 112</span>
-          
-          <span class="co-ta-pill ">Immunology 18</span>
-          
-          <span class="co-ta-pill ">Endocrinology 11</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:42px;background:rgba(234,179,8,0.88)">69</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">163</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">112</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">18</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">11</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -42328,45 +42469,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">52</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">182</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">64</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:25px;background:rgba(59,130,246,0.68)">64</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">182</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">429</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">146</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 257</span>
-          
-          <span class="co-ta-pill top">Oncology 78</span>
-          
-          <span class="co-ta-pill ">Endocrinology 36</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 34</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:22px;background:rgba(234,179,8,0.64)">52</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">257</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">78</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">36</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">34</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -44801,45 +44950,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">50</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:40px;background:rgba(99,102,241,0.86)">63</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">88</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">88</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">63</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">299</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">62</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 136</span>
-          
-          <span class="co-ta-pill top">Infectious Disease 126</span>
-          
-          <span class="co-ta-pill ">Other 25</span>
-          
-          <span class="co-ta-pill ">Immunology 10</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:34px;background:rgba(234,179,8,0.78)">50</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">136</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">126</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">25</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">10</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -47276,45 +47433,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">50</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">81</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">74</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:48px;background:rgba(59,130,246,0.96)">74</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">81</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">399</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">47</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 172</span>
-          
-          <span class="co-ta-pill top">Other 112</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 56</span>
-          
-          <span class="co-ta-pill ">Endocrinology 32</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:36px;background:rgba(234,179,8,0.81)">50</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">172</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">112</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">56</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">32</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -49769,45 +49934,53 @@ Proportion of subjects achieving a response of ALT\&lt;1.5x ULN and corticostero
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">42</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:39px;background:rgba(99,102,241,0.85)">29</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">12</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:22px;background:rgba(59,130,246,0.64)">12</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">29</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">104</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">36</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 55</span>
-          
-          <span class="co-ta-pill top">Immunology 24</span>
-          
-          <span class="co-ta-pill ">Neurology 23</span>
-          
-          <span class="co-ta-pill ">Oncology 2</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">42</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">55</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">24</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">23</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">2</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -52246,45 +52419,53 @@ The severity of each<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">41</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">60</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">53</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:47px;background:rgba(59,130,246,0.94)">53</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">60</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">217</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">23</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 170</span>
-          
-          <span class="co-ta-pill top">Other 29</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 13</span>
-          
-          <span class="co-ta-pill ">Immunology 2</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:39px;background:rgba(234,179,8,0.84)">41</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">170</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">29</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">13</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">2</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -54728,45 +54909,53 @@ The severity of each<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">39</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:51px;background:rgba(99,102,241,0.99)">38</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">27</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:39px;background:rgba(59,130,246,0.85)">27</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">38</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">132</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">34</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 87</span>
-          
-          <span class="co-ta-pill top">Oncology 9</span>
-          
-          <span class="co-ta-pill ">Neurology 9</span>
-          
-          <span class="co-ta-pill ">Immunology 8</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">39</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">87</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">9</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">9</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">8</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -57212,45 +57401,53 @@ The severity of each<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">34</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">49</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">14</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:22px;background:rgba(59,130,246,0.64)">14</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">49</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">106</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">24</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 58</span>
-          
-          <span class="co-ta-pill top">Rare Disease 42</span>
-          
-          <span class="co-ta-pill ">Endocrinology 4</span>
-          
-          <span class="co-ta-pill ">Neurology 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:39px;background:rgba(234,179,8,0.85)">34</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">58</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">42</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">4</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -59694,45 +59891,53 @@ The severity of each<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">33</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">43</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">41</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:50px;background:rgba(59,130,246,0.98)">41</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">43</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">165</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">34</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 100</span>
-          
-          <span class="co-ta-pill top">Other 58</span>
-          
-          <span class="co-ta-pill ">Rare Disease 3</span>
-          
-          <span class="co-ta-pill ">Immunology 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:42px;background:rgba(234,179,8,0.88)">33</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">100</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">58</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">3</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -62161,45 +62366,53 @@ The severity of each<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">32</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:47px;background:rgba(99,102,241,0.95)">91</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">102</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">102</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">91</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">242</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">56</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 129</span>
-          
-          <span class="co-ta-pill top">Other 97</span>
-          
-          <span class="co-ta-pill ">Immunology 14</span>
-          
-          <span class="co-ta-pill ">Rare Disease 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:23px;background:rgba(234,179,8,0.66)">32</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">129</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">97</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">14</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -64643,45 +64856,53 @@ The severity of each<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">26</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:51px;background:rgba(99,102,241,0.99)">38</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">39</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">39</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">38</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">143</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">42</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 81</span>
-          
-          <span class="co-ta-pill top">Other 31</span>
-          
-          <span class="co-ta-pill ">Neurology 23</span>
-          
-          <span class="co-ta-pill ">Immunology 6</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:38px;background:rgba(234,179,8,0.83)">26</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">81</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">31</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">23</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">6</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -67125,45 +67346,53 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">23</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">31</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">16</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:32px;background:rgba(59,130,246,0.76)">16</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">31</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">125</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">16</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 74</span>
-          
-          <span class="co-ta-pill top">Neurology 43</span>
-          
-          <span class="co-ta-pill ">Immunology 7</span>
-          
-          <span class="co-ta-pill ">Rare Disease 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:41px;background:rgba(234,179,8,0.87)">23</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">74</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">43</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">7</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -69609,45 +69838,53 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">19</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:34px;background:rgba(99,102,241,0.79)">11</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">9</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:30px;background:rgba(59,130,246,0.74)">9</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">11</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">55</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">17</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 30</span>
-          
-          <span class="co-ta-pill top">Neurology 11</span>
-          
-          <span class="co-ta-pill ">Immunology 7</span>
-          
-          <span class="co-ta-pill ">Oncology 5</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">19</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">30</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">11</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">7</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">5</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -72078,45 +72315,53 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">17</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:40px;background:rgba(99,102,241,0.85)">12</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">12</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:40px;background:rgba(59,130,246,0.85)">12</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">12</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">50</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">9</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 37</span>
-          
-          <span class="co-ta-pill top">Neurology 6</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 4</span>
-          
-          <span class="co-ta-pill ">Oncology 2</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">17</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">37</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">6</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">4</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">2</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -74558,45 +74803,53 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">16</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:31px;background:rgba(99,102,241,0.75)">11</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">22</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">22</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">11</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">60</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">12</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 44</span>
-          
-          <span class="co-ta-pill top">Neurology 12</span>
-          
-          <span class="co-ta-pill ">Oncology 3</span>
-          
-          <span class="co-ta-pill ">Immunology 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:41px;background:rgba(234,179,8,0.86)">16</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">44</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">12</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">3</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -77036,45 +77289,53 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">13</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:42px;background:rgba(99,102,241,0.88)">10</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">11</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:46px;background:rgba(59,130,246,0.92)">11</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">10</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">53</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">6</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 35</span>
-          
-          <span class="co-ta-pill top">Rare Disease 14</span>
-          
-          <span class="co-ta-pill ">Cardiovascular 2</span>
-          
-          <span class="co-ta-pill ">Neurology 2</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">13</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">35</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">14</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">2</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">2</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -79521,41 +79782,49 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">10</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:40px;background:rgba(99,102,241,0.86)">25</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">35</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">35</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">25</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">72</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">15</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 70</span>
-          
-          <span class="co-ta-pill top">Other 2</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:22px;background:rgba(234,179,8,0.64)">10</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">70</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">2</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -81998,45 +82267,53 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">9</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">57</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">29</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:31px;background:rgba(59,130,246,0.75)">29</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">57</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">124</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">43</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 70</span>
-          
-          <span class="co-ta-pill top">Other 32</span>
-          
-          <span class="co-ta-pill ">Neurology 14</span>
-          
-          <span class="co-ta-pill ">Immunology 5</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:17px;background:rgba(234,179,8,0.58)">9</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">70</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">32</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">14</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">5</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -84480,45 +84757,53 @@ A total of 10 patients will be e<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">8</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:49px;background:rgba(99,102,241,0.96)">25</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">27</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">27</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">25</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">78</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">14</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Oncology 46</span>
-          
-          <span class="co-ta-pill top">Other 26</span>
-          
-          <span class="co-ta-pill ">Neurology 5</span>
-          
-          <span class="co-ta-pill ">Infectious Disease 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:22px;background:rgba(234,179,8,0.65)">8</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Oncology <span style="opacity:.7">46</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">26</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">5</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -86962,45 +87247,53 @@ MTD reflects the  | Number of Participants who Experienced Dose-Limiting Toxicit
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">6</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">13</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">9</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:39px;background:rgba(59,130,246,0.85)">9</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">13</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">38</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">8</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 18</span>
-          
-          <span class="co-ta-pill top">Cardiovascular 8</span>
-          
-          <span class="co-ta-pill ">Neurology 7</span>
-          
-          <span class="co-ta-pill ">Endocrinology 3</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:29px;background:rgba(234,179,8,0.73)">6</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">18</span></span>
+        
+        <span class="co-ta-pill ">Cardiovascular <span style="opacity:.7">8</span></span>
+        
+        <span class="co-ta-pill ">Neurology <span style="opacity:.7">7</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">3</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -88888,41 +89181,49 @@ MTD reflects the  | Number of Participants who Experienced Dose-Limiting Toxicit
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">6</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:0px;background:rgba(99,102,241,0)"></div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">5</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:45px;background:rgba(59,130,246,0.92)">5</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">0</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">13</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">4</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 12</span>
-          
-          <span class="co-ta-pill top">Immunology 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">6</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">12</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -89660,41 +89961,49 @@ MTD reflects the  | Number of Participants who Experienced Dose-Limiting Toxicit
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">6</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:47px;background:rgba(99,102,241,0.94)">8</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">9</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">9</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">8</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">42</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">4</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 23</span>
-          
-          <span class="co-ta-pill top">Rare Disease 19</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:38px;background:rgba(234,179,8,0.83)">6</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">23</span></span>
+        
+        <span class="co-ta-pill ">Rare Disease <span style="opacity:.7">19</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -91773,41 +92082,49 @@ Acute systemic hypers<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">5</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:35px;background:rgba(99,102,241,0.8)">3</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">1</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:18px;background:rgba(59,130,246,0.6)">1</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">3</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">11</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">2</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Rare Disease 7</span>
-          
-          <span class="co-ta-pill top">Other 4</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">5</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Rare Disease <span style="opacity:.7">7</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">4</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -92453,45 +92770,53 @@ Acute systemic hypers<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">5</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:16px;background:rgba(99,102,241,0.57)">1</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">7</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">7</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">1</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">71</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">20</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Cardiovascular 35</span>
-          
-          <span class="co-ta-pill top">Other 21</span>
-          
-          <span class="co-ta-pill ">Endocrinology 13</span>
-          
-          <span class="co-ta-pill ">Oncology 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:40px;background:rgba(234,179,8,0.86)">5</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Cardiovascular <span style="opacity:.7">35</span></span>
+        
+        <span class="co-ta-pill ">Other <span style="opacity:.7">21</span></span>
+        
+        <span class="co-ta-pill ">Endocrinology <span style="opacity:.7">13</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -94933,41 +95258,49 @@ Endpoint: Compare the hea<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">4</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:20px;background:rgba(99,102,241,0.62)">1</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">1</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:20px;background:rgba(59,130,246,0.62)">1</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">1</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">7</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">0</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 4</span>
-          
-          <span class="co-ta-pill top">Infectious Disease 3</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(234,179,8,1.0)">4</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">4</span></span>
+        
+        <span class="co-ta-pill ">Infectious Disease <span style="opacity:.7">3</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -95414,41 +95747,49 @@ Endpoint: Compare the hea<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">2</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:38px;background:rgba(99,102,241,0.83)">2</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">3</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(59,130,246,1.0)">3</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">2</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">7</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">0</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 6</span>
-          
-          <span class="co-ta-pill top">Immunology 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:38px;background:rgba(234,179,8,0.83)">2</div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">6</span></span>
+        
+        <span class="co-ta-pill ">Immunology <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -95871,39 +96212,47 @@ Endpoint: Compare the hea<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">0</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">1</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">0</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:0px;background:rgba(59,130,246,0)"></div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">1</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">1</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">0</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Rare Disease 1</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:0px;background:rgba(234,179,8,0)"></div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Rare Disease <span style="opacity:.7">1</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -96014,41 +96363,49 @@ Endpoint: Compare the hea<br>
         <span class="co-card-chevron">▼</span>
       </div>
 
-      <!-- 통계 수치 (한 줄) -->
-      <div class="co-stats-row">
-        <div class="co-stat">
-          <div class="co-stat-val ph3c">0</div>
-          <div class="co-stat-label">Phase 3</div>
+      <!-- ▶ 파이프라인 시각화 (타임라인) -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="co-pipe-viz">
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:52px;background:rgba(99,102,241,1.0)">6</div>
+          <div class="co-pipe-lbl">Phase 1</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val ph2c">5</div>
-          <div class="co-stat-label">Phase 2</div>
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:45px;background:rgba(59,130,246,0.92)">5</div>
+          <div class="co-pipe-lbl">Phase 2</div>
         </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--muted)">6</div>
-          <div class="co-stat-label">Phase 1</div>
-        </div>
-        <div style="width:1px;background:var(--border);height:28px;margin:0 2px"></div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--text);font-size:13px">17</div>
-          <div class="co-stat-label">전체</div>
-        </div>
-        <div class="co-stat">
-          <div class="co-stat-val" style="color:var(--green);font-size:13px">2</div>
-          <div class="co-stat-label">결과공개</div>
-        </div>
-        <!-- TA 분포 (인라인) -->
-        
-        
-        <div style="margin-left:8px;display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          
-          <span class="co-ta-pill top">Other 11</span>
-          
-          <span class="co-ta-pill top">Oncology 6</span>
-          
+        <div class="co-pipe-arrow">›</div>
+        <div class="co-pipe-seg">
+          <div class="co-pipe-block" style="height:0px;background:rgba(234,179,8,0)"></div>
+          <div class="co-pipe-lbl">Phase 3</div>
         </div>
         
       </div>
+      <!-- TA 분포 -->
+      
+      
+      <div class="co-pipe-meta">
+        
+        <span class="co-ta-pill top">Other <span style="opacity:.7">11</span></span>
+        
+        <span class="co-ta-pill ">Oncology <span style="opacity:.7">6</span></span>
+        
+      </div>
+      
 
     </div><!-- /co-card-header-wrap -->
 
@@ -125513,7 +125870,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 15:11 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-24 15:17 UTC</span>
   </div>
 </div>
 
@@ -130304,8 +130661,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Novartis", "Takeda", "Daiichi Sankyo", "Teva", "CSL", "Johnson \u0026 Johnson", "Merck (MSD)", "Biogen", "AstraZeneca", "Bayer", "GSK", "Regeneron", "Incyte", "Pfizer", "Otsuka", "Gilead Sciences", "Eli Lilly", "Vertex Pharmaceuticals", "Merck KGaA", "Moderna", "Roche", "Novo Nordisk", "Boehringer Ingelheim", "Bristol-Myers Squibb", "Sanofi", "AbbVie", "Eisai", "Amgen", "UCB", "Astellas"];
-const BIOTECH_NAMES   = ["BioMarin Pharmaceutical", "Protagonist Therapeutics", "Sarepta Therapeutics", "Argenx", "Jazz Pharmaceuticals", "Madrigal Pharmaceuticals", "Exelixis", "Alnylam Pharmaceuticals", "Ionis Pharmaceuticals", "Rhythm Pharmaceuticals", "Blueprint Medicines", "Apellis Pharmaceuticals"];
+const BIGPHARMA_NAMES = ["Biogen", "Novo Nordisk", "Takeda", "Regeneron", "AstraZeneca", "Teva", "Astellas", "Sanofi", "Johnson \u0026 Johnson", "CSL", "Eli Lilly", "Pfizer", "Eisai", "Novartis", "UCB", "Otsuka", "Amgen", "Merck KGaA", "Vertex Pharmaceuticals", "Bayer", "Incyte", "Bristol-Myers Squibb", "Boehringer Ingelheim", "Roche", "AbbVie", "Moderna", "Daiichi Sankyo", "GSK", "Gilead Sciences", "Merck (MSD)"];
+const BIOTECH_NAMES   = ["Alnylam Pharmaceuticals", "Exelixis", "BioMarin Pharmaceutical", "Jazz Pharmaceuticals", "Protagonist Therapeutics", "Apellis Pharmaceuticals", "Sarepta Therapeutics", "Rhythm Pharmaceuticals", "Blueprint Medicines", "Madrigal Pharmaceuticals", "Argenx", "Ionis Pharmaceuticals"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -130468,7 +130825,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 15:11 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 15:17 UTC
 </footer>
 
 <script>

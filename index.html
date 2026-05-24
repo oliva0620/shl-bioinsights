@@ -170,7 +170,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-24 11:45 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-24 11:49 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -190,21 +190,20 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
   <button class="nav-item" onclick="switchPanel('trials', this)">
     <span class="nav-icon">🔬</span> 임상 상세
   </button>
+  <button class="nav-item" onclick="switchPanel('pos', this)">
+    <span class="nav-icon">🎯</span> 통과 예측
+  </button>
+  <button class="nav-item" onclick="switchPanel('calendar', this)">
+    <span class="nav-icon">📅</span> 주요 이벤트 달력
+  </button>
   <button class="nav-item" onclick="switchPanel('crl', this)">
     <span class="nav-icon">📋</span> FDA CRL 트래커
   </button>
   <button class="nav-item" onclick="switchPanel('news', this)">
     <span class="nav-icon">📰</span> 뉴스 피드
   </button>
-  <button class="nav-item" onclick="switchPanel('pos', this)">
-    <span class="nav-icon">🎯</span> 통과 예측
-  </button>
-
   <button class="nav-item" onclick="switchPanel('stock', this)">
     <span class="nav-icon">📉</span> 주가 트래커
-  </button>
-  <button class="nav-item" onclick="switchPanel('calendar', this)">
-    <span class="nav-icon">📅</span> 주요 이벤트 달력
   </button>
 
   <hr class="sidebar-divider">
@@ -392,7 +391,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 
 <p class="home-footer-note">
   데이터 출처: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters Health &nbsp;|&nbsp;
-  최종 업데이트: 2026-05-24 11:45 UTC
+  최종 업데이트: 2026-05-24 11:49 UTC
 </p>
 </div>
 
@@ -96434,7 +96433,7 @@ function sortStockSidebar(mode, clickedBtn) {
   <div style="font-size:13px;color:var(--muted);line-height:2">
     전 세계 매출 상위 30개 제약회사가 <strong style="color:var(--text)">지금 어떤 신약을 개발 중인지</strong>,
     그 신약이 <strong style="color:var(--text)">FDA 승인을 받을 가능성이 얼마나 되는지</strong>를 매일 자동으로 추적합니다.<br>
-    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-24 11:45 UTC</strong>
+    데이터는 미국 정부(NIH/FDA) 공개 데이터베이스 + 업계 전문 뉴스에서 수집됩니다. 최종 업데이트: <strong style="color:var(--accent)">2026-05-24 11:49 UTC</strong>
   </div>
 </div>
 
@@ -101101,7 +101100,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:45 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-24 11:49 UTC
 </footer>
 
 <script>
@@ -101231,66 +101230,66 @@ function sortTable(tableId, col) {
 
 <script>
 const TOUR_STEPS = [
+  // ① 웰컴
   {
-    type: 'modal',
-    icon: '🧬',
+    type: 'modal', icon: '🧬',
     title: 'SHL BioInsights에 오신 것을 환영합니다!',
-    text: '글로벌 <strong>Top 30 제약사</strong>의 임상 파이프라인을 매일 자동 수집·분석하는 <strong>바이오 투자 리서치 플랫폼</strong>입니다.<br><br>주요 기능을 단계별로 소개해드릴게요. 언제든 건너뛸 수 있습니다.',
+    text: '글로벌 <strong>Top 30 제약사</strong>의 임상 파이프라인을 매일 자동 수집·분석하는 <strong>바이오 투자 리서치 플랫폼</strong>입니다.<br><br>주요 기능을 순서대로 소개해드릴게요. 언제든 건너뛸 수 있습니다.',
     btnLabel: '투어 시작하기 →',
   },
+  // ② 메뉴바
   {
-    selector: '.sidebar',
-    position: 'right',
+    selector: '.sidebar', position: 'right',
     title: '📌 왼쪽 메뉴바',
-    text: '여기서 원하는 분석 화면으로 이동합니다.<br>각 탭은 서로 다른 투자 분석 기능을 제공해요.',
+    text: '메뉴는 <strong>투자 리서치 흐름</strong> 순서로 배치되어 있습니다.<br>위에서부터 따라 내려오면 자연스럽게 분석이 완성돼요.',
   },
+  // ③ 파이프라인 개요
   {
-    selector: '[onclick*="pipeline"]',
-    position: 'right',
-    title: '📊 파이프라인 개요',
-    text: '<strong>ADC · GLP-1 · mRNA</strong> 등 치료 플랫폼별로 30개사 임상 분포를 비교합니다.<br><br>어떤 분야에 어떤 회사가 집중하는지, 업계 트렌드를 파악할 수 있어요.',
+    selector: '[onclick*="pipeline"]', position: 'right',
+    title: '① 📊 파이프라인 개요',
+    text: '<strong>ADC · GLP-1 · mRNA</strong> 등 치료 플랫폼별로 30개사의 임상 분포를 비교합니다.<br><br>어떤 분야가 뜨고 있는지 업계 트렌드를 가장 먼저 파악하세요.',
   },
+  // ④ 임상 상세
   {
-    selector: '[onclick*="trials"]',
-    position: 'right',
-    title: '🔬 임상 상세',
-    text: '개별 임상(NCT ID)별로 <strong>약물명 · 적응증 · 성공 확률(PoS)</strong>을 확인합니다.<br><br>테이블을 정렬·검색하고 ClinicalTrials.gov 원문으로 바로 이동할 수 있어요.',
+    selector: '[onclick*="trials"]', position: 'right',
+    title: '② 🔬 임상 상세',
+    text: '관심 기업의 개별 임상(NCT)별로 <strong>약물명 · 적응증 · 성공 확률</strong>을 확인합니다.<br><br>ClinicalTrials.gov 원문으로 바로 이동할 수 있어요.',
   },
+  // ⑤ 통과 예측
   {
-    selector: '[onclick*="crl"]',
-    position: 'right',
-    title: '📋 FDA CRL 트래커',
-    text: '<strong>CRL = FDA 승인 거절 공문</strong>. 거절된 신약의 사유와 해결 여부를 추적합니다.<br><br>CRL을 받은 기업은 주가 리스크가 크므로 투자 전 반드시 확인하세요.',
+    selector: '[onclick*="pos"]', position: 'right',
+    title: '③ 🎯 통과 예측',
+    text: '<strong>BIO/IQVIA 2023</strong> 데이터 기반으로 Phase·적응증별 임상 성공 확률을 계산합니다.<br><br>고확률 파이프라인을 골라내는 스크리닝 도구로 활용하세요.',
   },
+  // ⑥ 이벤트 달력
   {
-    selector: '[onclick*="calendar"]',
-    position: 'right',
-    title: '📅 주요 이벤트 달력',
-    text: '<strong>PDUFA(FDA 결정일) · Phase 3 완료 · CRL 발행</strong>을 달력으로 한눈에 확인합니다.<br><br>날짜를 클릭하면 해당 이벤트의 투자 의미를 상세히 설명해줘요.',
+    selector: '[onclick*="calendar"]', position: 'right',
+    title: '④ 📅 주요 이벤트 달력',
+    text: '<strong>PDUFA(FDA 결정일) · Phase 3 완료 · CRL 발행</strong>을 달력으로 확인합니다.<br><br>날짜 클릭 → 이벤트 상세와 투자 의미까지 설명해줘요.',
   },
+  // ⑦ CRL 트래커
   {
-    selector: '[onclick*="stock"]',
-    position: 'right',
-    title: '📈 주가 트래커',
-    text: '30개사 <strong>주가 차트 · 수익률 · 투자 시그널</strong>을 확인합니다.<br><br>Yahoo Finance 링크로 실시간 정보에도 바로 접근할 수 있어요.',
+    selector: '[onclick*="crl"]', position: 'right',
+    title: '⑤ 📋 FDA CRL 트래커',
+    text: '<strong>CRL = FDA 승인 거절 공문</strong>. 거절 사유·해결 여부를 추적합니다.<br><br>투자 후보 기업의 CRL 이력을 반드시 확인하세요. 리스크 핵심 지표입니다.',
   },
+  // ⑧ 뉴스 피드
   {
-    selector: '[onclick*="pos"]',
-    position: 'right',
-    title: '🎯 임상 통과 예측',
-    text: '<strong>BIO/IQVIA 2023</strong> 데이터 기반으로 Phase · 적응증별 임상 성공 확률을 계산합니다.<br><br>고확률 파이프라인을 선별하는 스크리닝 도구로 활용하세요.',
+    selector: '[onclick*="news"]', position: 'right',
+    title: '⑥ 📰 뉴스 피드',
+    text: '<strong>FiercePharma · STAT News · Reuters Health</strong> 임상 관련 최신 뉴스를 매일 자동 수집합니다.<br><br>검색으로 관심 종목 뉴스만 빠르게 필터링할 수 있어요.',
   },
+  // ⑨ 주가 트래커
   {
-    selector: '[onclick*="news"]',
-    position: 'right',
-    title: '📰 뉴스 피드',
-    text: '<strong>FiercePharma · STAT News · Reuters Health</strong> 최신 임상 뉴스를 매일 자동 수집합니다.<br><br>기업 이름으로 검색해 관심 종목 뉴스만 필터링할 수 있어요.',
+    selector: '[onclick*="stock"]', position: 'right',
+    title: '⑦ 📈 주가 트래커',
+    text: '30개사 <strong>주가 차트 · 수익률 · 투자 시그널</strong>을 한 화면에서 확인합니다.<br><br>임상 결과·CRL 이벤트가 주가에 어떤 영향을 줬는지도 볼 수 있어요.',
   },
+  // ⑩ 완료
   {
-    type: 'modal',
-    icon: '🚀',
+    type: 'modal', icon: '🚀',
     title: '이제 시작해보세요!',
-    text: '궁금한 점은 사이드바 하단 <strong>📖 사용 가이드</strong>와 <strong>🔗 데이터 출처</strong>를 참고하세요.<br><br>데이터는 <strong>매일 자동 업데이트</strong>됩니다. 투어는 언제든 사이드바 하단 버튼으로 다시 볼 수 있어요.',
+    text: '메뉴를 <strong>위에서 아래로</strong> 따라가면 파이프라인 분석 → 확률 평가 → 리스크 점검 → 시장 반응까지 완성됩니다.<br><br>데이터는 <strong>매일 자동 업데이트</strong>되며, 투어는 사이드바 하단에서 언제든 다시 볼 수 있어요.',
     btnLabel: '시작하기 ✓',
     isLast: true,
   },

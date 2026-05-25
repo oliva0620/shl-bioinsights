@@ -185,7 +185,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
     </div>
   </div>
   <div class="topbar-right">
-    최종 업데이트: <strong>2026-05-25 02:07 UTC</strong><br>
+    최종 업데이트: <strong>2026-05-25 02:14 UTC</strong><br>
     ClinicalTrials.gov · FDA · FiercePharma · STAT News · Reuters
   </div>
 </div>
@@ -316,7 +316,7 @@ footer { padding: 16px 28px; border-top: 1px solid var(--border); font-size: 11p
 <div class="hm-wrap">
   <div class="hm-eyebrow">
     <span class="hm-eyebrow-dot"></span>
-    매일 자동 업데이트 · 2026-05-25 02:07 UTC
+    매일 자동 업데이트 · 2026-05-25 02:14 UTC
   </div>
 
   <div class="hm-brand">SHL BioInsights</div>
@@ -181392,9 +181392,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
     <button class="intel-filter-btn" onclick="filterIntel('near',this)">6개월 내 임상 종료</button>
     <button class="intel-filter-btn" onclick="filterIntel('Phase 3',this)">Phase 3</button>
     <button class="intel-filter-btn" onclick="filterIntel('Phase 2',this)">Phase 2</button>
-    <button class="intel-filter-btn" onclick="filterIntel('Oncology',this)">종양학</button>
-    <button class="intel-filter-btn" onclick="filterIntel('Rare Disease',this)">희귀질환</button>
-    <button class="intel-filter-btn" onclick="filterIntel('high',this)">고확률 ≥50%</button>
+    <button class="intel-filter-btn" onclick="filterIntel('high',this)">전환 확률 50%+</button>
   </div>
 
   <!-- 카드 그리드 -->
@@ -202441,7 +202439,7 @@ document.addEventListener('DOMContentLoaded', () => sortStockSidebar('event', nu
   </div>
   <div style="margin-top:14px;display:flex;gap:20px;font-size:11px;color:#64748b">
     <span>📡 데이터: ClinicalTrials.gov · openFDA · FiercePharma · STAT News · Reuters</span>
-    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-25 02:07 UTC</span>
+    <span>🔄 업데이트: 매일 자동 갱신 · 최종 2026-05-25 02:14 UTC</span>
   </div>
 </div>
 
@@ -207239,8 +207237,8 @@ function detBadgeStyle(type, urgency) {
 function ddayClass(urgency) {
   return { imminent:'dday-imminent', near:'dday-near', upcoming:'dday-upcoming', past:'dday-past' }[urgency] || 'dday-upcoming';
 }
-const BIGPHARMA_NAMES = ["Merck KGaA", "Eisai", "Sanofi", "Bayer", "Biogen", "AbbVie", "Regeneron", "Merck (MSD)", "GSK", "Takeda", "Otsuka", "Gilead Sciences", "UCB", "Astellas", "AstraZeneca", "Daiichi Sankyo", "Boehringer Ingelheim", "Moderna", "Novo Nordisk", "Amgen", "Pfizer", "Eli Lilly", "Johnson \u0026 Johnson", "Bristol-Myers Squibb", "Novartis", "Vertex Pharmaceuticals", "Incyte", "CSL", "Roche", "Teva"];
-const BIOTECH_NAMES   = ["Protagonist Therapeutics", "Alnylam Pharmaceuticals", "Sarepta Therapeutics", "Blueprint Medicines", "BioMarin Pharmaceutical", "Apellis Pharmaceuticals", "Argenx", "Rhythm Pharmaceuticals", "Ionis Pharmaceuticals", "Jazz Pharmaceuticals", "Exelixis", "Madrigal Pharmaceuticals"];
+const BIGPHARMA_NAMES = ["Boehringer Ingelheim", "Merck KGaA", "Bayer", "Biogen", "Amgen", "Eli Lilly", "Regeneron", "Astellas", "Gilead Sciences", "Vertex Pharmaceuticals", "Novo Nordisk", "Bristol-Myers Squibb", "CSL", "Incyte", "Johnson \u0026 Johnson", "Takeda", "Pfizer", "AbbVie", "Sanofi", "Merck (MSD)", "GSK", "Teva", "Daiichi Sankyo", "Novartis", "Moderna", "Otsuka", "Eisai", "Roche", "UCB", "AstraZeneca"];
+const BIOTECH_NAMES   = ["Protagonist Therapeutics", "Apellis Pharmaceuticals", "Exelixis", "Argenx", "Sarepta Therapeutics", "Madrigal Pharmaceuticals", "BioMarin Pharmaceutical", "Jazz Pharmaceuticals", "Rhythm Pharmaceuticals", "Alnylam Pharmaceuticals", "Ionis Pharmaceuticals", "Blueprint Medicines"];
 
 function filterMatch(ev) {
   if (gcalActiveFilter === 'all') return true;
@@ -207403,7 +207401,7 @@ if (document.getElementById('panel-calendar').classList.contains('active')) gcal
 </div><!-- /body-wrap -->
 
 <footer>
-  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-25 02:07 UTC
+  Pharma Clinical Monitor &nbsp;|&nbsp; 데이터: ClinicalTrials.gov (US), FDA openFDA, FDA CRL, FiercePharma, STAT News, Reuters Health &nbsp;|&nbsp; BIO/IQVIA 성공률 기준 적용 &nbsp;|&nbsp; 최종 업데이트: 2026-05-25 02:14 UTC
 </footer>
 
 <script>
